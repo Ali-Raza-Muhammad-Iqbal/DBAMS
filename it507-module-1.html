@@ -1,0 +1,1761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+  <!-- ===== PRIMARY SEO META ===== -->
+  <title>IT-507 Module 1: Introduction to Database Administration & Management — Notes | Sir Ali Raza</title>
+  <meta name="description" content="Complete study notes for IT-507 Module 1: Introduction to Database Administration & Management. Covers data vs information, DBA roles, DBMS definition, database users, three-schema architecture, and centralized vs distributed systems with definitions, types, real-life examples, diagrams, syntax, and simple examples by Sir Ali Raza.">
+  <meta name="keywords" content="IT-507 Module 1, Introduction to Database Administration, Database Management notes, data vs information, data administration, database administration, DBA roles responsibilities, DBMS definition, database users interfaces, three-schema architecture, centralized database, distributed database, database environment, DBA notes PDF, IT-507 notes, database administration tutorial, Sir Ali Raza, DBMS architecture, database administrator duties, SQL, database concepts, IT-507 study material">
+  <meta name="author" content="Sir Ali Raza">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta name="theme-color" content="#1e2b4f">
+  <link rel="canonical" href="https://ali-raza-muhammad-iqbal.github.io/it507-module-1.html">
+
+  <!-- ===== OPEN GRAPH ===== -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="IT-507 · Database Administration and Management">
+  <meta property="og:title" content="IT-507 Module 1: Introduction to Database Administration & Management — Notes">
+  <meta property="og:description" content="Complete notes on data vs information, DBA roles, DBMS, database users, three-schema architecture, and centralized vs distributed databases — with definitions, types, real-life examples, diagrams, syntax, and simple examples.">
+  <meta property="og:url" content="https://ali-raza-muhammad-iqbal.github.io/it507-module-1.html">
+  <meta property="og:image" content="https://ali-raza-muhammad-iqbal.github.io/preview.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="IT-507 Module 1 Database Administration Notes cover">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:email" content="Mr_Ali_Raza@yahoo.com">
+  <meta property="article:author" content="Sir Ali Raza">
+  <meta property="article:section" content="Database Administration">
+  <meta property="article:tag" content="Database Administration">
+  <meta property="article:tag" content="DBMS">
+  <meta property="article:tag" content="Three-Schema Architecture">
+
+  <!-- ===== TWITTER CARD ===== -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="IT-507 Module 1: Introduction to Database Administration & Management — Notes">
+  <meta name="twitter:description" content="Full notes for IT-507 Module 1 — data vs information, DBA roles, DBMS, database users, three-schema architecture, centralized vs distributed. Definitions, types, examples, diagrams, syntax.">
+  <meta name="twitter:image" content="https://ali-raza-muhammad-iqbal.github.io/preview.png">
+  <meta name="twitter:image:alt" content="IT-507 Module 1 Database Administration Notes cover">
+  <meta name="twitter:creator" content="@Ali_Raza_Iqbal">
+  <meta name="twitter:site" content="@Ali_Raza_Iqbal">
+
+  <!-- ===== ADDITIONAL SEO ===== -->
+  <meta name="rating" content="general">
+  <meta name="language" content="English">
+  <meta name="revisit-after" content="7 days">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="icon" type="image/x-icon" href="https://ali-raza-muhammad-iqbal.github.io/favicon.ico">
+  <link rel="apple-touch-icon" href="https://ali-raza-muhammad-iqbal.github.io/apple-touch-icon.png">
+
+  <!-- ===== STRUCTURED DATA ===== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LearningResource",
+    "name": "IT-507 Module 1: Introduction to Database Administration & Management",
+    "description": "Complete study notes for IT-507 Module 1 covering data vs information, data administration vs database administration, DBA roles and responsibilities, DBMS definition, database users and interfaces, three-schema architecture, and centralized vs distributed database systems — with definitions, types, real-life examples, diagrams, syntax, and simple examples.",
+    "url": "https://ali-raza-muhammad-iqbal.github.io/it507-module-1.html",
+    "image": "https://ali-raza-muhammad-iqbal.github.io/preview.png",
+    "inLanguage": "en",
+    "educationalLevel": "Undergraduate",
+    "learningResourceType": "Notes",
+    "isPartOf": {
+      "@type": "Course",
+      "name": "IT-507 Database Administration and Management",
+      "url": "https://ali-raza-muhammad-iqbal.github.io/it507-index.html"
+    },
+    "author": {
+      "@type": "Person",
+      "name": "Sir Ali Raza",
+      "url": "https://ali-raza-muhammad-iqbal.github.io",
+      "email": "mailto:Mr_Ali_Raza@yahoo.com",
+      "sameAs": [
+        "https://github.com/Ali-Raza-Muhammad-Iqbal",
+        "https://www.linkedin.com/in/ali-raza-muhammad-iqbal",
+        "https://ali-raza-muhammad-iqbal.github.io",
+        "https://www.tiktok.com/@ali_raza_muhammad_iqbal",
+        "https://www.facebook.com/AliRazaMuhammadIqbal1",
+        "https://www.instagram.com/ali_raza_muhammad_iqbal",
+        "https://x.com/Ali_Raza_Iqbal",
+        "https://www.youtube.com/@Ali_Raza_Muhammad_Iqbal"
+      ]
+    },
+    "about": [
+      { "@type": "Thing", "name": "Database Administration" },
+      { "@type": "Thing", "name": "Database Management Systems" },
+      { "@type": "Thing", "name": "DBA Roles" },
+      { "@type": "Thing", "name": "Three-Schema Architecture" },
+      { "@type": "Thing", "name": "Centralized vs Distributed Databases" }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://ali-raza-muhammad-iqbal.github.io" },
+      { "@type": "ListItem", "position": 2, "name": "IT-507 Database Administration and Management", "item": "https://ali-raza-muhammad-iqbal.github.io/it507-index.html" },
+      { "@type": "ListItem", "position": 3, "name": "Module 1: Introduction to Database Administration & Management", "item": "https://ali-raza-muhammad-iqbal.github.io/it507-module-1.html" }
+    ]
+  }
+  </script>
+
+  <!-- ===== BOOTSTRAP + FONTAWESOME ===== -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <style>
+    /* ===== CSS VARIABLES (Light + Dark) ===== */
+    :root {
+      --bg-body: #f8faff;
+      --bg-card: #ffffff;
+      --bg-subtle: #eef3fc;
+      --bg-code: #1e2b4f;
+      --bg-code-inline: #eef3fc;
+      --text-primary: #1e2b4f;
+      --text-secondary: #4a5a78;
+      --text-muted: #7a8bab;
+      --text-code: #e6edf9;
+      --border-color: #e0e8f5;
+      --border-strong: #bac8e0;
+      --accent-yellow: #ffc107;
+      --accent-blue: #0d6efd;
+      --accent-red: #d9534f;
+      --accent-green: #198754;
+      --accent-gold: #b07d00;
+      --header-from: #1e2b4f;
+      --header-to: #2a3f6e;
+      --footer-bg: #1e2b4f;
+      --footer-text: #cddcff;
+      --shadow-sm: 0 2px 8px rgba(30, 43, 79, 0.05);
+      --shadow-md: 0 12px 30px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 10px 25px rgba(0, 20, 40, 0.2);
+    }
+    [data-theme="dark"] {
+      --bg-body: #0f1729;
+      --bg-card: #1a2338;
+      --bg-subtle: #243155;
+      --bg-code: #0a1120;
+      --bg-code-inline: #243155;
+      --text-primary: #e6edf9;
+      --text-secondary: #b6c4e0;
+      --text-muted: #8a9bbb;
+      --text-code: #e6edf9;
+      --border-color: #2f3f63;
+      --border-strong: #3d4f7a;
+      --header-from: #0d1526;
+      --header-to: #1a2846;
+      --footer-bg: #0d1526;
+      --footer-text: #b8c8f0;
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+      --shadow-md: 0 12px 30px rgba(0, 0, 0, 0.4);
+      --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.5);
+    }
+    [data-theme="dark"] body { background-color: var(--bg-body); color: var(--text-primary); }
+    [data-theme="dark"] .note-card { background: var(--bg-card); border-color: var(--border-color); }
+    [data-theme="dark"] .topic-section h3 { color: var(--text-primary); }
+    [data-theme="dark"] .topic-section h4 { color: var(--accent-yellow); }
+    [data-theme="dark"] code.inline { background: var(--bg-code-inline); color: #6b9eff; }
+    [data-theme="dark"] .example-box { background: var(--bg-subtle); border-left-color: var(--accent-blue); }
+    [data-theme="dark"] .real-life-box { background: rgba(25, 135, 84, 0.12); border-left-color: var(--accent-green); }
+    [data-theme="dark"] .warning-box { background: rgba(217, 83, 79, 0.12); border-left-color: var(--accent-red); }
+    [data-theme="dark"] .info-box { background: rgba(255, 193, 7, 0.1); border-left-color: var(--accent-yellow); }
+    [data-theme="dark"] .diagram-box { background: var(--bg-subtle); border-color: var(--border-color); }
+    [data-theme="dark"] .toc-card { background: var(--bg-card); border-color: var(--border-color); }
+    [data-theme="dark"] .toc-card a { color: var(--text-secondary); }
+    [data-theme="dark"] .toc-card a:hover { color: var(--accent-yellow); }
+    [data-theme="dark"] .theme-toggle { background: var(--bg-card); color: var(--text-primary); border-color: var(--border-color); }
+    [data-theme="dark"] table.notes-table th { background: var(--bg-subtle); color: var(--text-primary); }
+    [data-theme="dark"] table.notes-table td { border-color: var(--border-color); }
+    [data-theme="dark"] .notes-link { color: var(--text-primary); border-bottom-color: #4a5f85; }
+    [data-theme="dark"] .notes-link:hover { color: #6b9eff; border-bottom-color: #6b9eff; }
+
+    /* ===== GLOBAL ===== */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
+      background-color: var(--bg-body);
+      font-family: 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', sans-serif;
+      overflow-x: hidden;
+      line-height: 1.65;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      color: var(--text-primary);
+    }
+    img, svg { max-width: 100%; height: auto; }
+
+    /* ===== READING PROGRESS BAR ===== */
+    .progress-bar-top {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #ffc107, #0d6efd);
+      width: 0%;
+      z-index: 9999;
+      transition: width 0.1s linear;
+      box-shadow: 0 0 8px rgba(255, 193, 7, 0.5);
+    }
+
+    /* ===== THEME TOGGLE & BACK TO TOP ===== */
+    .theme-toggle {
+      position: fixed;
+      top: 14px;
+      right: 14px;
+      z-index: 1000;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      color: var(--text-primary);
+      font-size: 1.1rem;
+      cursor: pointer;
+      box-shadow: var(--shadow-md);
+      transition: transform 0.2s ease, background 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .theme-toggle:hover { transform: scale(1.1) rotate(15deg); background: var(--accent-yellow); color: #1e2b4f; }
+    .theme-toggle:focus-visible { outline: 2px solid var(--accent-blue); outline-offset: 2px; }
+    .back-to-top {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 1000;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: var(--accent-yellow);
+      color: #1e2b4f;
+      border: none;
+      font-size: 1.1rem;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(255, 193, 7, 0.5);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(20px);
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .back-to-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
+    .back-to-top:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(255, 193, 7, 0.7); }
+
+    /* ===== HEADER ===== */
+    .header-card {
+      background: linear-gradient(135deg, var(--header-from) 0%, var(--header-to) 100%);
+      color: white;
+      border-radius: 0 0 2rem 2rem;
+      padding: clamp(1.5rem, 4vw, 2.5rem) clamp(1rem, 3vw, 2rem);
+      box-shadow: var(--shadow-lg);
+    }
+    .header-card h1 {
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      font-size: clamp(1.4rem, 4.5vw, 2.6rem);
+    }
+    .header-card .lead {
+      font-weight: 300;
+      color: #d4e2ff;
+      font-size: clamp(0.9rem, 2vw, 1.1rem);
+    }
+    .badge-code {
+      background-color: var(--accent-yellow);
+      color: #1e2b4f;
+      font-weight: 600;
+      font-size: clamp(0.95rem, 2.5vw, 1.3rem);
+      padding: 0.3rem 1rem;
+      border-radius: 3rem;
+      display: inline-block;
+      margin-bottom: 0.75rem;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    .prepared-by {
+      font-size: clamp(0.85rem, 1.8vw, 1.05rem);
+      background: rgba(255,255,255,0.12);
+      display: inline-block;
+      padding: 0.45rem 1.3rem;
+      border-radius: 3rem;
+      backdrop-filter: blur(4px);
+      margin-top: 0.5rem;
+    }
+
+    /* ===== SOCIAL LINKS ===== */
+    .social-wrap {
+      margin-top: 1.4rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+    }
+    .social-title {
+      font-size: clamp(0.68rem, 1.8vw, 0.78rem);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #b9cdf5;
+      font-weight: 600;
+      margin-bottom: 0.85rem;
+    }
+    .social-title i { margin-right: 6px; }
+    .social-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: clamp(0.4rem, 1.5vw, 0.6rem);
+      justify-content: center;
+      list-style: none;
+      padding-left: 0;
+      margin-bottom: 0;
+    }
+    .social-links a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: clamp(38px, 8vw, 44px);
+      height: clamp(38px, 8vw, 44px);
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+      font-size: clamp(0.95rem, 2.2vw, 1.1rem);
+      text-decoration: none;
+      transition: transform 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .social-links a:hover,
+    .social-links a:focus-visible {
+      transform: translateY(-4px);
+      background: #ffffff;
+      color: #1e2b4f;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.28);
+      outline: none;
+    }
+    .social-links a.gh:hover  { background: #24292e; color: #fff; }
+    .social-links a.li:hover  { background: #0a66c2; color: #fff; }
+    .social-links a.gl:hover  { background: var(--accent-yellow); color: #1e2b4f; }
+    .social-links a.tt:hover  { background: #000000; color: #fff; }
+    .social-links a.fb:hover  { background: #1877f2; color: #fff; }
+    .social-links a.ig:hover  { background: linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); color: #fff; }
+    .social-links a.x:hover   { background: #000000; color: #fff; }
+    .social-links a.yt:hover  { background: #ff0000; color: #fff; }
+    .social-links a.mail:hover{ background: #eab308; color: #1e2b4f; }
+
+    /* ===== TOC CARD ===== */
+    .toc-card {
+      background: var(--bg-card);
+      border-radius: 1.25rem;
+      padding: clamp(1rem, 2.5vw, 1.5rem);
+      margin-top: 1.5rem;
+      margin-bottom: 2rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-color);
+      position: sticky;
+      top: 20px;
+    }
+    .toc-card h5 {
+      color: var(--text-primary);
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.85rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--accent-yellow);
+    }
+    .toc-card ol { padding-left: 1.2rem; margin-bottom: 0; }
+    .toc-card li { margin-bottom: 0.45rem; font-size: 0.88rem; }
+    .toc-card a { color: var(--text-secondary); text-decoration: none; transition: color 0.15s; }
+    .toc-card a:hover { color: var(--accent-blue); }
+
+    /* ===== NOTE CARD / TOPIC SECTIONS ===== */
+    .note-card {
+      background: var(--bg-card);
+      border-radius: 1.25rem;
+      padding: clamp(1rem, 3vw, 2rem);
+      margin-bottom: 1.5rem;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border-color);
+      transition: background 0.3s ease;
+    }
+    .topic-section {
+      scroll-margin-top: 90px;
+    }
+    .topic-section h3 {
+      color: var(--text-primary);
+      font-weight: 700;
+      font-size: clamp(1.15rem, 3vw, 1.5rem);
+      margin-bottom: 1rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 3px solid var(--accent-yellow);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+    .topic-number {
+      background: var(--accent-yellow);
+      color: #1e2b4f;
+      font-weight: 700;
+      font-size: 0.85em;
+      padding: 0.15rem 0.7rem;
+      border-radius: 0.5rem;
+      display: inline-block;
+      flex-shrink: 0;
+    }
+    .topic-section h4 {
+      color: var(--accent-blue);
+      font-weight: 700;
+      font-size: clamp(0.98rem, 2.3vw, 1.1rem);
+      margin-top: 1.5rem;
+      margin-bottom: 0.65rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .topic-section h4 i { color: var(--accent-yellow); }
+    .topic-section p {
+      color: var(--text-secondary);
+      margin-bottom: 0.85rem;
+      font-size: clamp(0.9rem, 2vw, 0.98rem);
+    }
+    .topic-section ul, .topic-section ol {
+      color: var(--text-secondary);
+      font-size: clamp(0.9rem, 2vw, 0.98rem);
+      margin-bottom: 0.85rem;
+      padding-left: 1.4rem;
+    }
+    .topic-section li { margin-bottom: 0.4rem; }
+    .topic-section strong { color: var(--text-primary); }
+
+    /* ===== INLINE CODE ===== */
+    code.inline {
+      background: var(--bg-code-inline);
+      color: var(--accent-blue);
+      padding: 0.12rem 0.45rem;
+      border-radius: 0.3rem;
+      font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+      font-size: 0.88em;
+      font-weight: 600;
+      word-break: break-word;
+    }
+
+    /* ===== CODE BLOCK (copyable) ===== */
+    .code-block {
+      position: relative;
+      background: var(--bg-code);
+      border-radius: 0.75rem;
+      margin: 1rem 0;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .code-block-header {
+      background: rgba(255, 255, 255, 0.06);
+      padding: 0.5rem 0.85rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .code-block-lang {
+      color: #b9cdf5;
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .code-copy-btn {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #e6edf9;
+      font-size: 0.72rem;
+      padding: 0.3rem 0.7rem;
+      border-radius: 0.35rem;
+      cursor: pointer;
+      transition: 0.18s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-weight: 500;
+    }
+    .code-copy-btn:hover { background: var(--accent-yellow); color: #1e2b4f; border-color: var(--accent-yellow); }
+    .code-copy-btn.copied { background: var(--accent-green); color: #fff; border-color: var(--accent-green); }
+    .code-block pre {
+      margin: 0;
+      padding: 1rem 1.1rem;
+      color: var(--text-code);
+      font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+      font-size: clamp(0.78rem, 1.9vw, 0.88rem);
+      line-height: 1.55;
+      overflow-x: auto;
+      white-space: pre;
+      scrollbar-width: thin;
+    }
+    .code-block pre::-webkit-scrollbar { height: 6px; }
+    .code-block pre::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 3px; }
+    .code-block pre code { color: inherit; background: none; padding: 0; font-size: inherit; }
+
+    /* ===== EXAMPLE / REAL-LIFE / INFO / WARNING BOXES ===== */
+    .example-box, .real-life-box, .info-box, .warning-box {
+      padding: 0.85rem 1rem;
+      border-radius: 0.6rem;
+      margin: 0.85rem 0;
+      border-left: 4px solid;
+      font-size: clamp(0.88rem, 2vw, 0.95rem);
+    }
+    .example-box {
+      background: var(--bg-subtle);
+      border-left-color: var(--accent-blue);
+      color: var(--text-secondary);
+    }
+    .real-life-box {
+      background: rgba(25, 135, 84, 0.08);
+      border-left-color: var(--accent-green);
+      color: var(--text-secondary);
+    }
+    .info-box {
+      background: rgba(255, 193, 7, 0.08);
+      border-left-color: var(--accent-yellow);
+      color: var(--text-secondary);
+    }
+    .warning-box {
+      background: rgba(217, 83, 79, 0.08);
+      border-left-color: var(--accent-red);
+      color: var(--text-secondary);
+    }
+    .example-box strong, .real-life-box strong, .info-box strong, .warning-box strong {
+      color: var(--text-primary);
+      display: block;
+      margin-bottom: 0.35rem;
+      font-size: 0.88em;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .example-box strong i, .real-life-box strong i, .info-box strong i, .warning-box strong i {
+      margin-right: 0.35rem;
+    }
+
+    /* ===== DIAGRAM BOX ===== */
+    .diagram-box {
+      background: var(--bg-subtle);
+      border: 1.5px dashed var(--border-strong);
+      border-radius: 0.75rem;
+      padding: 1.2rem 0.85rem;
+      margin: 1rem 0;
+      text-align: center;
+      overflow-x: auto;
+    }
+    .diagram-box svg { max-width: 100%; height: auto; display: inline-block; }
+    .diagram-caption {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 0.6rem;
+      font-style: italic;
+    }
+
+    /* ===== NOTES TABLE ===== */
+    .notes-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      margin: 1rem 0;
+      font-size: clamp(0.82rem, 1.9vw, 0.92rem);
+      border-radius: 0.6rem;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+    .notes-table th {
+      background: var(--bg-subtle);
+      color: var(--text-primary);
+      font-weight: 700;
+      padding: 0.7rem 0.85rem;
+      text-align: left;
+      border-bottom: 2px solid var(--border-strong);
+      font-size: 0.82em;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .notes-table td {
+      padding: 0.65rem 0.85rem;
+      border-bottom: 1px solid var(--border-color);
+      color: var(--text-secondary);
+      vertical-align: top;
+    }
+    .notes-table tr:last-child td { border-bottom: none; }
+    .notes-table tr:hover td { background: var(--bg-subtle); }
+
+    /* ===== NOTES LINK (download) ===== */
+    .notes-link {
+      color: var(--text-primary);
+      text-decoration: none;
+      font-weight: 600;
+      border-bottom: 1px dashed #8aa3cc;
+      font-size: 0.9rem;
+      transition: 0.15s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.15rem 0;
+    }
+    .notes-link i { color: var(--accent-red); font-size: 0.85rem; }
+    .notes-link:hover { color: var(--accent-blue); border-bottom-color: var(--accent-blue); }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      background-color: var(--footer-bg);
+      color: var(--footer-text);
+      border-radius: 2rem 2rem 0 0;
+      padding: clamp(1.5rem, 4vw, 2rem) clamp(1rem, 3vw, 1.8rem);
+      margin-top: 2rem;
+      font-size: clamp(0.85rem, 2vw, 0.95rem);
+      transition: background 0.3s ease;
+    }
+    .footer a { color: var(--accent-yellow); text-decoration: none; font-weight: 500; word-break: break-word; }
+    .footer a:hover { text-decoration: underline; color: #ffe08a; }
+    .footer .footer-social {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 4px;
+    }
+    .footer .footer-social a {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: clamp(30px, 7vw, 36px); height: clamp(30px, 7vw, 36px);
+      border-radius: 50%; background: rgba(255, 255, 255, 0.1);
+      color: var(--footer-text); font-size: clamp(0.75rem, 1.8vw, 0.88rem);
+      transition: 0.18s;
+    }
+    .footer .footer-social a:hover {
+      background: var(--accent-yellow); color: #1e2b4f;
+      text-decoration: none; transform: translateY(-2px);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 992px) {
+      .toc-card { position: static; margin-bottom: 1rem; }
+      .toc-card ol { columns: 2; column-gap: 1rem; }
+    }
+    @media (max-width: 768px) {
+      .header-card { border-radius: 0 0 1.25rem 1.25rem; }
+      .note-card { border-radius: 1rem; }
+      .theme-toggle { width: 40px; height: 40px; top: 10px; right: 10px; font-size: 1rem; }
+      .back-to-top { width: 42px; height: 42px; bottom: 18px; right: 18px; font-size: 1rem; }
+      .toc-card ol { columns: 1; }
+      .code-block pre { font-size: 0.78rem; padding: 0.85rem; }
+    }
+    @media (max-width: 400px) {
+      .badge-code { font-size: 0.85rem; padding: 0.28rem 0.8rem; }
+      .prepared-by { font-size: 0.8rem; padding: 0.35rem 1rem; }
+      .social-links a { width: 36px; height: 36px; font-size: 0.9rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition: none !important;
+        animation: none !important;
+        scroll-behavior: auto !important;
+      }
+    }
+    @media print {
+      .social-wrap, .footer-social, .badge-code, .theme-toggle, .back-to-top,
+      .progress-bar-top, .toc-card, .code-copy-btn { display: none !important; }
+      .header-card { background: #1e2b4f !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .note-card { box-shadow: none; page-break-inside: avoid; }
+      .code-block { background: #f4f4f4 !important; }
+      .code-block pre { color: #000 !important; }
+      body { background: #fff; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== READING PROGRESS BAR ===== -->
+<div class="progress-bar-top" id="progressBar" role="progressbar" aria-label="Reading progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+
+<!-- ===== THEME TOGGLE ===== -->
+<button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+  <i class="fas fa-moon" id="themeIcon" aria-hidden="true"></i>
+</button>
+
+<!-- ===== BACK TO TOP ===== -->
+<button class="back-to-top" id="backToTop" aria-label="Back to top" title="Back to top">
+  <i class="fas fa-arrow-up" aria-hidden="true"></i>
+</button>
+
+<!-- ===== SKIP LINK ===== -->
+<a href="#module-content" class="visually-hidden-focusable">Skip to module content</a>
+
+<!-- ===== HEADER ===== -->
+<header role="banner" aria-label="Module header">
+  <div class="header-card text-center">
+    <div class="badge-code">
+      <i class="fas fa-database me-2" aria-hidden="true"></i>IT-507 · Module 1
+    </div>
+    <h1 class="display-6 fw-bold mt-2">Introduction to Database Administration &amp; Management</h1>
+    <p class="lead mt-2 mb-3">Complete study notes · definitions, types, real-life examples, diagrams &amp; syntax</p>
+    <div class="prepared-by">
+      <i class="fas fa-chalkboard-teacher me-2" aria-hidden="true"></i>Prepared by <strong>Sir Ali Raza</strong>
+    </div>
+
+    <!-- ===== SOCIAL MEDIA LINKS ===== -->
+    <div class="social-wrap">
+      <p class="social-title"><i class="fas fa-share-nodes" aria-hidden="true"></i>Connect with Sir Ali Raza</p>
+      <ul class="social-links" aria-label="Social media and contact links">
+        <li><a class="gh" href="https://github.com/Ali-Raza-Muhammad-Iqbal" target="_blank" rel="noopener noreferrer" title="GitHub" aria-label="GitHub profile"><i class="fab fa-github" aria-hidden="true"></i></a></li>
+        <li><a class="li" href="https://www.linkedin.com/in/ali-raza-muhammad-iqbal" target="_blank" rel="noopener noreferrer" title="LinkedIn" aria-label="LinkedIn profile"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a></li>
+        <li><a class="gl" href="https://ali-raza-muhammad-iqbal.github.io" target="_blank" rel="noopener noreferrer" title="Portfolio / Website" aria-label="Personal website"><i class="fas fa-globe" aria-hidden="true"></i></a></li>
+        <li><a class="tt" href="https://www.tiktok.com/@ali_raza_muhammad_iqbal" target="_blank" rel="noopener noreferrer" title="TikTok" aria-label="TikTok profile"><i class="fab fa-tiktok" aria-hidden="true"></i></a></li>
+        <li><a class="fb" href="https://www.facebook.com/AliRazaMuhammadIqbal1" target="_blank" rel="noopener noreferrer" title="Facebook" aria-label="Facebook profile"><i class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
+        <li><a class="ig" href="https://www.instagram.com/ali_raza_muhammad_iqbal" target="_blank" rel="noopener noreferrer" title="Instagram" aria-label="Instagram profile"><i class="fab fa-instagram" aria-hidden="true"></i></a></li>
+        <li><a class="x" href="https://x.com/Ali_Raza_Iqbal" target="_blank" rel="noopener noreferrer" title="X (Twitter)" aria-label="X (Twitter) profile"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i></a></li>
+        <li><a class="yt" href="https://www.youtube.com/@Ali_Raza_Muhammad_Iqbal" target="_blank" rel="noopener noreferrer" title="YouTube" aria-label="YouTube channel"><i class="fab fa-youtube" aria-hidden="true"></i></a></li>
+        <li><a class="mail" href="mailto:Mr_Ali_Raza@yahoo.com" title="Email" aria-label="Send email"><i class="fas fa-envelope" aria-hidden="true"></i></a></li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<!-- ===== MAIN CONTENT ===== -->
+<main role="main" id="module-content">
+  <div class="container-fluid px-2 px-sm-3 px-md-4" style="max-width: 1280px; margin: 0 auto;">
+    <div class="row g-3 mt-2">
+
+      <!-- ===== TOC SIDEBAR ===== -->
+      <div class="col-lg-3 col-xl-3 order-lg-1 order-2">
+        <nav class="toc-card" aria-label="Table of contents">
+          <h5><i class="fas fa-list-ul me-2" aria-hidden="true"></i>Module Contents</h5>
+          <ol>
+            <li><a href="#topic-1-1">Data, Information &amp; Database</a></li>
+            <li><a href="#topic-1-2">Data Admin vs Database Admin</a></li>
+            <li><a href="#topic-1-3">Role of a DBA</a></li>
+            <li><a href="#topic-1-4">DBMS — Definition &amp; Overview</a></li>
+            <li><a href="#topic-1-5">Developing &amp; Managing Databases</a></li>
+            <li><a href="#topic-1-6">Database Users &amp; Interfaces</a></li>
+            <li><a href="#topic-1-7">Three-Schema Architecture</a></li>
+            <li><a href="#topic-1-8">Centralized vs Distributed</a></li>
+          </ol>
+        </nav>
+      </div>
+
+      <!-- ===== NOTES CONTENT ===== -->
+      <div class="col-lg-9 col-xl-9 order-lg-2 order-1">
+
+        <!-- ============ TOPIC 1.1 ============ -->
+        <article class="note-card topic-section" id="topic-1-1">
+          <h3><span class="topic-number">1.1</span> Introduction to Data, Information, and Database</h3>
+
+          <h4><i class="fas fa-book" aria-hidden="true"></i>Definition</h4>
+          <p><strong>Data</strong> is raw, unprocessed facts and figures with no meaning on their own. It is the basic input that we collect — numbers, text, symbols, or measurements.</p>
+          <p><strong>Information</strong> is data that has been processed, organized, and given meaning and context. It answers questions and helps in decision-making.</p>
+          <p><strong>Database</strong> is an organized collection of related data stored in a structured way so that it can be easily accessed, managed, and updated.</p>
+
+          <h4><i class="fas fa-layer-group" aria-hidden="true"></i>Types</h4>
+          <p><strong>Types of Data:</strong></p>
+          <ul>
+            <li><strong>Structured data</strong> — organized in rows and columns (e.g., name, age, salary).</li>
+            <li><strong>Semi-structured data</strong> — partially organized (e.g., JSON, XML, emails).</li>
+            <li><strong>Unstructured data</strong> — no fixed format (e.g., images, videos, audio, text documents).</li>
+          </ul>
+          <p><strong>Types of Databases:</strong></p>
+          <ul>
+            <li><strong>Relational databases</strong> — use tables (e.g., MySQL, PostgreSQL, Oracle).</li>
+            <li><strong>NoSQL databases</strong> — flexible schemas (e.g., MongoDB, Cassandra).</li>
+            <li><strong>Object-oriented databases</strong> — store objects (e.g., db4o).</li>
+            <li><strong>Hierarchical databases</strong> — tree structure (e.g., IBM IMS).</li>
+            <li><strong>Network databases</strong> — graph of records (e.g., IDMS).</li>
+          </ul>
+
+          <h4><i class="fas fa-diagram-project" aria-hidden="true"></i>Diagram — Data → Information → Database</h4>
+          <div class="diagram-box">
+            <svg viewBox="0 0 700 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram showing data flowing into information, which is stored in a database">
+              <defs>
+                <marker id="arrow1" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+                  <path d="M0,0 L0,6 L9,3 z" fill="#0d6efd"/>
+                </marker>
+              </defs>
+              <rect x="20" y="55" width="160" height="70" rx="10" fill="#eef3fc" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="100" y="85" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="14" font-weight="700" fill="#1e2b4f">DATA</text>
+              <text x="100" y="105" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" fill="#4a5a78">Raw facts</text>
+
+              <line x1="185" y1="90" x2="255" y2="90" stroke="#0d6efd" stroke-width="2.5" marker-end="url(#arrow1)"/>
+
+              <rect x="265" y="55" width="160" height="70" rx="10" fill="#ffc107" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="345" y="85" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="14" font-weight="700" fill="#1e2b4f">INFORMATION</text>
+              <text x="345" y="105" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" fill="#4a5a78">Processed data</text>
+
+              <line x1="430" y1="90" x2="500" y2="90" stroke="#0d6efd" stroke-width="2.5" marker-end="url(#arrow1)"/>
+
+              <rect x="510" y="55" width="160" height="70" rx="10" fill="#198754" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="590" y="85" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="14" font-weight="700" fill="#fff">DATABASE</text>
+              <text x="590" y="105" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" fill="#e6edf9">Organized storage</text>
+            </svg>
+            <div class="diagram-caption">Figure 1.1 — From raw data to information, stored in a database</div>
+          </div>
+
+          <h4><i class="fas fa-code" aria-hidden="true"></i>Syntax — Storing data in a database</h4>
+          <p>In SQL, we first create a table (structure) and then insert data into it:</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="code-block-lang"><i class="fas fa-database" aria-hidden="true"></i> SQL</span>
+              <button class="code-copy-btn" type="button" aria-label="Copy SQL code"><i class="fas fa-copy" aria-hidden="true"></i> Copy</button>
+            </div>
+            <pre><code>-- Create a table to store student data
+CREATE TABLE Students (
+    StudentID INT PRIMARY KEY,
+    Name VARCHAR(50),
+    Age INT,
+    City VARCHAR(50)
+);
+
+-- Insert raw data (which becomes information when queried)
+INSERT INTO Students (StudentID, Name, Age, City)
+VALUES (1, 'Ali', 20, 'Lahore'),
+       (2, 'Sara', 22, 'Karachi');
+
+-- Retrieve meaningful information
+SELECT Name, Age FROM Students WHERE Age > 20;</code></pre>
+          </div>
+
+          <div class="example-box">
+            <strong><i class="fas fa-lightbulb" aria-hidden="true"></i>Simple Example</strong>
+            <p class="mb-1"><strong>Data:</strong> <code class="inline">"Ali", 20, "Lahore"</code> — just raw values.</p>
+            <p class="mb-1"><strong>Information:</strong> "Ali is a 20-year-old student from Lahore who is older than 18." — processed and meaningful.</p>
+            <p class="mb-0"><strong>Database:</strong> A <code class="inline">Students</code> table storing thousands of such records, searchable and updatable.</p>
+          </div>
+
+          <div class="real-life-box">
+            <strong><i class="fas fa-briefcase" aria-hidden="true"></i>Real-Life Use Case</strong>
+            <p class="mb-0">A hospital stores patient records: <em>data</em> = temperature readings (98.6, 101.2). <em>Information</em> = "Patient has fever above 100°F." <em>Database</em> = the hospital's electronic health records system (e.g., Epic, Cerner) that stores all patient data and lets doctors query it instantly.</p>
+          </div>
+        </article>
+
+        <!-- ============ TOPIC 1.2 ============ -->
+        <article class="note-card topic-section" id="topic-1-2">
+          <h3><span class="topic-number">1.2</span> Data Administration vs. Database Administration</h3>
+
+          <h4><i class="fas fa-book" aria-hidden="true"></i>Definition</h4>
+          <p><strong>Data Administration (DA)</strong> is a high-level, business-focused function that manages data as a corporate resource. It focuses on data policies, standards, governance, and data quality across the whole organization.</p>
+          <p><strong>Database Administration (DBA)</strong> is a technical, hands-on function that manages the physical and logical databases — installation, configuration, backup, security, performance tuning, and user access.</p>
+
+          <h4><i class="fas fa-layer-group" aria-hidden="true"></i>Types / Key Differences</h4>
+          <table class="notes-table">
+            <thead>
+              <tr><th>Aspect</th><th>Data Administration (DA)</th><th>Database Administration (DBA)</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>Focus</strong></td><td>Business &amp; data governance</td><td>Technical &amp; operational</td></tr>
+              <tr><td><strong>Scope</strong></td><td>Organization-wide</td><td>Individual database systems</td></tr>
+              <tr><td><strong>Responsibilities</strong></td><td>Data policies, standards, quality, privacy</td><td>Installation, backup, recovery, tuning, security</td></tr>
+              <tr><td><strong>Reporting To</strong></td><td>CIO / CDO (business side)</td><td>IT Manager / DBA Lead (technical side)</td></tr>
+              <tr><td><strong>Example Task</strong></td><td>Defining a company-wide naming convention</td><td>Creating tables, indexes, and users</td></tr>
+            </tbody>
+          </table>
+
+          <h4><i class="fas fa-diagram-project" aria-hidden="true"></i>Diagram — Relationship</h4>
+          <div class="diagram-box">
+            <svg viewBox="0 0 700 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram showing Data Administration above Database Administration">
+              <rect x="180" y="20" width="340" height="55" rx="10" fill="#eef3fc" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="350" y="45" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="14" font-weight="700" fill="#1e2b4f">DATA ADMINISTRATION (DA)</text>
+              <text x="350" y="63" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" fill="#4a5a78">Policies · Standards · Governance</text>
+
+              <line x1="350" y1="78" x2="350" y2="100" stroke="#0d6efd" stroke-width="2" stroke-dasharray="4 3"/>
+
+              <rect x="180" y="105" width="340" height="55" rx="10" fill="#ffc107" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="350" y="130" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="14" font-weight="700" fill="#1e2b4f">DATABASE ADMINISTRATION (DBA)</text>
+              <text x="350" y="148" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" fill="#4a5a78">Operations · Tuning · Backups · Security</text>
+            </svg>
+            <div class="diagram-caption">Figure 1.2 — DA sets the rules; DBA implements them on the database</div>
+          </div>
+
+          <h4><i class="fas fa-code" aria-hidden="true"></i>Syntax — What a DBA actually does</h4>
+          <p>DA might define a rule: "All user tables must be prefixed with <code class="inline">tbl_</code>." The DBA enforces it:</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="code-block-lang"><i class="fas fa-database" aria-hidden="true"></i> SQL</span>
+              <button class="code-copy-btn" type="button" aria-label="Copy SQL code"><i class="fas fa-copy" aria-hidden="true"></i> Copy</button>
+            </div>
+            <pre><code>-- DBA follows the DA's naming standard
+CREATE TABLE tbl_Employees (
+    EmpID INT PRIMARY KEY,
+    EmpName VARCHAR(100) NOT NULL,
+    Department VARCHAR(50)
+);</code></pre>
+          </div>
+
+          <div class="example-box">
+            <strong><i class="fas fa-lightbulb" aria-hidden="true"></i>Simple Example</strong>
+            <p class="mb-1"><strong>DA:</strong> "Every customer record must have a valid email address, and we must keep all data for 7 years for compliance."</p>
+            <p class="mb-0"><strong>DBA:</strong> Adds a <code class="inline">CHECK</code> constraint on the email column and configures automated backups retained for 7 years.</p>
+          </div>
+
+          <div class="real-life-box">
+            <strong><i class="fas fa-briefcase" aria-hidden="true"></i>Real-Life Use Case</strong>
+            <p class="mb-0">In a bank: the <strong>Data Administrator</strong> decides that all customer data must comply with GDPR and defines a "data retention policy." The <strong>Database Administrator</strong> then implements encrypted columns, sets up audit logs, and configures nightly backups to satisfy that policy.</p>
+          </div>
+        </article>
+
+        <!-- ============ TOPIC 1.3 ============ -->
+        <article class="note-card topic-section" id="topic-1-3">
+          <h3><span class="topic-number">1.3</span> Role and Responsibilities of a Database Administrator (DBA)</h3>
+
+          <h4><i class="fas fa-book" aria-hidden="true"></i>Definition</h4>
+          <p>A <strong>Database Administrator (DBA)</strong> is the IT professional responsible for the installation, configuration, maintenance, security, backup, recovery, and performance of an organization's databases. They make sure data is available, accurate, and secure at all times.</p>
+
+          <h4><i class="fas fa-layer-group" aria-hidden="true"></i>Types of DBAs</h4>
+          <ul>
+            <li><strong>Production DBA</strong> — manages live, running systems (backups, tuning, security).</li>
+            <li><strong>Development DBA</strong> — works with developers on schema design and code reviews.</li>
+            <li><strong>Application DBA</strong> — focuses on a specific application's database (e.g., SAP DBA).</li>
+            <li><strong>Cloud DBA</strong> — manages cloud-hosted databases (AWS RDS, Azure SQL, GCP Cloud SQL).</li>
+            <li><strong>Data Warehouse DBA</strong> — handles analytics and reporting databases.</li>
+          </ul>
+
+          <h4><i class="fas fa-list-check" aria-hidden="true"></i>Key Responsibilities</h4>
+          <ul>
+            <li><strong>Installation &amp; configuration</strong> of DBMS software and database instances.</li>
+            <li><strong>Database design</strong> — creating schemas, tables, indexes, and relationships.</li>
+            <li><strong>Performance tuning</strong> — optimizing slow queries and indexes.</li>
+            <li><strong>Backup &amp; recovery</strong> — ensuring data can be restored after a failure.</li>
+            <li><strong>Security</strong> — creating users, granting privileges, auditing access.</li>
+            <li><strong>Capacity planning</strong> — predicting storage and resource needs.</li>
+            <li><strong>Upgrades &amp; patching</strong> — keeping DBMS versions current and secure.</li>
+            <li><strong>Monitoring</strong> — watching logs, alerts, and performance metrics 24/7.</li>
+          </ul>
+
+          <h4><i class="fas fa-diagram-project" aria-hidden="true"></i>Diagram — DBA Responsibilities</h4>
+          <div class="diagram-box">
+            <svg viewBox="0 0 700 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram showing DBA responsibilities around a central DBA node">
+              <circle cx="350" cy="130" r="55" fill="#1e2b4f" stroke="#ffc107" stroke-width="3"/>
+              <text x="350" y="130" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="15" font-weight="700" fill="#fff">DBA</text>
+              <text x="350" y="148" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#ffc107">Core Role</text>
+
+              <!-- 6 surrounding nodes -->
+              <rect x="30" y="20" width="140" height="50" rx="8" fill="#eef3fc" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="100" y="42" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#1e2b4f">Install &amp; Configure</text>
+              <text x="100" y="58" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#4a5a78">DBMS setup</text>
+
+              <rect x="530" y="20" width="140" height="50" rx="8" fill="#eef3fc" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="600" y="42" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#1e2b4f">Backup &amp; Recovery</text>
+              <text x="600" y="58" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#4a5a78">Data safety</text>
+
+              <rect x="30" y="105" width="140" height="50" rx="8" fill="#eef3fc" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="100" y="127" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#1e2b4f">Security</text>
+              <text x="100" y="143" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#4a5a78">Users &amp; privileges</text>
+
+              <rect x="530" y="105" width="140" height="50" rx="8" fill="#eef3fc" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="600" y="127" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#1e2b4f">Performance Tuning</text>
+              <text x="600" y="143" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#4a5a78">Query optimization</text>
+
+              <rect x="30" y="190" width="140" height="50" rx="8" fill="#eef3fc" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="100" y="212" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#1e2b4f">Monitoring</text>
+              <text x="100" y="228" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#4a5a78">Logs &amp; alerts</text>
+
+              <rect x="530" y="190" width="140" height="50" rx="8" fill="#eef3fc" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="600" y="212" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#1e2b4f">Capacity Planning</text>
+              <text x="600" y="228" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#4a5a78">Storage forecasts</text>
+
+              <!-- connecting lines -->
+              <line x1="170" y1="55" x2="300" y2="105" stroke="#0d6efd" stroke-width="1.5"/>
+              <line x1="530" y1="55" x2="400" y2="105" stroke="#0d6efd" stroke-width="1.5"/>
+              <line x1="170" y1="130" x2="295" y2="130" stroke="#0d6efd" stroke-width="1.5"/>
+              <line x1="530" y1="130" x2="405" y2="130" stroke="#0d6efd" stroke-width="1.5"/>
+              <line x1="170" y1="215" x2="300" y2="155" stroke="#0d6efd" stroke-width="1.5"/>
+              <line x1="530" y1="215" x2="400" y2="155" stroke="#0d6efd" stroke-width="1.5"/>
+            </svg>
+            <div class="diagram-caption">Figure 1.3 — Core responsibilities of a Database Administrator</div>
+          </div>
+
+          <h4><i class="fas fa-code" aria-hidden="true"></i>Syntax — Common DBA tasks</h4>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="code-block-lang"><i class="fas fa-database" aria-hidden="true"></i> SQL</span>
+              <button class="code-copy-btn" type="button" aria-label="Copy SQL code"><i class="fas fa-copy" aria-hidden="true"></i> Copy</button>
+            </div>
+            <pre><code>-- 1. Create a new database instance
+CREATE DATABASE CompanyDB;
+
+-- 2. Create a user and grant privileges (security)
+CREATE USER 'ali'@'localhost' IDENTIFIED BY 'SecurePass123';
+GRANT SELECT, INSERT ON CompanyDB.* TO 'ali'@'localhost';
+
+-- 3. Create a backup (MySQL example, run from shell)
+-- $ mysqldump -u root -p CompanyDB > backup_2025.sql
+
+-- 4. Tune a query with an index
+CREATE INDEX idx_emp_dept ON tbl_Employees(Department);</code></pre>
+          </div>
+
+          <div class="example-box">
+            <strong><i class="fas fa-lightbulb" aria-hidden="true"></i>Simple Example</strong>
+            <p class="mb-0">A new employee joins a company. The DBA creates a database account for them, gives read-only access to the <code class="inline">Employees</code> table, and enables auditing so every query they run is logged.</p>
+          </div>
+
+          <div class="real-life-box">
+            <strong><i class="fas fa-briefcase" aria-hidden="true"></i>Real-Life Use Case</strong>
+            <p class="mb-0">At <strong>Amazon</strong>, a DBA manages hundreds of databases. When Black Friday traffic spikes, the DBA adds read replicas, tunes slow product-search queries, and monitors for deadlocks — all to keep the shopping cart and checkout system running smoothly.</p>
+          </div>
+        </article>
+
+        <!-- ============ TOPIC 1.4 ============ -->
+        <article class="note-card topic-section" id="topic-1-4">
+          <h3><span class="topic-number">1.4</span> Database Management System (DBMS) — Definition and Overview</h3>
+
+          <h4><i class="fas fa-book" aria-hidden="true"></i>Definition</h4>
+          <p>A <strong>Database Management System (DBMS)</strong> is software that sits between users/applications and the physical database. It lets users define, create, manipulate, and control access to a database — without worrying about how data is stored on disk.</p>
+
+          <h4><i class="fas fa-layer-group" aria-hidden="true"></i>Types of DBMS</h4>
+          <ul>
+            <li><strong>Relational (RDBMS)</strong> — tables with rows and columns (MySQL, Oracle, SQL Server, PostgreSQL).</li>
+            <li><strong>Object-Oriented</strong> — stores objects (db4o, ObjectDB).</li>
+            <li><strong>Object-Relational</strong> — hybrid (PostgreSQL has object features).</li>
+            <li><strong>Hierarchical</strong> — tree structure (IBM IMS).</li>
+            <li><strong>Network</strong> — graph structure (IDMS).</li>
+            <li><strong>NoSQL</strong> — document/key-value/column/graph (MongoDB, Redis, Cassandra, Neo4j).</li>
+          </ul>
+
+          <h4><i class="fas fa-diagram-project" aria-hidden="true"></i>Diagram — DBMS Architecture Overview</h4>
+          <div class="diagram-box">
+            <svg viewBox="0 0 700 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram showing users, applications, DBMS, and database layers">
+              <rect x="250" y="20" width="200" height="45" rx="8" fill="#eef3fc" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="350" y="48" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="13" font-weight="700" fill="#1e2b4f">USERS &amp; APPLICATIONS</text>
+
+              <line x1="350" y1="65" x2="350" y2="85" stroke="#0d6efd" stroke-width="2"/>
+
+              <rect x="200" y="85" width="300" height="60" rx="10" fill="#ffc107" stroke="#1e2b4f" stroke-width="2.5"/>
+              <text x="350" y="110" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="14" font-weight="700" fill="#1e2b4f">DBMS</text>
+              <text x="350" y="128" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78">Query Processor · Storage Manager · Transaction Manager</text>
+
+              <line x1="350" y1="145" x2="350" y2="170" stroke="#0d6efd" stroke-width="2"/>
+
+              <rect x="200" y="170" width="300" height="55" rx="10" fill="#198754" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="350" y="195" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="13" font-weight="700" fill="#fff">DATABASE</text>
+              <text x="350" y="212" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#e6edf9">Tables · Indexes · Logs</text>
+
+              <text x="350" y="255" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-style="italic" fill="#7a8bab">Storage: Disk / SSD / Cloud</text>
+            </svg>
+            <div class="diagram-caption">Figure 1.4 — DBMS sits between users and the physical database</div>
+          </div>
+
+          <h4><i class="fas fa-star" aria-hidden="true"></i>Key Functions of a DBMS</h4>
+          <ul>
+            <li><strong>Data Definition</strong> — create/modify schema via DDL.</li>
+            <li><strong>Data Manipulation</strong> — query and update via DML.</li>
+            <li><strong>Data Security</strong> — authentication and authorization.</li>
+            <li><strong>Concurrency Control</strong> — handle multiple users safely.</li>
+            <li><strong>Backup and Recovery</strong> — protect against failures.</li>
+            <li><strong>Data Integrity</strong> — enforce constraints (keys, checks).</li>
+            <li><strong>Performance Optimization</strong> — indexes, query plans.</li>
+          </ul>
+
+          <h4><i class="fas fa-code" aria-hidden="true"></i>Syntax — Talking to a DBMS</h4>
+          <p>All interaction happens through the DBMS using a language (usually SQL):</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="code-block-lang"><i class="fas fa-database" aria-hidden="true"></i> SQL</span>
+              <button class="code-copy-btn" type="button" aria-label="Copy SQL code"><i class="fas fa-copy" aria-hidden="true"></i> Copy</button>
+            </div>
+            <pre><code>-- DDL: define structure (DBMS stores this in its catalog)
+CREATE TABLE Courses (
+    CourseID INT PRIMARY KEY,
+    Title VARCHAR(100),
+    Credits INT
+);
+
+-- DML: manipulate data
+INSERT INTO Courses VALUES (503, 'Database Administration', 3);
+
+-- DQL: query data
+SELECT * FROM Courses WHERE Credits = 3;</code></pre>
+          </div>
+
+          <div class="example-box">
+            <strong><i class="fas fa-lightbulb" aria-hidden="true"></i>Simple Example</strong>
+            <p class="mb-0">When you type a query into MySQL Workbench, the <strong>DBMS (MySQL)</strong> parses it, checks permissions, finds the data on disk, and returns the result. You never directly touch the data files — the DBMS handles it all.</p>
+          </div>
+
+          <div class="real-life-box">
+            <strong><i class="fas fa-briefcase" aria-hidden="true"></i>Real-Life Use Case</strong>
+            <p class="mb-0">Every time you log into <strong>Facebook</strong>, a DBMS (MySQL/TAO) checks your credentials, fetches your feed, and records your activity — all within milliseconds. The DBMS hides billions of rows and complex storage from the application code.</p>
+          </div>
+        </article>
+
+        <!-- ============ TOPIC 1.5 ============ -->
+        <article class="note-card topic-section" id="topic-1-5">
+          <h3><span class="topic-number">1.5</span> Development and Management of Databases for Information Systems</h3>
+
+          <h4><i class="fas fa-book" aria-hidden="true"></i>Definition</h4>
+          <p><strong>Database development</strong> is the process of planning, designing, building, and deploying a database to support an information system. <strong>Database management</strong> is the ongoing operation and maintenance of that database after deployment — backups, tuning, security, upgrades, and monitoring.</p>
+
+          <h4><i class="fas fa-layer-group" aria-hidden="true"></i>Phases of Database Development (SDLC for Databases)</h4>
+          <ol>
+            <li><strong>Requirements gathering</strong> — understand what data the business needs.</li>
+            <li><strong>Conceptual design</strong> — ER diagrams, entities, relationships.</li>
+            <li><strong>Logical design</strong> — tables, keys, normalization.</li>
+            <li><strong>Physical design</strong> — indexes, storage, partitioning.</li>
+            <li><strong>Implementation</strong> — CREATE TABLE, constraints, sample data.</li>
+            <li><strong>Testing</strong> — data integrity, query performance, security tests.</li>
+            <li><strong>Deployment</strong> — go live, migrate data, hand off to DBA.</li>
+            <li><strong>Maintenance</strong> — monitor, tune, backup, upgrade.</li>
+          </ol>
+
+          <h4><i class="fas fa-diagram-project" aria-hidden="true"></i>Diagram — Database Development Lifecycle</h4>
+          <div class="diagram-box">
+            <svg viewBox="0 0 700 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Database development lifecycle shown as a circular flow of phases">
+              <defs>
+                <marker id="arrow2" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+                  <path d="M0,0 L0,6 L9,3 z" fill="#0d6efd"/>
+                </marker>
+              </defs>
+              <!-- phases as boxes in a cycle -->
+              <rect x="30" y="20" width="130" height="50" rx="8" fill="#eef3fc" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="95" y="45" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#1e2b4f">1. Requirements</text>
+
+              <rect x="200" y="20" width="130" height="50" rx="8" fill="#eef3fc" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="265" y="45" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#1e2b4f">2. Design</text>
+
+              <rect x="370" y="20" width="130" height="50" rx="8" fill="#ffc107" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="435" y="45" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#1e2b4f">3. Implement</text>
+
+              <rect x="540" y="20" width="130" height="50" rx="8" fill="#eef3fc" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="605" y="45" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#1e2b4f">4. Test</text>
+
+              <rect x="540" y="110" width="130" height="50" rx="8" fill="#eef3fc" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="605" y="135" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#1e2b4f">5. Deploy</text>
+
+              <rect x="370" y="110" width="130" height="50" rx="8" fill="#198754" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="435" y="135" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#fff">6. Maintain</text>
+
+              <rect x="200" y="110" width="130" height="50" rx="8" fill="#eef3fc" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="265" y="135" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#1e2b4f">7. Monitor</text>
+
+              <rect x="30" y="110" width="130" height="50" rx="8" fill="#eef3fc" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="95" y="135" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#1e2b4f">8. Optimize</text>
+
+              <!-- arrows -->
+              <line x1="160" y1="45" x2="195" y2="45" stroke="#0d6efd" stroke-width="2" marker-end="url(#arrow2)"/>
+              <line x1="330" y1="45" x2="365" y2="45" stroke="#0d6efd" stroke-width="2" marker-end="url(#arrow2)"/>
+              <line x1="500" y1="45" x2="535" y2="45" stroke="#0d6efd" stroke-width="2" marker-end="url(#arrow2)"/>
+              <line x1="605" y1="75" x2="605" y2="105" stroke="#0d6efd" stroke-width="2" marker-end="url(#arrow2)"/>
+              <line x1="540" y1="135" x2="505" y2="135" stroke="#0d6efd" stroke-width="2" marker-end="url(#arrow2)"/>
+              <line x1="370" y1="135" x2="335" y2="135" stroke="#0d6efd" stroke-width="2" marker-end="url(#arrow2)"/>
+              <line x1="200" y1="135" x2="165" y2="135" stroke="#0d6efd" stroke-width="2" marker-end="url(#arrow2)"/>
+            </svg>
+            <div class="diagram-caption">Figure 1.5 — Database development lifecycle (build → deploy → maintain → improve)</div>
+          </div>
+
+          <h4><i class="fas fa-code" aria-hidden="true"></i>Syntax — Build then manage</h4>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="code-block-lang"><i class="fas fa-database" aria-hidden="true"></i> SQL</span>
+              <button class="code-copy-btn" type="button" aria-label="Copy SQL code"><i class="fas fa-copy" aria-hidden="true"></i> Copy</button>
+            </div>
+            <pre><code>-- DEVELOPMENT: create the database and a table
+CREATE DATABASE LibraryDB;
+USE LibraryDB;
+
+CREATE TABLE Books (
+    BookID INT PRIMARY KEY AUTO_INCREMENT,
+    Title VARCHAR(200) NOT NULL,
+    Author VARCHAR(100),
+    YearPublished INT
+);
+
+-- MANAGEMENT: after go-live, add an index for performance
+CREATE INDEX idx_books_author ON Books(Author);
+
+-- Periodic maintenance
+-- $ mysqldump -u root -p LibraryDB > library_backup.sql</code></pre>
+          </div>
+
+          <div class="example-box">
+            <strong><i class="fas fa-lightbulb" aria-hidden="true"></i>Simple Example</strong>
+            <p class="mb-0">A school wants a library system. The <em>development</em> team builds <code class="inline">Books</code>, <code class="inline">Members</code>, and <code class="inline">Loans</code> tables. After launch, the <em>management</em> team (DBA) adds indexes, schedules daily backups, and monitors for slow queries.</p>
+          </div>
+
+          <div class="real-life-box">
+            <strong><i class="fas fa-briefcase" aria-hidden="true"></i>Real-Life Use Case</strong>
+            <p class="mb-0">A hospital's patient management system: developers build the schema (patients, appointments, prescriptions). The DBA manages it after go-live — ensuring HIPAA-compliant access controls, 24/7 uptime, and daily encrypted backups.</p>
+          </div>
+        </article>
+
+        <!-- ============ TOPIC 1.6 ============ -->
+        <article class="note-card topic-section" id="topic-1-6">
+          <h3><span class="topic-number">1.6</span> Types of Database Users and Their Interfaces</h3>
+
+          <h4><i class="fas fa-book" aria-hidden="true"></i>Definition</h4>
+          <p>Database users are the different people (and applications) who interact with a database. Each type has different skills, needs, and access patterns — so they are given different <strong>interfaces</strong> (ways of talking to the DBMS).</p>
+
+          <h4><i class="fas fa-layer-group" aria-hidden="true"></i>Types of Database Users</h4>
+          <ol>
+            <li><strong>Naive / Parametric Users</strong> — use pre-written forms or menus; no SQL knowledge. <em>Example: a bank teller checking an account balance.</em></li>
+            <li><strong>Application Programmers</strong> — write programs (Java, Python) that call the database via APIs. <em>Example: a mobile banking app developer.</em></li>
+            <li><strong>Sophisticated Users</strong> — write complex queries and reports; use SQL directly. <em>Example: a business analyst running ad-hoc reports.</em></li>
+            <li><strong>Specialized Users</strong> — build complex, specialized database applications (CAD, AI, GIS). <em>Example: a GIS engineer querying spatial data.</em></li>
+            <li><strong>DBA</strong> — the administrator who manages the whole system.</li>
+          </ol>
+
+          <h4><i class="fas fa-layer-group" aria-hidden="true"></i>Types of Interfaces</h4>
+          <ul>
+            <li><strong>Menu-based interface</strong> — options selected from menus (e.g., ATM screen).</li>
+            <li><strong>Forms-based interface</strong> — fill-in-the-blank forms (e.g., bank teller software).</li>
+            <li><strong>Command-line interface (CLI)</strong> — typed commands (e.g., <code class="inline">mysql&gt;</code> shell, <code class="inline">psql</code>).</li>
+            <li><strong>GUI tools</strong> — graphical clients (e.g., MySQL Workbench, pgAdmin, DBeaver).</li>
+            <li><strong>API / Programming interface</strong> — ODBC, JDBC, or language-specific drivers.</li>
+            <li><strong>Natural-language interface</strong> — plain-English queries (emerging, powered by AI).</li>
+          </ul>
+
+          <h4><i class="fas fa-diagram-project" aria-hidden="true"></i>Diagram — Users → Interfaces → DBMS</h4>
+          <div class="diagram-box">
+            <svg viewBox="0 0 700 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram showing different users connecting through different interfaces to a DBMS">
+              <!-- Left: Users column -->
+              <text x="90" y="20" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="12" font-weight="700" fill="#1e2b4f">USERS</text>
+
+              <rect x="30" y="35" width="120" height="35" rx="6" fill="#eef3fc" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="90" y="57" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="600" fill="#1e2b4f">Naive Users</text>
+
+              <rect x="30" y="80" width="120" height="35" rx="6" fill="#eef3fc" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="90" y="102" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="600" fill="#1e2b4f">App Programmers</text>
+
+              <rect x="30" y="125" width="120" height="35" rx="6" fill="#eef3fc" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="90" y="147" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="600" fill="#1e2b4f">Sophisticated</text>
+
+              <rect x="30" y="170" width="120" height="35" rx="6" fill="#eef3fc" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="90" y="192" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="600" fill="#1e2b4f">DBA</text>
+
+              <!-- Middle: Interfaces column -->
+              <text x="350" y="20" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="12" font-weight="700" fill="#1e2b4f">INTERFACES</text>
+
+              <rect x="240" y="35" width="220" height="35" rx="6" fill="#ffc107" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="350" y="57" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="600" fill="#1e2b4f">Forms / Menus (GUI)</text>
+
+              <rect x="240" y="80" width="220" height="35" rx="6" fill="#ffc107" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="350" y="102" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="600" fill="#1e2b4f">API (JDBC / ODBC)</text>
+
+              <rect x="240" y="125" width="220" height="35" rx="6" fill="#ffc107" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="350" y="147" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="600" fill="#1e2b4f">CLI / SQL Editor</text>
+
+              <rect x="240" y="170" width="220" height="35" rx="6" fill="#ffc107" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="350" y="192" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="600" fill="#1e2b4f">Admin Tools (GUI + CLI)</text>
+
+              <!-- Right: DBMS block -->
+              <rect x="520" y="80" width="150" height="80" rx="10" fill="#1e2b4f" stroke="#0d6efd" stroke-width="2"/>
+              <text x="595" y="115" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="13" font-weight="700" fill="#fff">DBMS</text>
+              <text x="595" y="133" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#b9cdf5">Database Engine</text>
+
+              <!-- lines from interfaces to DBMS -->
+              <line x1="460" y1="52" x2="520" y2="100" stroke="#0d6efd" stroke-width="1.5"/>
+              <line x1="460" y1="97" x2="520" y2="115" stroke="#0d6efd" stroke-width="1.5"/>
+              <line x1="460" y1="142" x2="520" y2="130" stroke="#0d6efd" stroke-width="1.5"/>
+              <line x1="460" y1="187" x2="520" y2="150" stroke="#0d6efd" stroke-width="1.5"/>
+            </svg>
+            <div class="diagram-caption">Figure 1.6 — Different users use different interfaces, all reaching the same DBMS</div>
+          </div>
+
+          <h4><i class="fas fa-code" aria-hidden="true"></i>Syntax — Same query, different interfaces</h4>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="code-block-lang"><i class="fas fa-database" aria-hidden="true"></i> SQL &amp; API examples</span>
+              <button class="code-copy-btn" type="button" aria-label="Copy code"><i class="fas fa-copy" aria-hidden="true"></i> Copy</button>
+            </div>
+            <pre><code>-- SOPHISTICATED USER: runs SQL directly in a CLI or SQL editor
+SELECT Name, Balance FROM Accounts WHERE AccountID = 1001;
+
+-- APPLICATION PROGRAMMER: calls the same query via JDBC (Java)
+String sql = "SELECT Name, Balance FROM Accounts WHERE AccountID = ?";
+PreparedStatement ps = conn.prepareStatement(sql);
+ps.setInt(1, 1001);
+ResultSet rs = ps.executeQuery();
+
+-- NAIVE USER: never sees SQL — clicks "Check Balance" in the ATM menu
+-- (the ATM app runs the query above on the user's behalf)</code></pre>
+          </div>
+
+          <div class="example-box">
+            <strong><i class="fas fa-lightbulb" aria-hidden="true"></i>Simple Example</strong>
+            <p class="mb-0">At a bank: a <em>customer</em> uses an ATM menu (naive), a <em>teller</em> uses a forms-based app (naive), a <em>developer</em> writes JDBC code (programmer), an <em>analyst</em> runs SQL in a GUI (sophisticated), and the <em>DBA</em> uses admin tools to tune indexes.</p>
+          </div>
+
+          <div class="real-life-box">
+            <strong><i class="fas fa-briefcase" aria-hidden="true"></i>Real-Life Use Case</strong>
+            <p class="mb-0">In <strong>Uber's</strong> ecosystem: riders use the app (menu/API interface), drivers use a separate app (API interface), data analysts query trip data in Looker/SQL (sophisticated), and platform DBAs manage the hundreds of database clusters (admin interface).</p>
+          </div>
+        </article>
+
+        <!-- ============ TOPIC 1.7 ============ -->
+        <article class="note-card topic-section" id="topic-1-7">
+          <h3><span class="topic-number">1.7</span> Database Environment and Architecture (Three-Schema Architecture)</h3>
+
+          <h4><i class="fas fa-book" aria-hidden="true"></i>Definition</h4>
+          <p>The <strong>three-schema architecture</strong> (also called the ANSI/SPARC architecture, 1975) is a standard way to separate how users see the database from how it is physically stored. It has three levels:</p>
+          <ul>
+            <li><strong>External (View) Level</strong> — how each user/application sees the data. Multiple external views are possible.</li>
+            <li><strong>Conceptual (Logical) Level</strong> — the community view: the full logical structure (tables, relationships, constraints).</li>
+            <li><strong>Internal (Physical) Level</strong> — how data is actually stored on disk (files, indexes, pages).</li>
+          </ul>
+
+          <h4><i class="fas fa-star" aria-hidden="true"></i>Why It Matters</h4>
+          <ul>
+            <li><strong>Data independence</strong> — change the physical storage without breaking applications.</li>
+            <li><strong>Security</strong> — each user sees only their view; sensitive columns can be hidden.</li>
+            <li><strong>Simplification</strong> — users don't need to know physical storage details.</li>
+            <li><strong>Customization</strong> — different departments get different views of the same data.</li>
+          </ul>
+
+          <h4><i class="fas fa-diagram-project" aria-hidden="true"></i>Diagram — Three-Schema Architecture</h4>
+          <div class="diagram-box">
+            <svg viewBox="0 0 700 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Three-schema architecture diagram with external, conceptual, and internal levels">
+              <!-- External level -->
+              <text x="350" y="25" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="13" font-weight="700" fill="#1e2b4f">EXTERNAL LEVEL (Views)</text>
+
+              <rect x="40" y="40" width="130" height="55" rx="8" fill="#eef3fc" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="105" y="62" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#1e2b4f">View 1</text>
+              <text x="105" y="80" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#4a5a78">HR Department</text>
+
+              <rect x="200" y="40" width="130" height="55" rx="8" fill="#eef3fc" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="265" y="62" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#1e2b4f">View 2</text>
+              <text x="265" y="80" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#4a5a78">Finance</text>
+
+              <rect x="360" y="40" width="130" height="55" rx="8" fill="#eef3fc" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="425" y="62" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#1e2b4f">View 3</text>
+              <text x="425" y="80" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#4a5a78">Students</text>
+
+              <rect x="520" y="40" width="140" height="55" rx="8" fill="#eef3fc" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="590" y="62" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#1e2b4f">View N</text>
+              <text x="590" y="80" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#4a5a78">Custom apps</text>
+
+              <!-- arrows down -->
+              <line x1="105" y1="95" x2="350" y2="130" stroke="#0d6efd" stroke-width="1.5"/>
+              <line x1="265" y1="95" x2="350" y2="130" stroke="#0d6efd" stroke-width="1.5"/>
+              <line x1="425" y1="95" x2="350" y2="130" stroke="#0d6efd" stroke-width="1.5"/>
+              <line x1="590" y1="95" x2="350" y2="130" stroke="#0d6efd" stroke-width="1.5"/>
+
+              <!-- Conceptual -->
+              <text x="350" y="155" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="13" font-weight="700" fill="#1e2b4f">CONCEPTUAL LEVEL (Logical Schema)</text>
+
+              <rect x="150" y="165" width="400" height="65" rx="10" fill="#ffc107" stroke="#1e2b4f" stroke-width="2.5"/>
+              <text x="350" y="192" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="13" font-weight="700" fill="#1e2b4f">Full Logical Structure</text>
+              <text x="350" y="212" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78">Tables · Relationships · Constraints · Security Rules</text>
+
+              <line x1="350" y1="230" x2="350" y2="255" stroke="#0d6efd" stroke-width="2"/>
+
+              <!-- Internal -->
+              <text x="350" y="275" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="13" font-weight="700" fill="#1e2b4f">INTERNAL LEVEL (Physical Schema)</text>
+
+              <rect x="150" y="285" width="400" height="30" rx="8" fill="#198754" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="350" y="304" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="12" font-weight="700" fill="#fff">Files · Indexes · Pages · Disk Blocks</text>
+            </svg>
+            <div class="diagram-caption">Figure 1.7 — Three-schema architecture: Views → Logical Schema → Physical Storage</div>
+          </div>
+
+          <h4><i class="fas fa-code" aria-hidden="true"></i>Syntax — Creating views (external level) over a logical table</h4>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="code-block-lang"><i class="fas fa-database" aria-hidden="true"></i> SQL</span>
+              <button class="code-copy-btn" type="button" aria-label="Copy SQL code"><i class="fas fa-copy" aria-hidden="true"></i> Copy</button>
+            </div>
+            <pre><code>-- CONCEPTUAL LEVEL: the full table (all columns)
+CREATE TABLE Employees (
+    EmpID INT PRIMARY KEY,
+    Name VARCHAR(100),
+    Salary DECIMAL(10,2),
+    Department VARCHAR(50),
+    Email VARCHAR(100)
+);
+
+-- EXTERNAL LEVEL: HR sees only name and department
+CREATE VIEW vw_HR_View AS
+SELECT Name, Department FROM Employees;
+
+-- EXTERNAL LEVEL: Finance sees only name and salary
+CREATE VIEW vw_Finance_View AS
+SELECT Name, Salary FROM Employees;
+
+-- Now HR can't see salary, Finance can't see email — security by view
+SELECT * FROM vw_HR_View;      -- only 2 columns visible
+SELECT * FROM vw_Finance_View; -- only 2 columns visible</code></pre>
+          </div>
+
+          <div class="example-box">
+            <strong><i class="fas fa-lightbulb" aria-hidden="true"></i>Simple Example</strong>
+            <p class="mb-0">A <code class="inline">Students</code> table has 20 columns. The exam office gets a view with only <code class="inline">RollNo, Name, Marks</code>. The fee office gets a view with only <code class="inline">RollNo, Name, FeeStatus</code>. Both query their own views — but the underlying table is the same one on disk.</p>
+          </div>
+
+          <div class="real-life-box">
+            <strong><i class="fas fa-briefcase" aria-hidden="true"></i>Real-Life Use Case</strong>
+            <p class="mb-0">In a hospital: doctors see a view with <em>patient name, diagnosis, prescription</em>. Billing staff see a view with <em>patient name, services, amount</em>. Neither can see the other's sensitive data — but both views pull from the same <code class="inline">Patients</code> table.</p>
+          </div>
+        </article>
+
+        <!-- ============ TOPIC 1.8 ============ -->
+        <article class="note-card topic-section" id="topic-1-8">
+          <h3><span class="topic-number">1.8</span> Centralized vs. Distributed Database Systems</h3>
+
+          <h4><i class="fas fa-book" aria-hidden="true"></i>Definition</h4>
+          <p>A <strong>centralized database</strong> stores all data at a single location (one server or data center). All users access that one system.</p>
+          <p>A <strong>distributed database</strong> stores data across multiple locations (sites) that are connected by a network. Users access data transparently — they don't need to know where it physically lives.</p>
+
+          <h4><i class="fas fa-layer-group" aria-hidden="true"></i>Types</h4>
+          <p><strong>Centralized database types:</strong></p>
+          <ul>
+            <li><strong>Single-tier</strong> — DBMS and app on one machine (small systems).</li>
+            <li><strong>Two-tier (client-server)</strong> — clients connect to a central DB server.</li>
+            <li><strong>Three-tier</strong> — client → application server → DB server (common in web apps).</li>
+          </ul>
+          <p><strong>Distributed database types:</strong></p>
+          <ul>
+            <li><strong>Homogeneous</strong> — all sites run the same DBMS (e.g., all MySQL).</li>
+            <li><strong>Heterogeneous</strong> — different DBMSs at different sites (e.g., Oracle + MySQL + PostgreSQL).</li>
+            <li><strong>Federated</strong> — independent databases integrated into one virtual view.</li>
+            <li><strong>Replicated</strong> — full copies of data at every site.</li>
+            <li><strong>Partitioned / Sharded</strong> — data split across sites (each site holds a subset).</li>
+          </ul>
+
+          <h4><i class="fas fa-scale-balanced" aria-hidden="true"></i>Comparison</h4>
+          <table class="notes-table">
+            <thead>
+              <tr><th>Aspect</th><th>Centralized</th><th>Distributed</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>Location</strong></td><td>Single site</td><td>Multiple sites</td></tr>
+              <tr><td><strong>Cost</strong></td><td>Lower initial cost</td><td>Higher setup &amp; network cost</td></tr>
+              <tr><td><strong>Complexity</strong></td><td>Simple to manage</td><td>Complex (coordination, replication)</td></tr>
+              <tr><td><strong>Scalability</strong></td><td>Vertical (bigger server)</td><td>Horizontal (add more nodes)</td></tr>
+              <tr><td><strong>Fault tolerance</strong></td><td>Single point of failure</td><td>Highly available (replicas)</td></tr>
+              <tr><td><strong>Latency</strong></td><td>Low for nearby users</td><td>Low for local users, varies globally</td></tr>
+              <tr><td><strong>Best for</strong></td><td>Small/medium businesses</td><td>Large enterprises, global apps</td></tr>
+            </tbody>
+          </table>
+
+          <h4><i class="fas fa-diagram-project" aria-hidden="true"></i>Diagram — Both Architectures Side by Side</h4>
+          <div class="diagram-box">
+            <svg viewBox="0 0 700 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Side by side comparison of centralized and distributed database architectures">
+              <!-- CENTRALIZED -->
+              <text x="175" y="25" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="13" font-weight="700" fill="#1e2b4f">CENTRALIZED</text>
+
+              <!-- Clients -->
+              <rect x="30" y="45" width="80" height="30" rx="6" fill="#eef3fc" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="70" y="64" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#1e2b4f">Client 1</text>
+              <rect x="120" y="45" width="80" height="30" rx="6" fill="#eef3fc" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="160" y="64" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#1e2b4f">Client 2</text>
+              <rect x="210" y="45" width="80" height="30" rx="6" fill="#eef3fc" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="250" y="64" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#1e2b4f">Client 3</text>
+
+              <!-- lines to central DB -->
+              <line x1="70" y1="75" x2="160" y2="140" stroke="#0d6efd" stroke-width="1.5"/>
+              <line x1="160" y1="75" x2="160" y2="140" stroke="#0d6efd" stroke-width="1.5"/>
+              <line x1="250" y1="75" x2="160" y2="140" stroke="#0d6efd" stroke-width="1.5"/>
+
+              <!-- Central DB -->
+              <rect x="95" y="140" width="130" height="65" rx="10" fill="#198754" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="160" y="167" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="12" font-weight="700" fill="#fff">CENTRAL DB</text>
+              <text x="160" y="185" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#e6edf9">Single Server</text>
+
+              <text x="160" y="230" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" font-style="italic" fill="#7a8bab">Single point of failure</text>
+
+              <!-- DIVIDER -->
+              <line x1="350" y1="20" x2="350" y2="260" stroke="#bac8e0" stroke-width="1.5" stroke-dasharray="5 4"/>
+
+              <!-- DISTRIBUTED -->
+              <text x="525" y="25" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="13" font-weight="700" fill="#1e2b4f">DISTRIBUTED</text>
+
+              <!-- Site 1 -->
+              <rect x="380" y="55" width="120" height="55" rx="8" fill="#ffc107" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="440" y="78" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#1e2b4f">Site A</text>
+              <text x="440" y="95" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#4a5a78">Server 1</text>
+
+              <!-- Site 2 -->
+              <rect x="550" y="55" width="120" height="55" rx="8" fill="#ffc107" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="610" y="78" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#1e2b4f">Site B</text>
+              <text x="610" y="95" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#4a5a78">Server 2</text>
+
+              <!-- Site 3 -->
+              <rect x="465" y="145" width="120" height="55" rx="8" fill="#ffc107" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="525" y="168" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#1e2b4f">Site C</text>
+              <text x="525" y="185" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#4a5a78">Server 3</text>
+
+              <!-- connections between sites -->
+              <line x1="500" y1="82" x2="550" y2="82" stroke="#0d6efd" stroke-width="2"/>
+              <line x1="610" y1="110" x2="560" y2="145" stroke="#0d6efd" stroke-width="2"/>
+              <line x1="440" y1="110" x2="490" y2="145" stroke="#0d6efd" stroke-width="2"/>
+
+              <text x="525" y="230" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" font-style="italic" fill="#7a8bab">High availability · No single point of failure</text>
+            </svg>
+            <div class="diagram-caption">Figure 1.8 — Centralized (single server) vs Distributed (multiple networked servers)</div>
+          </div>
+
+          <h4><i class="fas fa-code" aria-hidden="true"></i>Syntax — Setup example</h4>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="code-block-lang"><i class="fas fa-database" aria-hidden="true"></i> SQL — Centralized</span>
+              <button class="code-copy-btn" type="button" aria-label="Copy SQL code"><i class="fas fa-copy" aria-hidden="true"></i> Copy</button>
+            </div>
+            <pre><code>-- CENTRALIZED: one server holds everything
+CREATE DATABASE SchoolDB;
+USE SchoolDB;
+
+CREATE TABLE Students (
+    StudentID INT PRIMARY KEY,
+    Name VARCHAR(100),
+    City VARCHAR(50)
+);</code></pre>
+          </div>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="code-block-lang"><i class="fas fa-database" aria-hidden="true"></i> SQL — Distributed (partitioned)</span>
+              <button class="code-copy-btn" type="button" aria-label="Copy SQL code"><i class="fas fa-copy" aria-hidden="true"></i> Copy</button>
+            </div>
+            <pre><code>-- DISTRIBUTED: data split across sites by City (partitioning)
+-- Site A (Lahore server): stores Lahore students only
+CREATE TABLE Students_Lahore (
+    StudentID INT PRIMARY KEY,
+    Name VARCHAR(100),
+    City VARCHAR(50) DEFAULT 'Lahore'
+);
+
+-- Site B (Karachi server): stores Karachi students only
+CREATE TABLE Students_Karachi (
+    StudentID INT PRIMARY KEY,
+    Name VARCHAR(100),
+    City VARCHAR(50) DEFAULT 'Karachi'
+);
+
+-- Applications query the appropriate site based on the user's city
+-- (or use a distributed DBMS like Cassandra that handles this automatically)</code></pre>
+          </div>
+
+          <div class="example-box">
+            <strong><i class="fas fa-lightbulb" aria-hidden="true"></i>Simple Example</strong>
+            <p class="mb-1"><strong>Centralized:</strong> A small shop's billing system runs on one desktop computer in the back office.</p>
+            <p class="mb-0"><strong>Distributed:</strong> A supermarket chain with 50 branches — each branch has its own database server (for local checkout speed), and they sync sales data to a central warehouse database nightly.</p>
+          </div>
+
+          <div class="real-life-box">
+            <strong><i class="fas fa-briefcase" aria-hidden="true"></i>Real-Life Use Case</strong>
+            <p class="mb-0"><strong>Centralized:</strong> A university's student records on one campus server. <strong>Distributed:</strong> <strong>Netflix</strong> stores user data across AWS regions worldwide — your profile is replicated in multiple data centers so any outage doesn't stop you from watching. <strong>Google Spanner</strong> is a globally distributed database that keeps Google's data consistent across continents.</p>
+          </div>
+        </article>
+
+        <!-- ===== PRACTICAL LABS SUMMARY ===== -->
+        <article class="note-card">
+          <h3 style="border-bottom-color: var(--accent-blue);">
+            <i class="fas fa-flask me-2" style="color: var(--accent-blue);" aria-hidden="true"></i>Practical Labs for Module 1
+          </h3>
+          <p>After studying this module, complete these hands-on labs to reinforce your understanding:</p>
+          <ul>
+            <li><strong>Lab 1.1:</strong> Install a DBMS (MySQL, SQL Server, or Oracle) — see the official installation guides for your OS.</li>
+            <li><strong>Lab 1.2:</strong> Explore the DBMS environment and tools (e.g., MySQL Workbench, SSMS, SQL Developer).</li>
+            <li><strong>Lab 1.3:</strong> Identify DBA roles and create a database instance.</li>
+          </ul>
+          <p class="mb-0"><a href="IT507_Practical_Module_1_Introduction_to_Database_Administration_CPP.pdf" target="_blank" rel="noopener" class="notes-link"><i class="fas fa-file-pdf" aria-hidden="true"></i> Download Module 1 Practical Lab Guide (PDF)</a></p>
+        </article>
+
+        <!-- ===== QUICK REVISION ===== -->
+        <article class="note-card">
+          <h3 style="border-bottom-color: var(--accent-green);">
+            <i class="fas fa-list-check me-2" style="color: var(--accent-green);" aria-hidden="true"></i>Quick Revision — Module 1 in One Glance
+          </h3>
+          <table class="notes-table">
+            <thead>
+              <tr><th>Topic</th><th>Key Takeaway</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>1.1 Data / Information / Database</td><td>Data = raw facts; Information = processed data; Database = organized storage.</td></tr>
+              <tr><td>1.2 DA vs DBA</td><td>DA = business/policies; DBA = technical/operations.</td></tr>
+              <tr><td>1.3 DBA Role</td><td>Install, secure, back up, tune, monitor — the guardian of the data.</td></tr>
+              <tr><td>1.4 DBMS</td><td>Software layer between users and the physical database.</td></tr>
+              <tr><td>1.5 Database Development</td><td>Lifecycle: plan → design → build → deploy → maintain.</td></tr>
+              <tr><td>1.6 Users &amp; Interfaces</td><td>Naive, programmers, sophisticated, specialized, DBA — each with its own interface.</td></tr>
+              <tr><td>1.7 Three-Schema Architecture</td><td>External views / Conceptual schema / Internal storage — with data independence.</td></tr>
+              <tr><td>1.8 Centralized vs Distributed</td><td>Single-site simplicity vs multi-site scalability and fault tolerance.</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <!-- ===== NAVIGATION ===== -->
+        <div class="note-card" style="text-align: center;">
+          <a href="index.html" class="notes-link" style="font-size: 1rem;"><i class="fas fa-arrow-left" aria-hidden="true"></i> Back to IT-507 Course Index</a>
+          <span class="mx-3 text-muted">·</span>
+          <a href="it507-module-2.html" class="notes-link" style="font-size: 1rem;">Next: Module 2 — Database Models &amp; Schema Design <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-10 col-xl-8 text-center">
+        <p class="mb-2">
+          <i class="fas fa-crown me-2" style="color:var(--accent-yellow);" aria-hidden="true"></i>
+          <strong>Notes compiled by Sir Ali Raza</strong>
+        </p>
+        <p class="mb-2">
+          <i class="fas fa-globe me-1" aria-hidden="true"></i>
+          <a href="https://ali-raza-muhammad-iqbal.github.io" target="_blank" rel="noopener noreferrer">
+            ali-raza-muhammad-iqbal.github.io
+          </a>
+          <span class="mx-2">·</span>
+          <i class="fas fa-envelope me-1" aria-hidden="true"></i>
+          <a href="mailto:Mr_Ali_Raza@yahoo.com">Mr_Ali_Raza@yahoo.com</a>
+        </p>
+
+        <div class="footer-social mb-2" aria-label="Social media links">
+          <a href="https://github.com/Ali-Raza-Muhammad-Iqbal" target="_blank" rel="noopener noreferrer" title="GitHub" aria-label="GitHub"><i class="fab fa-github" aria-hidden="true"></i></a>
+          <a href="https://www.linkedin.com/in/ali-raza-muhammad-iqbal" target="_blank" rel="noopener noreferrer" title="LinkedIn" aria-label="LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
+          <a href="https://www.tiktok.com/@ali_raza_muhammad_iqbal" target="_blank" rel="noopener noreferrer" title="TikTok" aria-label="TikTok"><i class="fab fa-tiktok" aria-hidden="true"></i></a>
+          <a href="https://www.facebook.com/AliRazaMuhammadIqbal1" target="_blank" rel="noopener noreferrer" title="Facebook" aria-label="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+          <a href="https://www.instagram.com/ali_raza_muhammad_iqbal" target="_blank" rel="noopener noreferrer" title="Instagram" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+          <a href="https://x.com/Ali_Raza_Iqbal" target="_blank" rel="noopener noreferrer" title="X (Twitter)" aria-label="X (Twitter)"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i></a>
+          <a href="https://www.youtube.com/@Ali_Raza_Muhammad_Iqbal" target="_blank" rel="noopener noreferrer" title="YouTube" aria-label="YouTube"><i class="fab fa-youtube" aria-hidden="true"></i></a>
+          <a href="mailto:Mr_Ali_Raza@yahoo.com" title="Email" aria-label="Email"><i class="fas fa-envelope" aria-hidden="true"></i></a>
+        </div>
+
+        <p class="small mb-0" style="color:#b8c8f0;">
+          © 2025 · IT-507 Database Administration and Management · Module 1 · All credits to Sir Ali Raza.
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+(function() {
+  'use strict';
+
+  /* ===== THEME TOGGLE ===== */
+  const themeToggle = document.getElementById('themeToggle');
+  const themeIcon = document.getElementById('themeIcon');
+  const root = document.documentElement;
+
+  function applyTheme(theme) {
+    if (theme === 'dark') {
+      root.setAttribute('data-theme', 'dark');
+      themeIcon.classList.remove('fa-moon');
+      themeIcon.classList.add('fa-sun');
+      themeToggle.setAttribute('aria-label', 'Switch to light mode');
+    } else {
+      root.removeAttribute('data-theme');
+      themeIcon.classList.remove('fa-sun');
+      themeIcon.classList.add('fa-moon');
+      themeToggle.setAttribute('aria-label', 'Switch to dark mode');
+    }
+  }
+
+  const savedTheme = localStorage.getItem('it507-theme');
+  if (savedTheme) {
+    applyTheme(savedTheme);
+  } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    applyTheme('dark');
+  }
+
+  themeToggle.addEventListener('click', function() {
+    const isDark = root.getAttribute('data-theme') === 'dark';
+    const newTheme = isDark ? 'light' : 'dark';
+    applyTheme(newTheme);
+    localStorage.setItem('it507-theme', newTheme);
+  });
+
+  /* ===== READING PROGRESS BAR ===== */
+  const progressBar = document.getElementById('progressBar');
+  function updateProgress() {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const percent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    progressBar.style.width = percent + '%';
+    progressBar.setAttribute('aria-valuenow', Math.round(percent));
+  }
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  window.addEventListener('resize', updateProgress);
+
+  /* ===== BACK TO TOP ===== */
+  const backToTop = document.getElementById('backToTop');
+  function toggleBackToTop() {
+    if (window.scrollY > 400) {
+      backToTop.classList.add('visible');
+    } else {
+      backToTop.classList.remove('visible');
+    }
+  }
+  window.addEventListener('scroll', toggleBackToTop, { passive: true });
+  backToTop.addEventListener('click', function() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  /* ===== COPY CODE BUTTONS ===== */
+  document.querySelectorAll('.code-copy-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      const codeBlock = btn.closest('.code-block');
+      const code = codeBlock.querySelector('pre code') || codeBlock.querySelector('pre');
+      const text = code ? code.textContent : '';
+      const originalHTML = btn.innerHTML;
+
+      function showCopied() {
+        btn.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i> Copied!';
+        btn.classList.add('copied');
+        setTimeout(function() {
+          btn.innerHTML = originalHTML;
+          btn.classList.remove('copied');
+        }, 1500);
+      }
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(showCopied).catch(function() {
+          fallbackCopy(text, showCopied);
+        });
+      } else {
+        fallbackCopy(text, showCopied);
+      }
+    });
+  });
+
+  function fallbackCopy(text, callback) {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try {
+      document.execCommand('copy');
+      if (callback) callback();
+    } catch (err) {
+      console.warn('Copy failed', err);
+    }
+    document.body.removeChild(ta);
+  }
+
+  /* ===== HIGHLIGHT TOPIC ON HASH LOAD ===== */
+  function highlightHash() {
+    const hash = window.location.hash;
+    if (!hash) return;
+    const target = document.querySelector(hash);
+    if (!target) return;
+    target.style.transition = 'background 0.4s ease';
+    target.style.background = 'rgba(255, 193, 7, 0.15)';
+    setTimeout(function() {
+      target.style.background = '';
+    }, 2000);
+    setTimeout(function() {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 100);
+  }
+  window.addEventListener('load', highlightHash);
+  window.addEventListener('hashchange', highlightHash);
+
+  /* ===== INITIALIZE ===== */
+  updateProgress();
+  toggleBackToTop();
+
+})();
+</script>
+</body>
+</html>

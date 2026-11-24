@@ -1,0 +1,1676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+  <!-- ===== PRIMARY SEO META ===== -->
+  <title>IT-507 Module 4: Data Structures & File Organizations — Notes | Sir Ali Raza</title>
+  <meta name="description" content="Complete study notes for IT-507 Module 4: Data Structures & File Organizations. Covers data structures in DBMS, file organizations (heap, sequential, indexed, hashed), indexing (primary, secondary, clustered, non-clustered), B-Trees, B+ Trees, hashing techniques, storage structures, and buffer management with definitions, types, real-life examples, diagrams, syntax, and simple examples by Sir Ali Raza.">
+  <meta name="keywords" content="IT-507 Module 4, Data Structures in DBMS, File Organizations, heap file, sequential file, indexed file, hashed file, indexing, primary index, secondary index, clustered index, non-clustered index, B-Tree, B+ Tree, hashing techniques, static hashing, dynamic hashing, extendible hashing, records, blocks, files, buffer management, buffer pool, LRU, database notes, IT-507 notes, IT-507 PDF, database administration notes, Sir Ali Raza, MySQL indexes, PostgreSQL, SQL Server indexes">
+  <meta name="author" content="Sir Ali Raza">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta name="theme-color" content="#1e2b4f">
+  <link rel="canonical" href="https://ali-raza-muhammad-iqbal.github.io/it507-module-4.html">
+
+  <!-- ===== OPEN GRAPH ===== -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="IT-507 · Database Administration and Management">
+  <meta property="og:title" content="IT-507 Module 4: Data Structures & File Organizations — Notes">
+  <meta property="og:description" content="Complete notes on data structures in DBMS, file organizations, indexing, B-Trees, B+ Trees, hashing, storage structures, and buffer management — with definitions, types, real-life examples, diagrams, syntax, and simple examples.">
+  <meta property="og:url" content="https://ali-raza-muhammad-iqbal.github.io/it507-module-4.html">
+  <meta property="og:image" content="https://ali-raza-muhammad-iqbal.github.io/preview.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="IT-507 Module 4 Data Structures and File Organizations Notes cover">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:email" content="Mr_Ali_Raza@yahoo.com">
+  <meta property="article:author" content="Sir Ali Raza">
+  <meta property="article:section" content="Database Administration">
+  <meta property="article:tag" content="File Organizations">
+  <meta property="article:tag" content="Indexing">
+  <meta property="article:tag" content="B-Trees">
+
+  <!-- ===== TWITTER CARD ===== -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="IT-507 Module 4: Data Structures & File Organizations — Notes">
+  <meta name="twitter:description" content="Full notes for IT-507 Module 4 — file organizations, indexing, B-Trees, B+ Trees, hashing, storage, and buffer management. Definitions, types, examples, diagrams, syntax.">
+  <meta name="twitter:image" content="https://ali-raza-muhammad-iqbal.github.io/preview.png">
+  <meta name="twitter:image:alt" content="IT-507 Module 4 Data Structures and File Organizations Notes cover">
+  <meta name="twitter:creator" content="@Ali_Raza_Iqbal">
+  <meta name="twitter:site" content="@Ali_Raza_Iqbal">
+
+  <!-- ===== ADDITIONAL SEO ===== -->
+  <meta name="rating" content="general">
+  <meta name="language" content="English">
+  <meta name="revisit-after" content="7 days">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="icon" type="image/x-icon" href="https://ali-raza-muhammad-iqbal.github.io/favicon.ico">
+  <link rel="apple-touch-icon" href="https://ali-raza-muhammad-iqbal.github.io/apple-touch-icon.png">
+
+  <!-- ===== STRUCTURED DATA ===== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LearningResource",
+    "name": "IT-507 Module 4: Data Structures & File Organizations",
+    "description": "Complete study notes for IT-507 Module 4 covering data structures in DBMS, file organizations (heap, sequential, indexed, hashed), indexing (primary, secondary, clustered, non-clustered), B-Trees, B+ Trees, hashing techniques, storage structures (records, blocks, files), and buffer management — with definitions, types, real-life examples, diagrams, syntax, and simple examples.",
+    "url": "https://ali-raza-muhammad-iqbal.github.io/it507-module-4.html",
+    "image": "https://ali-raza-muhammad-iqbal.github.io/preview.png",
+    "inLanguage": "en",
+    "educationalLevel": "Undergraduate",
+    "learningResourceType": "Notes",
+    "isPartOf": {
+      "@type": "Course",
+      "name": "IT-507 Database Administration and Management",
+      "url": "https://ali-raza-muhammad-iqbal.github.io/index.html"
+    },
+    "author": {
+      "@type": "Person",
+      "name": "Sir Ali Raza",
+      "url": "https://ali-raza-muhammad-iqbal.github.io",
+      "email": "mailto:Mr_Ali_Raza@yahoo.com",
+      "sameAs": [
+        "https://github.com/Ali-Raza-Muhammad-Iqbal",
+        "https://www.linkedin.com/in/ali-raza-muhammad-iqbal",
+        "https://ali-raza-muhammad-iqbal.github.io",
+        "https://www.tiktok.com/@ali_raza_muhammad_iqbal",
+        "https://www.facebook.com/AliRazaMuhammadIqbal1",
+        "https://www.instagram.com/ali_raza_muhammad_iqbal",
+        "https://x.com/Ali_Raza_Iqbal",
+        "https://www.youtube.com/@Ali_Raza_Muhammad_Iqbal"
+      ]
+    },
+    "about": [
+      { "@type": "Thing", "name": "File Organizations" },
+      { "@type": "Thing", "name": "Database Indexing" },
+      { "@type": "Thing", "name": "B-Trees" },
+      { "@type": "Thing", "name": "Hashing" },
+      { "@type": "Thing", "name": "Buffer Management" }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://ali-raza-muhammad-iqbal.github.io" },
+      { "@type": "ListItem", "position": 2, "name": "IT-507 Database Administration and Management", "item": "https://ali-raza-muhammad-iqbal.github.io/index.html" },
+      { "@type": "ListItem", "position": 3, "name": "Module 4: Data Structures & File Organizations", "item": "https://ali-raza-muhammad-iqbal.github.io/it507-module-4.html" }
+    ]
+  }
+  </script>
+
+  <!-- ===== BOOTSTRAP + FONTAWESOME ===== -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <style>
+    /* ===== CSS VARIABLES (Light + Dark) ===== */
+    :root {
+      --bg-body: #f8faff;
+      --bg-card: #ffffff;
+      --bg-subtle: #eef3fc;
+      --bg-code: #1e2b4f;
+      --bg-code-inline: #eef3fc;
+      --text-primary: #1e2b4f;
+      --text-secondary: #4a5a78;
+      --text-muted: #7a8bab;
+      --text-code: #e6edf9;
+      --border-color: #e0e8f5;
+      --border-strong: #bac8e0;
+      --accent-yellow: #ffc107;
+      --accent-blue: #0d6efd;
+      --accent-red: #d9534f;
+      --accent-green: #198754;
+      --accent-gold: #b07d00;
+      --header-from: #1e2b4f;
+      --header-to: #2a3f6e;
+      --footer-bg: #1e2b4f;
+      --footer-text: #cddcff;
+      --shadow-sm: 0 2px 8px rgba(30, 43, 79, 0.05);
+      --shadow-md: 0 12px 30px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 10px 25px rgba(0, 20, 40, 0.2);
+    }
+    [data-theme="dark"] {
+      --bg-body: #0f1729;
+      --bg-card: #1a2338;
+      --bg-subtle: #243155;
+      --bg-code: #0a1120;
+      --bg-code-inline: #243155;
+      --text-primary: #e6edf9;
+      --text-secondary: #b6c4e0;
+      --text-muted: #8a9bbb;
+      --text-code: #e6edf9;
+      --border-color: #2f3f63;
+      --border-strong: #3d4f7a;
+      --header-from: #0d1526;
+      --header-to: #1a2846;
+      --footer-bg: #0d1526;
+      --footer-text: #b8c8f0;
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+      --shadow-md: 0 12px 30px rgba(0, 0, 0, 0.4);
+      --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.5);
+    }
+    [data-theme="dark"] body { background-color: var(--bg-body); color: var(--text-primary); }
+    [data-theme="dark"] .note-card { background: var(--bg-card); border-color: var(--border-color); }
+    [data-theme="dark"] .topic-section h3 { color: var(--text-primary); }
+    [data-theme="dark"] .topic-section h4 { color: var(--accent-yellow); }
+    [data-theme="dark"] code.inline { background: var(--bg-code-inline); color: #6b9eff; }
+    [data-theme="dark"] .example-box { background: var(--bg-subtle); border-left-color: var(--accent-blue); }
+    [data-theme="dark"] .real-life-box { background: rgba(25, 135, 84, 0.12); border-left-color: var(--accent-green); }
+    [data-theme="dark"] .warning-box { background: rgba(217, 83, 79, 0.12); border-left-color: var(--accent-red); }
+    [data-theme="dark"] .info-box { background: rgba(255, 193, 7, 0.1); border-left-color: var(--accent-yellow); }
+    [data-theme="dark"] .diagram-box { background: var(--bg-subtle); border-color: var(--border-color); }
+    [data-theme="dark"] .toc-card { background: var(--bg-card); border-color: var(--border-color); }
+    [data-theme="dark"] .toc-card a { color: var(--text-secondary); }
+    [data-theme="dark"] .toc-card a:hover { color: var(--accent-yellow); }
+    [data-theme="dark"] .theme-toggle { background: var(--bg-card); color: var(--text-primary); border-color: var(--border-color); }
+    [data-theme="dark"] table.notes-table th { background: var(--bg-subtle); color: var(--text-primary); }
+    [data-theme="dark"] table.notes-table td { border-color: var(--border-color); }
+    [data-theme="dark"] .notes-link { color: var(--text-primary); border-bottom-color: #4a5f85; }
+    [data-theme="dark"] .notes-link:hover { color: #6b9eff; border-bottom-color: #6b9eff; }
+
+    /* ===== GLOBAL ===== */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
+      background-color: var(--bg-body);
+      font-family: 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', sans-serif;
+      overflow-x: hidden;
+      line-height: 1.65;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      color: var(--text-primary);
+    }
+    img, svg { max-width: 100%; height: auto; }
+
+    .progress-bar-top {
+      position: fixed; top: 0; left: 0; height: 3px;
+      background: linear-gradient(90deg, #ffc107, #0d6efd);
+      width: 0%; z-index: 9999; transition: width 0.1s linear;
+      box-shadow: 0 0 8px rgba(255, 193, 7, 0.5);
+    }
+
+    .theme-toggle {
+      position: fixed; top: 14px; right: 14px; z-index: 1000;
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--bg-card); border: 1px solid var(--border-color);
+      color: var(--text-primary); font-size: 1.1rem; cursor: pointer;
+      box-shadow: var(--shadow-md);
+      transition: transform 0.2s ease, background 0.2s ease;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .theme-toggle:hover { transform: scale(1.1) rotate(15deg); background: var(--accent-yellow); color: #1e2b4f; }
+    .theme-toggle:focus-visible { outline: 2px solid var(--accent-blue); outline-offset: 2px; }
+    .back-to-top {
+      position: fixed; bottom: 24px; right: 24px; z-index: 1000;
+      width: 46px; height: 46px; border-radius: 50%;
+      background: var(--accent-yellow); color: #1e2b4f; border: none;
+      font-size: 1.1rem; cursor: pointer;
+      box-shadow: 0 6px 20px rgba(255, 193, 7, 0.5);
+      opacity: 0; visibility: hidden; transform: translateY(20px);
+      transition: all 0.3s ease;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .back-to-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
+    .back-to-top:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(255, 193, 7, 0.7); }
+
+    .header-card {
+      background: linear-gradient(135deg, var(--header-from) 0%, var(--header-to) 100%);
+      color: white; border-radius: 0 0 2rem 2rem;
+      padding: clamp(1.5rem, 4vw, 2.5rem) clamp(1rem, 3vw, 2rem);
+      box-shadow: var(--shadow-lg);
+    }
+    .header-card h1 {
+      font-weight: 700; letter-spacing: -0.5px;
+      font-size: clamp(1.4rem, 4.5vw, 2.6rem);
+    }
+    .header-card .lead { font-weight: 300; color: #d4e2ff; font-size: clamp(0.9rem, 2vw, 1.1rem); }
+    .badge-code {
+      background-color: var(--accent-yellow); color: #1e2b4f;
+      font-weight: 600; font-size: clamp(0.95rem, 2.5vw, 1.3rem);
+      padding: 0.3rem 1rem; border-radius: 3rem; display: inline-block;
+      margin-bottom: 0.75rem; box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    .prepared-by {
+      font-size: clamp(0.85rem, 1.8vw, 1.05rem);
+      background: rgba(255,255,255,0.12); display: inline-block;
+      padding: 0.45rem 1.3rem; border-radius: 3rem;
+      backdrop-filter: blur(4px); margin-top: 0.5rem;
+    }
+
+    .social-wrap {
+      margin-top: 1.4rem; padding-top: 1.2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+    }
+    .social-title {
+      font-size: clamp(0.68rem, 1.8vw, 0.78rem);
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: #b9cdf5; font-weight: 600; margin-bottom: 0.85rem;
+    }
+    .social-title i { margin-right: 6px; }
+    .social-links {
+      display: flex; flex-wrap: wrap;
+      gap: clamp(0.4rem, 1.5vw, 0.6rem);
+      justify-content: center; list-style: none;
+      padding-left: 0; margin-bottom: 0;
+    }
+    .social-links a {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: clamp(38px, 8vw, 44px); height: clamp(38px, 8vw, 44px);
+      border-radius: 50%; background: rgba(255, 255, 255, 0.1);
+      color: #ffffff; font-size: clamp(0.95rem, 2.2vw, 1.1rem);
+      text-decoration: none;
+      transition: transform 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .social-links a:hover, .social-links a:focus-visible {
+      transform: translateY(-4px); background: #ffffff; color: #1e2b4f;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.28); outline: none;
+    }
+    .social-links a.gh:hover  { background: #24292e; color: #fff; }
+    .social-links a.li:hover  { background: #0a66c2; color: #fff; }
+    .social-links a.gl:hover  { background: var(--accent-yellow); color: #1e2b4f; }
+    .social-links a.tt:hover  { background: #000000; color: #fff; }
+    .social-links a.fb:hover  { background: #1877f2; color: #fff; }
+    .social-links a.ig:hover  { background: linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); color: #fff; }
+    .social-links a.x:hover   { background: #000000; color: #fff; }
+    .social-links a.yt:hover  { background: #ff0000; color: #fff; }
+    .social-links a.mail:hover{ background: #eab308; color: #1e2b4f; }
+
+    .toc-card {
+      background: var(--bg-card); border-radius: 1.25rem;
+      padding: clamp(1rem, 2.5vw, 1.5rem);
+      margin-top: 1.5rem; margin-bottom: 2rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-color);
+      position: sticky; top: 20px;
+    }
+    .toc-card h5 {
+      color: var(--text-primary); font-weight: 700; font-size: 0.95rem;
+      text-transform: uppercase; letter-spacing: 0.05em;
+      margin-bottom: 0.85rem; padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--accent-yellow);
+    }
+    .toc-card ol { padding-left: 1.2rem; margin-bottom: 0; }
+    .toc-card li { margin-bottom: 0.45rem; font-size: 0.88rem; }
+    .toc-card a { color: var(--text-secondary); text-decoration: none; transition: color 0.15s; }
+    .toc-card a:hover { color: var(--accent-blue); }
+
+    .note-card {
+      background: var(--bg-card); border-radius: 1.25rem;
+      padding: clamp(1rem, 3vw, 2rem);
+      margin-bottom: 1.5rem;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border-color);
+      transition: background 0.3s ease;
+    }
+    .topic-section { scroll-margin-top: 90px; }
+    .topic-section h3 {
+      color: var(--text-primary); font-weight: 700;
+      font-size: clamp(1.15rem, 3vw, 1.5rem);
+      margin-bottom: 1rem; padding-bottom: 0.6rem;
+      border-bottom: 3px solid var(--accent-yellow);
+      display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap;
+    }
+    .topic-number {
+      background: var(--accent-yellow); color: #1e2b4f;
+      font-weight: 700; font-size: 0.85em;
+      padding: 0.15rem 0.7rem; border-radius: 0.5rem;
+      display: inline-block; flex-shrink: 0;
+    }
+    .topic-section h4 {
+      color: var(--accent-blue); font-weight: 700;
+      font-size: clamp(0.98rem, 2.3vw, 1.1rem);
+      margin-top: 1.5rem; margin-bottom: 0.65rem;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .topic-section h4 i { color: var(--accent-yellow); }
+    .topic-section p {
+      color: var(--text-secondary); margin-bottom: 0.85rem;
+      font-size: clamp(0.9rem, 2vw, 0.98rem);
+    }
+    .topic-section ul, .topic-section ol {
+      color: var(--text-secondary);
+      font-size: clamp(0.9rem, 2vw, 0.98rem);
+      margin-bottom: 0.85rem; padding-left: 1.4rem;
+    }
+    .topic-section li { margin-bottom: 0.4rem; }
+    .topic-section strong { color: var(--text-primary); }
+
+    code.inline {
+      background: var(--bg-code-inline); color: var(--accent-blue);
+      padding: 0.12rem 0.45rem; border-radius: 0.3rem;
+      font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+      font-size: 0.88em; font-weight: 600; word-break: break-word;
+    }
+
+    .code-block {
+      position: relative; background: var(--bg-code);
+      border-radius: 0.75rem; margin: 1rem 0; overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .code-block-header {
+      background: rgba(255, 255, 255, 0.06);
+      padding: 0.5rem 0.85rem;
+      display: flex; justify-content: space-between; align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .code-block-lang {
+      color: #b9cdf5; font-size: 0.72rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      display: flex; align-items: center; gap: 0.4rem;
+    }
+    .code-copy-btn {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #e6edf9; font-size: 0.72rem;
+      padding: 0.3rem 0.7rem; border-radius: 0.35rem;
+      cursor: pointer; transition: 0.18s;
+      display: inline-flex; align-items: center; gap: 0.35rem;
+      font-weight: 500;
+    }
+    .code-copy-btn:hover { background: var(--accent-yellow); color: #1e2b4f; border-color: var(--accent-yellow); }
+    .code-copy-btn.copied { background: var(--accent-green); color: #fff; border-color: var(--accent-green); }
+    .code-block pre {
+      margin: 0; padding: 1rem 1.1rem; color: var(--text-code);
+      font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+      font-size: clamp(0.78rem, 1.9vw, 0.88rem);
+      line-height: 1.55; overflow-x: auto; white-space: pre;
+      scrollbar-width: thin;
+    }
+    .code-block pre::-webkit-scrollbar { height: 6px; }
+    .code-block pre::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 3px; }
+    .code-block pre code { color: inherit; background: none; padding: 0; font-size: inherit; }
+
+    .example-box, .real-life-box, .info-box, .warning-box {
+      padding: 0.85rem 1rem; border-radius: 0.6rem;
+      margin: 0.85rem 0; border-left: 4px solid;
+      font-size: clamp(0.88rem, 2vw, 0.95rem);
+    }
+    .example-box { background: var(--bg-subtle); border-left-color: var(--accent-blue); color: var(--text-secondary); }
+    .real-life-box { background: rgba(25, 135, 84, 0.08); border-left-color: var(--accent-green); color: var(--text-secondary); }
+    .info-box { background: rgba(255, 193, 7, 0.08); border-left-color: var(--accent-yellow); color: var(--text-secondary); }
+    .warning-box { background: rgba(217, 83, 79, 0.08); border-left-color: var(--accent-red); color: var(--text-secondary); }
+    .example-box strong, .real-life-box strong, .info-box strong, .warning-box strong {
+      color: var(--text-primary); display: block; margin-bottom: 0.35rem;
+      font-size: 0.88em; text-transform: uppercase; letter-spacing: 0.04em;
+    }
+    .example-box strong i, .real-life-box strong i, .info-box strong i, .warning-box strong i {
+      margin-right: 0.35rem;
+    }
+
+    .diagram-box {
+      background: var(--bg-subtle);
+      border: 1.5px dashed var(--border-strong);
+      border-radius: 0.75rem; padding: 1.2rem 0.85rem;
+      margin: 1rem 0; text-align: center; overflow-x: auto;
+    }
+    .diagram-box svg { max-width: 100%; height: auto; display: inline-block; }
+    .diagram-caption {
+      font-size: 0.8rem; color: var(--text-muted);
+      margin-top: 0.6rem; font-style: italic;
+    }
+
+    .notes-table {
+      width: 100%; border-collapse: separate; border-spacing: 0;
+      margin: 1rem 0; font-size: clamp(0.82rem, 1.9vw, 0.92rem);
+      border-radius: 0.6rem; overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+    .notes-table th {
+      background: var(--bg-subtle); color: var(--text-primary);
+      font-weight: 700; padding: 0.7rem 0.85rem;
+      text-align: left; border-bottom: 2px solid var(--border-strong);
+      font-size: 0.82em; text-transform: uppercase; letter-spacing: 0.04em;
+    }
+    .notes-table td {
+      padding: 0.65rem 0.85rem;
+      border-bottom: 1px solid var(--border-color);
+      color: var(--text-secondary); vertical-align: top;
+    }
+    .notes-table tr:last-child td { border-bottom: none; }
+    .notes-table tr:hover td { background: var(--bg-subtle); }
+
+    .notes-link {
+      color: var(--text-primary); text-decoration: none; font-weight: 600;
+      border-bottom: 1px dashed #8aa3cc; font-size: 0.9rem;
+      transition: 0.15s; display: inline-flex;
+      align-items: center; gap: 0.35rem; padding: 0.15rem 0;
+    }
+    .notes-link i { color: var(--accent-red); font-size: 0.85rem; }
+    .notes-link:hover { color: var(--accent-blue); border-bottom-color: var(--accent-blue); }
+
+    .footer {
+      background-color: var(--footer-bg); color: var(--footer-text);
+      border-radius: 2rem 2rem 0 0;
+      padding: clamp(1.5rem, 4vw, 2rem) clamp(1rem, 3vw, 1.8rem);
+      margin-top: 2rem; font-size: clamp(0.85rem, 2vw, 0.95rem);
+      transition: background 0.3s ease;
+    }
+    .footer a { color: var(--accent-yellow); text-decoration: none; font-weight: 500; word-break: break-word; }
+    .footer a:hover { text-decoration: underline; color: #ffe08a; }
+    .footer .footer-social {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 4px;
+    }
+    .footer .footer-social a {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: clamp(30px, 7vw, 36px); height: clamp(30px, 7vw, 36px);
+      border-radius: 50%; background: rgba(255, 255, 255, 0.1);
+      color: var(--footer-text); font-size: clamp(0.75rem, 1.8vw, 0.88rem);
+      transition: 0.18s;
+    }
+    .footer .footer-social a:hover {
+      background: var(--accent-yellow); color: #1e2b4f;
+      text-decoration: none; transform: translateY(-2px);
+    }
+
+    @media (max-width: 992px) {
+      .toc-card { position: static; margin-bottom: 1rem; }
+      .toc-card ol { columns: 2; column-gap: 1rem; }
+    }
+    @media (max-width: 768px) {
+      .header-card { border-radius: 0 0 1.25rem 1.25rem; }
+      .note-card { border-radius: 1rem; }
+      .theme-toggle { width: 40px; height: 40px; top: 10px; right: 10px; font-size: 1rem; }
+      .back-to-top { width: 42px; height: 42px; bottom: 18px; right: 18px; font-size: 1rem; }
+      .toc-card ol { columns: 1; }
+      .code-block pre { font-size: 0.78rem; padding: 0.85rem; }
+    }
+    @media (max-width: 400px) {
+      .badge-code { font-size: 0.85rem; padding: 0.28rem 0.8rem; }
+      .prepared-by { font-size: 0.8rem; padding: 0.35rem 1rem; }
+      .social-links a { width: 36px; height: 36px; font-size: 0.9rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition: none !important; animation: none !important;
+        scroll-behavior: auto !important;
+      }
+    }
+    @media print {
+      .social-wrap, .footer-social, .badge-code, .theme-toggle, .back-to-top,
+      .progress-bar-top, .toc-card, .code-copy-btn { display: none !important; }
+      .header-card { background: #1e2b4f !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .note-card { box-shadow: none; page-break-inside: avoid; }
+      .code-block { background: #f4f4f4 !important; }
+      .code-block pre { color: #000 !important; }
+      body { background: #fff; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== READING PROGRESS BAR ===== -->
+<div class="progress-bar-top" id="progressBar" role="progressbar" aria-label="Reading progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+
+<!-- ===== THEME TOGGLE ===== -->
+<button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+  <i class="fas fa-moon" id="themeIcon" aria-hidden="true"></i>
+</button>
+
+<!-- ===== BACK TO TOP ===== -->
+<button class="back-to-top" id="backToTop" aria-label="Back to top" title="Back to top">
+  <i class="fas fa-arrow-up" aria-hidden="true"></i>
+</button>
+
+<!-- ===== SKIP LINK ===== -->
+<a href="#module-content" class="visually-hidden-focusable">Skip to module content</a>
+
+<!-- ===== HEADER ===== -->
+<header role="banner" aria-label="Module header">
+  <div class="header-card text-center">
+    <div class="badge-code">
+      <i class="fas fa-hdd me-2" aria-hidden="true"></i>IT-507 · Module 4
+    </div>
+    <h1 class="display-6 fw-bold mt-2">Data Structures &amp; File Organizations</h1>
+    <p class="lead mt-2 mb-3">Complete study notes · definitions, types, real-life examples, diagrams &amp; syntax</p>
+    <div class="prepared-by">
+      <i class="fas fa-chalkboard-teacher me-2" aria-hidden="true"></i>Prepared by <strong>Sir Ali Raza</strong>
+    </div>
+
+    <!-- ===== SOCIAL MEDIA LINKS ===== -->
+    <div class="social-wrap">
+      <p class="social-title"><i class="fas fa-share-nodes" aria-hidden="true"></i>Connect with Sir Ali Raza</p>
+      <ul class="social-links" aria-label="Social media and contact links">
+        <li><a class="gh" href="https://github.com/Ali-Raza-Muhammad-Iqbal" target="_blank" rel="noopener noreferrer" title="GitHub" aria-label="GitHub profile"><i class="fab fa-github" aria-hidden="true"></i></a></li>
+        <li><a class="li" href="https://www.linkedin.com/in/ali-raza-muhammad-iqbal" target="_blank" rel="noopener noreferrer" title="LinkedIn" aria-label="LinkedIn profile"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a></li>
+        <li><a class="gl" href="https://ali-raza-muhammad-iqbal.github.io" target="_blank" rel="noopener noreferrer" title="Portfolio / Website" aria-label="Personal website"><i class="fas fa-globe" aria-hidden="true"></i></a></li>
+        <li><a class="tt" href="https://www.tiktok.com/@ali_raza_muhammad_iqbal" target="_blank" rel="noopener noreferrer" title="TikTok" aria-label="TikTok profile"><i class="fab fa-tiktok" aria-hidden="true"></i></a></li>
+        <li><a class="fb" href="https://www.facebook.com/AliRazaMuhammadIqbal1" target="_blank" rel="noopener noreferrer" title="Facebook" aria-label="Facebook profile"><i class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
+        <li><a class="ig" href="https://www.instagram.com/ali_raza_muhammad_iqbal" target="_blank" rel="noopener noreferrer" title="Instagram" aria-label="Instagram profile"><i class="fab fa-instagram" aria-hidden="true"></i></a></li>
+        <li><a class="x" href="https://x.com/Ali_Raza_Iqbal" target="_blank" rel="noopener noreferrer" title="X (Twitter)" aria-label="X (Twitter) profile"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i></a></li>
+        <li><a class="yt" href="https://www.youtube.com/@Ali_Raza_Muhammad_Iqbal" target="_blank" rel="noopener noreferrer" title="YouTube" aria-label="YouTube channel"><i class="fab fa-youtube" aria-hidden="true"></i></a></li>
+        <li><a class="mail" href="mailto:Mr_Ali_Raza@yahoo.com" title="Email" aria-label="Send email"><i class="fas fa-envelope" aria-hidden="true"></i></a></li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<!-- ===== MAIN CONTENT ===== -->
+<main role="main" id="module-content">
+  <div class="container-fluid px-2 px-sm-3 px-md-4" style="max-width: 1280px; margin: 0 auto;">
+    <div class="row g-3 mt-2">
+
+      <!-- ===== TOC SIDEBAR ===== -->
+      <div class="col-lg-3 col-xl-3 order-lg-1 order-2">
+        <nav class="toc-card" aria-label="Table of contents">
+          <h5><i class="fas fa-list-ul me-2" aria-hidden="true"></i>Module Contents</h5>
+          <ol>
+            <li><a href="#topic-4-1">Data Structures in DBMS</a></li>
+            <li><a href="#topic-4-2">File Organizations</a></li>
+            <li><a href="#topic-4-3">Indexing Types</a></li>
+            <li><a href="#topic-4-4">B-Trees and B+ Trees</a></li>
+            <li><a href="#topic-4-5">Hashing Techniques</a></li>
+            <li><a href="#topic-4-6">Storage Structures</a></li>
+            <li><a href="#topic-4-7">Buffer Management</a></li>
+          </ol>
+        </nav>
+      </div>
+
+      <!-- ===== NOTES CONTENT ===== -->
+      <div class="col-lg-9 col-xl-9 order-lg-2 order-1">
+
+        <!-- ============ TOPIC 4.1 ============ -->
+        <article class="note-card topic-section" id="topic-4-1">
+          <h3><span class="topic-number">4.1</span> Data Structures in DBMS</h3>
+
+          <h4><i class="fas fa-book" aria-hidden="true"></i>Definition</h4>
+          <p><strong>Data structures in a DBMS</strong> are the internal structures the database engine uses to organize and access data efficiently on disk and in memory. They're not the same as "tables" (which are logical) — these are the <em>physical</em> structures the DBMS builds behind the scenes to make queries fast.</p>
+
+          <h4><i class="fas fa-layer-group" aria-hidden="true"></i>Types of Data Structures in DBMS</h4>
+          <ul>
+            <li><strong>Files</strong> — the top-level physical container (e.g., a data file for a table).</li>
+            <li><strong>Pages (Blocks)</strong> — fixed-size units of storage (typically 4–16 KB) that hold records.</li>
+            <li><strong>Records (Rows)</strong> — the actual data rows stored inside pages.</li>
+            <li><strong>Indexes</strong> — auxiliary structures (B+ trees, hash tables) for fast lookups.</li>
+            <li><strong>Heaps</strong> — unordered collections of pages.</li>
+            <li><strong>B+ Trees</strong> — balanced tree structures for range queries and ordered scans.</li>
+            <li><strong>Hash Tables</strong> — for direct key-based lookups (equality searches).</li>
+            <li><strong>Bitmaps</strong> — compact representations for low-cardinality columns.</li>
+            <li><strong>Log Buffers</strong> — in-memory buffers for write-ahead logging (WAL).</li>
+            <li><strong>Buffer Pool</strong> — memory cache for frequently accessed pages.</li>
+          </ul>
+
+          <h4><i class="fas fa-diagram-project" aria-hidden="true"></i>Diagram — DBMS Data Structure Hierarchy</h4>
+          <div class="diagram-box">
+            <svg viewBox="0 0 700 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Hierarchy of DBMS data structures from database down to bytes">
+              <rect x="250" y="20" width="200" height="40" rx="8" fill="#1e2b4f" stroke="#ffc107" stroke-width="2"/>
+              <text x="350" y="45" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="13" font-weight="700" fill="#fff">DATABASE</text>
+
+              <line x1="350" y1="60" x2="350" y2="80" stroke="#0d6efd" stroke-width="2"/>
+              <line x1="150" y1="80" x2="550" y2="80" stroke="#0d6efd" stroke-width="2"/>
+              <line x1="150" y1="80" x2="150" y2="100" stroke="#0d6efd" stroke-width="2"/>
+              <line x1="350" y1="80" x2="350" y2="100" stroke="#0d6efd" stroke-width="2"/>
+              <line x1="550" y1="80" x2="550" y2="100" stroke="#0d6efd" stroke-width="2"/>
+
+              <rect x="80" y="100" width="140" height="50" rx="6" fill="#eef3fc" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="150" y="125" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#1e2b4f">Tables / Files</text>
+              <text x="150" y="140" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#4a5a78">(.ibd, .mdf)</text>
+
+              <rect x="280" y="100" width="140" height="50" rx="6" fill="#ffc107" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="350" y="125" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#1e2b4f">Indexes</text>
+              <text x="350" y="140" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#4a5a78">B+ trees, Hash</text>
+
+              <rect x="480" y="100" width="140" height="50" rx="6" fill="#198754" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="550" y="125" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#fff">Logs</text>
+              <text x="550" y="140" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#e6edf9">WAL, redo, undo</text>
+
+              <line x1="150" y1="150" x2="150" y2="170" stroke="#0d6efd" stroke-width="1.5"/>
+              <line x1="350" y1="150" x2="350" y2="170" stroke="#0d6efd" stroke-width="1.5"/>
+              <line x1="550" y1="150" x2="550" y2="170" stroke="#0d6efd" stroke-width="1.5"/>
+
+              <line x1="150" y1="170" x2="550" y2="170" stroke="#0d6efd" stroke-width="1.5"/>
+              <line x1="150" y1="170" x2="150" y2="185" stroke="#0d6efd" stroke-width="1.5"/>
+              <line x1="350" y1="170" x2="350" y2="185" stroke="#0d6efd" stroke-width="1.5"/>
+              <line x1="550" y1="170" x2="550" y2="185" stroke="#0d6efd" stroke-width="1.5"/>
+
+              <rect x="80" y="185" width="140" height="50" rx="6" fill="#eef3fc" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="150" y="210" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#1e2b4f">Pages</text>
+              <text x="150" y="225" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#4a5a78">4–16 KB blocks</text>
+
+              <rect x="280" y="185" width="140" height="50" rx="6" fill="#eef3fc" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="350" y="210" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#1e2b4f">Records</text>
+              <text x="350" y="225" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#4a5a78">Rows / tuples</text>
+
+              <rect x="480" y="185" width="140" height="50" rx="6" fill="#eef3fc" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="550" y="210" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#1e2b4f">Fields</text>
+              <text x="550" y="225" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#4a5a78">Bytes / values</text>
+
+              <text x="350" y="265" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" font-style="italic" fill="#7a8bab">From logical tables down to raw bytes on disk</text>
+            </svg>
+            <div class="diagram-caption">Figure 4.1 — DBMS data structure hierarchy: database → tables/indexes → pages → records → fields</div>
+          </div>
+
+          <h4><i class="fas fa-code" aria-hidden="true"></i>Syntax — Seeing the physical structures</h4>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="code-block-lang"><i class="fas fa-database" aria-hidden="true"></i> SQL — See structures</span>
+              <button class="code-copy-btn" type="button" aria-label="Copy SQL code"><i class="fas fa-copy" aria-hidden="true"></i> Copy</button>
+            </div>
+            <pre><code>-- See the physical files behind a table (MySQL InnoDB)
+SHOW TABLE STATUS FROM SchoolDB LIKE 'Students';
+-- File: Students.ibd — holds data + primary index
+
+-- See the indexes on a table
+SHOW INDEX FROM Students;
+
+-- See how many pages a table has (PostgreSQL)
+SELECT relname, relpages, reltuples
+FROM pg_class
+WHERE relname = 'students';
+
+-- See buffer pool stats (MySQL)
+SHOW ENGINE INNODB STATUS\G</code></pre>
+          </div>
+
+          <div class="example-box">
+            <strong><i class="fas fa-lightbulb" aria-hidden="true"></i>Simple Example</strong>
+            <p class="mb-0">A table <code class="inline">Students</code> with 1 million rows is stored as thousands of <strong>pages</strong> on disk, each holding many <strong>records</strong>. A B+ tree index sits alongside, mapping each <code class="inline">StudentID</code> to the page where its record lives — so lookups are fast even with millions of rows.</p>
+          </div>
+
+          <div class="real-life-box">
+            <strong><i class="fas fa-briefcase" aria-hidden="true"></i>Real-Life Use Case</strong>
+            <p class="mb-0">Every time Amazon's product search runs, it uses B+ tree indexes to find matching products. The system doesn't scan all 500 million products — the index points directly to the pages holding the relevant records, so results return in milliseconds.</p>
+          </div>
+        </article>
+
+        <!-- ============ TOPIC 4.2 ============ -->
+        <article class="note-card topic-section" id="topic-4-2">
+          <h3><span class="topic-number">4.2</span> File Organizations — Heap, Sequential, Indexed, Hashed</h3>
+
+          <h4><i class="fas fa-book" aria-hidden="true"></i>Definition</h4>
+          <p><strong>File organization</strong> refers to <em>how records are arranged in a file</em> on disk. Different organizations are better for different operations — some are fast for inserting, others for searching or sorting. The DBMS chooses the file organization based on the workload.</p>
+
+          <h4><i class="fas fa-layer-group" aria-hidden="true"></i>Types of File Organizations</h4>
+
+          <p><strong>1. Heap File (Unordered)</strong></p>
+          <ul>
+            <li>Records stored in no particular order.</li>
+            <li><strong>Insert</strong>: very fast (append to end).</li>
+            <li><strong>Search</strong>: slow (must scan all pages).</li>
+            <li><strong>Delete</strong>: leaves holes (uses free-space map).</li>
+            <li>Best for: bulk loads, tables with no frequent lookups.</li>
+          </ul>
+
+          <p><strong>2. Sequential File (Ordered)</strong></p>
+          <ul>
+            <li>Records stored sorted by a <strong>search key</strong>.</li>
+            <li><strong>Insert</strong>: must find the right slot — slow.</li>
+            <li><strong>Search</strong>: fast — binary search or direct position.</li>
+            <li><strong>Range queries</strong>: excellent — just scan sequentially.</li>
+            <li>Best for: master files that change rarely but are queried often.</li>
+          </ul>
+
+          <p><strong>3. Indexed File</strong></p>
+          <ul>
+            <li>Records stored in some order plus an <strong>index structure</strong> (B+ tree) that points to them.</li>
+            <li><strong>Search</strong>: very fast via index.</li>
+            <li><strong>Insert</strong>: fast — append + update index.</li>
+            <li><strong>Range queries</strong>: fast.</li>
+            <li>Best for: general-purpose OLTP databases (the default in most DBMSs).</li>
+          </ul>
+
+          <p><strong>4. Hashed File</strong></p>
+          <ul>
+            <li>Records placed using a <strong>hash function</strong> on the key.</li>
+            <li><strong>Equality search</strong> (<code class="inline">WHERE id = 123</code>): extremely fast — O(1).</li>
+            <li><strong>Range queries</strong>: terrible — hash order is random.</li>
+            <li><strong>Insert</strong>: fast unless the bucket is full (collision).</li>
+            <li>Best for: exact-match lookups (e.g., user sessions, caches).</li>
+          </ul>
+
+          <h4><i class="fas fa-diagram-project" aria-hidden="true"></i>Diagram — Four File Organizations Compared</h4>
+          <div class="diagram-box">
+            <svg viewBox="0 0 700 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Comparison of heap, sequential, indexed, and hashed file organizations">
+              <!-- Heap -->
+              <text x="175" y="20" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="12" font-weight="700" fill="#1e2b4f">HEAP (unordered)</text>
+              <rect x="40" y="30" width="270" height="60" rx="6" fill="#eef3fc" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="85" y="65" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" fill="#4a5a78">Raj</text>
+              <text x="155" y="65" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" fill="#4a5a78">Ali</text>
+              <text x="225" y="65" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" fill="#4a5a78">Sara</text>
+              <text x="290" y="65" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" fill="#4a5a78">Hina</text>
+
+              <!-- Sequential -->
+              <text x="525" y="20" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="12" font-weight="700" fill="#1e2b4f">SEQUENTIAL (sorted)</text>
+              <rect x="390" y="30" width="270" height="60" rx="6" fill="#ffc107" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="435" y="65" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" fill="#1e2b4f">Ali</text>
+              <text x="505" y="65" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" fill="#1e2b4f">Hina</text>
+              <text x="575" y="65" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" fill="#1e2b4f">Raj</text>
+              <text x="640" y="65" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" fill="#1e2b4f">Sara</text>
+
+              <!-- Indexed -->
+              <text x="175" y="130" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="12" font-weight="700" fill="#1e2b4f">INDEXED (B+ tree + records)</text>
+              <rect x="60" y="140" width="230" height="60" rx="6" fill="#198754" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="175" y="165" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#fff">B+ Tree Index</text>
+              <text x="175" y="185" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#e6edf9">Ali → pg 3, Hina → pg 5, Raj → pg 1</text>
+              <text x="175" y="220" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#7a8bab">↑ points into data pages below</text>
+
+              <!-- Hashed -->
+              <text x="525" y="130" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="12" font-weight="700" fill="#1e2b4f">HASHED (bucket by h(key))</text>
+              <rect x="390" y="140" width="270" height="60" rx="6" fill="#d9534f" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="465" y="165" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#fff">Buckets 0–3</text>
+              <text x="525" y="185" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#fff">Ali→bucket 1, Sara→bucket 3, ...</text>
+
+              <!-- Comparison row -->
+              <text x="350" y="250" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="12" font-weight="700" fill="#1e2b4f">At a Glance</text>
+              <text x="60" y="275" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78"><tspan font-weight="700">Heap:</tspan> fast insert · slow search</text>
+              <text x="60" y="295" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78"><tspan font-weight="700">Seq:</tspan> fast range · slow insert</text>
+              <text x="400" y="275" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78"><tspan font-weight="700">Indexed:</tspan> best all-round</text>
+              <text x="400" y="295" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78"><tspan font-weight="700">Hashed:</tspan> fast exact · no range</text>
+            </svg>
+            <div class="diagram-caption">Figure 4.2 — Four file organizations and their trade-offs</div>
+          </div>
+
+          <h4><i class="fas fa-code" aria-hidden="true"></i>Syntax — Choosing file organization</h4>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="code-block-lang"><i class="fas fa-database" aria-hidden="true"></i> SQL — Storage engines &amp; organization</span>
+              <button class="code-copy-btn" type="button" aria-label="Copy SQL code"><i class="fas fa-copy" aria-hidden="true"></i> Copy</button>
+            </div>
+            <pre><code>-- MySQL InnoDB uses a clustered B+ tree by default (an indexed file)
+CREATE TABLE Students (
+    StudentID INT PRIMARY KEY,
+    Name      VARCHAR(100)
+) ENGINE = InnoDB;
+
+-- MySQL MEMORY engine uses hashing by default
+CREATE TABLE Sessions (
+    SessionID CHAR(36) PRIMARY KEY,
+    UserID    INT,
+    ExpiresAt DATETIME
+) ENGINE = MEMORY;
+
+-- PostgreSQL: heap file by default
+CREATE TABLE Logs (
+    LogID    BIGSERIAL PRIMARY KEY,
+    Message  TEXT,
+    LogTime  TIMESTAMP DEFAULT NOW()
+);  -- stored as an unordered heap
+
+-- Add an index (a B+ tree) to a heap table
+CREATE INDEX idx_logs_time ON Logs(LogTime);
+
+-- Choose hash index (PostgreSQL)
+CREATE INDEX idx_sessions_user ON Sessions USING HASH (UserID);</code></pre>
+          </div>
+
+          <div class="example-box">
+            <strong><i class="fas fa-lightbulb" aria-hidden="true"></i>Simple Example</strong>
+            <p class="mb-1"><strong>Heap:</strong> a log file — you always append, rarely query by key.</p>
+            <p class="mb-1"><strong>Sequential:</strong> a phone directory — sorted by name, easy to find.</p>
+            <p class="mb-1"><strong>Indexed:</strong> a library catalog — sorted plus card index.</p>
+            <p class="mb-0"><strong>Hashed:</strong> a coat check — you give a ticket (key) and get your coat (record) instantly.</p>
+          </div>
+
+          <div class="real-life-box">
+            <strong><i class="fas fa-briefcase" aria-hidden="true"></i>Real-Life Use Case</strong>
+            <p class="mb-0">A user session system needs <em>instant</em> lookups by <code class="inline">SessionID</code> (no range queries), so it uses a <strong>hashed</strong> organization. A transaction table is queried by date range, so it uses a <strong>sequential or indexed</strong> file. A pure event-log table just appends, so <strong>heap</strong> is perfect.</p>
+          </div>
+        </article>
+
+        <!-- ============ TOPIC 4.3 ============ -->
+        <article class="note-card topic-section" id="topic-4-3">
+          <h3><span class="topic-number">4.3</span> Indexing — Primary, Secondary, Clustered, Non-Clustered</h3>
+
+          <h4><i class="fas fa-book" aria-hidden="true"></i>Definition</h4>
+          <p>An <strong>index</strong> is an auxiliary data structure that speeds up data retrieval by providing quick access paths. Think of it as a book's table of contents — instead of reading every page to find a topic, you look it up and jump straight there. Indexes trade extra storage and slightly slower writes for much faster reads.</p>
+
+          <h4><i class="fas fa-layer-group" aria-hidden="true"></i>Types of Indexes</h4>
+
+          <p><strong>By key uniqueness:</strong></p>
+          <ul>
+            <li><strong>Primary Index</strong> — built on the primary key column; one per table; values are unique.</li>
+            <li><strong>Secondary Index</strong> — built on non-key columns; can be multiple; allows duplicate values.</li>
+          </ul>
+
+          <p><strong>By physical organization:</strong></p>
+          <ul>
+            <li><strong>Clustered Index</strong> — determines the <em>physical order</em> of rows in the table. Only <strong>one per table</strong>. In MySQL InnoDB, the primary key is the clustered index.</li>
+            <li><strong>Non-Clustered Index</strong> — separate structure with a pointer to the row's location. Multiple allowed per table. Cannot be one per table.</li>
+          </ul>
+
+          <p><strong>Other useful types:</strong></p>
+          <ul>
+            <li><strong>Unique Index</strong> — enforces uniqueness (like primary key but can allow one NULL).</li>
+            <li><strong>Composite / Multi-column Index</strong> — built on two or more columns.</li>
+            <li><strong>Covering Index</strong> — contains all columns a query needs, so table access isn't needed.</li>
+            <li><strong>Full-text Index</strong> — for searching inside text.</li>
+            <li><strong>Spatial Index</strong> — for geographic coordinates.</li>
+            <li><strong>Bitmap Index</strong> — for low-cardinality columns (e.g., gender).</li>
+          </ul>
+
+          <h4><i class="fas fa-diagram-project" aria-hidden="true"></i>Diagram — Clustered vs Non-Clustered Index</h4>
+          <div class="diagram-box">
+            <svg viewBox="0 0 700 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Comparison of clustered vs non-clustered indexes">
+              <!-- Clustered -->
+              <text x="175" y="20" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="13" font-weight="700" fill="#1e2b4f">CLUSTERED INDEX (1 per table)</text>
+              <rect x="40" y="35" width="270" height="40" rx="6" fill="#198754" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="175" y="60" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#fff">B+ Tree on PK</text>
+
+              <line x1="175" y1="75" x2="175" y2="95" stroke="#0d6efd" stroke-width="2"/>
+
+              <rect x="40" y="95" width="270" height="120" rx="6" fill="#eef3fc" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="175" y="115" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#1e2b4f">Data rows stored in PK order</text>
+              <text x="175" y="140" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78">id=1 | Ali | 50000</text>
+              <text x="175" y="160" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78">id=2 | Sara | 55000</text>
+              <text x="175" y="180" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78">id=3 | Bilal | 70000</text>
+              <text x="175" y="200" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78">id=4 | Hina | 68000</text>
+
+              <text x="175" y="240" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" font-style="italic" fill="#7a8bab">Index = the table itself (sorted)</text>
+
+              <!-- Divider -->
+              <line x1="350" y1="20" x2="350" y2="260" stroke="#bac8e0" stroke-width="1.5" stroke-dasharray="5 4"/>
+
+              <!-- Non-clustered -->
+              <text x="525" y="20" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="13" font-weight="700" fill="#1e2b4f">NON-CLUSTERED INDEX (many per table)</text>
+              <rect x="390" y="35" width="270" height="40" rx="6" fill="#ffc107" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="525" y="60" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#1e2b4f">B+ Tree on Name (separate)</text>
+
+              <line x1="525" y1="75" x2="525" y2="95" stroke="#0d6efd" stroke-width="2"/>
+
+              <rect x="390" y="95" width="270" height="120" rx="6" fill="#eef3fc" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="525" y="115" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#1e2b4f">Separate index structure</text>
+              <text x="525" y="140" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78">Ali → row (id=1)</text>
+              <text x="525" y="160" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78">Bilal → row (id=3)</text>
+              <text x="525" y="180" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78">Hina → row (id=4)</text>
+              <text x="525" y="200" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78">Sara → row (id=2)</text>
+
+              <text x="525" y="240" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" font-style="italic" fill="#7a8bab">Index points to the actual data rows</text>
+            </svg>
+            <div class="diagram-caption">Figure 4.3 — Clustered index stores data in order; non-clustered index points to rows</div>
+          </div>
+
+          <h4><i class="fas fa-code" aria-hidden="true"></i>Syntax — Creating different indexes</h4>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="code-block-lang"><i class="fas fa-database" aria-hidden="true"></i> SQL — Index creation</span>
+              <button class="code-copy-btn" type="button" aria-label="Copy SQL code"><i class="fas fa-copy" aria-hidden="true"></i> Copy</button>
+            </div>
+            <pre><code>-- Table with a primary key (becomes the clustered index in InnoDB)
+CREATE TABLE Employees (
+    EmpID     INT PRIMARY KEY,   -- clustered index on EmpID
+    Name      VARCHAR(100),
+    Email     VARCHAR(150),
+    DeptID    INT,
+    Salary    DECIMAL(10,2)
+);
+
+-- Non-clustered index on Name (for fast lookups by name)
+CREATE INDEX idx_employees_name ON Employees(Name);
+
+-- Unique index on Email (enforces uniqueness + speeds lookups)
+CREATE UNIQUE INDEX idx_employees_email ON Employees(Email);
+
+-- Composite index on (DeptID, Salary)
+-- Perfect for: WHERE DeptID = ? AND Salary > ?
+CREATE INDEX idx_dept_salary ON Employees(DeptID, Salary);
+
+-- Covering index — includes all columns a query needs
+CREATE INDEX idx_cover_dept ON Employees(DeptID, Name, Salary);
+-- Now: SELECT Name, Salary FROM Employees WHERE DeptID = 10
+-- → answered entirely from the index, no table access!
+
+-- Full-text index (MySQL) for text search
+CREATE FULLTEXT INDEX idx_desc ON Products(Description);
+
+-- SQL Server syntax for a clustered vs non-clustered index
+CREATE CLUSTERED INDEX idx_clustered_emp ON Employees(EmpID);
+CREATE NONCLUSTERED INDEX idx_nonclustered_name ON Employees(Name);
+
+-- See all indexes on a table
+SHOW INDEX FROM Employees;</code></pre>
+          </div>
+
+          <div class="example-box">
+            <strong><i class="fas fa-lightbulb" aria-hidden="true"></i>Simple Example</strong>
+            <p class="mb-1"><strong>Clustered:</strong> in a dictionary, the words are physically sorted — one sorted list, no extra index.</p>
+            <p class="mb-1"><strong>Non-clustered:</strong> a book's back-of-book index — "Topic X → page 47" — the pages themselves aren't in alphabetical order.</p>
+            <p class="mb-0"><strong>Covering index:</strong> a cheat-sheet listing just what you need, so you never need the full table.</p>
+          </div>
+
+          <div class="real-life-box">
+            <strong><i class="fas fa-briefcase" aria-hidden="true"></i>Real-Life Use Case</strong>
+            <p class="mb-0">An <strong>e-commerce site</strong> has 10 million products. Customers search by category + price range. A composite non-clustered index on <code class="inline">(CategoryID, Price)</code> makes those searches take milliseconds instead of seconds. The primary key <code class="inline">ProductID</code> is clustered for fast lookups by ID.</p>
+          </div>
+
+          <div class="warning-box">
+            <strong><i class="fas fa-exclamation-triangle" aria-hidden="true"></i>Too Many Indexes Is Bad</strong>
+            <p class="mb-0">Each index consumes storage and slows down every INSERT/UPDATE/DELETE (the DBMS has to maintain all indexes). Aim for indexes on columns used in <code class="inline">WHERE</code>, <code class="inline">JOIN</code>, and <code class="inline">ORDER BY</code> — not on every column.</p>
+          </div>
+        </article>
+
+        <!-- ============ TOPIC 4.4 ============ -->
+        <article class="note-card topic-section" id="topic-4-4">
+          <h3><span class="topic-number">4.4</span> B-Trees and B+ Trees</h3>
+
+          <h4><i class="fas fa-book" aria-hidden="true"></i>Definition</h4>
+          <p><strong>B-Tree (Balanced Tree)</strong> and <strong>B+ Tree</strong> are self-balancing search trees optimized for disk-based storage. They keep all leaf nodes at the same depth, ensuring O(log n) search, insert, and delete — even for billions of keys.</p>
+          <ul>
+            <li><strong>B-Tree</strong> — every node stores both keys and data pointers. Internal nodes also hold data.</li>
+            <li><strong>B+ Tree</strong> — internal nodes store only keys (as a road-map); all data lives in the <strong>leaf level</strong>. Leaves are linked together in a chain, enabling fast <strong>range scans</strong>. This is the default index structure in nearly every modern DBMS.</li>
+          </ul>
+
+          <h4><i class="fas fa-layer-group" aria-hidden="true"></i>Key Properties</h4>
+          <ul>
+            <li><strong>Balanced</strong> — all leaves at the same depth.</li>
+            <li><strong>High fan-out</strong> — each node holds hundreds of keys, so the tree is very shallow (typically 3–4 levels for millions of rows).</li>
+            <li><strong>Ordered</strong> — leaves are sorted; range queries (<code class="inline">BETWEEN</code>, <code class="inline">&gt;</code>, <code class="inline">&lt;</code>) are efficient.</li>
+            <li><strong>Logarithmic</strong> — operations are O(log n), with few disk reads.</li>
+          </ul>
+
+          <h4><i class="fas fa-diagram-project" aria-hidden="true"></i>Diagram — B+ Tree Structure</h4>
+          <div class="diagram-box">
+            <svg viewBox="0 0 700 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="B+ tree structure with root, internal nodes, and linked leaf nodes">
+              <!-- Root -->
+              <rect x="285" y="20" width="130" height="40" rx="6" fill="#1e2b4f" stroke="#ffc107" stroke-width="2"/>
+              <text x="350" y="45" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="12" font-weight="700" fill="#fff">Root: [25, 50]</text>
+
+              <!-- Level 2 internal -->
+              <line x1="350" y1="60" x2="160" y2="90" stroke="#0d6efd" stroke-width="1.5"/>
+              <line x1="350" y1="60" x2="350" y2="90" stroke="#0d6efd" stroke-width="1.5"/>
+              <line x1="350" y1="60" x2="540" y2="90" stroke="#0d6efd" stroke-width="1.5"/>
+
+              <rect x="100" y="90" width="120" height="40" rx="6" fill="#ffc107" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="160" y="115" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#1e2b4f">[10, 15]</text>
+
+              <rect x="290" y="90" width="120" height="40" rx="6" fill="#ffc107" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="350" y="115" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#1e2b4f">[30, 40]</text>
+
+              <rect x="480" y="90" width="120" height="40" rx="6" fill="#ffc107" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="540" y="115" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#1e2b4f">[60, 70]</text>
+
+              <!-- Level 3 leaves -->
+              <line x1="160" y1="130" x2="70" y2="160" stroke="#0d6efd" stroke-width="1.5"/>
+              <line x1="160" y1="130" x2="160" y2="160" stroke="#0d6efd" stroke-width="1.5"/>
+              <line x1="160" y1="130" x2="250" y2="160" stroke="#0d6efd" stroke-width="1.5"/>
+
+              <line x1="350" y1="130" x2="320" y2="160" stroke="#0d6efd" stroke-width="1.5"/>
+              <line x1="350" y1="130" x2="410" y2="160" stroke="#0d6efd" stroke-width="1.5"/>
+
+              <line x1="540" y1="130" x2="480" y2="160" stroke="#0d6efd" stroke-width="1.5"/>
+              <line x1="540" y1="130" x2="540" y2="160" stroke="#0d6efd" stroke-width="1.5"/>
+              <line x1="540" y1="130" x2="630" y2="160" stroke="#0d6efd" stroke-width="1.5"/>
+
+              <rect x="30" y="160" width="80" height="40" rx="6" fill="#198754" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="70" y="185" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" font-weight="700" fill="#fff">[5, 10]</text>
+
+              <rect x="120" y="160" width="80" height="40" rx="6" fill="#198754" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="160" y="185" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" font-weight="700" fill="#fff">[15, 20]</text>
+
+              <rect x="210" y="160" width="80" height="40" rx="6" fill="#198754" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="250" y="185" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" font-weight="700" fill="#fff">[25, 30]</text>
+
+              <rect x="310" y="160" width="80" height="40" rx="6" fill="#198754" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="350" y="185" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" font-weight="700" fill="#fff">[35, 40]</text>
+
+              <rect x="400" y="160" width="80" height="40" rx="6" fill="#198754" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="440" y="185" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" font-weight="700" fill="#fff">[50, 60]</text>
+
+              <rect x="490" y="160" width="80" height="40" rx="6" fill="#198754" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="530" y="185" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" font-weight="700" fill="#fff">[70, 80]</text>
+
+              <rect x="580" y="160" width="80" height="40" rx="6" fill="#198754" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="620" y="185" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" font-weight="700" fill="#fff">[90, 100]</text>
+
+              <!-- Leaf links -->
+              <line x1="110" y1="180" x2="120" y2="180" stroke="#d9534f" stroke-width="2"/>
+              <line x1="200" y1="180" x2="210" y2="180" stroke="#d9534f" stroke-width="2"/>
+              <line x1="290" y1="180" x2="310" y2="180" stroke="#d9534f" stroke-width="2"/>
+              <line x1="390" y1="180" x2="400" y2="180" stroke="#d9534f" stroke-width="2"/>
+              <line x1="480" y1="180" x2="490" y2="180" stroke="#d9534f" stroke-width="2"/>
+              <line x1="570" y1="180" x2="580" y2="180" stroke="#d9534f" stroke-width="2"/>
+
+              <text x="350" y="230" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#d9534f">← Leaves linked for fast range scans →</text>
+              <text x="350" y="250" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" font-style="italic" fill="#7a8bab">Internal nodes hold only keys; data lives in leaves (B+ Tree)</text>
+            </svg>
+            <div class="diagram-caption">Figure 4.4 — B+ Tree: root → internal nodes → linked leaf nodes holding data</div>
+          </div>
+
+          <h4><i class="fas fa-code" aria-hidden="true"></i>Syntax — B+ tree in action</h4>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="code-block-lang"><i class="fas fa-database" aria-hidden="true"></i> SQL — B+ tree index</span>
+              <button class="code-copy-btn" type="button" aria-label="Copy SQL code"><i class="fas fa-copy" aria-hidden="true"></i> Copy</button>
+            </div>
+            <pre><code>-- The DBMS automatically builds a B+ tree when you CREATE INDEX
+CREATE INDEX idx_orders_date ON Orders(OrderDate);
+
+-- These queries use the B+ tree:
+SELECT * FROM Orders WHERE OrderDate = '2025-01-15';   -- equality
+SELECT * FROM Orders WHERE OrderDate BETWEEN '2025-01-01' AND '2025-01-31';  -- range
+SELECT * FROM Orders ORDER BY OrderDate LIMIT 10;       -- sorted retrieval
+
+-- See the B+ tree depth (MySQL InnoDB)
+SELECT index_name, stat_name, stat_value
+FROM mysql.innodb_index_stats
+WHERE table_name = 'orders' AND stat_name = 'n_leaf_pages';
+
+-- SQL Server: see index depth
+SELECT i.name, i.type_desc, s.page_count
+FROM sys.indexes i
+JOIN sys.dm_db_partition_stats s ON i.object_id = s.object_id
+WHERE OBJECT_NAME(i.object_id) = 'Orders';</code></pre>
+          </div>
+
+          <div class="example-box">
+            <strong><i class="fas fa-lightbulb" aria-hidden="true"></i>Simple Example</strong>
+            <p class="mb-1"><strong>B+ tree lookup:</strong> find <code class="inline">id = 35</code>: root says "go right of 25, left of 50" → internal says "go left of 40" → leaf <code class="inline">[35, 40]</code> contains 35. Just 3 disk reads instead of scanning millions of rows!</p>
+            <p class="mb-0"><strong>Range query:</strong> <code class="inline">WHERE id BETWEEN 15 AND 40</code>: find leaf with 15, then follow leaf chain → 20, 25, 30, 35, 40. Fast sequential read.</p>
+          </div>
+
+          <div class="real-life-box">
+            <strong><i class="fas fa-briefcase" aria-hidden="true"></i>Real-Life Use Case</strong>
+            <p class="mb-0">Every major database uses B+ trees for indexes: <strong>MySQL InnoDB, PostgreSQL, Oracle, SQL Server, SQLite</strong>. When you <code class="inline">CREATE INDEX</code>, a B+ tree is built behind the scenes. Queries like "find orders from January" use the leaf-chain range scan — fast on any scale.</p>
+          </div>
+
+          <div class="info-box">
+            <strong><i class="fas fa-info-circle" aria-hidden="true"></i>B-Tree vs B+ Tree</strong>
+            <ul class="mb-0">
+              <li><strong>B-Tree:</strong> data pointers in all nodes. Good for exact lookups, but range scans are slower (must traverse up and down).</li>
+              <li><strong>B+ Tree:</strong> data only in leaves, leaves linked. Great for range scans, disk-friendly. <strong>The default for almost all DBMSs.</strong></li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- ============ TOPIC 4.5 ============ -->
+        <article class="note-card topic-section" id="topic-4-5">
+          <h3><span class="topic-number">4.5</span> Hashing Techniques</h3>
+
+          <h4><i class="fas fa-book" aria-hidden="true"></i>Definition</h4>
+          <p><strong>Hashing</strong> is a technique that computes a <em>hash value</em> from a key using a hash function, and uses that value to determine where the record is stored (or found). Hashing is O(1) for exact-match lookups but poor for range queries.</p>
+
+          <h4><i class="fas fa-layer-group" aria-hidden="true"></i>Types of Hashing</h4>
+          <ul>
+            <li><strong>Static Hashing</strong> — fixed number of buckets. Simple but bad when the dataset grows (long overflow chains).</li>
+            <li><strong>Dynamic Hashing</strong> — buckets grow/shrink with the data. Two main variants:
+              <ul>
+                <li><strong>Extendible Hashing</strong> — uses a directory of pointers; doubles only the directory, not all buckets.</li>
+                <li><strong>Linear Hashing</strong> — splits buckets one by one as needed; no directory.</li>
+              </ul>
+            </li>
+            <li><strong>Consistent Hashing</strong> — used in distributed systems (Cassandra, DynamoDB) to distribute keys across many nodes with minimal reshuffling when nodes join/leave.</li>
+          </ul>
+
+          <p><strong>Collision resolution:</strong></p>
+          <ul>
+            <li><strong>Open Addressing</strong> — probe the next slot (linear, quadratic, double hashing).</li>
+            <li><strong>Chaining</strong> — each bucket holds a list of overflow records.</li>
+            <li><strong>Overflow Buckets</strong> — extra pages chained to full buckets.</li>
+          </ul>
+
+          <h4><i class="fas fa-diagram-project" aria-hidden="true"></i>Diagram — Static Hashing with Buckets</h4>
+          <div class="diagram-box">
+            <svg viewBox="0 0 700 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Static hashing with buckets and overflow chains">
+              <!-- Hash function block -->
+              <rect x="270" y="20" width="160" height="50" rx="8" fill="#1e2b4f" stroke="#ffc107" stroke-width="2"/>
+              <text x="350" y="42" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#fff">h(key) = key mod 4</text>
+              <text x="350" y="60" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#ffc107">hash function</text>
+
+              <!-- Buckets -->
+              <rect x="50" y="100" width="140" height="70" rx="6" fill="#eef3fc" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="120" y="120" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#1e2b4f">Bucket 0</text>
+              <text x="120" y="140" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78">key = 8</text>
+              <text x="120" y="155" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78">key = 12</text>
+
+              <rect x="210" y="100" width="140" height="70" rx="6" fill="#eef3fc" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="280" y="120" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#1e2b4f">Bucket 1</text>
+              <text x="280" y="140" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78">key = 5</text>
+              <text x="280" y="155" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78">key = 9</text>
+
+              <rect x="370" y="100" width="140" height="70" rx="6" fill="#eef3fc" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="440" y="120" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#1e2b4f">Bucket 2</text>
+              <text x="440" y="140" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78">key = 6</text>
+
+              <rect x="530" y="100" width="140" height="70" rx="6" fill="#eef3fc" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="600" y="120" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#1e2b4f">Bucket 3</text>
+              <text x="600" y="140" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78">key = 7</text>
+              <text x="600" y="155" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78">key = 11</text>
+
+              <!-- Overflow bucket -->
+              <rect x="370" y="190" width="140" height="50" rx="6" fill="#d9534f" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="440" y="212" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#fff">Overflow</text>
+              <text x="440" y="228" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#fff">key = 10</text>
+
+              <line x1="440" y1="170" x2="440" y2="190" stroke="#d9534f" stroke-width="2" stroke-dasharray="4 3"/>
+
+              <text x="350" y="265" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" font-style="italic" fill="#7a8bab">Collisions → overflow chain (chaining); lookups check bucket then overflow</text>
+            </svg>
+            <div class="diagram-caption">Figure 4.5 — Static hashing: h(key) = key mod 4 distributes keys into buckets</div>
+          </div>
+
+          <h4><i class="fas fa-code" aria-hidden="true"></i>Syntax — Hash indexes and their limitations</h4>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="code-block-lang"><i class="fas fa-database" aria-hidden="true"></i> SQL — Hash index</span>
+              <button class="code-copy-btn" type="button" aria-label="Copy SQL code"><i class="fas fa-copy" aria-hidden="true"></i> Copy</button>
+            </div>
+            <pre><code>-- PostgreSQL: create a HASH index
+CREATE INDEX idx_sessions_id ON Sessions USING HASH (SessionID);
+
+-- Very fast: exact lookup
+SELECT * FROM Sessions WHERE SessionID = 'abc123';
+-- → uses hash index (O(1) instead of O(log n))
+
+-- Do NOT use a hash index for range queries
+SELECT * FROM Sessions WHERE SessionID > 'abc';
+-- → forces a full scan (hash indexes can't answer ranges)
+
+-- MySQL MEMORY engine is hashed by default
+CREATE TABLE Cache (
+    CacheKey VARCHAR(100) PRIMARY KEY,
+    Value    TEXT
+) ENGINE = MEMORY;
+-- Lookups on CacheKey are O(1) hash lookups</code></pre>
+          </div>
+
+          <div class="example-box">
+            <strong><i class="fas fa-lightbulb" aria-hidden="true"></i>Simple Example</strong>
+            <p class="mb-1"><strong>Static hashing:</strong> 4 buckets, <code class="inline">h(key) = key mod 4</code>. Key 7 → bucket 3, key 10 → bucket 2, key 12 → bucket 0.</p>
+            <p class="mb-0"><strong>Collision:</strong> if key 6 also goes to bucket 2 and it's full, the record goes into an overflow bucket chained to bucket 2.</p>
+          </div>
+
+          <div class="real-life-box">
+            <strong><i class="fas fa-briefcase" aria-hidden="true"></i>Real-Life Use Case</strong>
+            <p class="mb-0">Session stores (Redis) use hashing for O(1) lookups by session ID. <strong>Cassandra</strong> and <strong>DynamoDB</strong> use consistent hashing to distribute billions of keys across thousands of nodes — when a node is added or removed, only ~1/N of the keys need to move.</p>
+          </div>
+
+          <div class="warning-box">
+            <strong><i class="fas fa-exclamation-triangle" aria-hidden="true"></i>Hash vs B+ Tree — Choose Wisely</strong>
+            <p class="mb-0">Hash indexes excel at <strong>exact-match</strong> lookups but cannot answer range or <code class="inline">ORDER BY</code> queries. If your query is <code class="inline">WHERE id = ?</code>, hash is ideal. If it's <code class="inline">WHERE date BETWEEN ...</code>, use a B+ tree.</p>
+          </div>
+        </article>
+
+        <!-- ============ TOPIC 4.6 ============ -->
+        <article class="note-card topic-section" id="topic-4-6">
+          <h3><span class="topic-number">4.6</span> Storage Structures — Records, Blocks, and Files</h3>
+
+          <h4><i class="fas fa-book" aria-hidden="true"></i>Definition</h4>
+          <p><strong>Storage structures</strong> describe how data is physically organized on disk — from the smallest unit (bytes) to records, blocks (pages), and files. Understanding this hierarchy explains why some operations are fast and others are slow.</p>
+
+          <h4><i class="fas fa-layer-group" aria-hidden="true"></i>The Storage Hierarchy</h4>
+          <ul>
+            <li><strong>Field</strong> — the smallest unit; one column value in a row.</li>
+            <li><strong>Record (Row / Tuple)</strong> — one complete entity; a set of fields. Fixed-length or variable-length.</li>
+            <li><strong>Block (Page)</strong> — the DBMS reads/writes in blocks, typically <strong>4 KB, 8 KB, or 16 KB</strong>. One block contains many records.</li>
+            <li><strong>File</strong> — a collection of blocks; e.g., a table's data file.</li>
+            <li><strong>Tablespace</strong> — a logical grouping of files (Oracle, PostgreSQL).</li>
+          </ul>
+
+          <h4><i class="fas fa-star" aria-hidden="true"></i>Key Concepts</h4>
+          <ul>
+            <li><strong>Block size</strong> — measured in bytes; choice impacts performance (bigger = fewer I/Os but more wasted space).</li>
+            <li><strong>Blocking factor</strong> — number of records per block.</li>
+            <li><strong>Record layout</strong> — how fields are packed inside a record; includes record header and null bitmap.</li>
+            <li><strong>Slotted page</strong> — a page design with a slot directory pointing to each record; supports variable-length records.</li>
+            <li><strong>Row migration</strong> — when a row grows and no longer fits in its original block, it's moved to a new block (with a pointer).</li>
+          </ul>
+
+          <h4><i class="fas fa-diagram-project" aria-hidden="true"></i>Diagram — File → Blocks → Records → Fields</h4>
+          <div class="diagram-box">
+            <svg viewBox="0 0 700 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Storage hierarchy from file down to fields">
+              <!-- File -->
+              <text x="350" y="20" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="12" font-weight="700" fill="#1e2b4f">FILE (e.g., Students.ibd)</text>
+              <rect x="80" y="30" width="540" height="40" rx="6" fill="#1e2b4f" stroke="#ffc107" stroke-width="2"/>
+              <text x="350" y="55" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#fff">File = collection of blocks/pages</text>
+
+              <!-- Blocks -->
+              <text x="350" y="95" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="12" font-weight="700" fill="#1e2b4f">BLOCKS / PAGES (4–16 KB each)</text>
+              <rect x="60" y="105" width="140" height="60" rx="6" fill="#ffc107" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="130" y="130" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#1e2b4f">Block 1</text>
+              <text x="130" y="148" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#4a5a78">8 KB</text>
+
+              <rect x="220" y="105" width="140" height="60" rx="6" fill="#ffc107" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="290" y="130" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#1e2b4f">Block 2</text>
+              <text x="290" y="148" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#4a5a78">8 KB</text>
+
+              <rect x="380" y="105" width="140" height="60" rx="6" fill="#ffc107" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="450" y="130" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#1e2b4f">Block 3</text>
+              <text x="450" y="148" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#4a5a78">8 KB</text>
+
+              <rect x="540" y="105" width="100" height="60" rx="6" fill="#eef3fc" stroke="#1e2b4f" stroke-width="2" stroke-dasharray="4 3"/>
+              <text x="590" y="135" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" fill="#4a5a78">...</text>
+
+              <!-- Records inside block 1 -->
+              <text x="350" y="190" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="12" font-weight="700" fill="#1e2b4f">RECORDS inside a block</text>
+              <rect x="60" y="200" width="580" height="80" rx="6" fill="#eef3fc" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="350" y="215" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#7a8bab">Block 1 contents</text>
+
+              <line x1="150" y1="225" x2="150" y2="280" stroke="#1e2b4f" stroke-width="1"/>
+              <line x1="290" y1="225" x2="290" y2="280" stroke="#1e2b4f" stroke-width="1"/>
+              <line x1="430" y1="225" x2="430" y2="280" stroke="#1e2b4f" stroke-width="1"/>
+              <line x1="570" y1="225" x2="570" y2="280" stroke="#1e2b4f" stroke-width="1"/>
+
+              <text x="105" y="240" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" font-weight="700" fill="#1e2b4f">Record 1</text>
+              <text x="105" y="258" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#4a5a78">id=1</text>
+              <text x="105" y="273" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#4a5a78">Ali</text>
+
+              <text x="220" y="240" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" font-weight="700" fill="#1e2b4f">Record 2</text>
+              <text x="220" y="258" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#4a5a78">id=2</text>
+              <text x="220" y="273" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#4a5a78">Sara</text>
+
+              <text x="360" y="240" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" font-weight="700" fill="#1e2b4f">Record 3</text>
+              <text x="360" y="258" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#4a5a78">id=3</text>
+              <text x="360" y="273" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#4a5a78">Bilal</text>
+
+              <text x="500" y="240" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" font-weight="700" fill="#1e2b4f">Record 4</text>
+              <text x="500" y="258" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#4a5a78">id=4</text>
+              <text x="500" y="273" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#4a5a78">Hina</text>
+
+              <text x="620" y="240" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#7a8bab">free</text>
+              <text x="620" y="258" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#7a8bab">space</text>
+
+              <!-- Footer -->
+              <text x="350" y="310" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" font-style="italic" fill="#7a8bab">Each record contains fields; each block contains many records; each file contains many blocks</text>
+            </svg>
+            <div class="diagram-caption">Figure 4.6 — File → blocks → records → fields (the DBMS reads/writes whole blocks)</div>
+          </div>
+
+          <h4><i class="fas fa-code" aria-hidden="true"></i>Syntax — Inspecting storage structures</h4>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="code-block-lang"><i class="fas fa-database" aria-hidden="true"></i> SQL — Storage inspection</span>
+              <button class="code-copy-btn" type="button" aria-label="Copy SQL code"><i class="fas fa-copy" aria-hidden="true"></i> Copy</button>
+            </div>
+            <pre><code>-- MySQL: see page size and row format
+SHOW VARIABLES LIKE 'innodb_page_size';      -- 16384 (16 KB)
+SHOW TABLE STATUS FROM SchoolDB LIKE 'Students';
+-- Shows: Data_length (data size), Index_length (indexes), Row_format
+
+-- PostgreSQL: see table and toast sizes
+SELECT pg_size_pretty(pg_total_relation_size('students')) AS total_size,
+       pg_size_pretty(pg_relation_size('students'))       AS table_size,
+       pg_size_pretty(pg_indexes_size('students'))        AS indexes_size;
+
+-- PostgreSQL: block size
+SHOW block_size;   -- typically 8192 (8 KB)
+
+-- SQL Server: page size is always 8 KB
+SELECT * FROM sys.dm_db_page_info(DB_ID(), 1, 1, 'DETAILED');
+-- Inspect a specific page's contents
+
+-- See record count vs page count
+SELECT relname, relpages, reltuples
+FROM pg_class
+WHERE relname = 'students';</code></pre>
+          </div>
+
+          <div class="example-box">
+            <strong><i class="fas fa-lightbulb" aria-hidden="true"></i>Simple Example</strong>
+            <p class="mb-0">A table with 10,000 rows, each ~200 bytes, on an 8 KB page: ~40 records fit per block, so the table occupies ~250 blocks (≈2 MB). A full scan reads 250 blocks — that's why adding indexes (fewer blocks to read) is so powerful.</p>
+          </div>
+
+          <div class="real-life-box">
+            <strong><i class="fas fa-briefcase" aria-hidden="true"></i>Real-Life Use Case</strong>
+            <p class="mb-0">A DBA noticing slow reports sees that the <code class="inline">Orders</code> table is 50 GB with an average row of 2 KB. Most queries only need <code class="inline">(OrderID, CustomerID, Total)</code>. So they create a covering index — now queries read just a few KB per page instead of 2 KB per row across the full table. Performance jumps 50×.</p>
+          </div>
+
+          <div class="info-box">
+            <strong><i class="fas fa-info-circle" aria-hidden="true"></i>Why Block Size Matters</strong>
+            <p class="mb-0">The DBMS reads/writes in whole blocks, not individual rows. Larger blocks (16 KB) mean fewer I/Os for sequential scans, but more wasted space per row. Smaller blocks (4 KB) mean more I/Os but less wasted space. Most modern DBMSs default to 8–16 KB.</p>
+          </div>
+        </article>
+
+        <!-- ============ TOPIC 4.7 ============ -->
+        <article class="note-card topic-section" id="topic-4-7">
+          <h3><span class="topic-number">4.7</span> Buffer Management</h3>
+
+          <h4><i class="fas fa-book" aria-hidden="true"></i>Definition</h4>
+          <p><strong>Buffer management</strong> is the DBMS subsystem that decides <em>which pages to keep in memory</em> and <em>which to evict to disk</em>. Since disk I/O is thousands of times slower than RAM, the buffer pool is the single most critical resource for database performance.</p>
+
+          <h4><i class="fas fa-layer-group" aria-hidden="true"></i>Core Concepts</h4>
+          <ul>
+            <li><strong>Buffer Pool</strong> — a fixed-size region of RAM holding pages loaded from disk.</li>
+            <li><strong>Buffer Frame</strong> — one slot in the pool; holds one page + metadata (dirty bit, pin count, last-access time).</li>
+            <li><strong>Page Table</strong> — maps a (file, page number) to a buffer frame.</li>
+            <li><strong>Dirty Page</strong> — a page modified in memory but not yet written to disk.</li>
+            <li><strong>Pin / Pin Count</strong> — a page in use cannot be evicted until its pin count drops to 0.</li>
+            <li><strong>Eviction Policy</strong> — which page to swap out when the pool is full.</li>
+          </ul>
+
+          <h4><i class="fas fa-star" aria-hidden="true"></i>Common Eviction Policies</h4>
+          <ul>
+            <li><strong>LRU (Least Recently Used)</strong> — evict the page not used for the longest time. Popular, simple.</li>
+            <li><strong>Clock (Second-chance)</strong> — a circular approximation of LRU. Used in many DBMSs.</li>
+            <li><strong>MRU (Most Recently Used)</strong> — sometimes better for scans.</li>
+            <li><strong>LRU-K</strong> — considers the last K accesses, better than plain LRU.</li>
+            <li><strong>ARC (Adaptive Replacement Cache)</strong> — adapts between LRU and LFU. Used in modern systems (ZFS, some DBMSs).</li>
+            <li><strong>2Q</strong> — two queues (hot / cold) for better prediction.</li>
+          </ul>
+
+          <h4><i class="fas fa-diagram-project" aria-hidden="true"></i>Diagram — Buffer Pool Architecture</h4>
+          <div class="diagram-box">
+            <svg viewBox="0 0 700 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Buffer pool with frames, page table, disk, and eviction">
+              <!-- Query -->
+              <rect x="270" y="20" width="160" height="40" rx="8" fill="#1e2b4f" stroke="#ffc107" stroke-width="2"/>
+              <text x="350" y="46" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="12" font-weight="700" fill="#fff">Query needs page #42</text>
+
+              <!-- Arrow to page table -->
+              <line x1="350" y1="60" x2="350" y2="80" stroke="#0d6efd" stroke-width="2"/>
+
+              <!-- Page table -->
+              <rect x="240" y="80" width="220" height="40" rx="6" fill="#ffc107" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="350" y="105" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#1e2b4f">Page Table (page # → frame)</text>
+
+              <line x1="350" y1="120" x2="350" y2="140" stroke="#0d6efd" stroke-width="2"/>
+
+              <!-- Buffer pool -->
+              <text x="350" y="160" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="12" font-weight="700" fill="#1e2b4f">BUFFER POOL (in RAM)</text>
+              <rect x="40" y="170" width="620" height="100" rx="8" fill="#eef3fc" stroke="#1e2b4f" stroke-width="2"/>
+
+              <rect x="60" y="185" width="100" height="65" rx="4" fill="#198754" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="110" y="208" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" font-weight="700" fill="#fff">Frame 0</text>
+              <text x="110" y="223" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#e6edf9">Page 42</text>
+              <text x="110" y="237" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="8" fill="#e6edf9">dirty ✓</text>
+
+              <rect x="175" y="185" width="100" height="65" rx="4" fill="#198754" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="225" y="208" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" font-weight="700" fill="#fff">Frame 1</text>
+              <text x="225" y="223" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#e6edf9">Page 17</text>
+
+              <rect x="290" y="185" width="100" height="65" rx="4" fill="#198754" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="340" y="208" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" font-weight="700" fill="#fff">Frame 2</text>
+              <text x="340" y="223" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#e6edf9">Page 8</text>
+
+              <rect x="405" y="185" width="100" height="65" rx="4" fill="#d9534f" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="455" y="208" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" font-weight="700" fill="#fff">Frame 3</text>
+              <text x="455" y="223" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#fff">EVICT</text>
+              <text x="455" y="237" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="8" fill="#fff">(LRU victim)</text>
+
+              <rect x="520" y="185" width="120" height="65" rx="4" fill="#eef3fc" stroke="#1e2b4f" stroke-width="1.5" stroke-dasharray="4 3"/>
+              <text x="580" y="215" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78">free</text>
+
+              <!-- Disk -->
+              <text x="350" y="290" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="12" font-weight="700" fill="#1e2b4f">DISK (slow, persistent)</text>
+              <rect x="240" y="300" width="220" height="40" rx="6" fill="#1e2b4f" stroke="#0d6efd" stroke-width="2"/>
+              <text x="350" y="325" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#fff">Data file · pages on disk</text>
+
+              <line x1="455" y1="250" x2="455" y2="300" stroke="#d9534f" stroke-width="2" stroke-dasharray="4 3"/>
+              <text x="490" y="280" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#d9534f">evicted to disk</text>
+
+              <line x1="110" y1="250" x2="110" y2="300" stroke="#198754" stroke-width="2"/>
+              <text x="145" y="280" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#198754">read from disk</text>
+            </svg>
+            <div class="diagram-caption">Figure 4.7 — Buffer pool holds hot pages in RAM; cold pages are evicted to disk</div>
+          </div>
+
+          <h4><i class="fas fa-code" aria-hidden="true"></i>Syntax — Configuring and monitoring the buffer pool</h4>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="code-block-lang"><i class="fas fa-database" aria-hidden="true"></i> SQL — Buffer pool config</span>
+              <button class="code-copy-btn" type="button" aria-label="Copy SQL code"><i class="fas fa-copy" aria-hidden="true"></i> Copy</button>
+            </div>
+            <pre><code>-- MySQL: how big is the buffer pool?
+SHOW VARIABLES LIKE 'innodb_buffer_pool_size';
+-- Typical: 50–80% of total RAM on a dedicated DB server
+
+-- Set it at runtime (also edit my.cnf to persist)
+SET GLOBAL innodb_buffer_pool_size = 8 * 1024 * 1024 * 1024;   -- 8 GB
+
+-- See buffer pool hit ratio (higher is better, > 99%)
+SHOW ENGINE INNODB STATUS\G
+-- Look for "Buffer pool hit rate"
+
+-- PostgreSQL: shared_buffers (in postgresql.conf)
+SHOW shared_buffers;   -- e.g., '4GB'
+
+-- See hit ratio
+SELECT
+    sum(heap_blks_hit) AS heap_hits,
+    sum(heap_blks_read) AS heap_reads,
+    round(100.0 * sum(heap_blks_hit) / nullif(sum(heap_blks_hit + heap_blks_read), 0), 2) AS hit_ratio_pct
+FROM pg_statio_user_tables;
+
+-- SQL Server: buffer pool usage
+SELECT
+    COUNT(*) * 8 / 1024 AS buffer_pool_mb
+FROM sys.dm_os_buffer_descriptors;
+
+-- Check top tables by buffer usage
+SELECT TOP 10
+    OBJECT_NAME(p.object_id) AS table_name,
+    COUNT(*) * 8 / 1024 AS mb_in_buffer
+FROM sys.dm_os_buffer_descriptors bd
+JOIN sys.allocation_units a ON bd.allocation_unit_id = a.allocation_unit_id
+JOIN sys.partitions p ON a.container_id = p.hobt_id
+GROUP BY p.object_id
+ORDER BY mb_in_buffer DESC;</code></pre>
+          </div>
+
+          <div class="example-box">
+            <strong><i class="fas fa-lightbulb" aria-hidden="true"></i>Simple Example</strong>
+            <p class="mb-1">Server has 32 GB RAM. You set the buffer pool to <strong>24 GB</strong>. Hot tables fit fully in RAM, so 99% of queries hit the buffer pool (no disk I/O).</p>
+            <p class="mb-0">If a big analytical query scans a 100 GB table, it fills the pool with cold pages and evicts your hot pages. This is why OLTP and OLAP workloads are often split across different systems.</p>
+          </div>
+
+          <div class="real-life-box">
+            <strong><i class="fas fa-briefcase" aria-hidden="true"></i>Real-Life Use Case</strong>
+            <p class="mb-0"><strong>Amazon Aurora</strong>, <strong>MySQL</strong>, <strong>SQL Server</strong>, and <strong>PostgreSQL</strong> all dedicate a large buffer pool. In a production e-commerce database, "buffer pool hit ratio" is one of the top 3 metrics a DBA watches — anything below 95% signals a RAM shortage and requires adding more memory or tuning queries.</p>
+          </div>
+
+          <div class="warning-box">
+            <strong><i class="fas fa-exclamation-triangle" aria-hidden="true"></i>Don't Overallocate</strong>
+            <p class="mb-0">Setting the buffer pool too large (close to total RAM) causes the OS to swap — which is <em>catastrophically</em> slow. Leave enough RAM for the OS and other processes. Typical: 50–80% of total RAM on a dedicated DB server.</p>
+          </div>
+        </article>
+
+        <!-- ===== PRACTICAL LABS SUMMARY ===== -->
+        <article class="note-card">
+          <h3 style="border-bottom-color: var(--accent-blue);">
+            <i class="fas fa-flask me-2" style="color: var(--accent-blue);" aria-hidden="true"></i>Practical Labs for Module 4
+          </h3>
+          <p>Apply the concepts from this module with hands-on labs:</p>
+          <ul>
+            <li><strong>Lab 4.1:</strong> Creating and Managing Indexes (B+ tree, hash, composite, covering).</li>
+            <li><strong>Lab 4.2:</strong> Analyzing Query Performance with and without Indexes.</li>
+            <li><strong>Lab 4.3:</strong> Exploring File Organization Methods in a DBMS.</li>
+          </ul>
+          <p class="mb-0"><a href="IT507_Practical_Module_4_Data_Structures_and_File_Organizations_CPP.pdf" target="_blank" rel="noopener" class="notes-link"><i class="fas fa-file-pdf" aria-hidden="true"></i> Download Module 4 Practical Lab Guide (PDF)</a></p>
+        </article>
+
+        <!-- ===== QUICK REVISION ===== -->
+        <article class="note-card">
+          <h3 style="border-bottom-color: var(--accent-green);">
+            <i class="fas fa-list-check me-2" style="color: var(--accent-green);" aria-hidden="true"></i>Quick Revision — Module 4 in One Glance
+          </h3>
+          <table class="notes-table">
+            <thead>
+              <tr><th>Topic</th><th>Key Takeaway</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>4.1 Data Structures</td><td>Pages, records, indexes, heaps, B+ trees, hash tables, bitmaps — the physical building blocks.</td></tr>
+              <tr><td>4.2 File Organizations</td><td>Heap (fast insert), Sequential (fast range), Indexed (best all-round), Hashed (fast exact).</td></tr>
+              <tr><td>4.3 Indexing</td><td>Primary / Secondary by uniqueness; Clustered (1 per table, defines order) / Non-clustered (many, pointers).</td></tr>
+              <tr><td>4.4 B-Trees &amp; B+ Trees</td><td>Balanced, ordered, linked leaves — the default index structure.</td></tr>
+              <tr><td>4.5 Hashing</td><td>O(1) exact lookups — static, dynamic (extendible/linear), consistent; collisions via chaining.</td></tr>
+              <tr><td>4.6 Storage Structures</td><td>File → blocks (4–16 KB) → records → fields. DBMS reads/writes whole blocks.</td></tr>
+              <tr><td>4.7 Buffer Management</td><td>Keep hot pages in RAM; evict cold pages with LRU / Clock / ARC — the #1 performance lever.</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <!-- ===== NAVIGATION ===== -->
+        <div class="note-card" style="text-align: center;">
+          <a href="index.html" class="notes-link" style="font-size: 1rem;"><i class="fas fa-arrow-left" aria-hidden="true"></i> Back to IT-507 Course Index</a>
+          <span class="mx-3 text-muted">·</span>
+          <a href="it507-module-3.html" class="notes-link" style="font-size: 1rem;"><i class="fas fa-arrow-left" aria-hidden="true"></i> Previous: Module 3</a>
+          <span class="mx-3 text-muted">·</span>
+          <a href="it507-module-5.html" class="notes-link" style="font-size: 1rem;">Next: Module 5 — Principles of DBMS &amp; Transactional Processing <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-10 col-xl-8 text-center">
+        <p class="mb-2">
+          <i class="fas fa-crown me-2" style="color:var(--accent-yellow);" aria-hidden="true"></i>
+          <strong>Notes compiled by Sir Ali Raza</strong>
+        </p>
+        <p class="mb-2">
+          <i class="fas fa-globe me-1" aria-hidden="true"></i>
+          <a href="https://ali-raza-muhammad-iqbal.github.io" target="_blank" rel="noopener noreferrer">
+            ali-raza-muhammad-iqbal.github.io
+          </a>
+          <span class="mx-2">·</span>
+          <i class="fas fa-envelope me-1" aria-hidden="true"></i>
+          <a href="mailto:Mr_Ali_Raza@yahoo.com">Mr_Ali_Raza@yahoo.com</a>
+        </p>
+
+        <div class="footer-social mb-2" aria-label="Social media links">
+          <a href="https://github.com/Ali-Raza-Muhammad-Iqbal" target="_blank" rel="noopener noreferrer" title="GitHub" aria-label="GitHub"><i class="fab fa-github" aria-hidden="true"></i></a>
+          <a href="https://www.linkedin.com/in/ali-raza-muhammad-iqbal" target="_blank" rel="noopener noreferrer" title="LinkedIn" aria-label="LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
+          <a href="https://www.tiktok.com/@ali_raza_muhammad_iqbal" target="_blank" rel="noopener noreferrer" title="TikTok" aria-label="TikTok"><i class="fab fa-tiktok" aria-hidden="true"></i></a>
+          <a href="https://www.facebook.com/AliRazaMuhammadIqbal1" target="_blank" rel="noopener noreferrer" title="Facebook" aria-label="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+          <a href="https://www.instagram.com/ali_raza_muhammad_iqbal" target="_blank" rel="noopener noreferrer" title="Instagram" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+          <a href="https://x.com/Ali_Raza_Iqbal" target="_blank" rel="noopener noreferrer" title="X (Twitter)" aria-label="X (Twitter)"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i></a>
+          <a href="https://www.youtube.com/@Ali_Raza_Muhammad_Iqbal" target="_blank" rel="noopener noreferrer" title="YouTube" aria-label="YouTube"><i class="fab fa-youtube" aria-hidden="true"></i></a>
+          <a href="mailto:Mr_Ali_Raza@yahoo.com" title="Email" aria-label="Email"><i class="fas fa-envelope" aria-hidden="true"></i></a>
+        </div>
+
+        <p class="small mb-0" style="color:#b8c8f0;">
+          © 2025 · IT-507 Database Administration and Management · Module 4 · All credits to Sir Ali Raza.
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+(function() {
+  'use strict';
+
+  const themeToggle = document.getElementById('themeToggle');
+  const themeIcon = document.getElementById('themeIcon');
+  const root = document.documentElement;
+
+  function applyTheme(theme) {
+    if (theme === 'dark') {
+      root.setAttribute('data-theme', 'dark');
+      themeIcon.classList.remove('fa-moon');
+      themeIcon.classList.add('fa-sun');
+      themeToggle.setAttribute('aria-label', 'Switch to light mode');
+    } else {
+      root.removeAttribute('data-theme');
+      themeIcon.classList.remove('fa-sun');
+      themeIcon.classList.add('fa-moon');
+      themeToggle.setAttribute('aria-label', 'Switch to dark mode');
+    }
+  }
+
+  const savedTheme = localStorage.getItem('it507-theme');
+  if (savedTheme) {
+    applyTheme(savedTheme);
+  } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    applyTheme('dark');
+  }
+
+  themeToggle.addEventListener('click', function() {
+    const isDark = root.getAttribute('data-theme') === 'dark';
+    const newTheme = isDark ? 'light' : 'dark';
+    applyTheme(newTheme);
+    localStorage.setItem('it507-theme', newTheme);
+  });
+
+  const progressBar = document.getElementById('progressBar');
+  function updateProgress() {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const percent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    progressBar.style.width = percent + '%';
+    progressBar.setAttribute('aria-valuenow', Math.round(percent));
+  }
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  window.addEventListener('resize', updateProgress);
+
+  const backToTop = document.getElementById('backToTop');
+  function toggleBackToTop() {
+    if (window.scrollY > 400) {
+      backToTop.classList.add('visible');
+    } else {
+      backToTop.classList.remove('visible');
+    }
+  }
+  window.addEventListener('scroll', toggleBackToTop, { passive: true });
+  backToTop.addEventListener('click', function() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  document.querySelectorAll('.code-copy-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      const codeBlock = btn.closest('.code-block');
+      const code = codeBlock.querySelector('pre code') || codeBlock.querySelector('pre');
+      const text = code ? code.textContent : '';
+      const originalHTML = btn.innerHTML;
+
+      function showCopied() {
+        btn.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i> Copied!';
+        btn.classList.add('copied');
+        setTimeout(function() {
+          btn.innerHTML = originalHTML;
+          btn.classList.remove('copied');
+        }, 1500);
+      }
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(showCopied).catch(function() {
+          fallbackCopy(text, showCopied);
+        });
+      } else {
+        fallbackCopy(text, showCopied);
+      }
+    });
+  });
+
+  function fallbackCopy(text, callback) {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try {
+      document.execCommand('copy');
+      if (callback) callback();
+    } catch (err) {
+      console.warn('Copy failed', err);
+    }
+    document.body.removeChild(ta);
+  }
+
+  function highlightHash() {
+    const hash = window.location.hash;
+    if (!hash) return;
+    const target = document.querySelector(hash);
+    if (!target) return;
+    target.style.transition = 'background 0.4s ease';
+    target.style.background = 'rgba(255, 193, 7, 0.15)';
+    setTimeout(function() {
+      target.style.background = '';
+    }, 2000);
+    setTimeout(function() {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 100);
+  }
+  window.addEventListener('load', highlightHash);
+  window.addEventListener('hashchange', highlightHash);
+
+  updateProgress();
+  toggleBackToTop();
+
+})();
+</script>
+</body>
+</html>

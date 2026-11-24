@@ -1,0 +1,1876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+  <!-- ===== PRIMARY SEO META ===== -->
+  <title>IT-507 Module 3: Query Languages & Specifications — Notes | Sir Ali Raza</title>
+  <meta name="description" content="Complete study notes for IT-507 Module 3: Query Languages & Specifications. Covers SQL overview, DDL (CREATE, ALTER, DROP), DML (INSERT, UPDATE, DELETE), DQL (SELECT, JOINs, Subqueries), DCL (GRANT, REVOKE), TCL (COMMIT, ROLLBACK, SAVEPOINT), query optimization, stored procedures, functions, and triggers with definitions, types, real-life examples, diagrams, syntax, and simple examples by Sir Ali Raza.">
+  <meta name="keywords" content="IT-507 Module 3, Query Languages, SQL, Structured Query Language, DDL, DML, DQL, DCL, TCL, CREATE TABLE, ALTER TABLE, DROP TABLE, INSERT, UPDATE, DELETE, SELECT, JOINs, INNER JOIN, LEFT JOIN, subqueries, GRANT, REVOKE, COMMIT, ROLLBACK, SAVEPOINT, query optimization, execution plan, stored procedures, functions, triggers, database notes, IT-507 notes, IT-507 PDF, database administration notes, Sir Ali Raza, SQL tutorial, MySQL, PostgreSQL, SQL Server">
+  <meta name="author" content="Sir Ali Raza">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta name="theme-color" content="#1e2b4f">
+  <link rel="canonical" href="https://ali-raza-muhammad-iqbal.github.io/it507-module-3.html">
+
+  <!-- ===== OPEN GRAPH ===== -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="IT-507 · Database Administration and Management">
+  <meta property="og:title" content="IT-507 Module 3: Query Languages & Specifications — Notes">
+  <meta property="og:description" content="Complete notes on SQL, DDL, DML, DQL, DCL, TCL, JOINs, subqueries, query optimization, stored procedures, functions, and triggers — with definitions, types, real-life examples, diagrams, syntax, and simple examples.">
+  <meta property="og:url" content="https://ali-raza-muhammad-iqbal.github.io/it507-module-3.html">
+  <meta property="og:image" content="https://ali-raza-muhammad-iqbal.github.io/preview.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="IT-507 Module 3 Query Languages and Specifications Notes cover">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:email" content="Mr_Ali_Raza@yahoo.com">
+  <meta property="article:author" content="Sir Ali Raza">
+  <meta property="article:section" content="Database Administration">
+  <meta property="article:tag" content="SQL">
+  <meta property="article:tag" content="Query Languages">
+  <meta property="article:tag" content="Stored Procedures">
+
+  <!-- ===== TWITTER CARD ===== -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="IT-507 Module 3: Query Languages & Specifications — Notes">
+  <meta name="twitter:description" content="Full notes for IT-507 Module 3 — SQL, DDL, DML, DQL, DCL, TCL, JOINs, subqueries, optimization, stored procedures, functions, and triggers. Definitions, types, examples, diagrams, syntax.">
+  <meta name="twitter:image" content="https://ali-raza-muhammad-iqbal.github.io/preview.png">
+  <meta name="twitter:image:alt" content="IT-507 Module 3 Query Languages and Specifications Notes cover">
+  <meta name="twitter:creator" content="@Ali_Raza_Iqbal">
+  <meta name="twitter:site" content="@Ali_Raza_Iqbal">
+
+  <!-- ===== ADDITIONAL SEO ===== -->
+  <meta name="rating" content="general">
+  <meta name="language" content="English">
+  <meta name="revisit-after" content="7 days">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="icon" type="image/x-icon" href="https://ali-raza-muhammad-iqbal.github.io/favicon.ico">
+  <link rel="apple-touch-icon" href="https://ali-raza-muhammad-iqbal.github.io/apple-touch-icon.png">
+
+  <!-- ===== STRUCTURED DATA ===== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LearningResource",
+    "name": "IT-507 Module 3: Query Languages & Specifications",
+    "description": "Complete study notes for IT-507 Module 3 covering query languages, SQL overview, DDL, DML, DQL, DCL, TCL, query specifications and optimization basics, and stored procedures, functions, and triggers — with definitions, types, real-life examples, diagrams, syntax, and simple examples.",
+    "url": "https://ali-raza-muhammad-iqbal.github.io/it507-module-3.html",
+    "image": "https://ali-raza-muhammad-iqbal.github.io/preview.png",
+    "inLanguage": "en",
+    "educationalLevel": "Undergraduate",
+    "learningResourceType": "Notes",
+    "isPartOf": {
+      "@type": "Course",
+      "name": "IT-507 Database Administration and Management",
+      "url": "https://ali-raza-muhammad-iqbal.github.io/index.html"
+    },
+    "author": {
+      "@type": "Person",
+      "name": "Sir Ali Raza",
+      "url": "https://ali-raza-muhammad-iqbal.github.io",
+      "email": "mailto:Mr_Ali_Raza@yahoo.com",
+      "sameAs": [
+        "https://github.com/Ali-Raza-Muhammad-Iqbal",
+        "https://www.linkedin.com/in/ali-raza-muhammad-iqbal",
+        "https://ali-raza-muhammad-iqbal.github.io",
+        "https://www.tiktok.com/@ali_raza_muhammad_iqbal",
+        "https://www.facebook.com/AliRazaMuhammadIqbal1",
+        "https://www.instagram.com/ali_raza_muhammad_iqbal",
+        "https://x.com/Ali_Raza_Iqbal",
+        "https://www.youtube.com/@Ali_Raza_Muhammad_Iqbal"
+      ]
+    },
+    "about": [
+      { "@type": "Thing", "name": "SQL" },
+      { "@type": "Thing", "name": "Data Definition Language" },
+      { "@type": "Thing", "name": "Data Manipulation Language" },
+      { "@type": "Thing", "name": "Query Optimization" },
+      { "@type": "Thing", "name": "Stored Procedures" }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://ali-raza-muhammad-iqbal.github.io" },
+      { "@type": "ListItem", "position": 2, "name": "IT-507 Database Administration and Management", "item": "https://ali-raza-muhammad-iqbal.github.io/index.html" },
+      { "@type": "ListItem", "position": 3, "name": "Module 3: Query Languages & Specifications", "item": "https://ali-raza-muhammad-iqbal.github.io/it507-module-3.html" }
+    ]
+  }
+  </script>
+
+  <!-- ===== BOOTSTRAP + FONTAWESOME ===== -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <style>
+    /* ===== CSS VARIABLES (Light + Dark) ===== */
+    :root {
+      --bg-body: #f8faff;
+      --bg-card: #ffffff;
+      --bg-subtle: #eef3fc;
+      --bg-code: #1e2b4f;
+      --bg-code-inline: #eef3fc;
+      --text-primary: #1e2b4f;
+      --text-secondary: #4a5a78;
+      --text-muted: #7a8bab;
+      --text-code: #e6edf9;
+      --border-color: #e0e8f5;
+      --border-strong: #bac8e0;
+      --accent-yellow: #ffc107;
+      --accent-blue: #0d6efd;
+      --accent-red: #d9534f;
+      --accent-green: #198754;
+      --accent-gold: #b07d00;
+      --header-from: #1e2b4f;
+      --header-to: #2a3f6e;
+      --footer-bg: #1e2b4f;
+      --footer-text: #cddcff;
+      --shadow-sm: 0 2px 8px rgba(30, 43, 79, 0.05);
+      --shadow-md: 0 12px 30px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 10px 25px rgba(0, 20, 40, 0.2);
+    }
+    [data-theme="dark"] {
+      --bg-body: #0f1729;
+      --bg-card: #1a2338;
+      --bg-subtle: #243155;
+      --bg-code: #0a1120;
+      --bg-code-inline: #243155;
+      --text-primary: #e6edf9;
+      --text-secondary: #b6c4e0;
+      --text-muted: #8a9bbb;
+      --text-code: #e6edf9;
+      --border-color: #2f3f63;
+      --border-strong: #3d4f7a;
+      --header-from: #0d1526;
+      --header-to: #1a2846;
+      --footer-bg: #0d1526;
+      --footer-text: #b8c8f0;
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+      --shadow-md: 0 12px 30px rgba(0, 0, 0, 0.4);
+      --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.5);
+    }
+    [data-theme="dark"] body { background-color: var(--bg-body); color: var(--text-primary); }
+    [data-theme="dark"] .note-card { background: var(--bg-card); border-color: var(--border-color); }
+    [data-theme="dark"] .topic-section h3 { color: var(--text-primary); }
+    [data-theme="dark"] .topic-section h4 { color: var(--accent-yellow); }
+    [data-theme="dark"] code.inline { background: var(--bg-code-inline); color: #6b9eff; }
+    [data-theme="dark"] .example-box { background: var(--bg-subtle); border-left-color: var(--accent-blue); }
+    [data-theme="dark"] .real-life-box { background: rgba(25, 135, 84, 0.12); border-left-color: var(--accent-green); }
+    [data-theme="dark"] .warning-box { background: rgba(217, 83, 79, 0.12); border-left-color: var(--accent-red); }
+    [data-theme="dark"] .info-box { background: rgba(255, 193, 7, 0.1); border-left-color: var(--accent-yellow); }
+    [data-theme="dark"] .diagram-box { background: var(--bg-subtle); border-color: var(--border-color); }
+    [data-theme="dark"] .toc-card { background: var(--bg-card); border-color: var(--border-color); }
+    [data-theme="dark"] .toc-card a { color: var(--text-secondary); }
+    [data-theme="dark"] .toc-card a:hover { color: var(--accent-yellow); }
+    [data-theme="dark"] .theme-toggle { background: var(--bg-card); color: var(--text-primary); border-color: var(--border-color); }
+    [data-theme="dark"] table.notes-table th { background: var(--bg-subtle); color: var(--text-primary); }
+    [data-theme="dark"] table.notes-table td { border-color: var(--border-color); }
+    [data-theme="dark"] .notes-link { color: var(--text-primary); border-bottom-color: #4a5f85; }
+    [data-theme="dark"] .notes-link:hover { color: #6b9eff; border-bottom-color: #6b9eff; }
+
+    /* ===== GLOBAL ===== */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
+      background-color: var(--bg-body);
+      font-family: 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', sans-serif;
+      overflow-x: hidden;
+      line-height: 1.65;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      color: var(--text-primary);
+    }
+    img, svg { max-width: 100%; height: auto; }
+
+    .progress-bar-top {
+      position: fixed; top: 0; left: 0; height: 3px;
+      background: linear-gradient(90deg, #ffc107, #0d6efd);
+      width: 0%; z-index: 9999; transition: width 0.1s linear;
+      box-shadow: 0 0 8px rgba(255, 193, 7, 0.5);
+    }
+
+    .theme-toggle {
+      position: fixed; top: 14px; right: 14px; z-index: 1000;
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--bg-card); border: 1px solid var(--border-color);
+      color: var(--text-primary); font-size: 1.1rem; cursor: pointer;
+      box-shadow: var(--shadow-md);
+      transition: transform 0.2s ease, background 0.2s ease;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .theme-toggle:hover { transform: scale(1.1) rotate(15deg); background: var(--accent-yellow); color: #1e2b4f; }
+    .theme-toggle:focus-visible { outline: 2px solid var(--accent-blue); outline-offset: 2px; }
+    .back-to-top {
+      position: fixed; bottom: 24px; right: 24px; z-index: 1000;
+      width: 46px; height: 46px; border-radius: 50%;
+      background: var(--accent-yellow); color: #1e2b4f; border: none;
+      font-size: 1.1rem; cursor: pointer;
+      box-shadow: 0 6px 20px rgba(255, 193, 7, 0.5);
+      opacity: 0; visibility: hidden; transform: translateY(20px);
+      transition: all 0.3s ease;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .back-to-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
+    .back-to-top:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(255, 193, 7, 0.7); }
+
+    .header-card {
+      background: linear-gradient(135deg, var(--header-from) 0%, var(--header-to) 100%);
+      color: white; border-radius: 0 0 2rem 2rem;
+      padding: clamp(1.5rem, 4vw, 2.5rem) clamp(1rem, 3vw, 2rem);
+      box-shadow: var(--shadow-lg);
+    }
+    .header-card h1 {
+      font-weight: 700; letter-spacing: -0.5px;
+      font-size: clamp(1.4rem, 4.5vw, 2.6rem);
+    }
+    .header-card .lead { font-weight: 300; color: #d4e2ff; font-size: clamp(0.9rem, 2vw, 1.1rem); }
+    .badge-code {
+      background-color: var(--accent-yellow); color: #1e2b4f;
+      font-weight: 600; font-size: clamp(0.95rem, 2.5vw, 1.3rem);
+      padding: 0.3rem 1rem; border-radius: 3rem; display: inline-block;
+      margin-bottom: 0.75rem; box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    .prepared-by {
+      font-size: clamp(0.85rem, 1.8vw, 1.05rem);
+      background: rgba(255,255,255,0.12); display: inline-block;
+      padding: 0.45rem 1.3rem; border-radius: 3rem;
+      backdrop-filter: blur(4px); margin-top: 0.5rem;
+    }
+
+    .social-wrap {
+      margin-top: 1.4rem; padding-top: 1.2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+    }
+    .social-title {
+      font-size: clamp(0.68rem, 1.8vw, 0.78rem);
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: #b9cdf5; font-weight: 600; margin-bottom: 0.85rem;
+    }
+    .social-title i { margin-right: 6px; }
+    .social-links {
+      display: flex; flex-wrap: wrap;
+      gap: clamp(0.4rem, 1.5vw, 0.6rem);
+      justify-content: center; list-style: none;
+      padding-left: 0; margin-bottom: 0;
+    }
+    .social-links a {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: clamp(38px, 8vw, 44px); height: clamp(38px, 8vw, 44px);
+      border-radius: 50%; background: rgba(255, 255, 255, 0.1);
+      color: #ffffff; font-size: clamp(0.95rem, 2.2vw, 1.1rem);
+      text-decoration: none;
+      transition: transform 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .social-links a:hover, .social-links a:focus-visible {
+      transform: translateY(-4px); background: #ffffff; color: #1e2b4f;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.28); outline: none;
+    }
+    .social-links a.gh:hover  { background: #24292e; color: #fff; }
+    .social-links a.li:hover  { background: #0a66c2; color: #fff; }
+    .social-links a.gl:hover  { background: var(--accent-yellow); color: #1e2b4f; }
+    .social-links a.tt:hover  { background: #000000; color: #fff; }
+    .social-links a.fb:hover  { background: #1877f2; color: #fff; }
+    .social-links a.ig:hover  { background: linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); color: #fff; }
+    .social-links a.x:hover   { background: #000000; color: #fff; }
+    .social-links a.yt:hover  { background: #ff0000; color: #fff; }
+    .social-links a.mail:hover{ background: #eab308; color: #1e2b4f; }
+
+    .toc-card {
+      background: var(--bg-card); border-radius: 1.25rem;
+      padding: clamp(1rem, 2.5vw, 1.5rem);
+      margin-top: 1.5rem; margin-bottom: 2rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-color);
+      position: sticky; top: 20px;
+    }
+    .toc-card h5 {
+      color: var(--text-primary); font-weight: 700; font-size: 0.95rem;
+      text-transform: uppercase; letter-spacing: 0.05em;
+      margin-bottom: 0.85rem; padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--accent-yellow);
+    }
+    .toc-card ol { padding-left: 1.2rem; margin-bottom: 0; }
+    .toc-card li { margin-bottom: 0.45rem; font-size: 0.88rem; }
+    .toc-card a { color: var(--text-secondary); text-decoration: none; transition: color 0.15s; }
+    .toc-card a:hover { color: var(--accent-blue); }
+
+    .note-card {
+      background: var(--bg-card); border-radius: 1.25rem;
+      padding: clamp(1rem, 3vw, 2rem);
+      margin-bottom: 1.5rem;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border-color);
+      transition: background 0.3s ease;
+    }
+    .topic-section { scroll-margin-top: 90px; }
+    .topic-section h3 {
+      color: var(--text-primary); font-weight: 700;
+      font-size: clamp(1.15rem, 3vw, 1.5rem);
+      margin-bottom: 1rem; padding-bottom: 0.6rem;
+      border-bottom: 3px solid var(--accent-yellow);
+      display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap;
+    }
+    .topic-number {
+      background: var(--accent-yellow); color: #1e2b4f;
+      font-weight: 700; font-size: 0.85em;
+      padding: 0.15rem 0.7rem; border-radius: 0.5rem;
+      display: inline-block; flex-shrink: 0;
+    }
+    .topic-section h4 {
+      color: var(--accent-blue); font-weight: 700;
+      font-size: clamp(0.98rem, 2.3vw, 1.1rem);
+      margin-top: 1.5rem; margin-bottom: 0.65rem;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .topic-section h4 i { color: var(--accent-yellow); }
+    .topic-section p {
+      color: var(--text-secondary); margin-bottom: 0.85rem;
+      font-size: clamp(0.9rem, 2vw, 0.98rem);
+    }
+    .topic-section ul, .topic-section ol {
+      color: var(--text-secondary);
+      font-size: clamp(0.9rem, 2vw, 0.98rem);
+      margin-bottom: 0.85rem; padding-left: 1.4rem;
+    }
+    .topic-section li { margin-bottom: 0.4rem; }
+    .topic-section strong { color: var(--text-primary); }
+
+    code.inline {
+      background: var(--bg-code-inline); color: var(--accent-blue);
+      padding: 0.12rem 0.45rem; border-radius: 0.3rem;
+      font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+      font-size: 0.88em; font-weight: 600; word-break: break-word;
+    }
+
+    .code-block {
+      position: relative; background: var(--bg-code);
+      border-radius: 0.75rem; margin: 1rem 0; overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .code-block-header {
+      background: rgba(255, 255, 255, 0.06);
+      padding: 0.5rem 0.85rem;
+      display: flex; justify-content: space-between; align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .code-block-lang {
+      color: #b9cdf5; font-size: 0.72rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      display: flex; align-items: center; gap: 0.4rem;
+    }
+    .code-copy-btn {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #e6edf9; font-size: 0.72rem;
+      padding: 0.3rem 0.7rem; border-radius: 0.35rem;
+      cursor: pointer; transition: 0.18s;
+      display: inline-flex; align-items: center; gap: 0.35rem;
+      font-weight: 500;
+    }
+    .code-copy-btn:hover { background: var(--accent-yellow); color: #1e2b4f; border-color: var(--accent-yellow); }
+    .code-copy-btn.copied { background: var(--accent-green); color: #fff; border-color: var(--accent-green); }
+    .code-block pre {
+      margin: 0; padding: 1rem 1.1rem; color: var(--text-code);
+      font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+      font-size: clamp(0.78rem, 1.9vw, 0.88rem);
+      line-height: 1.55; overflow-x: auto; white-space: pre;
+      scrollbar-width: thin;
+    }
+    .code-block pre::-webkit-scrollbar { height: 6px; }
+    .code-block pre::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 3px; }
+    .code-block pre code { color: inherit; background: none; padding: 0; font-size: inherit; }
+
+    .example-box, .real-life-box, .info-box, .warning-box {
+      padding: 0.85rem 1rem; border-radius: 0.6rem;
+      margin: 0.85rem 0; border-left: 4px solid;
+      font-size: clamp(0.88rem, 2vw, 0.95rem);
+    }
+    .example-box { background: var(--bg-subtle); border-left-color: var(--accent-blue); color: var(--text-secondary); }
+    .real-life-box { background: rgba(25, 135, 84, 0.08); border-left-color: var(--accent-green); color: var(--text-secondary); }
+    .info-box { background: rgba(255, 193, 7, 0.08); border-left-color: var(--accent-yellow); color: var(--text-secondary); }
+    .warning-box { background: rgba(217, 83, 79, 0.08); border-left-color: var(--accent-red); color: var(--text-secondary); }
+    .example-box strong, .real-life-box strong, .info-box strong, .warning-box strong {
+      color: var(--text-primary); display: block; margin-bottom: 0.35rem;
+      font-size: 0.88em; text-transform: uppercase; letter-spacing: 0.04em;
+    }
+    .example-box strong i, .real-life-box strong i, .info-box strong i, .warning-box strong i {
+      margin-right: 0.35rem;
+    }
+
+    .diagram-box {
+      background: var(--bg-subtle);
+      border: 1.5px dashed var(--border-strong);
+      border-radius: 0.75rem; padding: 1.2rem 0.85rem;
+      margin: 1rem 0; text-align: center; overflow-x: auto;
+    }
+    .diagram-box svg { max-width: 100%; height: auto; display: inline-block; }
+    .diagram-caption {
+      font-size: 0.8rem; color: var(--text-muted);
+      margin-top: 0.6rem; font-style: italic;
+    }
+
+    .notes-table {
+      width: 100%; border-collapse: separate; border-spacing: 0;
+      margin: 1rem 0; font-size: clamp(0.82rem, 1.9vw, 0.92rem);
+      border-radius: 0.6rem; overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+    .notes-table th {
+      background: var(--bg-subtle); color: var(--text-primary);
+      font-weight: 700; padding: 0.7rem 0.85rem;
+      text-align: left; border-bottom: 2px solid var(--border-strong);
+      font-size: 0.82em; text-transform: uppercase; letter-spacing: 0.04em;
+    }
+    .notes-table td {
+      padding: 0.65rem 0.85rem;
+      border-bottom: 1px solid var(--border-color);
+      color: var(--text-secondary); vertical-align: top;
+    }
+    .notes-table tr:last-child td { border-bottom: none; }
+    .notes-table tr:hover td { background: var(--bg-subtle); }
+
+    .notes-link {
+      color: var(--text-primary); text-decoration: none; font-weight: 600;
+      border-bottom: 1px dashed #8aa3cc; font-size: 0.9rem;
+      transition: 0.15s; display: inline-flex;
+      align-items: center; gap: 0.35rem; padding: 0.15rem 0;
+    }
+    .notes-link i { color: var(--accent-red); font-size: 0.85rem; }
+    .notes-link:hover { color: var(--accent-blue); border-bottom-color: var(--accent-blue); }
+
+    .footer {
+      background-color: var(--footer-bg); color: var(--footer-text);
+      border-radius: 2rem 2rem 0 0;
+      padding: clamp(1.5rem, 4vw, 2rem) clamp(1rem, 3vw, 1.8rem);
+      margin-top: 2rem; font-size: clamp(0.85rem, 2vw, 0.95rem);
+      transition: background 0.3s ease;
+    }
+    .footer a { color: var(--accent-yellow); text-decoration: none; font-weight: 500; word-break: break-word; }
+    .footer a:hover { text-decoration: underline; color: #ffe08a; }
+    .footer .footer-social {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 4px;
+    }
+    .footer .footer-social a {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: clamp(30px, 7vw, 36px); height: clamp(30px, 7vw, 36px);
+      border-radius: 50%; background: rgba(255, 255, 255, 0.1);
+      color: var(--footer-text); font-size: clamp(0.75rem, 1.8vw, 0.88rem);
+      transition: 0.18s;
+    }
+    .footer .footer-social a:hover {
+      background: var(--accent-yellow); color: #1e2b4f;
+      text-decoration: none; transform: translateY(-2px);
+    }
+
+    @media (max-width: 992px) {
+      .toc-card { position: static; margin-bottom: 1rem; }
+      .toc-card ol { columns: 2; column-gap: 1rem; }
+    }
+    @media (max-width: 768px) {
+      .header-card { border-radius: 0 0 1.25rem 1.25rem; }
+      .note-card { border-radius: 1rem; }
+      .theme-toggle { width: 40px; height: 40px; top: 10px; right: 10px; font-size: 1rem; }
+      .back-to-top { width: 42px; height: 42px; bottom: 18px; right: 18px; font-size: 1rem; }
+      .toc-card ol { columns: 1; }
+      .code-block pre { font-size: 0.78rem; padding: 0.85rem; }
+    }
+    @media (max-width: 400px) {
+      .badge-code { font-size: 0.85rem; padding: 0.28rem 0.8rem; }
+      .prepared-by { font-size: 0.8rem; padding: 0.35rem 1rem; }
+      .social-links a { width: 36px; height: 36px; font-size: 0.9rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition: none !important; animation: none !important;
+        scroll-behavior: auto !important;
+      }
+    }
+    @media print {
+      .social-wrap, .footer-social, .badge-code, .theme-toggle, .back-to-top,
+      .progress-bar-top, .toc-card, .code-copy-btn { display: none !important; }
+      .header-card { background: #1e2b4f !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .note-card { box-shadow: none; page-break-inside: avoid; }
+      .code-block { background: #f4f4f4 !important; }
+      .code-block pre { color: #000 !important; }
+      body { background: #fff; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== READING PROGRESS BAR ===== -->
+<div class="progress-bar-top" id="progressBar" role="progressbar" aria-label="Reading progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+
+<!-- ===== THEME TOGGLE ===== -->
+<button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+  <i class="fas fa-moon" id="themeIcon" aria-hidden="true"></i>
+</button>
+
+<!-- ===== BACK TO TOP ===== -->
+<button class="back-to-top" id="backToTop" aria-label="Back to top" title="Back to top">
+  <i class="fas fa-arrow-up" aria-hidden="true"></i>
+</button>
+
+<!-- ===== SKIP LINK ===== -->
+<a href="#module-content" class="visually-hidden-focusable">Skip to module content</a>
+
+<!-- ===== HEADER ===== -->
+<header role="banner" aria-label="Module header">
+  <div class="header-card text-center">
+    <div class="badge-code">
+      <i class="fas fa-terminal me-2" aria-hidden="true"></i>IT-507 · Module 3
+    </div>
+    <h1 class="display-6 fw-bold mt-2">Query Languages &amp; Specifications</h1>
+    <p class="lead mt-2 mb-3">Complete study notes · definitions, types, real-life examples, diagrams &amp; syntax</p>
+    <div class="prepared-by">
+      <i class="fas fa-chalkboard-teacher me-2" aria-hidden="true"></i>Prepared by <strong>Sir Ali Raza</strong>
+    </div>
+
+    <!-- ===== SOCIAL MEDIA LINKS ===== -->
+    <div class="social-wrap">
+      <p class="social-title"><i class="fas fa-share-nodes" aria-hidden="true"></i>Connect with Sir Ali Raza</p>
+      <ul class="social-links" aria-label="Social media and contact links">
+        <li><a class="gh" href="https://github.com/Ali-Raza-Muhammad-Iqbal" target="_blank" rel="noopener noreferrer" title="GitHub" aria-label="GitHub profile"><i class="fab fa-github" aria-hidden="true"></i></a></li>
+        <li><a class="li" href="https://www.linkedin.com/in/ali-raza-muhammad-iqbal" target="_blank" rel="noopener noreferrer" title="LinkedIn" aria-label="LinkedIn profile"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a></li>
+        <li><a class="gl" href="https://ali-raza-muhammad-iqbal.github.io" target="_blank" rel="noopener noreferrer" title="Portfolio / Website" aria-label="Personal website"><i class="fas fa-globe" aria-hidden="true"></i></a></li>
+        <li><a class="tt" href="https://www.tiktok.com/@ali_raza_muhammad_iqbal" target="_blank" rel="noopener noreferrer" title="TikTok" aria-label="TikTok profile"><i class="fab fa-tiktok" aria-hidden="true"></i></a></li>
+        <li><a class="fb" href="https://www.facebook.com/AliRazaMuhammadIqbal1" target="_blank" rel="noopener noreferrer" title="Facebook" aria-label="Facebook profile"><i class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
+        <li><a class="ig" href="https://www.instagram.com/ali_raza_muhammad_iqbal" target="_blank" rel="noopener noreferrer" title="Instagram" aria-label="Instagram profile"><i class="fab fa-instagram" aria-hidden="true"></i></a></li>
+        <li><a class="x" href="https://x.com/Ali_Raza_Iqbal" target="_blank" rel="noopener noreferrer" title="X (Twitter)" aria-label="X (Twitter) profile"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i></a></li>
+        <li><a class="yt" href="https://www.youtube.com/@Ali_Raza_Muhammad_Iqbal" target="_blank" rel="noopener noreferrer" title="YouTube" aria-label="YouTube channel"><i class="fab fa-youtube" aria-hidden="true"></i></a></li>
+        <li><a class="mail" href="mailto:Mr_Ali_Raza@yahoo.com" title="Email" aria-label="Send email"><i class="fas fa-envelope" aria-hidden="true"></i></a></li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<!-- ===== MAIN CONTENT ===== -->
+<main role="main" id="module-content">
+  <div class="container-fluid px-2 px-sm-3 px-md-4" style="max-width: 1280px; margin: 0 auto;">
+    <div class="row g-3 mt-2">
+
+      <!-- ===== TOC SIDEBAR ===== -->
+      <div class="col-lg-3 col-xl-3 order-lg-1 order-2">
+        <nav class="toc-card" aria-label="Table of contents">
+          <h5><i class="fas fa-list-ul me-2" aria-hidden="true"></i>Module Contents</h5>
+          <ol>
+            <li><a href="#topic-3-1">Introduction to Query Languages</a></li>
+            <li><a href="#topic-3-2">SQL — Overview</a></li>
+            <li><a href="#topic-3-3">DDL — CREATE, ALTER, DROP</a></li>
+            <li><a href="#topic-3-4">DML — INSERT, UPDATE, DELETE</a></li>
+            <li><a href="#topic-3-5">DQL — SELECT, JOINs, Subqueries</a></li>
+            <li><a href="#topic-3-6">DCL — GRANT, REVOKE</a></li>
+            <li><a href="#topic-3-7">TCL — COMMIT, ROLLBACK, SAVEPOINT</a></li>
+            <li><a href="#topic-3-8">Query Specifications &amp; Optimization</a></li>
+            <li><a href="#topic-3-9">Stored Procedures, Functions, Triggers</a></li>
+          </ol>
+        </nav>
+      </div>
+
+      <!-- ===== NOTES CONTENT ===== -->
+      <div class="col-lg-9 col-xl-9 order-lg-2 order-1">
+
+        <!-- ============ TOPIC 3.1 ============ -->
+        <article class="note-card topic-section" id="topic-3-1">
+          <h3><span class="topic-number">3.1</span> Introduction to Query Languages</h3>
+
+          <h4><i class="fas fa-book" aria-hidden="true"></i>Definition</h4>
+          <p>A <strong>query language</strong> is a specialized computer language used to communicate with a database — to retrieve, insert, update, delete, and manage data. Unlike general-purpose languages (Java, Python), a query language is designed to describe <em>what data you want</em> rather than <em>how to get it</em>. This is called being <strong>declarative</strong>.</p>
+
+          <h4><i class="fas fa-layer-group" aria-hidden="true"></i>Types of Query Languages</h4>
+          <ul>
+            <li><strong>Declarative (Non-procedural)</strong> — describe <em>what</em> — e.g., SQL, QBE.</li>
+            <li><strong>Procedural</strong> — describe <em>how</em> — e.g., Relational Algebra (used internally by DBMS).</li>
+            <li><strong>Graph query languages</strong> — for graph databases — Cypher, Gremlin, SPARQL.</li>
+            <li><strong>NoSQL query languages</strong> — MongoDB Query Language (MQL), Cassandra Query Language (CQL).</li>
+            <li><strong>XQuery / XPath</strong> — for XML data.</li>
+          </ul>
+
+          <h4><i class="fas fa-star" aria-hidden="true"></i>Why Query Languages Matter</h4>
+          <ul>
+            <li>Standard, portable way to interact with databases.</li>
+            <li>Hides low-level storage details from the user.</li>
+            <li>Powers the <em>DBMS query optimizer</em> to find efficient execution paths.</li>
+            <li>Enables non-programmers to query data directly.</li>
+          </ul>
+
+          <h4><i class="fas fa-diagram-project" aria-hidden="true"></i>Diagram — Layers of Interaction</h4>
+          <div class="diagram-box">
+            <svg viewBox="0 0 700 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Interaction layers between user, query language, DBMS, and database">
+              <defs>
+                <marker id="ql-arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+                  <path d="M0,0 L0,6 L9,3 z" fill="#0d6efd"/>
+                </marker>
+              </defs>
+
+              <rect x="250" y="20" width="200" height="50" rx="8" fill="#eef3fc" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="350" y="45" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="13" font-weight="700" fill="#1e2b4f">USER / APPLICATION</text>
+              <text x="350" y="60" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78">writes a query</text>
+
+              <line x1="350" y1="70" x2="350" y2="90" stroke="#0d6efd" stroke-width="2" marker-end="url(#ql-arrow)"/>
+
+              <rect x="180" y="90" width="340" height="55" rx="10" fill="#ffc107" stroke="#1e2b4f" stroke-width="2.5"/>
+              <text x="350" y="115" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="14" font-weight="700" fill="#1e2b4f">QUERY LANGUAGE</text>
+              <text x="350" y="133" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78">SQL · Cypher · MQL · SPARQL</text>
+
+              <line x1="350" y1="145" x2="350" y2="165" stroke="#0d6efd" stroke-width="2" marker-end="url(#ql-arrow)"/>
+
+              <rect x="180" y="165" width="340" height="50" rx="10" fill="#1e2b4f" stroke="#0d6efd" stroke-width="2"/>
+              <text x="350" y="190" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="13" font-weight="700" fill="#fff">DBMS (Query Processor + Optimizer)</text>
+              <text x="350" y="205" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#b9cdf5">parse · validate · optimize · execute</text>
+            </svg>
+            <div class="diagram-caption">Figure 3.1 — Users write queries in a query language; DBMS turns them into results</div>
+          </div>
+
+          <div class="example-box">
+            <strong><i class="fas fa-lightbulb" aria-hidden="true"></i>Simple Example</strong>
+            <p class="mb-1"><strong>Declarative (SQL):</strong> <code class="inline">SELECT Name FROM Students WHERE Age &gt; 20;</code></p>
+            <p class="mb-1"><strong>Procedural (Relational Algebra):</strong> <code class="inline">π_Name (σ_Age&gt;20 (Students))</code></p>
+            <p class="mb-0">Both do the same thing — SQL just says <em>what</em>, RA says <em>how</em> the steps work.</p>
+          </div>
+
+          <div class="real-life-box">
+            <strong><i class="fas fa-briefcase" aria-hidden="true"></i>Real-Life Use Case</strong>
+            <p class="mb-0">A business analyst types a SQL query in Looker to pull sales for the last quarter. The same data is also exposed to a Python application via an API. Both use the same declarative query language (SQL) — the DBMS optimizes each query independently.</p>
+          </div>
+        </article>
+
+        <!-- ============ TOPIC 3.2 ============ -->
+        <article class="note-card topic-section" id="topic-3-2">
+          <h3><span class="topic-number">3.2</span> Structured Query Language (SQL) — Overview</h3>
+
+          <h4><i class="fas fa-book" aria-hidden="true"></i>Definition</h4>
+          <p><strong>SQL (Structured Query Language)</strong> is the standard declarative language for interacting with relational databases. It was developed at IBM in the 1970s (originally SEQUEL) and standardized by ANSI in 1986. Almost every relational database system (MySQL, Oracle, PostgreSQL, SQL Server) supports SQL.</p>
+
+          <h4><i class="fas fa-layer-group" aria-hidden="true"></i>The Five SQL Sublanguages</h4>
+          <table class="notes-table">
+            <thead>
+              <tr><th>Category</th><th>Purpose</th><th>Key Commands</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>DDL</strong> — Data Definition</td><td>Define and modify structure</td><td><code class="inline">CREATE, ALTER, DROP, TRUNCATE</code></td></tr>
+              <tr><td><strong>DML</strong> — Data Manipulation</td><td>Change data</td><td><code class="inline">INSERT, UPDATE, DELETE</code></td></tr>
+              <tr><td><strong>DQL</strong> — Data Query</td><td>Retrieve data</td><td><code class="inline">SELECT</code></td></tr>
+              <tr><td><strong>DCL</strong> — Data Control</td><td>Control permissions</td><td><code class="inline">GRANT, REVOKE</code></td></tr>
+              <tr><td><strong>TCL</strong> — Transaction Control</td><td>Manage transactions</td><td><code class="inline">COMMIT, ROLLBACK, SAVEPOINT</code></td></tr>
+            </tbody>
+          </table>
+
+          <h4><i class="fas fa-diagram-project" aria-hidden="true"></i>Diagram — SQL Family Tree</h4>
+          <div class="diagram-box">
+            <svg viewBox="0 0 700 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SQL five subcategories family tree">
+              <rect x="280" y="20" width="140" height="50" rx="10" fill="#1e2b4f" stroke="#ffc107" stroke-width="2"/>
+              <text x="350" y="50" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="15" font-weight="700" fill="#fff">SQL</text>
+
+              <line x1="350" y1="70" x2="350" y2="90" stroke="#0d6efd" stroke-width="2"/>
+              <line x1="80" y1="90" x2="620" y2="90" stroke="#0d6efd" stroke-width="2"/>
+              <line x1="80" y1="90" x2="80" y2="110" stroke="#0d6efd" stroke-width="2"/>
+              <line x1="215" y1="90" x2="215" y2="110" stroke="#0d6efd" stroke-width="2"/>
+              <line x1="350" y1="90" x2="350" y2="110" stroke="#0d6efd" stroke-width="2"/>
+              <line x1="485" y1="90" x2="485" y2="110" stroke="#0d6efd" stroke-width="2"/>
+              <line x1="620" y1="90" x2="620" y2="110" stroke="#0d6efd" stroke-width="2"/>
+
+              <rect x="20" y="110" width="120" height="80" rx="8" fill="#eef3fc" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="80" y="138" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="13" font-weight="700" fill="#1e2b4f">DDL</text>
+              <text x="80" y="156" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#4a5a78">CREATE</text>
+              <text x="80" y="170" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#4a5a78">ALTER · DROP</text>
+
+              <rect x="155" y="110" width="120" height="80" rx="8" fill="#ffc107" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="215" y="138" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="13" font-weight="700" fill="#1e2b4f">DML</text>
+              <text x="215" y="156" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#4a5a78">INSERT</text>
+              <text x="215" y="170" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#4a5a78">UPDATE · DELETE</text>
+
+              <rect x="290" y="110" width="120" height="80" rx="8" fill="#eef3fc" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="350" y="138" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="13" font-weight="700" fill="#1e2b4f">DQL</text>
+              <text x="350" y="156" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#4a5a78">SELECT</text>
+              <text x="350" y="170" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#4a5a78">JOINs · Subq.</text>
+
+              <rect x="425" y="110" width="120" height="80" rx="8" fill="#198754" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="485" y="138" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="13" font-weight="700" fill="#fff">DCL</text>
+              <text x="485" y="156" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#e6edf9">GRANT</text>
+              <text x="485" y="170" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#e6edf9">REVOKE</text>
+
+              <rect x="560" y="110" width="120" height="80" rx="8" fill="#d9534f" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="620" y="138" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="13" font-weight="700" fill="#fff">TCL</text>
+              <text x="620" y="156" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#fff">COMMIT</text>
+              <text x="620" y="170" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#fff">ROLLBACK · SP</text>
+            </svg>
+            <div class="diagram-caption">Figure 3.2 — SQL's five sublanguages at a glance</div>
+          </div>
+
+          <h4><i class="fas fa-code" aria-hidden="true"></i>Syntax — A taste of each sublanguage</h4>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="code-block-lang"><i class="fas fa-database" aria-hidden="true"></i> SQL — Overview</span>
+              <button class="code-copy-btn" type="button" aria-label="Copy SQL code"><i class="fas fa-copy" aria-hidden="true"></i> Copy</button>
+            </div>
+            <pre><code>-- DDL: define structure
+CREATE TABLE Students (StudentID INT PRIMARY KEY, Name VARCHAR(100));
+
+-- DML: manipulate data
+INSERT INTO Students VALUES (1, 'Ali');
+
+-- DQL: query data
+SELECT * FROM Students WHERE Name = 'Ali';
+
+-- DCL: control permissions
+GRANT SELECT ON Students TO 'ali'@'localhost';
+
+-- TCL: control transactions
+COMMIT;</code></pre>
+          </div>
+
+          <div class="example-box">
+            <strong><i class="fas fa-lightbulb" aria-hidden="true"></i>Simple Example</strong>
+            <p class="mb-0">Building an app? You use <strong>DDL</strong> once to create tables, <strong>DML</strong> every time a user places an order, <strong>DQL</strong> to show their order history, <strong>DCL</strong> to give access to certain staff, and <strong>TCL</strong> to ensure their payment is committed atomically.</p>
+          </div>
+
+          <div class="real-life-box">
+            <strong><i class="fas fa-briefcase" aria-hidden="true"></i>Real-Life Use Case</strong>
+            <p class="mb-0">Every major application — Instagram, Amazon, banking apps — runs SQL in some form. Amazon Aurora, Google Cloud SQL, and Azure SQL are all based on SQL. The language is so universal that a developer who knows SQL can move between MySQL, Oracle, and PostgreSQL with minimal retraining.</p>
+          </div>
+        </article>
+
+        <!-- ============ TOPIC 3.3 ============ -->
+        <article class="note-card topic-section" id="topic-3-3">
+          <h3><span class="topic-number">3.3</span> DDL (Data Definition Language) — CREATE, ALTER, DROP</h3>
+
+          <h4><i class="fas fa-book" aria-hidden="true"></i>Definition</h4>
+          <p><strong>DDL (Data Definition Language)</strong> is the subset of SQL used to define and manage the <em>structure</em> of database objects — tables, views, indexes, schemas. DDL statements change the <strong>schema</strong>, not the data inside it.</p>
+
+          <h4><i class="fas fa-layer-group" aria-hidden="true"></i>Core DDL Commands</h4>
+          <ul>
+            <li><strong>CREATE</strong> — make a new table, view, index, or schema.</li>
+            <li><strong>ALTER</strong> — modify an existing object (add/drop column, change type, add constraint).</li>
+            <li><strong>DROP</strong> — delete an object entirely (table + data + structure).</li>
+            <li><strong>TRUNCATE</strong> — delete all rows but keep the table structure.</li>
+            <li><strong>RENAME</strong> — rename a table or column.</li>
+            <li><strong>COMMENT</strong> — add descriptive comments to objects.</li>
+          </ul>
+
+          <h4><i class="fas fa-diagram-project" aria-hidden="true"></i>Diagram — CREATE → ALTER → DROP lifecycle</h4>
+          <div class="diagram-box">
+            <svg viewBox="0 0 700 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Lifecycle of a database table from CREATE to DROP">
+              <defs>
+                <marker id="ddl-arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+                  <path d="M0,0 L0,6 L9,3 z" fill="#0d6efd"/>
+                </marker>
+              </defs>
+
+              <rect x="30" y="55" width="140" height="70" rx="10" fill="#eef3fc" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="100" y="85" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="14" font-weight="700" fill="#1e2b4f">CREATE</text>
+              <text x="100" y="105" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78">New table</text>
+
+              <line x1="170" y1="90" x2="230" y2="90" stroke="#0d6efd" stroke-width="2.5" marker-end="url(#ddl-arrow)"/>
+
+              <rect x="235" y="55" width="140" height="70" rx="10" fill="#ffc107" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="305" y="85" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="14" font-weight="700" fill="#1e2b4f">ALTER</text>
+              <text x="305" y="105" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78">Modify structure</text>
+
+              <line x1="375" y1="90" x2="435" y2="90" stroke="#0d6efd" stroke-width="2.5" marker-end="url(#ddl-arrow)"/>
+
+              <rect x="440" y="55" width="140" height="70" rx="10" fill="#198754" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="510" y="85" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="14" font-weight="700" fill="#fff">TRUNCATE</text>
+              <text x="510" y="105" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#e6edf9">Remove all rows</text>
+
+              <line x1="580" y1="90" x2="620" y2="90" stroke="#0d6efd" stroke-width="2.5" marker-end="url(#ddl-arrow)"/>
+
+              <rect x="625" y="55" width="60" height="70" rx="10" fill="#d9534f" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="655" y="85" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="12" font-weight="700" fill="#fff">DROP</text>
+              <text x="655" y="105" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#fff">Delete</text>
+            </svg>
+            <div class="diagram-caption">Figure 3.3 — Table lifecycle: create → alter → truncate → drop</div>
+          </div>
+
+          <h4><i class="fas fa-code" aria-hidden="true"></i>Syntax — All three commands in action</h4>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="code-block-lang"><i class="fas fa-database" aria-hidden="true"></i> SQL — DDL</span>
+              <button class="code-copy-btn" type="button" aria-label="Copy SQL code"><i class="fas fa-copy" aria-hidden="true"></i> Copy</button>
+            </div>
+            <pre><code>-- CREATE: build a new table
+CREATE TABLE Employees (
+    EmpID     INT PRIMARY KEY AUTO_INCREMENT,
+    Name      VARCHAR(100) NOT NULL,
+    Salary    DECIMAL(10,2),
+    DeptID    INT,
+    HireDate  DATE DEFAULT CURRENT_DATE
+);
+
+-- ALTER: add a new column
+ALTER TABLE Employees
+    ADD Email VARCHAR(150) UNIQUE;
+
+-- ALTER: change a column's data type
+ALTER TABLE Employees
+    MODIFY Salary DECIMAL(12,2) NOT NULL;
+
+-- ALTER: add a foreign key constraint
+ALTER TABLE Employees
+    ADD CONSTRAINT fk_dept
+        FOREIGN KEY (DeptID) REFERENCES Departments(DeptID);
+
+-- TRUNCATE: empty the table but keep structure
+TRUNCATE TABLE Employees;
+
+-- DROP: delete the table completely
+DROP TABLE Employees;</code></pre>
+          </div>
+
+          <div class="example-box">
+            <strong><i class="fas fa-lightbulb" aria-hidden="true"></i>Simple Example</strong>
+            <p class="mb-1"><strong>CREATE</strong> — you build a new <code class="inline">Orders</code> table.</p>
+            <p class="mb-1"><strong>ALTER</strong> — you realize you forgot a <code class="inline">status</code> column; you add it.</p>
+            <p class="mb-0"><strong>DROP</strong> — the business closes; you delete the table completely.</p>
+          </div>
+
+          <div class="real-life-box">
+            <strong><i class="fas fa-briefcase" aria-hidden="true"></i>Real-Life Use Case</strong>
+            <p class="mb-0">In an e-commerce startup, DDL is used at setup: create <code class="inline">Customers</code>, <code class="inline">Products</code>, <code class="inline">Orders</code> tables. Six months later, the marketing team wants to track coupons, so a new <code class="inline">CouponCode</code> column is added via ALTER. When a legacy table becomes obsolete, it's dropped.</p>
+          </div>
+
+          <div class="warning-box">
+            <strong><i class="fas fa-exclamation-triangle" aria-hidden="true"></i>Warning: DROP is irreversible</strong>
+            <p class="mb-0"><code class="inline">DROP TABLE</code> deletes structure <em>and</em> data — no undo. <code class="inline">TRUNCATE</code> deletes all rows but keeps the table. Always back up before running DDL in production.</p>
+          </div>
+        </article>
+
+        <!-- ============ TOPIC 3.4 ============ -->
+        <article class="note-card topic-section" id="topic-3-4">
+          <h3><span class="topic-number">3.4</span> DML (Data Manipulation Language) — INSERT, UPDATE, DELETE</h3>
+
+          <h4><i class="fas fa-book" aria-hidden="true"></i>Definition</h4>
+          <p><strong>DML (Data Manipulation Language)</strong> is the subset of SQL used to <strong>manipulate the data</strong> inside tables — adding new rows, changing existing rows, and removing rows. Unlike DDL, DML changes the data but not the structure.</p>
+
+          <h4><i class="fas fa-layer-group" aria-hidden="true"></i>Core DML Commands</h4>
+          <ul>
+            <li><strong>INSERT</strong> — add new rows.</li>
+            <li><strong>UPDATE</strong> — modify existing rows.</li>
+            <li><strong>DELETE</strong> — remove rows.</li>
+            <li><strong>MERGE / UPSERT</strong> — insert if new, update if existing (in some DBMS).</li>
+          </ul>
+
+          <h4><i class="fas fa-diagram-project" aria-hidden="true"></i>Diagram — DML Operations</h4>
+          <div class="diagram-box">
+            <svg viewBox="0 0 700 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram of DML insert update delete operations on a table">
+              <!-- Before table -->
+              <text x="120" y="30" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="12" font-weight="700" fill="#1e2b4f">BEFORE</text>
+              <rect x="30" y="45" width="180" height="140" rx="6" fill="#eef3fc" stroke="#1e2b4f" stroke-width="2"/>
+              <rect x="30" y="45" width="180" height="30" rx="6" fill="#1e2b4f"/>
+              <text x="80" y="65" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#fff">ID</text>
+              <text x="160" y="65" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#fff">Name</text>
+              <line x1="30" y1="75" x2="210" y2="75" stroke="#1e2b4f" stroke-width="1"/>
+              <line x1="110" y1="75" x2="110" y2="185" stroke="#1e2b4f" stroke-width="1"/>
+
+              <text x="70" y="95" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78">1</text>
+              <text x="160" y="95" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78">Ali</text>
+              <text x="70" y="115" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78">2</text>
+              <text x="160" y="115" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78">Sara</text>
+              <text x="70" y="135" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78">3</text>
+              <text x="160" y="135" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78">Bilal</text>
+
+              <!-- Three arrows -->
+              <line x1="220" y1="115" x2="270" y2="60" stroke="#0d6efd" stroke-width="2"/>
+              <line x1="220" y1="115" x2="270" y2="115" stroke="#ffc107" stroke-width="2"/>
+              <line x1="220" y1="115" x2="270" y2="170" stroke="#d9534f" stroke-width="2"/>
+
+              <!-- Labels -->
+              <text x="290" y="55" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#0d6efd">INSERT</text>
+              <text x="290" y="115" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#b07d00">UPDATE</text>
+              <text x="290" y="175" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#d9534f">DELETE</text>
+
+              <!-- After table -->
+              <text x="560" y="30" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="12" font-weight="700" fill="#1e2b4f">AFTER</text>
+              <rect x="470" y="45" width="180" height="140" rx="6" fill="#eef3fc" stroke="#1e2b4f" stroke-width="2"/>
+              <rect x="470" y="45" width="180" height="30" rx="6" fill="#1e2b4f"/>
+              <text x="520" y="65" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#fff">ID</text>
+              <text x="600" y="65" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#fff">Name</text>
+              <line x1="470" y1="75" x2="650" y2="75" stroke="#1e2b4f" stroke-width="1"/>
+              <line x1="550" y1="75" x2="550" y2="185" stroke="#1e2b4f" stroke-width="1"/>
+
+              <text x="510" y="95" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78">1</text>
+              <text x="600" y="95" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78">Ali</text>
+              <text x="510" y="115" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78">2</text>
+              <text x="600" y="115" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#0d6efd" font-weight="700">Sara Ali</text>
+              <text x="510" y="135" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78">4</text>
+              <text x="600" y="135" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#198754" font-weight="700">Hina</text>
+            </svg>
+            <div class="diagram-caption">Figure 3.4 — INSERT adds rows, UPDATE modifies rows, DELETE removes rows</div>
+          </div>
+
+          <h4><i class="fas fa-code" aria-hidden="true"></i>Syntax — All three commands in action</h4>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="code-block-lang"><i class="fas fa-database" aria-hidden="true"></i> SQL — DML</span>
+              <button class="code-copy-btn" type="button" aria-label="Copy SQL code"><i class="fas fa-copy" aria-hidden="true"></i> Copy</button>
+            </div>
+            <pre><code>-- INSERT: add one row
+INSERT INTO Employees (EmpID, Name, Salary, DeptID)
+VALUES (1, 'Ali', 50000, 10);
+
+-- INSERT: add multiple rows at once (faster than one-by-one)
+INSERT INTO Employees (EmpID, Name, Salary, DeptID)
+VALUES (2, 'Sara', 55000, 10),
+       (3, 'Bilal', 70000, 20),
+       (4, 'Hina', 68000, 20);
+
+-- INSERT from another table (bulk copy)
+INSERT INTO Employees_Archive (EmpID, Name, Salary)
+SELECT EmpID, Name, Salary FROM Employees WHERE HireDate < '2023-01-01';
+
+-- UPDATE: modify existing rows
+UPDATE Employees
+SET Salary = Salary * 1.10
+WHERE DeptID = 10;
+
+-- UPDATE with a join (MySQL syntax)
+UPDATE Employees e
+JOIN Departments d ON e.DeptID = d.DeptID
+SET e.Salary = e.Salary * 1.05
+WHERE d.DeptName = 'Sales';
+
+-- DELETE: remove specific rows
+DELETE FROM Employees
+WHERE EmpID = 4;
+
+-- DELETE all rows (but table structure remains — DML, not DDL)
+DELETE FROM Employees;</code></pre>
+          </div>
+
+          <div class="example-box">
+            <strong><i class="fas fa-lightbulb" aria-hidden="true"></i>Simple Example</strong>
+            <p class="mb-1"><strong>INSERT:</strong> a new user signs up — you <code class="inline">INSERT INTO Users VALUES (101, 'Ali', 'ali@example.com')</code>.</p>
+            <p class="mb-1"><strong>UPDATE:</strong> they change their email — you <code class="inline">UPDATE Users SET Email = 'new@example.com' WHERE UserID = 101</code>.</p>
+            <p class="mb-0"><strong>DELETE:</strong> they close their account — you <code class="inline">DELETE FROM Users WHERE UserID = 101</code>.</p>
+          </div>
+
+          <div class="real-life-box">
+            <strong><i class="fas fa-briefcase" aria-hidden="true"></i>Real-Life Use Case</strong>
+            <p class="mb-0">Every e-commerce order triggers DML: new row in <code class="inline">Orders</code>, several in <code class="inline">OrderItems</code>, an UPDATE to reduce stock in <code class="inline">Products</code>. When a product is discontinued, it's DELETEd or marked inactive. All of this is standard DML — often wrapped in a transaction (see Topic 3.7) to ensure consistency.</p>
+          </div>
+
+          <div class="warning-box">
+            <strong><i class="fas fa-exclamation-triangle" aria-hidden="true"></i>Warning: Always use WHERE with UPDATE/DELETE</strong>
+            <p class="mb-0"><code class="inline">UPDATE Employees SET Salary = 10000;</code> updates <strong>every row</strong>! Always include a <code class="inline">WHERE</code> clause unless you truly intend to change every record. Run a <code class="inline">SELECT</code> with the same WHERE first to verify.</p>
+          </div>
+        </article>
+
+        <!-- ============ TOPIC 3.5 ============ -->
+        <article class="note-card topic-section" id="topic-3-5">
+          <h3><span class="topic-number">3.5</span> DQL (Data Query Language) — SELECT, JOINs, Subqueries</h3>
+
+          <h4><i class="fas fa-book" aria-hidden="true"></i>Definition</h4>
+          <p><strong>DQL (Data Query Language)</strong> is the subset of SQL used to <strong>retrieve data</strong>. Its only command is <code class="inline">SELECT</code>, but it's the most powerful and most-used SQL statement. You can filter, sort, aggregate, join multiple tables, nest subqueries, and more.</p>
+
+          <h4><i class="fas fa-layer-group" aria-hidden="true"></i>Anatomy of a SELECT</h4>
+          <ol>
+            <li><strong>SELECT</strong> — which columns to return</li>
+            <li><strong>FROM</strong> — which table(s)</li>
+            <li><strong>WHERE</strong> — which rows to include</li>
+            <li><strong>GROUP BY</strong> — group rows for aggregation</li>
+            <li><strong>HAVING</strong> — filter groups</li>
+            <li><strong>ORDER BY</strong> — sort the result</li>
+            <li><strong>LIMIT / OFFSET</strong> — restrict rows returned</li>
+          </ol>
+
+          <h4><i class="fas fa-diagram-project" aria-hidden="true"></i>Diagram — Types of JOINs</h4>
+          <div class="diagram-box">
+            <svg viewBox="0 0 700 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Venn diagrams showing INNER, LEFT, RIGHT, FULL joins">
+              <!-- INNER JOIN -->
+              <text x="90" y="20" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="12" font-weight="700" fill="#1e2b4f">INNER JOIN</text>
+              <circle cx="65" cy="80" r="45" fill="#eef3fc" fill-opacity="0.6" stroke="#1e2b4f" stroke-width="1.5"/>
+              <circle cx="115" cy="80" r="45" fill="#eef3fc" fill-opacity="0.6" stroke="#1e2b4f" stroke-width="1.5"/>
+              <path d="M 90 45 A 45 45 0 0 1 90 115 A 45 45 0 0 1 90 45" fill="#ffc107"/>
+              <text x="90" y="145" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#4a5a78">Only matching rows</text>
+
+              <!-- LEFT JOIN -->
+              <text x="280" y="20" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="12" font-weight="700" fill="#1e2b4f">LEFT JOIN</text>
+              <circle cx="255" cy="80" r="45" fill="#ffc107" fill-opacity="0.85" stroke="#1e2b4f" stroke-width="1.5"/>
+              <circle cx="305" cy="80" r="45" fill="#eef3fc" fill-opacity="0.6" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="280" y="145" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#4a5a78">All left + matching right</text>
+
+              <!-- RIGHT JOIN -->
+              <text x="470" y="20" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="12" font-weight="700" fill="#1e2b4f">RIGHT JOIN</text>
+              <circle cx="445" cy="80" r="45" fill="#eef3fc" fill-opacity="0.6" stroke="#1e2b4f" stroke-width="1.5"/>
+              <circle cx="495" cy="80" r="45" fill="#ffc107" fill-opacity="0.85" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="470" y="145" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#4a5a78">All right + matching left</text>
+
+              <!-- FULL JOIN -->
+              <text x="640" y="20" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="12" font-weight="700" fill="#1e2b4f">FULL JOIN</text>
+              <circle cx="615" cy="80" r="45" fill="#ffc107" fill-opacity="0.7" stroke="#1e2b4f" stroke-width="1.5"/>
+              <circle cx="665" cy="80" r="45" fill="#ffc107" fill-opacity="0.7" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="640" y="145" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#4a5a78">All rows from both</text>
+
+              <!-- Additional row for subqueries -->
+              <text x="350" y="195" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="12" font-weight="700" fill="#1e2b4f">SUBQUERIES</text>
+              <rect x="130" y="210" width="440" height="40" rx="8" fill="#eef3fc" stroke="#1e2b4f" stroke-width="1.5" stroke-dasharray="4 3"/>
+              <text x="350" y="235" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" fill="#4a5a78">SELECT … WHERE col IN (SELECT col FROM …)</text>
+            </svg>
+            <div class="diagram-caption">Figure 3.5 — JOIN types and subqueries (a nested SELECT inside another query)</div>
+          </div>
+
+          <h4><i class="fas fa-code" aria-hidden="true"></i>Syntax — SELECT, JOIN, and Subquery examples</h4>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="code-block-lang"><i class="fas fa-database" aria-hidden="true"></i> SQL — DQL Basics</span>
+              <button class="code-copy-btn" type="button" aria-label="Copy SQL code"><i class="fas fa-copy" aria-hidden="true"></i> Copy</button>
+            </div>
+            <pre><code>-- 1. Basic SELECT with filter and sort
+SELECT Name, Salary
+FROM Employees
+WHERE Salary > 50000
+ORDER BY Salary DESC
+LIMIT 10;
+
+-- 2. Aggregate with GROUP BY + HAVING
+SELECT DeptID, COUNT(*) AS EmployeeCount, AVG(Salary) AS AvgSalary
+FROM Employees
+GROUP BY DeptID
+HAVING AVG(Salary) > 55000;
+
+-- 3. INNER JOIN — only rows that match in both tables
+SELECT e.Name, d.DeptName
+FROM Employees e
+INNER JOIN Departments d ON e.DeptID = d.DeptID;
+
+-- 4. LEFT JOIN — all employees, even if they have no department
+SELECT e.Name, d.DeptName
+FROM Employees e
+LEFT JOIN Departments d ON e.DeptID = d.DeptID;
+
+-- 5. Subquery — employees earning above the company average
+SELECT Name, Salary
+FROM Employees
+WHERE Salary > (SELECT AVG(Salary) FROM Employees);
+
+-- 6. Subquery with IN — employees in departments with >5 people
+SELECT Name
+FROM Employees
+WHERE DeptID IN (
+    SELECT DeptID FROM Employees
+    GROUP BY DeptID
+    HAVING COUNT(*) > 5
+);
+
+-- 7. Correlated subquery — employees earning above their own dept average
+SELECT e1.Name, e1.Salary, e1.DeptID
+FROM Employees e1
+WHERE e1.Salary > (
+    SELECT AVG(e2.Salary)
+    FROM Employees e2
+    WHERE e2.DeptID = e1.DeptID
+);</code></pre>
+          </div>
+
+          <div class="example-box">
+            <strong><i class="fas fa-lightbulb" aria-hidden="true"></i>Simple Example</strong>
+            <p class="mb-1"><strong>SELECT + WHERE:</strong> "Show me employees with salary over 50k."</p>
+            <p class="mb-1"><strong>JOIN:</strong> "Show each employee along with their department's name."</p>
+            <p class="mb-0"><strong>Subquery:</strong> "Show employees who earn more than the company average."</p>
+          </div>
+
+          <div class="real-life-box">
+            <strong><i class="fas fa-briefcase" aria-hidden="true"></i>Real-Life Use Case</strong>
+            <p class="mb-0">An e-commerce dashboard uses DQL constantly: JOIN <code class="inline">Orders</code> with <code class="inline">Customers</code> to show "who bought what," uses a subquery to find products never ordered, aggregates <code class="inline">SUM(total)</code> per month, and sorts by revenue. This is the daily work of every analyst and backend developer.</p>
+          </div>
+        </article>
+
+        <!-- ============ TOPIC 3.6 ============ -->
+        <article class="note-card topic-section" id="topic-3-6">
+          <h3><span class="topic-number">3.6</span> DCL (Data Control Language) — GRANT, REVOKE</h3>
+
+          <h4><i class="fas fa-book" aria-hidden="true"></i>Definition</h4>
+          <p><strong>DCL (Data Control Language)</strong> is the subset of SQL used to <strong>control access</strong> to the database. It manages who can do what — which users can read, insert, update, or delete data, and which objects they can access.</p>
+
+          <h4><i class="fas fa-layer-group" aria-hidden="true"></i>Core DCL Commands</h4>
+          <ul>
+            <li><strong>GRANT</strong> — give a privilege to a user or role.</li>
+            <li><strong>REVOKE</strong> — take away a privilege.</li>
+            <li><strong>DENY</strong> — explicitly deny a privilege (SQL Server).</li>
+          </ul>
+
+          <h4><i class="fas fa-list" aria-hidden="true"></i>Common Privileges</h4>
+          <ul>
+            <li><strong>SELECT</strong> — read data</li>
+            <li><strong>INSERT</strong> — add rows</li>
+            <li><strong>UPDATE</strong> — modify rows</li>
+            <li><strong>DELETE</strong> — remove rows</li>
+            <li><strong>CREATE / DROP / ALTER</strong> — DDL privileges</li>
+            <li><strong>EXECUTE</strong> — run stored procedures</li>
+            <li><strong>ALL PRIVILEGES</strong> — everything</li>
+          </ul>
+
+          <h4><i class="fas fa-diagram-project" aria-hidden="true"></i>Diagram — GRANT / REVOKE flow</h4>
+          <div class="diagram-box">
+            <svg viewBox="0 0 700 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="GRANT and REVOKE flow between DBA and users">
+              <!-- DBA -->
+              <rect x="20" y="60" width="140" height="70" rx="10" fill="#1e2b4f" stroke="#ffc107" stroke-width="2"/>
+              <text x="90" y="90" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="13" font-weight="700" fill="#fff">DBA / Admin</text>
+              <text x="90" y="108" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#b9cdf5">has privileges</text>
+
+              <!-- Arrow to grant -->
+              <line x1="160" y1="75" x2="260" y2="55" stroke="#198754" stroke-width="2.5" marker-end="url(#g-arrow)"/>
+              <line x1="160" y1="110" x2="260" y2="130" stroke="#d9534f" stroke-width="2.5" marker-end="url(#r-arrow)"/>
+              <defs>
+                <marker id="g-arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+                  <path d="M0,0 L0,6 L9,3 z" fill="#198754"/>
+                </marker>
+                <marker id="r-arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+                  <path d="M0,0 L0,6 L9,3 z" fill="#d9534f"/>
+                </marker>
+              </defs>
+
+              <!-- Labels -->
+              <text x="200" y="48" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#198754">GRANT</text>
+              <text x="200" y="148" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#d9534f">REVOKE</text>
+
+              <!-- Arrow to users -->
+              <line x1="380" y1="55" x2="480" y2="75" stroke="#198754" stroke-width="2.5" marker-end="url(#g-arrow)"/>
+              <line x1="380" y1="130" x2="480" y2="110" stroke="#d9534f" stroke-width="2.5" marker-end="url(#r-arrow)"/>
+
+              <!-- Users -->
+              <rect x="490" y="40" width="180" height="55" rx="10" fill="#eef3fc" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="580" y="65" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="12" font-weight="700" fill="#1e2b4f">User: ali</text>
+              <text x="580" y="82" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#4a5a78">now has SELECT</text>
+
+              <rect x="490" y="105" width="180" height="55" rx="10" fill="#eef3fc" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="580" y="130" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="12" font-weight="700" fill="#1e2b4f">User: sara</text>
+              <text x="580" y="147" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#4a5a78">lost INSERT</text>
+            </svg>
+            <div class="diagram-caption">Figure 3.6 — GRANT gives privileges, REVOKE takes them away</div>
+          </div>
+
+          <h4><i class="fas fa-code" aria-hidden="true"></i>Syntax — GRANT / REVOKE examples</h4>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="code-block-lang"><i class="fas fa-database" aria-hidden="true"></i> SQL — DCL</span>
+              <button class="code-copy-btn" type="button" aria-label="Copy SQL code"><i class="fas fa-copy" aria-hidden="true"></i> Copy</button>
+            </div>
+            <pre><code>-- 1. Create a user
+CREATE USER 'ali'@'localhost' IDENTIFIED BY 'SecurePass123';
+
+-- 2. GRANT: give SELECT and INSERT on Students table only
+GRANT SELECT, INSERT ON SchoolDB.Students TO 'ali'@'localhost';
+
+-- 3. GRANT multiple privileges on all tables in a database
+GRANT SELECT, UPDATE, DELETE ON SchoolDB.* TO 'ali'@'localhost';
+
+-- 4. GRANT with the option to pass it on (grant option)
+GRANT SELECT ON SchoolDB.Students TO 'ali'@'localhost'
+    WITH GRANT OPTION;
+
+-- 5. GRANT a role to a user (cleaner than per-object grants)
+CREATE ROLE read_only;
+GRANT SELECT ON SchoolDB.* TO read_only;
+GRANT read_only TO 'sara'@'localhost';
+
+-- 6. REVOKE: take away INSERT — keep SELECT
+REVOKE INSERT ON SchoolDB.Students FROM 'ali'@'localhost';
+
+-- 7. REVOKE all privileges (careful!)
+REVOKE ALL PRIVILEGES, GRANT OPTION FROM 'ali'@'localhost';
+
+-- 8. See what a user has
+SHOW GRANTS FOR 'ali'@'localhost';</code></pre>
+          </div>
+
+          <div class="example-box">
+            <strong><i class="fas fa-lightbulb" aria-hidden="true"></i>Simple Example</strong>
+            <p class="mb-1"><strong>GRANT:</strong> the marketing intern needs to see sales data but not change it — you <code class="inline">GRANT SELECT ON Sales TO intern</code>.</p>
+            <p class="mb-0"><strong>REVOKE:</strong> the intern's access is no longer needed — you <code class="inline">REVOKE SELECT ON Sales FROM intern</code>.</p>
+          </div>
+
+          <div class="real-life-box">
+            <strong><i class="fas fa-briefcase" aria-hidden="true"></i>Real-Life Use Case</strong>
+            <p class="mb-0">A hospital database has three roles: <em>doctors</em> (read all patient data), <em>nurses</em> (read + write vitals but not billing), <em>billing staff</em> (read + write billing but no clinical data). DCL creates those roles and grants exactly the right privileges to each — enforcing least privilege and HIPAA compliance.</p>
+          </div>
+
+          <div class="warning-box">
+            <strong><i class="fas fa-exclamation-triangle" aria-hidden="true"></i>Principle of Least Privilege</strong>
+            <p class="mb-0">Always grant the <em>minimum</em> privileges a user needs. Never grant <code class="inline">ALL PRIVILEGES</code> to regular app users — a compromised account with ALL can delete or steal the entire database.</p>
+          </div>
+        </article>
+
+        <!-- ============ TOPIC 3.7 ============ -->
+        <article class="note-card topic-section" id="topic-3-7">
+          <h3><span class="topic-number">3.7</span> TCL (Transaction Control Language) — COMMIT, ROLLBACK, SAVEPOINT</h3>
+
+          <h4><i class="fas fa-book" aria-hidden="true"></i>Definition</h4>
+          <p><strong>TCL (Transaction Control Language)</strong> is the subset of SQL used to manage <strong>transactions</strong> — a group of DML statements treated as one unit. Either all of them succeed, or none of them take effect. This ensures the <strong>ACID</strong> properties (Atomicity, Consistency, Isolation, Durability).</p>
+
+          <h4><i class="fas fa-layer-group" aria-hidden="true"></i>Core TCL Commands</h4>
+          <ul>
+            <li><strong>COMMIT</strong> — permanently save all changes in the transaction.</li>
+            <li><strong>ROLLBACK</strong> — undo all changes since the transaction began (or since last SAVEPOINT).</li>
+            <li><strong>SAVEPOINT</strong> — create a named point you can roll back to (partial rollback).</li>
+            <li><strong>RELEASE SAVEPOINT</strong> — delete a savepoint (free up resources).</li>
+            <li><strong>SET TRANSACTION</strong> — set isolation level, read-only, etc.</li>
+          </ul>
+
+          <h4><i class="fas fa-diagram-project" aria-hidden="true"></i>Diagram — Transaction flow with SAVEPOINT</h4>
+          <div class="diagram-box">
+            <svg viewBox="0 0 700 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Transaction flow showing commit and rollback with savepoints">
+              <defs>
+                <marker id="tcl-arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+                  <path d="M0,0 L0,6 L9,3 z" fill="#0d6efd"/>
+                </marker>
+              </defs>
+
+              <!-- Timeline -->
+              <line x1="40" y1="120" x2="660" y2="120" stroke="#1e2b4f" stroke-width="2" marker-end="url(#tcl-arrow)"/>
+
+              <!-- Events -->
+              <circle cx="100" cy="120" r="8" fill="#0d6efd" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="100" y="100" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" font-weight="700" fill="#1e2b4f">BEGIN</text>
+
+              <circle cx="200" cy="120" r="8" fill="#eef3fc" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="200" y="155" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#4a5a78">INSERT #1</text>
+
+              <circle cx="300" cy="120" r="8" fill="#ffc107" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="300" y="100" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" font-weight="700" fill="#b07d00">SAVEPOINT A</text>
+
+              <circle cx="400" cy="120" r="8" fill="#eef3fc" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="400" y="155" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#4a5a78">UPDATE #2</text>
+
+              <circle cx="500" cy="120" r="8" fill="#ffc107" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="500" y="100" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" font-weight="700" fill="#b07d00">SAVEPOINT B</text>
+
+              <circle cx="600" cy="120" r="8" fill="#d9534f" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="600" y="155" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#4a5a78">DELETE #3</text>
+
+              <!-- Rollback arrows -->
+              <path d="M 600 130 Q 600 190 500 190 Q 450 190 450 130" fill="none" stroke="#d9534f" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#rb-arrow)"/>
+              <text x="530" y="205" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#d9534f" font-weight="600">ROLLBACK TO B (undoes delete)</text>
+              <defs>
+                <marker id="rb-arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+                  <path d="M0,0 L0,6 L9,3 z" fill="#d9534f"/>
+                </marker>
+              </defs>
+
+              <!-- Commit arrow -->
+              <line x1="500" y1="120" x2="660" y2="50" stroke="#198754" stroke-width="2" marker-end="url(#cm-arrow)"/>
+              <text x="590" y="42" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#198754" font-weight="700">COMMIT</text>
+              <defs>
+                <marker id="cm-arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+                  <path d="M0,0 L0,6 L9,3 z" fill="#198754"/>
+                </marker>
+              </defs>
+            </svg>
+            <div class="diagram-caption">Figure 3.7 — Transaction timeline with SAVEPOINTs, ROLLBACK, and COMMIT</div>
+          </div>
+
+          <h4><i class="fas fa-code" aria-hidden="true"></i>Syntax — Full transaction example</h4>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="code-block-lang"><i class="fas fa-database" aria-hidden="true"></i> SQL — TCL (bank transfer)</span>
+              <button class="code-copy-btn" type="button" aria-label="Copy SQL code"><i class="fas fa-copy" aria-hidden="true"></i> Copy</button>
+            </div>
+            <pre><code>-- Classic bank transfer: deduct from A, add to B — both or neither
+START TRANSACTION;   -- or: BEGIN;
+
+-- Step 1: deduct 500 from Alice's account
+UPDATE Accounts SET Balance = Balance - 500 WHERE AccountID = 1;
+
+-- Create a savepoint after the first step
+SAVEPOINT after_deduct;
+
+-- Step 2: add 500 to Bob's account
+UPDATE Accounts SET Balance = Balance + 500 WHERE AccountID = 2;
+
+-- If something goes wrong (e.g., Bob's account closed), undo step 2:
+ROLLBACK TO after_deduct;
+
+-- But if step 2 also works, save everything:
+COMMIT;
+
+-- ---------- Example with ROLLBACK to a savepoint ----------
+START TRANSACTION;
+
+INSERT INTO Orders (OrderID, CustomerID, Total) VALUES (1001, 10, 250.00);
+SAVEPOINT s1;
+
+INSERT INTO OrderItems VALUES (1001, 'P101', 2);
+SAVEPOINT s2;
+
+INSERT INTO OrderItems VALUES (1001, 'P999', 1);   -- bad product ID!
+
+-- Oops — roll back only the last insert, keep the rest
+ROLLBACK TO s2;
+
+-- Now fix and try again
+INSERT INTO OrderItems VALUES (1001, 'P102', 1);
+
+COMMIT;
+
+-- ---------- Full rollback example ----------
+START TRANSACTION;
+DELETE FROM Products WHERE Price > 10000;
+-- Realize this was a mistake:
+ROLLBACK;   -- everything since BEGIN is undone</code></pre>
+          </div>
+
+          <div class="example-box">
+            <strong><i class="fas fa-lightbulb" aria-hidden="true"></i>Simple Example</strong>
+            <p class="mb-0">A bank transfer from Alice to Bob involves two UPDATEs. If the second one fails (say, Bob's account is locked), the whole transfer must be cancelled — otherwise Alice loses 500 and Bob gains nothing. TCL makes this atomic: <code class="inline">START TRANSACTION</code> → both UPDATEs → <code class="inline">COMMIT</code> on success, or <code class="inline">ROLLBACK</code> on any failure.</p>
+          </div>
+
+          <div class="real-life-box">
+            <strong><i class="fas fa-briefcase" aria-hidden="true"></i>Real-Life Use Case</strong>
+            <p class="mb-0">Every <strong>ATM withdrawal</strong> is a transaction: dispense cash and update the balance — both must succeed. If the cash dispenser jams after the balance is updated, ROLLBACK reverses the deduction. Similarly, <strong>flight bookings</strong> use TCL to reserve seats across multiple systems (inventory, payment, ticketing) — either all succeed or all fail.</p>
+          </div>
+
+          <div class="info-box">
+            <strong><i class="fas fa-info-circle" aria-hidden="true"></i>Implicit vs Explicit Transactions</strong>
+            <p class="mb-0">By default, most DBMS use <strong>autocommit</strong> — every statement is its own transaction. Wrap multiple statements in <code class="inline">START TRANSACTION … COMMIT</code> when they must succeed or fail together.</p>
+          </div>
+        </article>
+
+        <!-- ============ TOPIC 3.8 ============ -->
+        <article class="note-card topic-section" id="topic-3-8">
+          <h3><span class="topic-number">3.8</span> Query Specifications and Optimization Basics</h3>
+
+          <h4><i class="fas fa-book" aria-hidden="true"></i>Definition</h4>
+          <p><strong>Query optimization</strong> is the process by which the DBMS finds the most efficient way to execute a query. A single SQL query can often be executed in many different ways (different join orders, index usage, etc.), and the optimizer's job is to choose the cheapest plan. <strong>Query specification</strong> refers to how well the query is written — clear, precise SQL helps the optimizer do its job.</p>
+
+          <h4><i class="fas fa-star" aria-hidden="true"></i>Why Optimization Matters</h4>
+          <ul>
+            <li>A poorly tuned query can take <strong>minutes</strong>; the same query optimized can take <strong>milliseconds</strong>.</li>
+            <li>Reduces load on the database server (CPU, memory, disk I/O).</li>
+            <li>Improves user experience — fast apps need fast queries.</li>
+            <li>Scales better as data grows.</li>
+          </ul>
+
+          <h4><i class="fas fa-layer-group" aria-hidden="true"></i>How the Optimizer Works</h4>
+          <ol>
+            <li><strong>Parse</strong> — check syntax.</li>
+            <li><strong>Validate</strong> — check tables/columns exist, permissions.</li>
+            <li><strong>Rewrite</strong> — apply algebraic rules (e.g., push WHERE down).</li>
+            <li><strong>Plan</strong> — consider multiple execution plans.</li>
+            <li><strong>Cost</strong> — estimate cost of each plan using statistics.</li>
+            <li><strong>Choose</strong> — pick the lowest-cost plan.</li>
+            <li><strong>Execute</strong> — run the chosen plan.</li>
+          </ol>
+
+          <h4><i class="fas fa-diagram-project" aria-hidden="true"></i>Diagram — Query Optimization Pipeline</h4>
+          <div class="diagram-box">
+            <svg viewBox="0 0 700 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Query optimization pipeline">
+              <defs>
+                <marker id="opt-arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+                  <path d="M0,0 L0,6 L9,3 z" fill="#0d6efd"/>
+                </marker>
+              </defs>
+
+              <rect x="20" y="60" width="100" height="70" rx="8" fill="#eef3fc" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="70" y="90" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="12" font-weight="700" fill="#1e2b4f">SQL Query</text>
+              <text x="70" y="108" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#4a5a78">written by user</text>
+
+              <line x1="120" y1="95" x2="150" y2="95" stroke="#0d6efd" stroke-width="2" marker-end="url(#opt-arrow)"/>
+
+              <rect x="155" y="60" width="100" height="70" rx="8" fill="#eef3fc" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="205" y="90" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#1e2b4f">Parse &amp;</text>
+              <text x="205" y="108" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#1e2b4f">Validate</text>
+
+              <line x1="255" y1="95" x2="285" y2="95" stroke="#0d6efd" stroke-width="2" marker-end="url(#opt-arrow)"/>
+
+              <rect x="290" y="60" width="100" height="70" rx="8" fill="#ffc107" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="340" y="90" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#1e2b4f">Rewrite</text>
+              <text x="340" y="108" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#4a5a78">push WHERE down</text>
+
+              <line x1="390" y1="95" x2="420" y2="95" stroke="#0d6efd" stroke-width="2" marker-end="url(#opt-arrow)"/>
+
+              <rect x="425" y="60" width="100" height="70" rx="8" fill="#ffc107" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="475" y="90" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#1e2b4f">Cost &amp;</text>
+              <text x="475" y="108" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#1e2b4f">Choose Plan</text>
+
+              <line x1="525" y1="95" x2="555" y2="95" stroke="#0d6efd" stroke-width="2" marker-end="url(#opt-arrow)"/>
+
+              <rect x="560" y="60" width="120" height="70" rx="8" fill="#198754" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="620" y="90" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="12" font-weight="700" fill="#fff">Execute</text>
+              <text x="620" y="108" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#e6edf9">return result</text>
+
+              <text x="350" y="170" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-style="italic" fill="#7a8bab">The optimizer picks the cheapest of many possible execution plans</text>
+            </svg>
+            <div class="diagram-caption">Figure 3.8 — How a query flows through the optimizer</div>
+          </div>
+
+          <h4><i class="fas fa-code" aria-hidden="true"></i>Syntax — Analyzing and improving queries</h4>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="code-block-lang"><i class="fas fa-database" aria-hidden="true"></i> SQL — EXPLAIN + tuning</span>
+              <button class="code-copy-btn" type="button" aria-label="Copy SQL code"><i class="fas fa-copy" aria-hidden="true"></i> Copy</button>
+            </div>
+            <pre><code>-- 1. See the execution plan (MySQL)
+EXPLAIN SELECT * FROM Employees WHERE Name = 'Ali';
+
+-- PostgreSQL version
+EXPLAIN ANALYZE SELECT * FROM Employees WHERE Name = 'Ali';
+
+-- 2. SLOW query — no index on Name
+SELECT * FROM Employees WHERE Name = 'Ali';      -- full table scan!
+
+-- 3. Add an index — now the query uses an index scan
+CREATE INDEX idx_employees_name ON Employees(Name);
+
+-- 4. Avoid SELECT * — fetch only what you need
+-- BAD (reads extra columns, more I/O)
+SELECT * FROM Employees WHERE DeptID = 10;
+
+-- GOOD (reads only needed columns)
+SELECT Name, Salary FROM Employees WHERE DeptID = 10;
+
+-- 5. Filter early — push WHERE into subqueries
+-- BAD (aggregates everything then filters)
+SELECT * FROM (
+  SELECT DeptID, AVG(Salary) AS AvgSal
+  FROM Employees
+  GROUP BY DeptID
+) AS sub
+WHERE AvgSal > 60000;
+
+-- GOOD (filters before aggregation)
+SELECT DeptID, AVG(Salary) AS AvgSal
+FROM Employees
+GROUP BY DeptID
+HAVING AVG(Salary) > 60000;
+
+-- 6. Use EXISTS instead of IN when possible (better for large sets)
+SELECT * FROM Employees e
+WHERE EXISTS (
+    SELECT 1 FROM Departments d
+    WHERE d.DeptID = e.DeptID AND d.Budget > 1000000
+);</code></pre>
+          </div>
+
+          <div class="example-box">
+            <strong><i class="fas fa-lightbulb" aria-hidden="true"></i>Simple Example</strong>
+            <p class="mb-1"><strong>Before:</strong> <code class="inline">SELECT * FROM Orders WHERE CustomerID = 101;</code> without an index → scans 1M rows in 2 seconds.</p>
+            <p class="mb-0"><strong>After:</strong> <code class="inline">CREATE INDEX idx_orders_cust ON Orders(CustomerID);</code> → same query in 5ms.</p>
+          </div>
+
+          <div class="real-life-box">
+            <strong><i class="fas fa-briefcase" aria-hidden="true"></i>Real-Life Use Case</strong>
+            <p class="mb-0">An e-commerce site's "order history" page was taking 8 seconds to load. Running <code class="inline">EXPLAIN</code> revealed a full table scan on 50 million orders. Adding a composite index on <code class="inline">(CustomerID, OrderDate)</code> and rewriting the query to avoid <code class="inline">SELECT *</code> reduced load time to 40ms.</p>
+          </div>
+
+          <div class="info-box">
+            <strong><i class="fas fa-info-circle" aria-hidden="true"></i>Golden Rules</strong>
+            <ul class="mb-0">
+              <li>Always filter with <code class="inline">WHERE</code> before sorting/aggregating.</li>
+              <li>Avoid <code class="inline">SELECT *</code> — fetch only what you need.</li>
+              <li>Use indexes on columns in <code class="inline">WHERE</code>, <code class="inline">JOIN</code>, and <code class="inline">ORDER BY</code>.</li>
+              <li>Run <code class="inline">EXPLAIN</code> before deploying any slow query.</li>
+              <li>Keep statistics up-to-date (let the DBMS auto-analyze).</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- ============ TOPIC 3.9 ============ -->
+        <article class="note-card topic-section" id="topic-3-9">
+          <h3><span class="topic-number">3.9</span> Stored Procedures, Functions, and Triggers</h3>
+
+          <h4><i class="fas fa-book" aria-hidden="true"></i>Definition</h4>
+          <p>These are <strong>server-side programs</strong> stored inside the database. Instead of sending many SQL statements from the application each time, you save the logic once in the DBMS and call it with a single command.</p>
+          <ul>
+            <li><strong>Stored Procedure</strong> — a named block of SQL that performs an action. Can accept parameters, return multiple result sets, and contain transaction logic. Called with <code class="inline">CALL</code>.</li>
+            <li><strong>Function</strong> — a routine that returns a <strong>single value</strong> (scalar) or a table. Can be used inside <code class="inline">SELECT</code> statements, WHERE clauses, etc.</li>
+            <li><strong>Trigger</strong> — a block of SQL that runs <strong>automatically</strong> in response to a DML event (INSERT, UPDATE, DELETE) on a specific table. Cannot be called manually.</li>
+          </ul>
+
+          <h4><i class="fas fa-layer-group" aria-hidden="true"></i>Comparison</h4>
+          <table class="notes-table">
+            <thead>
+              <tr><th>Aspect</th><th>Stored Procedure</th><th>Function</th><th>Trigger</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>Returns</strong></td><td>0+ values / result sets</td><td>Exactly 1 value (or table)</td><td>Nothing</td></tr>
+              <tr><td><strong>Called by</strong></td><td>User or app (<code class="inline">CALL</code>)</td><td>Inside SQL expressions</td><td>DBMS event (INSERT/UPDATE/DELETE)</td></tr>
+              <tr><td><strong>Can modify data?</strong></td><td>Yes</td><td>Usually no (read-only)</td><td>Yes (BEFORE/AFTER)</td></tr>
+              <tr><td><strong>Transaction control</strong></td><td>Yes</td><td>No</td><td>No</td></tr>
+              <tr><td><strong>Common use</strong></td><td>Business logic, batch jobs</td><td>Computed columns, validations</td><td>Auditing, enforcing rules</td></tr>
+            </tbody>
+          </table>
+
+          <h4><i class="fas fa-diagram-project" aria-hidden="true"></i>Diagram — Where each lives</h4>
+          <div class="diagram-box">
+            <svg viewBox="0 0 700 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram showing stored procedures, functions, and triggers relative to tables and applications">
+              <!-- Application -->
+              <rect x="30" y="60" width="140" height="100" rx="10" fill="#1e2b4f" stroke="#ffc107" stroke-width="2"/>
+              <text x="100" y="95" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="13" font-weight="700" fill="#fff">Application</text>
+              <text x="100" y="115" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#b9cdf5">Java, Python, etc.</text>
+
+              <!-- Arrows to procedure and function -->
+              <line x1="170" y1="90" x2="270" y2="90" stroke="#0d6efd" stroke-width="2"/>
+              <text x="220" y="82" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#0d6efd">CALL</text>
+
+              <line x1="170" y1="130" x2="270" y2="130" stroke="#0d6efd" stroke-width="2"/>
+              <text x="220" y="146" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#0d6efd">SELECT fn()</text>
+
+              <!-- Procedures & Functions -->
+              <rect x="275" y="55" width="150" height="55" rx="8" fill="#ffc107" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="350" y="80" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="12" font-weight="700" fill="#1e2b4f">Stored Procedure</text>
+              <text x="350" y="96" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#4a5a78">saved SQL logic</text>
+
+              <rect x="275" y="125" width="150" height="55" rx="8" fill="#ffc107" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="350" y="150" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="12" font-weight="700" fill="#1e2b4f">Function</text>
+              <text x="350" y="166" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#4a5a78">returns a value</text>
+
+              <!-- Arrows to table -->
+              <line x1="425" y1="82" x2="525" y2="82" stroke="#0d6efd" stroke-width="2"/>
+              <line x1="425" y1="152" x2="525" y2="152" stroke="#0d6efd" stroke-width="2"/>
+
+              <!-- Triggered by table -->
+              <line x1="525" y1="115" x2="425" y2="115" stroke="#d9534f" stroke-width="2" stroke-dasharray="4 3"/>
+              <text x="475" y="108" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#d9534f" font-weight="600">fires on DML</text>
+
+              <!-- Table -->
+              <rect x="525" y="55" width="150" height="120" rx="10" fill="#198754" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="600" y="85" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="13" font-weight="700" fill="#fff">TABLE</text>
+              <text x="600" y="105" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#e6edf9">INSERT / UPDATE</text>
+              <text x="600" y="120" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#e6edf9">DELETE</text>
+
+              <!-- Trigger label -->
+              <text x="600" y="160" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" font-weight="600" fill="#d9534f">← Trigger fires here</text>
+            </svg>
+            <div class="diagram-caption">Figure 3.9 — Procedures/functions are called; triggers fire automatically on DML</div>
+          </div>
+
+          <h4><i class="fas fa-code" aria-hidden="true"></i>Syntax — All three examples (MySQL)</h4>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="code-block-lang"><i class="fas fa-database" aria-hidden="true"></i> SQL — Stored Procedure</span>
+              <button class="code-copy-btn" type="button" aria-label="Copy SQL code"><i class="fas fa-copy" aria-hidden="true"></i> Copy</button>
+            </div>
+            <pre><code>DELIMITER $
+
+CREATE PROCEDURE GiveRaise(IN p_dept_id INT, IN p_percent DECIMAL(5,2))
+BEGIN
+    UPDATE Employees
+    SET Salary = Salary * (1 + p_percent / 100)
+    WHERE DeptID = p_dept_id;
+
+    SELECT CONCAT('Raise applied to ', ROW_COUNT(), ' employees') AS Status;
+END$
+
+DELIMITER ;
+
+-- Call it
+CALL GiveRaise(10, 10);   -- 10% raise to all in dept 10</code></pre>
+          </div>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="code-block-lang"><i class="fas fa-database" aria-hidden="true"></i> SQL — Function</span>
+              <button class="code-copy-btn" type="button" aria-label="Copy SQL code"><i class="fas fa-copy" aria-hidden="true"></i> Copy</button>
+            </div>
+            <pre><code>DELIMITER $
+
+CREATE FUNCTION CalculateBonus(p_salary DECIMAL(10,2))
+RETURNS DECIMAL(10,2)
+DETERMINISTIC
+BEGIN
+    DECLARE bonus DECIMAL(10,2);
+
+    IF p_salary > 80000 THEN
+        SET bonus = p_salary * 0.15;
+    ELSEIF p_salary > 50000 THEN
+        SET bonus = p_salary * 0.10;
+    ELSE
+        SET bonus = p_salary * 0.05;
+    END IF;
+
+    RETURN bonus;
+END$
+
+DELIMITER ;
+
+-- Use it in a SELECT (like a built-in function)
+SELECT Name, Salary, CalculateBonus(Salary) AS Bonus
+FROM Employees;</code></pre>
+          </div>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="code-block-lang"><i class="fas fa-database" aria-hidden="true"></i> SQL — Trigger</span>
+              <button class="code-copy-btn" type="button" aria-label="Copy SQL code"><i class="fas fa-copy" aria-hidden="true"></i> Copy</button>
+            </div>
+            <pre><code>-- First, create an audit table
+CREATE TABLE SalaryAudit (
+    AuditID    INT AUTO_INCREMENT PRIMARY KEY,
+    EmpID      INT,
+    OldSalary  DECIMAL(10,2),
+    NewSalary  DECIMAL(10,2),
+    ChangedAt  TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    ChangedBy  VARCHAR(100)
+);
+
+DELIMITER $
+
+-- AFTER UPDATE trigger: automatically log any salary change
+CREATE TRIGGER trg_salary_audit
+AFTER UPDATE ON Employees
+FOR EACH ROW
+BEGIN
+    IF OLD.Salary <> NEW.Salary THEN
+        INSERT INTO SalaryAudit (EmpID, OldSalary, NewSalary, ChangedBy)
+        VALUES (OLD.EmpID, OLD.Salary, NEW.Salary, USER());
+    END IF;
+END$
+
+DELIMITER ;
+
+-- Now every salary change is logged — automatically!
+UPDATE Employees SET Salary = 60000 WHERE EmpID = 1;
+-- Check the audit table:
+SELECT * FROM SalaryAudit;</code></pre>
+          </div>
+
+          <div class="example-box">
+            <strong><i class="fas fa-lightbulb" aria-hidden="true"></i>Simple Example</strong>
+            <p class="mb-1"><strong>Stored Procedure:</strong> "Give a 10% raise to everyone in department 10" — run <code class="inline">CALL GiveRaise(10, 10)</code>.</p>
+            <p class="mb-1"><strong>Function:</strong> "Calculate bonus based on salary" — used inside a SELECT: <code class="inline">SELECT Name, CalculateBonus(Salary) FROM Employees</code>.</p>
+            <p class="mb-0"><strong>Trigger:</strong> "Log every salary change automatically" — the trigger fires when anyone runs UPDATE on Employees, no matter who.</p>
+          </div>
+
+          <div class="real-life-box">
+            <strong><i class="fas fa-briefcase" aria-hidden="true"></i>Real-Life Use Case</strong>
+            <p class="mb-0"><strong>Banking:</strong> a stored procedure <code class="inline">TransferFunds(from_acct, to_acct, amount)</code> wraps the whole transaction logic — used by both mobile app and web app, so business rules live in one place. A trigger automatically logs every balance change to an <code class="inline">Audit</code> table for compliance. A function <code class="inline">CalculateInterest(principal, years)</code> is used in reports and dashboards.</p>
+          </div>
+
+          <div class="info-box">
+            <strong><i class="fas fa-info-circle" aria-hidden="true"></i>Best Practices</strong>
+            <ul class="mb-0">
+              <li>Keep procedures/functions short and focused.</li>
+              <li>Use triggers sparingly — they can cause hard-to-debug side effects.</li>
+              <li>Document all triggers (a trigger firing on every update can silently slow down bulk operations).</li>
+              <li>Version-control your stored routines like any other code.</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- ===== PRACTICAL LABS SUMMARY ===== -->
+        <article class="note-card">
+          <h3 style="border-bottom-color: var(--accent-blue);">
+            <i class="fas fa-flask me-2" style="color: var(--accent-blue);" aria-hidden="true"></i>Practical Labs for Module 3
+          </h3>
+          <p>Apply the concepts from this module with hands-on labs:</p>
+          <ul>
+            <li><strong>Lab 3.1:</strong> Writing Basic SQL Queries (<code class="inline">SELECT</code>, <code class="inline">WHERE</code>, <code class="inline">ORDER BY</code>).</li>
+            <li><strong>Lab 3.2:</strong> Implementing JOINs and Subqueries.</li>
+            <li><strong>Lab 3.3:</strong> Creating and Managing Tables using DDL.</li>
+            <li><strong>Lab 3.4:</strong> Creating Stored Procedures and Triggers.</li>
+          </ul>
+          <p class="mb-0"><a href="IT507_Practical_Module_3_Query_Languages_and_Specifications_CPP.pdf" target="_blank" rel="noopener" class="notes-link"><i class="fas fa-file-pdf" aria-hidden="true"></i> Download Module 3 Practical Lab Guide (PDF)</a></p>
+        </article>
+
+        <!-- ===== QUICK REVISION ===== -->
+        <article class="note-card">
+          <h3 style="border-bottom-color: var(--accent-green);">
+            <i class="fas fa-list-check me-2" style="color: var(--accent-green);" aria-hidden="true"></i>Quick Revision — Module 3 in One Glance
+          </h3>
+          <table class="notes-table">
+            <thead>
+              <tr><th>Topic</th><th>Key Takeaway</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>3.1 Query Languages</td><td>Declarative ways to talk to a database — SQL is the standard.</td></tr>
+              <tr><td>3.2 SQL Overview</td><td>Five sublanguages: DDL, DML, DQL, DCL, TCL — each with a purpose.</td></tr>
+              <tr><td>3.3 DDL</td><td>CREATE, ALTER, DROP — define and modify structure (schema).</td></tr>
+              <tr><td>3.4 DML</td><td>INSERT, UPDATE, DELETE — manipulate the data inside tables.</td></tr>
+              <tr><td>3.5 DQL</td><td>SELECT + JOINs + Subqueries — the most-used SQL command.</td></tr>
+              <tr><td>3.6 DCL</td><td>GRANT, REVOKE — control who can do what (security).</td></tr>
+              <tr><td>3.7 TCL</td><td>COMMIT, ROLLBACK, SAVEPOINT — make multi-step changes atomic.</td></tr>
+              <tr><td>3.8 Optimization</td><td>Explain plans, indexes, and query rewrites cut execution time from minutes to ms.</td></tr>
+              <tr><td>3.9 Stored Routines</td><td>Procedures (do actions), functions (return values), triggers (react to events).</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <!-- ===== NAVIGATION ===== -->
+        <div class="note-card" style="text-align: center;">
+          <a href="index.html" class="notes-link" style="font-size: 1rem;"><i class="fas fa-arrow-left" aria-hidden="true"></i> Back to IT-507 Course Index</a>
+          <span class="mx-3 text-muted">·</span>
+          <a href="it507-module-2.html" class="notes-link" style="font-size: 1rem;"><i class="fas fa-arrow-left" aria-hidden="true"></i> Previous: Module 2</a>
+          <span class="mx-3 text-muted">·</span>
+          <a href="it507-module-4.html" class="notes-link" style="font-size: 1rem;">Next: Module 4 — Data Structures &amp; File Organizations <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-10 col-xl-8 text-center">
+        <p class="mb-2">
+          <i class="fas fa-crown me-2" style="color:var(--accent-yellow);" aria-hidden="true"></i>
+          <strong>Notes compiled by Sir Ali Raza</strong>
+        </p>
+        <p class="mb-2">
+          <i class="fas fa-globe me-1" aria-hidden="true"></i>
+          <a href="https://ali-raza-muhammad-iqbal.github.io" target="_blank" rel="noopener noreferrer">
+            ali-raza-muhammad-iqbal.github.io
+          </a>
+          <span class="mx-2">·</span>
+          <i class="fas fa-envelope me-1" aria-hidden="true"></i>
+          <a href="mailto:Mr_Ali_Raza@yahoo.com">Mr_Ali_Raza@yahoo.com</a>
+        </p>
+
+        <div class="footer-social mb-2" aria-label="Social media links">
+          <a href="https://github.com/Ali-Raza-Muhammad-Iqbal" target="_blank" rel="noopener noreferrer" title="GitHub" aria-label="GitHub"><i class="fab fa-github" aria-hidden="true"></i></a>
+          <a href="https://www.linkedin.com/in/ali-raza-muhammad-iqbal" target="_blank" rel="noopener noreferrer" title="LinkedIn" aria-label="LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
+          <a href="https://www.tiktok.com/@ali_raza_muhammad_iqbal" target="_blank" rel="noopener noreferrer" title="TikTok" aria-label="TikTok"><i class="fab fa-tiktok" aria-hidden="true"></i></a>
+          <a href="https://www.facebook.com/AliRazaMuhammadIqbal1" target="_blank" rel="noopener noreferrer" title="Facebook" aria-label="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+          <a href="https://www.instagram.com/ali_raza_muhammad_iqbal" target="_blank" rel="noopener noreferrer" title="Instagram" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+          <a href="https://x.com/Ali_Raza_Iqbal" target="_blank" rel="noopener noreferrer" title="X (Twitter)" aria-label="X (Twitter)"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i></a>
+          <a href="https://www.youtube.com/@Ali_Raza_Muhammad_Iqbal" target="_blank" rel="noopener noreferrer" title="YouTube" aria-label="YouTube"><i class="fab fa-youtube" aria-hidden="true"></i></a>
+          <a href="mailto:Mr_Ali_Raza@yahoo.com" title="Email" aria-label="Email"><i class="fas fa-envelope" aria-hidden="true"></i></a>
+        </div>
+
+        <p class="small mb-0" style="color:#b8c8f0;">
+          © 2025 · IT-507 Database Administration and Management · Module 3 · All credits to Sir Ali Raza.
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+(function() {
+  'use strict';
+
+  const themeToggle = document.getElementById('themeToggle');
+  const themeIcon = document.getElementById('themeIcon');
+  const root = document.documentElement;
+
+  function applyTheme(theme) {
+    if (theme === 'dark') {
+      root.setAttribute('data-theme', 'dark');
+      themeIcon.classList.remove('fa-moon');
+      themeIcon.classList.add('fa-sun');
+      themeToggle.setAttribute('aria-label', 'Switch to light mode');
+    } else {
+      root.removeAttribute('data-theme');
+      themeIcon.classList.remove('fa-sun');
+      themeIcon.classList.add('fa-moon');
+      themeToggle.setAttribute('aria-label', 'Switch to dark mode');
+    }
+  }
+
+  const savedTheme = localStorage.getItem('it507-theme');
+  if (savedTheme) {
+    applyTheme(savedTheme);
+  } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    applyTheme('dark');
+  }
+
+  themeToggle.addEventListener('click', function() {
+    const isDark = root.getAttribute('data-theme') === 'dark';
+    const newTheme = isDark ? 'light' : 'dark';
+    applyTheme(newTheme);
+    localStorage.setItem('it507-theme', newTheme);
+  });
+
+  const progressBar = document.getElementById('progressBar');
+  function updateProgress() {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const percent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    progressBar.style.width = percent + '%';
+    progressBar.setAttribute('aria-valuenow', Math.round(percent));
+  }
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  window.addEventListener('resize', updateProgress);
+
+  const backToTop = document.getElementById('backToTop');
+  function toggleBackToTop() {
+    if (window.scrollY > 400) {
+      backToTop.classList.add('visible');
+    } else {
+      backToTop.classList.remove('visible');
+    }
+  }
+  window.addEventListener('scroll', toggleBackToTop, { passive: true });
+  backToTop.addEventListener('click', function() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  document.querySelectorAll('.code-copy-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      const codeBlock = btn.closest('.code-block');
+      const code = codeBlock.querySelector('pre code') || codeBlock.querySelector('pre');
+      const text = code ? code.textContent : '';
+      const originalHTML = btn.innerHTML;
+
+      function showCopied() {
+        btn.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i> Copied!';
+        btn.classList.add('copied');
+        setTimeout(function() {
+          btn.innerHTML = originalHTML;
+          btn.classList.remove('copied');
+        }, 1500);
+      }
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(showCopied).catch(function() {
+          fallbackCopy(text, showCopied);
+        });
+      } else {
+        fallbackCopy(text, showCopied);
+      }
+    });
+  });
+
+  function fallbackCopy(text, callback) {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try {
+      document.execCommand('copy');
+      if (callback) callback();
+    } catch (err) {
+      console.warn('Copy failed', err);
+    }
+    document.body.removeChild(ta);
+  }
+
+  function highlightHash() {
+    const hash = window.location.hash;
+    if (!hash) return;
+    const target = document.querySelector(hash);
+    if (!target) return;
+    target.style.transition = 'background 0.4s ease';
+    target.style.background = 'rgba(255, 193, 7, 0.15)';
+    setTimeout(function() {
+      target.style.background = '';
+    }, 2000);
+    setTimeout(function() {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 100);
+  }
+  window.addEventListener('load', highlightHash);
+  window.addEventListener('hashchange', highlightHash);
+
+  updateProgress();
+  toggleBackToTop();
+
+})();
+</script>
+</body>
+</html>
