@@ -1,0 +1,2110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+  <!-- ===== PRIMARY SEO META ===== -->
+  <title>IT-507 Module 6: Database Programming, Integrity & Security — Notes | Sir Ali Raza</title>
+  <meta name="description" content="Complete study notes for IT-507 Module 6: Database Programming, Integrity & Security. Covers embedded SQL, dynamic SQL, ODBC, JDBC, data integrity, constraints, authentication, authorization, RBAC, encryption, auditing, and SQL injection prevention with definitions, types, real-life examples, diagrams, syntax, and simple examples by Sir Ali Raza.">
+  <meta name="keywords" content="IT-507 Module 6, Database Programming, Embedded SQL, Dynamic SQL, ODBC, JDBC, Data Integrity, Entity Integrity, Referential Integrity, Domain Integrity, Constraints, PRIMARY KEY, FOREIGN KEY, UNIQUE, CHECK, NOT NULL, Database Security, Authentication, Authorization, User Management, RBAC, Role-Based Access Control, Encryption, Auditing, SQL Injection, SQLi Prevention, Prepared Statements, Parameterized Queries, database notes, IT-507 notes, IT-507 PDF, database administration notes, Sir Ali Raza, MySQL, PostgreSQL, SQL Server">
+  <meta name="author" content="Sir Ali Raza">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta name="theme-color" content="#1e2b4f">
+  <link rel="canonical" href="https://ali-raza-muhammad-iqbal.github.io/it507-module-6.html">
+
+  <!-- ===== OPEN GRAPH ===== -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="IT-507 · Database Administration and Management">
+  <meta property="og:title" content="IT-507 Module 6: Database Programming, Integrity & Security — Notes">
+  <meta property="og:description" content="Complete notes on embedded SQL, dynamic SQL, ODBC, JDBC, data integrity, constraints, authentication, authorization, RBAC, encryption, auditing, and SQL injection prevention — with definitions, types, real-life examples, diagrams, syntax, and simple examples.">
+  <meta property="og:url" content="https://ali-raza-muhammad-iqbal.github.io/it507-module-6.html">
+  <meta property="og:image" content="https://ali-raza-muhammad-iqbal.github.io/preview.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="IT-507 Module 6 Database Programming Integrity and Security Notes cover">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:email" content="Mr_Ali_Raza@yahoo.com">
+  <meta property="article:author" content="Sir Ali Raza">
+  <meta property="article:section" content="Database Administration">
+  <meta property="article:tag" content="Database Security">
+  <meta property="article:tag" content="SQL Injection">
+  <meta property="article:tag" content="Data Integrity">
+
+  <!-- ===== TWITTER CARD ===== -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="IT-507 Module 6: Database Programming, Integrity & Security — Notes">
+  <meta name="twitter:description" content="Full notes for IT-507 Module 6 — embedded SQL, ODBC/JDBC, constraints, RBAC, encryption, auditing, and SQL injection prevention. Definitions, types, examples, diagrams, syntax.">
+  <meta name="twitter:image" content="https://ali-raza-muhammad-iqbal.github.io/preview.png">
+  <meta name="twitter:image:alt" content="IT-507 Module 6 Database Programming Integrity and Security Notes cover">
+  <meta name="twitter:creator" content="@Ali_Raza_Iqbal">
+  <meta name="twitter:site" content="@Ali_Raza_Iqbal">
+
+  <!-- ===== ADDITIONAL SEO ===== -->
+  <meta name="rating" content="general">
+  <meta name="language" content="English">
+  <meta name="revisit-after" content="7 days">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="icon" type="image/x-icon" href="https://ali-raza-muhammad-iqbal.github.io/favicon.ico">
+  <link rel="apple-touch-icon" href="https://ali-raza-muhammad-iqbal.github.io/apple-touch-icon.png">
+
+  <!-- ===== STRUCTURED DATA ===== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LearningResource",
+    "name": "IT-507 Module 6: Database Programming, Integrity & Security",
+    "description": "Complete study notes for IT-507 Module 6 covering database programming (embedded SQL, dynamic SQL), database connectivity (ODBC, JDBC), data integrity (entity, referential, domain), constraints (PRIMARY KEY, FOREIGN KEY, UNIQUE, CHECK, NOT NULL), database security (authentication, authorization), user management and role-based access control, encryption and auditing, and SQL injection prevention — with definitions, types, real-life examples, diagrams, syntax, and simple examples.",
+    "url": "https://ali-raza-muhammad-iqbal.github.io/it507-module-6.html",
+    "image": "https://ali-raza-muhammad-iqbal.github.io/preview.png",
+    "inLanguage": "en",
+    "educationalLevel": "Undergraduate",
+    "learningResourceType": "Notes",
+    "isPartOf": {
+      "@type": "Course",
+      "name": "IT-507 Database Administration and Management",
+      "url": "https://ali-raza-muhammad-iqbal.github.io/index.html"
+    },
+    "author": {
+      "@type": "Person",
+      "name": "Sir Ali Raza",
+      "url": "https://ali-raza-muhammad-iqbal.github.io",
+      "email": "mailto:Mr_Ali_Raza@yahoo.com",
+      "sameAs": [
+        "https://github.com/Ali-Raza-Muhammad-Iqbal",
+        "https://www.linkedin.com/in/ali-raza-muhammad-iqbal",
+        "https://ali-raza-muhammad-iqbal.github.io",
+        "https://www.tiktok.com/@ali_raza_muhammad_iqbal",
+        "https://www.facebook.com/AliRazaMuhammadIqbal1",
+        "https://www.instagram.com/ali_raza_muhammad_iqbal",
+        "https://x.com/Ali_Raza_Iqbal",
+        "https://www.youtube.com/@Ali_Raza_Muhammad_Iqbal"
+      ]
+    },
+    "about": [
+      { "@type": "Thing", "name": "Database Programming" },
+      { "@type": "Thing", "name": "ODBC and JDBC" },
+      { "@type": "Thing", "name": "Data Integrity" },
+      { "@type": "Thing", "name": "Database Security" },
+      { "@type": "Thing", "name": "SQL Injection Prevention" }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://ali-raza-muhammad-iqbal.github.io" },
+      { "@type": "ListItem", "position": 2, "name": "IT-507 Database Administration and Management", "item": "https://ali-raza-muhammad-iqbal.github.io/index.html" },
+      { "@type": "ListItem", "position": 3, "name": "Module 6: Database Programming, Integrity & Security", "item": "https://ali-raza-muhammad-iqbal.github.io/it507-module-6.html" }
+    ]
+  }
+  </script>
+
+  <!-- ===== BOOTSTRAP + FONTAWESOME ===== -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <style>
+    /* ===== CSS VARIABLES (Light + Dark) ===== */
+    :root {
+      --bg-body: #f8faff;
+      --bg-card: #ffffff;
+      --bg-subtle: #eef3fc;
+      --bg-code: #1e2b4f;
+      --bg-code-inline: #eef3fc;
+      --text-primary: #1e2b4f;
+      --text-secondary: #4a5a78;
+      --text-muted: #7a8bab;
+      --text-code: #e6edf9;
+      --border-color: #e0e8f5;
+      --border-strong: #bac8e0;
+      --accent-yellow: #ffc107;
+      --accent-blue: #0d6efd;
+      --accent-red: #d9534f;
+      --accent-green: #198754;
+      --accent-gold: #b07d00;
+      --header-from: #1e2b4f;
+      --header-to: #2a3f6e;
+      --footer-bg: #1e2b4f;
+      --footer-text: #cddcff;
+      --shadow-sm: 0 2px 8px rgba(30, 43, 79, 0.05);
+      --shadow-md: 0 12px 30px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 10px 25px rgba(0, 20, 40, 0.2);
+    }
+    [data-theme="dark"] {
+      --bg-body: #0f1729;
+      --bg-card: #1a2338;
+      --bg-subtle: #243155;
+      --bg-code: #0a1120;
+      --bg-code-inline: #243155;
+      --text-primary: #e6edf9;
+      --text-secondary: #b6c4e0;
+      --text-muted: #8a9bbb;
+      --text-code: #e6edf9;
+      --border-color: #2f3f63;
+      --border-strong: #3d4f7a;
+      --header-from: #0d1526;
+      --header-to: #1a2846;
+      --footer-bg: #0d1526;
+      --footer-text: #b8c8f0;
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+      --shadow-md: 0 12px 30px rgba(0, 0, 0, 0.4);
+      --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.5);
+    }
+    [data-theme="dark"] body { background-color: var(--bg-body); color: var(--text-primary); }
+    [data-theme="dark"] .note-card { background: var(--bg-card); border-color: var(--border-color); }
+    [data-theme="dark"] .topic-section h3 { color: var(--text-primary); }
+    [data-theme="dark"] .topic-section h4 { color: var(--accent-yellow); }
+    [data-theme="dark"] code.inline { background: var(--bg-code-inline); color: #6b9eff; }
+    [data-theme="dark"] .example-box { background: var(--bg-subtle); border-left-color: var(--accent-blue); }
+    [data-theme="dark"] .real-life-box { background: rgba(25, 135, 84, 0.12); border-left-color: var(--accent-green); }
+    [data-theme="dark"] .warning-box { background: rgba(217, 83, 79, 0.12); border-left-color: var(--accent-red); }
+    [data-theme="dark"] .info-box { background: rgba(255, 193, 7, 0.1); border-left-color: var(--accent-yellow); }
+    [data-theme="dark"] .diagram-box { background: var(--bg-subtle); border-color: var(--border-color); }
+    [data-theme="dark"] .toc-card { background: var(--bg-card); border-color: var(--border-color); }
+    [data-theme="dark"] .toc-card a { color: var(--text-secondary); }
+    [data-theme="dark"] .toc-card a:hover { color: var(--accent-yellow); }
+    [data-theme="dark"] .theme-toggle { background: var(--bg-card); color: var(--text-primary); border-color: var(--border-color); }
+    [data-theme="dark"] table.notes-table th { background: var(--bg-subtle); color: var(--text-primary); }
+    [data-theme="dark"] table.notes-table td { border-color: var(--border-color); }
+    [data-theme="dark"] .notes-link { color: var(--text-primary); border-bottom-color: #4a5f85; }
+    [data-theme="dark"] .notes-link:hover { color: #6b9eff; border-bottom-color: #6b9eff; }
+
+    /* ===== GLOBAL ===== */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
+      background-color: var(--bg-body);
+      font-family: 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', sans-serif;
+      overflow-x: hidden;
+      line-height: 1.65;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      color: var(--text-primary);
+    }
+    img, svg { max-width: 100%; height: auto; }
+
+    .progress-bar-top {
+      position: fixed; top: 0; left: 0; height: 3px;
+      background: linear-gradient(90deg, #ffc107, #0d6efd);
+      width: 0%; z-index: 9999; transition: width 0.1s linear;
+      box-shadow: 0 0 8px rgba(255, 193, 7, 0.5);
+    }
+
+    .theme-toggle {
+      position: fixed; top: 14px; right: 14px; z-index: 1000;
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--bg-card); border: 1px solid var(--border-color);
+      color: var(--text-primary); font-size: 1.1rem; cursor: pointer;
+      box-shadow: var(--shadow-md);
+      transition: transform 0.2s ease, background 0.2s ease;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .theme-toggle:hover { transform: scale(1.1) rotate(15deg); background: var(--accent-yellow); color: #1e2b4f; }
+    .theme-toggle:focus-visible { outline: 2px solid var(--accent-blue); outline-offset: 2px; }
+    .back-to-top {
+      position: fixed; bottom: 24px; right: 24px; z-index: 1000;
+      width: 46px; height: 46px; border-radius: 50%;
+      background: var(--accent-yellow); color: #1e2b4f; border: none;
+      font-size: 1.1rem; cursor: pointer;
+      box-shadow: 0 6px 20px rgba(255, 193, 7, 0.5);
+      opacity: 0; visibility: hidden; transform: translateY(20px);
+      transition: all 0.3s ease;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .back-to-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
+    .back-to-top:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(255, 193, 7, 0.7); }
+
+    .header-card {
+      background: linear-gradient(135deg, var(--header-from) 0%, var(--header-to) 100%);
+      color: white; border-radius: 0 0 2rem 2rem;
+      padding: clamp(1.5rem, 4vw, 2.5rem) clamp(1rem, 3vw, 2rem);
+      box-shadow: var(--shadow-lg);
+    }
+    .header-card h1 {
+      font-weight: 700; letter-spacing: -0.5px;
+      font-size: clamp(1.4rem, 4.5vw, 2.6rem);
+    }
+    .header-card .lead { font-weight: 300; color: #d4e2ff; font-size: clamp(0.9rem, 2vw, 1.1rem); }
+    .badge-code {
+      background-color: var(--accent-yellow); color: #1e2b4f;
+      font-weight: 600; font-size: clamp(0.95rem, 2.5vw, 1.3rem);
+      padding: 0.3rem 1rem; border-radius: 3rem; display: inline-block;
+      margin-bottom: 0.75rem; box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    .prepared-by {
+      font-size: clamp(0.85rem, 1.8vw, 1.05rem);
+      background: rgba(255,255,255,0.12); display: inline-block;
+      padding: 0.45rem 1.3rem; border-radius: 3rem;
+      backdrop-filter: blur(4px); margin-top: 0.5rem;
+    }
+
+    .social-wrap {
+      margin-top: 1.4rem; padding-top: 1.2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+    }
+    .social-title {
+      font-size: clamp(0.68rem, 1.8vw, 0.78rem);
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: #b9cdf5; font-weight: 600; margin-bottom: 0.85rem;
+    }
+    .social-title i { margin-right: 6px; }
+    .social-links {
+      display: flex; flex-wrap: wrap;
+      gap: clamp(0.4rem, 1.5vw, 0.6rem);
+      justify-content: center; list-style: none;
+      padding-left: 0; margin-bottom: 0;
+    }
+    .social-links a {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: clamp(38px, 8vw, 44px); height: clamp(38px, 8vw, 44px);
+      border-radius: 50%; background: rgba(255, 255, 255, 0.1);
+      color: #ffffff; font-size: clamp(0.95rem, 2.2vw, 1.1rem);
+      text-decoration: none;
+      transition: transform 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .social-links a:hover, .social-links a:focus-visible {
+      transform: translateY(-4px); background: #ffffff; color: #1e2b4f;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.28); outline: none;
+    }
+    .social-links a.gh:hover  { background: #24292e; color: #fff; }
+    .social-links a.li:hover  { background: #0a66c2; color: #fff; }
+    .social-links a.gl:hover  { background: var(--accent-yellow); color: #1e2b4f; }
+    .social-links a.tt:hover  { background: #000000; color: #fff; }
+    .social-links a.fb:hover  { background: #1877f2; color: #fff; }
+    .social-links a.ig:hover  { background: linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); color: #fff; }
+    .social-links a.x:hover   { background: #000000; color: #fff; }
+    .social-links a.yt:hover  { background: #ff0000; color: #fff; }
+    .social-links a.mail:hover{ background: #eab308; color: #1e2b4f; }
+
+    .toc-card {
+      background: var(--bg-card); border-radius: 1.25rem;
+      padding: clamp(1rem, 2.5vw, 1.5rem);
+      margin-top: 1.5rem; margin-bottom: 2rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-color);
+      position: sticky; top: 20px;
+    }
+    .toc-card h5 {
+      color: var(--text-primary); font-weight: 700; font-size: 0.95rem;
+      text-transform: uppercase; letter-spacing: 0.05em;
+      margin-bottom: 0.85rem; padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--accent-yellow);
+    }
+    .toc-card ol { padding-left: 1.2rem; margin-bottom: 0; }
+    .toc-card li { margin-bottom: 0.45rem; font-size: 0.88rem; }
+    .toc-card a { color: var(--text-secondary); text-decoration: none; transition: color 0.15s; }
+    .toc-card a:hover { color: var(--accent-blue); }
+
+    .note-card {
+      background: var(--bg-card); border-radius: 1.25rem;
+      padding: clamp(1rem, 3vw, 2rem);
+      margin-bottom: 1.5rem;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border-color);
+      transition: background 0.3s ease;
+    }
+    .topic-section { scroll-margin-top: 90px; }
+    .topic-section h3 {
+      color: var(--text-primary); font-weight: 700;
+      font-size: clamp(1.15rem, 3vw, 1.5rem);
+      margin-bottom: 1rem; padding-bottom: 0.6rem;
+      border-bottom: 3px solid var(--accent-yellow);
+      display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap;
+    }
+    .topic-number {
+      background: var(--accent-yellow); color: #1e2b4f;
+      font-weight: 700; font-size: 0.85em;
+      padding: 0.15rem 0.7rem; border-radius: 0.5rem;
+      display: inline-block; flex-shrink: 0;
+    }
+    .topic-section h4 {
+      color: var(--accent-blue); font-weight: 700;
+      font-size: clamp(0.98rem, 2.3vw, 1.1rem);
+      margin-top: 1.5rem; margin-bottom: 0.65rem;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .topic-section h4 i { color: var(--accent-yellow); }
+    .topic-section p {
+      color: var(--text-secondary); margin-bottom: 0.85rem;
+      font-size: clamp(0.9rem, 2vw, 0.98rem);
+    }
+    .topic-section ul, .topic-section ol {
+      color: var(--text-secondary);
+      font-size: clamp(0.9rem, 2vw, 0.98rem);
+      margin-bottom: 0.85rem; padding-left: 1.4rem;
+    }
+    .topic-section li { margin-bottom: 0.4rem; }
+    .topic-section strong { color: var(--text-primary); }
+
+    code.inline {
+      background: var(--bg-code-inline); color: var(--accent-blue);
+      padding: 0.12rem 0.45rem; border-radius: 0.3rem;
+      font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+      font-size: 0.88em; font-weight: 600; word-break: break-word;
+    }
+
+    .code-block {
+      position: relative; background: var(--bg-code);
+      border-radius: 0.75rem; margin: 1rem 0; overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .code-block-header {
+      background: rgba(255, 255, 255, 0.06);
+      padding: 0.5rem 0.85rem;
+      display: flex; justify-content: space-between; align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .code-block-lang {
+      color: #b9cdf5; font-size: 0.72rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      display: flex; align-items: center; gap: 0.4rem;
+    }
+    .code-copy-btn {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #e6edf9; font-size: 0.72rem;
+      padding: 0.3rem 0.7rem; border-radius: 0.35rem;
+      cursor: pointer; transition: 0.18s;
+      display: inline-flex; align-items: center; gap: 0.35rem;
+      font-weight: 500;
+    }
+    .code-copy-btn:hover { background: var(--accent-yellow); color: #1e2b4f; border-color: var(--accent-yellow); }
+    .code-copy-btn.copied { background: var(--accent-green); color: #fff; border-color: var(--accent-green); }
+    .code-block pre {
+      margin: 0; padding: 1rem 1.1rem; color: var(--text-code);
+      font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+      font-size: clamp(0.78rem, 1.9vw, 0.88rem);
+      line-height: 1.55; overflow-x: auto; white-space: pre;
+      scrollbar-width: thin;
+    }
+    .code-block pre::-webkit-scrollbar { height: 6px; }
+    .code-block pre::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 3px; }
+    .code-block pre code { color: inherit; background: none; padding: 0; font-size: inherit; }
+
+    .example-box, .real-life-box, .info-box, .warning-box {
+      padding: 0.85rem 1rem; border-radius: 0.6rem;
+      margin: 0.85rem 0; border-left: 4px solid;
+      font-size: clamp(0.88rem, 2vw, 0.95rem);
+    }
+    .example-box { background: var(--bg-subtle); border-left-color: var(--accent-blue); color: var(--text-secondary); }
+    .real-life-box { background: rgba(25, 135, 84, 0.08); border-left-color: var(--accent-green); color: var(--text-secondary); }
+    .info-box { background: rgba(255, 193, 7, 0.08); border-left-color: var(--accent-yellow); color: var(--text-secondary); }
+    .warning-box { background: rgba(217, 83, 79, 0.08); border-left-color: var(--accent-red); color: var(--text-secondary); }
+    .example-box strong, .real-life-box strong, .info-box strong, .warning-box strong {
+      color: var(--text-primary); display: block; margin-bottom: 0.35rem;
+      font-size: 0.88em; text-transform: uppercase; letter-spacing: 0.04em;
+    }
+    .example-box strong i, .real-life-box strong i, .info-box strong i, .warning-box strong i {
+      margin-right: 0.35rem;
+    }
+
+    .diagram-box {
+      background: var(--bg-subtle);
+      border: 1.5px dashed var(--border-strong);
+      border-radius: 0.75rem; padding: 1.2rem 0.85rem;
+      margin: 1rem 0; text-align: center; overflow-x: auto;
+    }
+    .diagram-box svg { max-width: 100%; height: auto; display: inline-block; }
+    .diagram-caption {
+      font-size: 0.8rem; color: var(--text-muted);
+      margin-top: 0.6rem; font-style: italic;
+    }
+
+    .notes-table {
+      width: 100%; border-collapse: separate; border-spacing: 0;
+      margin: 1rem 0; font-size: clamp(0.82rem, 1.9vw, 0.92rem);
+      border-radius: 0.6rem; overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+    .notes-table th {
+      background: var(--bg-subtle); color: var(--text-primary);
+      font-weight: 700; padding: 0.7rem 0.85rem;
+      text-align: left; border-bottom: 2px solid var(--border-strong);
+      font-size: 0.82em; text-transform: uppercase; letter-spacing: 0.04em;
+    }
+    .notes-table td {
+      padding: 0.65rem 0.85rem;
+      border-bottom: 1px solid var(--border-color);
+      color: var(--text-secondary); vertical-align: top;
+    }
+    .notes-table tr:last-child td { border-bottom: none; }
+    .notes-table tr:hover td { background: var(--bg-subtle); }
+
+    .notes-link {
+      color: var(--text-primary); text-decoration: none; font-weight: 600;
+      border-bottom: 1px dashed #8aa3cc; font-size: 0.9rem;
+      transition: 0.15s; display: inline-flex;
+      align-items: center; gap: 0.35rem; padding: 0.15rem 0;
+    }
+    .notes-link i { color: var(--accent-red); font-size: 0.85rem; }
+    .notes-link:hover { color: var(--accent-blue); border-bottom-color: var(--accent-blue); }
+
+    .footer {
+      background-color: var(--footer-bg); color: var(--footer-text);
+      border-radius: 2rem 2rem 0 0;
+      padding: clamp(1.5rem, 4vw, 2rem) clamp(1rem, 3vw, 1.8rem);
+      margin-top: 2rem; font-size: clamp(0.85rem, 2vw, 0.95rem);
+      transition: background 0.3s ease;
+    }
+    .footer a { color: var(--accent-yellow); text-decoration: none; font-weight: 500; word-break: break-word; }
+    .footer a:hover { text-decoration: underline; color: #ffe08a; }
+    .footer .footer-social {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 4px;
+    }
+    .footer .footer-social a {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: clamp(30px, 7vw, 36px); height: clamp(30px, 7vw, 36px);
+      border-radius: 50%; background: rgba(255, 255, 255, 0.1);
+      color: var(--footer-text); font-size: clamp(0.75rem, 1.8vw, 0.88rem);
+      transition: 0.18s;
+    }
+    .footer .footer-social a:hover {
+      background: var(--accent-yellow); color: #1e2b4f;
+      text-decoration: none; transform: translateY(-2px);
+    }
+
+    @media (max-width: 992px) {
+      .toc-card { position: static; margin-bottom: 1rem; }
+      .toc-card ol { columns: 2; column-gap: 1rem; }
+    }
+    @media (max-width: 768px) {
+      .header-card { border-radius: 0 0 1.25rem 1.25rem; }
+      .note-card { border-radius: 1rem; }
+      .theme-toggle { width: 40px; height: 40px; top: 10px; right: 10px; font-size: 1rem; }
+      .back-to-top { width: 42px; height: 42px; bottom: 18px; right: 18px; font-size: 1rem; }
+      .toc-card ol { columns: 1; }
+      .code-block pre { font-size: 0.78rem; padding: 0.85rem; }
+    }
+    @media (max-width: 400px) {
+      .badge-code { font-size: 0.85rem; padding: 0.28rem 0.8rem; }
+      .prepared-by { font-size: 0.8rem; padding: 0.35rem 1rem; }
+      .social-links a { width: 36px; height: 36px; font-size: 0.9rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition: none !important; animation: none !important;
+        scroll-behavior: auto !important;
+      }
+    }
+    @media print {
+      .social-wrap, .footer-social, .badge-code, .theme-toggle, .back-to-top,
+      .progress-bar-top, .toc-card, .code-copy-btn { display: none !important; }
+      .header-card { background: #1e2b4f !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .note-card { box-shadow: none; page-break-inside: avoid; }
+      .code-block { background: #f4f4f4 !important; }
+      .code-block pre { color: #000 !important; }
+      body { background: #fff; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== READING PROGRESS BAR ===== -->
+<div class="progress-bar-top" id="progressBar" role="progressbar" aria-label="Reading progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+
+<!-- ===== THEME TOGGLE ===== -->
+<button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+  <i class="fas fa-moon" id="themeIcon" aria-hidden="true"></i>
+</button>
+
+<!-- ===== BACK TO TOP ===== -->
+<button class="back-to-top" id="backToTop" aria-label="Back to top" title="Back to top">
+  <i class="fas fa-arrow-up" aria-hidden="true"></i>
+</button>
+
+<!-- ===== SKIP LINK ===== -->
+<a href="#module-content" class="visually-hidden-focusable">Skip to module content</a>
+
+<!-- ===== HEADER ===== -->
+<header role="banner" aria-label="Module header">
+  <div class="header-card text-center">
+    <div class="badge-code">
+      <i class="fas fa-shield-halved me-2" aria-hidden="true"></i>IT-507 · Module 6
+    </div>
+    <h1 class="display-6 fw-bold mt-2">Database Programming, Integrity &amp; Security</h1>
+    <p class="lead mt-2 mb-3">Complete study notes · definitions, types, real-life examples, diagrams &amp; syntax</p>
+    <div class="prepared-by">
+      <i class="fas fa-chalkboard-teacher me-2" aria-hidden="true"></i>Prepared by <strong>Sir Ali Raza</strong>
+    </div>
+
+    <!-- ===== SOCIAL MEDIA LINKS ===== -->
+    <div class="social-wrap">
+      <p class="social-title"><i class="fas fa-share-nodes" aria-hidden="true"></i>Connect with Sir Ali Raza</p>
+      <ul class="social-links" aria-label="Social media and contact links">
+        <li><a class="gh" href="https://github.com/Ali-Raza-Muhammad-Iqbal" target="_blank" rel="noopener noreferrer" title="GitHub" aria-label="GitHub profile"><i class="fab fa-github" aria-hidden="true"></i></a></li>
+        <li><a class="li" href="https://www.linkedin.com/in/ali-raza-muhammad-iqbal" target="_blank" rel="noopener noreferrer" title="LinkedIn" aria-label="LinkedIn profile"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a></li>
+        <li><a class="gl" href="https://ali-raza-muhammad-iqbal.github.io" target="_blank" rel="noopener noreferrer" title="Portfolio / Website" aria-label="Personal website"><i class="fas fa-globe" aria-hidden="true"></i></a></li>
+        <li><a class="tt" href="https://www.tiktok.com/@ali_raza_muhammad_iqbal" target="_blank" rel="noopener noreferrer" title="TikTok" aria-label="TikTok profile"><i class="fab fa-tiktok" aria-hidden="true"></i></a></li>
+        <li><a class="fb" href="https://www.facebook.com/AliRazaMuhammadIqbal1" target="_blank" rel="noopener noreferrer" title="Facebook" aria-label="Facebook profile"><i class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
+        <li><a class="ig" href="https://www.instagram.com/ali_raza_muhammad_iqbal" target="_blank" rel="noopener noreferrer" title="Instagram" aria-label="Instagram profile"><i class="fab fa-instagram" aria-hidden="true"></i></a></li>
+        <li><a class="x" href="https://x.com/Ali_Raza_Iqbal" target="_blank" rel="noopener noreferrer" title="X (Twitter)" aria-label="X (Twitter) profile"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i></a></li>
+        <li><a class="yt" href="https://www.youtube.com/@Ali_Raza_Muhammad_Iqbal" target="_blank" rel="noopener noreferrer" title="YouTube" aria-label="YouTube channel"><i class="fab fa-youtube" aria-hidden="true"></i></a></li>
+        <li><a class="mail" href="mailto:Mr_Ali_Raza@yahoo.com" title="Email" aria-label="Send email"><i class="fas fa-envelope" aria-hidden="true"></i></a></li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<!-- ===== MAIN CONTENT ===== -->
+<main role="main" id="module-content">
+  <div class="container-fluid px-2 px-sm-3 px-md-4" style="max-width: 1280px; margin: 0 auto;">
+    <div class="row g-3 mt-2">
+
+      <!-- ===== TOC SIDEBAR ===== -->
+      <div class="col-lg-3 col-xl-3 order-lg-1 order-2">
+        <nav class="toc-card" aria-label="Table of contents">
+          <h5><i class="fas fa-list-ul me-2" aria-hidden="true"></i>Module Contents</h5>
+          <ol>
+            <li><a href="#topic-6-1">Database Programming — Embedded &amp; Dynamic SQL</a></li>
+            <li><a href="#topic-6-2">Database Connectivity (ODBC, JDBC)</a></li>
+            <li><a href="#topic-6-3">Data Integrity — 3 Types</a></li>
+            <li><a href="#topic-6-4">Constraints — PK, FK, UNIQUE, CHECK, NOT NULL</a></li>
+            <li><a href="#topic-6-5">Database Security — AuthN &amp; AuthZ</a></li>
+            <li><a href="#topic-6-6">User Management &amp; RBAC</a></li>
+            <li><a href="#topic-6-7">Encryption &amp; Auditing</a></li>
+            <li><a href="#topic-6-8">SQL Injection &amp; Prevention</a></li>
+          </ol>
+        </nav>
+      </div>
+
+      <!-- ===== NOTES CONTENT ===== -->
+      <div class="col-lg-9 col-xl-9 order-lg-2 order-1">
+
+        <!-- ============ TOPIC 6.1 ============ -->
+        <article class="note-card topic-section" id="topic-6-1">
+          <h3><span class="topic-number">6.1</span> Database Programming — Embedded SQL, Dynamic SQL</h3>
+
+          <h4><i class="fas fa-book" aria-hidden="true"></i>Definition</h4>
+          <p><strong>Database programming</strong> means writing application code that talks to a database — sending queries, fetching results, handling errors. There are two main styles: <em>embedded SQL</em> (SQL written directly inside a host language like C, COBOL, or Java) and <em>dynamic SQL</em> (SQL strings built and executed at runtime).</p>
+
+          <h4><i class="fas fa-layer-group" aria-hidden="true"></i>Types</h4>
+
+          <p><strong>1. Embedded SQL (Static SQL)</strong></p>
+          <ul>
+            <li>SQL statements are <em>hard-coded</em> in the host language and compiled together.</li>
+            <li>The DBMS knows the exact SQL at compile time, so it can optimize and pre-validate.</li>
+            <li>Syntax: statements prefixed with <code class="inline">EXEC SQL</code> in C/COBOL; or in Java with JDBC's <code class="inline">prepareStatement()</code>.</li>
+            <li><strong>Pros:</strong> fast (precompiled), type-safe, secure (no injection).</li>
+            <li><strong>Cons:</strong> queries fixed at compile time; can't handle runtime-varying queries.</li>
+          </ul>
+
+          <p><strong>2. Dynamic SQL</strong></p>
+          <ul>
+            <li>SQL strings are built <em>at runtime</em> — usually from user input or config.</li>
+            <li>The DBMS parses and optimizes each time.</li>
+            <li>Syntax: <code class="inline">EXEC SQL PREPARE ... EXECUTE IMMEDIATE</code> in embedded; or in applications, <code class="inline">Statement.executeQuery(String sql)</code> in JDBC.</li>
+            <li><strong>Pros:</strong> flexible (query structure can change at runtime).</li>
+            <li><strong>Cons:</strong> slower (parse each time), risk of SQL injection if not parameterized.</li>
+          </ul>
+
+          <p><strong>3. Stored Procedures / Functions</strong> (also covered in Module 3.9)</p>
+          <ul>
+            <li>Programmable routines stored inside the DBMS, callable from any language.</li>
+            <li>Best of both: precompiled + flexible + reusable.</li>
+          </ul>
+
+          <h4><i class="fas fa-diagram-project" aria-hidden="true"></i>Diagram — Embedded vs Dynamic SQL Flow</h4>
+          <div class="diagram-box">
+            <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Embedded SQL vs Dynamic SQL flow">
+              <!-- Embedded SQL -->
+              <text x="175" y="25" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="13" font-weight="700" fill="#1e2b4f">EMBEDDED (STATIC) SQL</text>
+
+              <rect x="30" y="40" width="290" height="40" rx="6" fill="#eef3fc" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="175" y="65" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" fill="#1e2b4f">Source code: host lang + SQL</text>
+
+              <line x1="175" y1="80" x2="175" y2="100" stroke="#0d6efd" stroke-width="2"/>
+
+              <rect x="30" y="100" width="290" height="40" rx="6" fill="#ffc107" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="175" y="125" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" fill="#1e2b4f">Precompiler: SQL → API calls</text>
+
+              <line x1="175" y1="140" x2="175" y2="160" stroke="#0d6efd" stroke-width="2"/>
+
+              <rect x="30" y="160" width="290" height="40" rx="6" fill="#198754" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="175" y="185" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#fff">Compiled binary program</text>
+
+              <line x1="175" y1="200" x2="175" y2="220" stroke="#0d6efd" stroke-width="2"/>
+
+              <rect x="30" y="220" width="290" height="40" rx="6" fill="#1e2b4f" stroke="#ffc107" stroke-width="2"/>
+              <text x="175" y="245" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#fff">DBMS — fast, precompiled, safe</text>
+
+              <!-- Divider -->
+              <line x1="350" y1="20" x2="350" y2="280" stroke="#bac8e0" stroke-width="1.5" stroke-dasharray="5 4"/>
+
+              <!-- Dynamic SQL -->
+              <text x="525" y="25" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="13" font-weight="700" fill="#1e2b4f">DYNAMIC SQL</text>
+
+              <rect x="380" y="40" width="290" height="40" rx="6" fill="#eef3fc" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="525" y="65" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" fill="#1e2b4f">User input / config at runtime</text>
+
+              <line x1="525" y1="80" x2="525" y2="100" stroke="#0d6efd" stroke-width="2"/>
+
+              <rect x="380" y="100" width="290" height="40" rx="6" fill="#ffc107" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="525" y="125" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" fill="#1e2b4f">Build SQL string dynamically</text>
+
+              <line x1="525" y1="140" x2="525" y2="160" stroke="#0d6efd" stroke-width="2"/>
+
+              <rect x="380" y="160" width="290" height="40" rx="6" fill="#198754" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="525" y="185" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#fff">Send to DBMS via API</text>
+
+              <line x1="525" y1="200" x2="525" y2="220" stroke="#0d6efd" stroke-width="2"/>
+
+              <rect x="380" y="220" width="290" height="40" rx="6" fill="#d9534f" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="525" y="245" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#fff">DBMS — parses at runtime</text>
+            </svg>
+            <div class="diagram-caption">Figure 6.1 — Embedded SQL is precompiled; Dynamic SQL is built at runtime</div>
+          </div>
+
+          <h4><i class="fas fa-code" aria-hidden="true"></i>Syntax — Embedded SQL (C) vs Dynamic SQL (Java)</h4>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="code-block-lang"><i class="fas fa-code" aria-hidden="true"></i> C — Embedded SQL</span>
+              <button class="code-copy-btn" type="button" aria-label="Copy C code"><i class="fas fa-copy" aria-hidden="true"></i> Copy</button>
+            </div>
+            <pre><code>// Embedded SQL in C — the SQL is compiled into the binary
+#include <sqlca.h>
+
+int main() {
+    EXEC SQL BEGIN DECLARE SECTION;
+        int    empId;
+        char   name[100];
+        double salary;
+    EXEC SQL END DECLARE SECTION;
+
+    EXEC SQL CONNECT TO 'companydb' USER 'ali' USING 'pass';
+
+    empId = 101;
+    // ↓ Static SQL: known at compile time
+    EXEC SQL SELECT Name, Salary INTO :name, :salary
+             FROM Employees
+             WHERE EmpID = :empId;
+
+    printf("Name: %s, Salary: %.2f\n", name, salary);
+
+    EXEC SQL COMMIT;
+    EXEC SQL DISCONNECT;
+    return 0;
+}</code></pre>
+          </div>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="code-block-lang"><i class="fas fa-code" aria-hidden="true"></i> Java — Dynamic SQL (JDBC)</span>
+              <button class="code-copy-btn" type="button" aria-label="Copy Java code"><i class="fas fa-copy" aria-hidden="true"></i> Copy</button>
+            </div>
+            <pre><code>// Dynamic SQL in Java using JDBC
+import java.sql.*;
+
+public class DynamicQuery {
+    public static void main(String[] args) throws Exception {
+        Connection conn = DriverManager.getConnection(
+            "jdbc:mysql://localhost:3306/companydb", "ali", "pass");
+
+        // Build the query dynamically from a runtime value
+        String table = "Employees";           // could come from user input
+        String sql   = "SELECT * FROM " + table + " WHERE Salary > ?";
+
+        // Use PreparedStatement to avoid SQL injection (see 6.8)
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setDouble(1, 50000);
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next()) {
+            System.out.println(rs.getString("Name") + " — " + rs.getDouble("Salary"));
+        }
+        rs.close(); ps.close(); conn.close();
+    }
+}</code></pre>
+          </div>
+
+          <div class="example-box">
+            <strong><i class="fas fa-lightbulb" aria-hidden="true"></i>Simple Example</strong>
+            <p class="mb-1"><strong>Embedded:</strong> a payroll program that always queries the same <code class="inline">Employees</code> table by ID — hard-coded SQL, precompiled, fast.</p>
+            <p class="mb-0"><strong>Dynamic:</strong> an admin tool that lets you build a custom query (<em>SELECT * FROM ... WHERE ...</em>) at runtime — flexible, but must be parameterized.</p>
+          </div>
+
+          <div class="real-life-box">
+            <strong><i class="fas fa-briefcase" aria-hidden="true"></i>Real-Life Use Case</strong>
+            <p class="mb-0"><strong>Banking core systems</strong> (COBOL + DB2) use embedded SQL for fixed operations like "transfer funds." <strong>Analytics dashboards</strong> (Tableau, Looker) use dynamic SQL — they generate custom queries based on filters the user picks at runtime.</p>
+          </div>
+
+          <div class="info-box">
+            <strong><i class="fas fa-info-circle" aria-hidden="true"></i>Best Practice</strong>
+            <p class="mb-0">Even when using dynamic SQL, always use <strong>PreparedStatement</strong> (or parameterized queries) with <code class="inline">?</code> placeholders. Never concatenate user input directly into SQL strings (see Topic 6.8).</p>
+          </div>
+        </article>
+
+        <!-- ============ TOPIC 6.2 ============ -->
+        <article class="note-card topic-section" id="topic-6-2">
+          <h3><span class="topic-number">6.2</span> Database Connectivity (ODBC, JDBC)</h3>
+
+          <h4><i class="fas fa-book" aria-hidden="true"></i>Definition</h4>
+          <p><strong>Database connectivity</strong> is the layer of software that lets applications written in various languages talk to various database systems. Without it, every app would need custom code for each DBMS. Standards like <strong>ODBC</strong> and <strong>JDBC</strong> provide a common interface.</p>
+
+          <h4><i class="fas fa-layer-group" aria-hidden="true"></i>Types of Connectivity APIs</h4>
+
+          <p><strong>1. ODBC (Open Database Connectivity)</strong></p>
+          <ul>
+            <li>A C-based standard (Microsoft, 1992) — works with any language that can call C functions.</li>
+            <li>Uses a <strong>driver</strong> per DBMS (e.g., MySQL ODBC Driver, Oracle ODBC Driver, SQL Server ODBC Driver).</li>
+            <li>Widely used in Windows apps, Excel, and legacy systems.</li>
+            <li>Common in .NET (via <code class="inline">System.Data.Odbc</code>), Python (pyodbc), C/C++, and PowerShell.</li>
+          </ul>
+
+          <p><strong>2. JDBC (Java Database Connectivity)</strong></p>
+          <ul>
+            <li>Java's standard API for database access (part of JDK).</li>
+            <li>Uses a <strong>JDBC driver</strong> per DBMS (Type 4 drivers are pure-Java and most common).</li>
+            <li>Used by every Java/Kotlin/Scala app: Spring Boot, Hibernate, MyBatis, plain JDBC.</li>
+          </ul>
+
+          <p><strong>3. Other connectivity standards</strong></p>
+          <ul>
+            <li><strong>ADO.NET</strong> — Microsoft's .NET data access layer.</li>
+            <li><strong>DB-API (PEP 249)</strong> — Python's standard (psycopg2, mysql-connector-python, sqlite3).</li>
+            <li><strong>PDO</strong> — PHP's data objects.</li>
+            <li><strong>libpq</strong> — PostgreSQL's native C library.</li>
+            <li><strong>Native drivers</strong> — MongoDB driver, Redis client, etc.</li>
+          </ul>
+
+          <h4><i class="fas fa-diagram-project" aria-hidden="true"></i>Diagram — ODBC/JDBC Architecture</h4>
+          <div class="diagram-box">
+            <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ODBC and JDBC layered architecture">
+              <!-- Application layer -->
+              <rect x="200" y="20" width="300" height="40" rx="8" fill="#1e2b4f" stroke="#ffc107" stroke-width="2"/>
+              <text x="350" y="46" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="13" font-weight="700" fill="#fff">APPLICATION (Java, C, Python, .NET)</text>
+
+              <line x1="350" y1="60" x2="350" y2="80" stroke="#0d6efd" stroke-width="2"/>
+
+              <!-- API layer -->
+              <rect x="150" y="80" width="400" height="55" rx="10" fill="#ffc107" stroke="#1e2b4f" stroke-width="2.5"/>
+              <text x="350" y="105" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="13" font-weight="700" fill="#1e2b4f">ODBC / JDBC API</text>
+              <text x="350" y="123" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78">Connection · Statement · ResultSet · PreparedStatement</text>
+
+              <line x1="350" y1="135" x2="350" y2="155" stroke="#0d6efd" stroke-width="2"/>
+
+              <!-- Driver manager -->
+              <rect x="200" y="155" width="300" height="45" rx="8" fill="#0d6efd" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="350" y="182" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="12" font-weight="700" fill="#fff">Driver Manager</text>
+
+              <line x1="350" y1="200" x2="350" y2="220" stroke="#0d6efd" stroke-width="2"/>
+
+              <!-- Drivers -->
+              <line x1="100" y1="220" x2="600" y2="220" stroke="#0d6efd" stroke-width="1.5"/>
+              <line x1="100" y1="220" x2="100" y2="240" stroke="#0d6efd" stroke-width="1.5"/>
+              <line x1="250" y1="220" x2="250" y2="240" stroke="#0d6efd" stroke-width="1.5"/>
+              <line x1="400" y1="220" x2="400" y2="240" stroke="#0d6efd" stroke-width="1.5"/>
+              <line x1="550" y1="220" x2="550" y2="240" stroke="#0d6efd" stroke-width="1.5"/>
+
+              <rect x="40" y="240" width="120" height="40" rx="6" fill="#198754" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="100" y="265" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" font-weight="700" fill="#fff">MySQL Driver</text>
+
+              <rect x="190" y="240" width="120" height="40" rx="6" fill="#198754" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="250" y="265" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" font-weight="700" fill="#fff">PostgreSQL Driver</text>
+
+              <rect x="340" y="240" width="120" height="40" rx="6" fill="#198754" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="400" y="265" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" font-weight="700" fill="#fff">Oracle Driver</text>
+
+              <rect x="490" y="240" width="120" height="40" rx="6" fill="#198754" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="550" y="265" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" font-weight="700" fill="#fff">SQL Server Driver</text>
+            </svg>
+            <div class="diagram-caption">Figure 6.2 — ODBC/JDBC: one API, many driver implementations</div>
+          </div>
+
+          <h4><i class="fas fa-code" aria-hidden="true"></i>Syntax — JDBC and ODBC examples</h4>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="code-block-lang"><i class="fas fa-code" aria-hidden="true"></i> Java — JDBC</span>
+              <button class="code-copy-btn" type="button" aria-label="Copy Java code"><i class="fas fa-copy" aria-hidden="true"></i> Copy</button>
+            </div>
+            <pre><code>import java.sql.*;
+
+public class JdbcExample {
+    public static void main(String[] args) throws Exception {
+        // 1. Load the driver (older JDBC; not needed in modern JDBC 4.0+)
+        Class.forName("com.mysql.cj.jdbc.Driver");
+
+        // 2. Connect
+        Connection conn = DriverManager.getConnection(
+            "jdbc:mysql://localhost:3306/companydb", "ali", "pass");
+
+        // 3. Create a prepared statement (parameterized → safe)
+        String sql = "SELECT Name, Salary FROM Employees WHERE DeptID = ?";
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setInt(1, 10);
+
+        // 4. Execute and read results
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            System.out.println(rs.getString("Name") + " earns " + rs.getDouble("Salary"));
+        }
+
+        // 5. Clean up
+        rs.close(); ps.close(); conn.close();
+    }
+}</code></pre>
+          </div>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="code-block-lang"><i class="fas fa-code" aria-hidden="true"></i> Python — ODBC (pyodbc)</span>
+              <button class="code-copy-btn" type="button" aria-label="Copy Python code"><i class="fas fa-copy" aria-hidden="true"></i> Copy</button>
+            </div>
+            <pre><code>import pyodbc
+
+# 1. Connect via ODBC (requires the DB's ODBC driver installed)
+conn = pyodbc.connect(
+    "DRIVER={MySQL ODBC 8.0 Driver};"
+    "SERVER=localhost;DATABASE=companydb;UID=ali;PWD=pass;"
+)
+
+cursor = conn.cursor()
+
+# 2. Parameterized query (safe from injection)
+cursor.execute("SELECT Name, Salary FROM Employees WHERE DeptID = ?", 10)
+
+for row in cursor.fetchall():
+    print(f"{row.Name} earns {row.Salary}")
+
+conn.close()</code></pre>
+          </div>
+
+          <div class="example-box">
+            <strong><i class="fas fa-lightbulb" aria-hidden="true"></i>Simple Example</strong>
+            <p class="mb-0">A Java Spring Boot app connects to MySQL using JDBC. A Python data script connects to the same MySQL server using pyodbc. Both speak the same SQL dialect — the only difference is the driver layer.</p>
+          </div>
+
+          <div class="real-life-box">
+            <strong><i class="fas fa-briefcase" aria-hidden="true"></i>Real-Life Use Case</strong>
+            <p class="mb-0">A <strong>banking dashboard</strong> written in .NET uses ODBC to query an old Oracle mainframe; the mobile app written in Java uses JDBC to query a new PostgreSQL cluster; both read the same <code class="inline">Transactions</code> data via their respective drivers. ODBC and JDBC are the "glue" that lets diverse apps share data.</p>
+          </div>
+        </article>
+
+        <!-- ============ TOPIC 6.3 ============ -->
+        <article class="note-card topic-section" id="topic-6-3">
+          <h3><span class="topic-number">6.3</span> Data Integrity — Entity, Referential, Domain Integrity</h3>
+
+          <h4><i class="fas fa-book" aria-hidden="true"></i>Definition</h4>
+          <p><strong>Data integrity</strong> refers to the accuracy, consistency, and reliability of data in the database. It ensures data is always valid, complete, and that relationships between tables are never broken. The DBMS enforces it via <strong>constraints</strong>.</p>
+
+          <h4><i class="fas fa-layer-group" aria-hidden="true"></i>Types of Integrity</h4>
+
+          <p><strong>1. Entity Integrity</strong></p>
+          <ul>
+            <li>Every row must be uniquely identifiable — that's the role of the <strong>Primary Key</strong>.</li>
+            <li>A primary key column cannot be NULL and cannot contain duplicates.</li>
+            <li>Ensures each row represents one distinct entity.</li>
+          </ul>
+
+          <p><strong>2. Referential Integrity</strong></p>
+          <ul>
+            <li>A <strong>Foreign Key</strong> in one table must reference an existing Primary Key in another (or be NULL).</li>
+            <li>Prevents orphan rows — you can't have an order without a customer.</li>
+            <li>Handled via <strong>FOREIGN KEY</strong> constraints with <code class="inline">ON DELETE</code> / <code class="inline">ON UPDATE</code> options.</li>
+          </ul>
+
+          <p><strong>3. Domain Integrity</strong></p>
+          <ul>
+            <li>Every column must contain values of the correct type, format, and range.</li>
+            <li>Enforced via data types (INT, VARCHAR, DATE), CHECK constraints, and NOT NULL.</li>
+            <li>Example: <code class="inline">Age</code> must be a positive integer; <code class="inline">Email</code> must contain <code class="inline">@</code>.</li>
+          </ul>
+
+          <p><strong>Additional categories:</strong></p>
+          <ul>
+            <li><strong>User-defined integrity</strong> — business rules (e.g., "discount ≤ 50%").</li>
+            <li><strong>Semantic integrity</strong> — logical meaning of the data is preserved.</li>
+          </ul>
+
+          <h4><i class="fas fa-diagram-project" aria-hidden="true"></i>Diagram — Three Types of Integrity</h4>
+          <div class="diagram-box">
+            <svg viewBox="0 0 700 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Three types of data integrity: entity, referential, domain">
+              <!-- Entity integrity -->
+              <rect x="20" y="30" width="210" height="220" rx="10" fill="#eef3fc" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="125" y="55" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="14" font-weight="700" fill="#1e2b4f">ENTITY INTEGRITY</text>
+              <text x="125" y="75" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78">PK never NULL, never duplicate</text>
+
+              <rect x="50" y="95" width="150" height="130" rx="6" fill="#fff" stroke="#1e2b4f" stroke-width="1"/>
+              <text x="125" y="115" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" font-weight="700" fill="#1e2b4f">Students</text>
+              <line x1="50" y1="125" x2="200" y2="125" stroke="#1e2b4f" stroke-width="1"/>
+              <text x="125" y="142" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#4a5a78">ID (PK) | Name</text>
+              <text x="125" y="160" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#4a5a78">1 | Ali ✓</text>
+              <text x="125" y="178" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#4a5a78">2 | Sara ✓</text>
+              <text x="125" y="196" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#d9534f">NULL | X ✗</text>
+              <text x="125" y="214" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#d9534f">1 | Dup ✗</text>
+
+              <!-- Referential integrity -->
+              <rect x="245" y="30" width="210" height="220" rx="10" fill="#ffc107" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="350" y="55" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="14" font-weight="700" fill="#1e2b4f">REFERENTIAL</text>
+              <text x="350" y="75" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78">FK must match existing PK (or NULL)</text>
+
+              <rect x="260" y="95" width="180" height="60" rx="6" fill="#fff" stroke="#1e2b4f" stroke-width="1"/>
+              <text x="350" y="115" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" font-weight="700" fill="#1e2b4f">Customers (PK: ID)</text>
+              <text x="350" y="135" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#4a5a78">1 | Ali</text>
+              <text x="350" y="150" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#4a5a78">2 | Sara</text>
+
+              <text x="350" y="175" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="14" fill="#1e2b4f">↓</text>
+
+              <rect x="260" y="185" width="180" height="60" rx="6" fill="#fff" stroke="#1e2b4f" stroke-width="1"/>
+              <text x="350" y="205" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" font-weight="700" fill="#1e2b4f">Orders (FK: CustomerID)</text>
+              <text x="350" y="223" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#198754">1 ✓ (Ali exists)</text>
+              <text x="350" y="238" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#d9534f">99 ✗ (no such customer)</text>
+
+              <!-- Domain integrity -->
+              <rect x="470" y="30" width="210" height="220" rx="10" fill="#198754" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="575" y="55" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="14" font-weight="700" fill="#fff">DOMAIN INTEGRITY</text>
+              <text x="575" y="75" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#e6edf9">Correct type, format, range</text>
+
+              <rect x="485" y="95" width="180" height="130" rx="6" fill="#fff" stroke="#1e2b4f" stroke-width="1"/>
+              <text x="575" y="115" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" font-weight="700" fill="#1e2b4f">Employees</text>
+              <line x1="485" y1="125" x2="665" y2="125" stroke="#1e2b4f" stroke-width="1"/>
+              <text x="575" y="145" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#198754">Age INT, &gt;= 18 ✓</text>
+              <text x="575" y="163" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#198754">Email contains @ ✓</text>
+              <text x="575" y="181" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#198754">Salary DECIMAL &gt; 0 ✓</text>
+              <text x="575" y="199" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#d9534f">Age = -5 ✗</text>
+              <text x="575" y="217" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#d9534f">Salary = "abc" ✗</text>
+            </svg>
+            <div class="diagram-caption">Figure 6.3 — Entity, Referential, and Domain integrity (all enforced by constraints)</div>
+          </div>
+
+          <h4><i class="fas fa-code" aria-hidden="true"></i>Syntax — All three integrities in SQL</h4>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="code-block-lang"><i class="fas fa-database" aria-hidden="true"></i> SQL — Integrity in action</span>
+              <button class="code-copy-btn" type="button" aria-label="Copy SQL code"><i class="fas fa-copy" aria-hidden="true"></i> Copy</button>
+            </div>
+            <pre><code>-- ENTITY INTEGRITY: Primary Key (unique + not null)
+CREATE TABLE Customers (
+    CustomerID INT PRIMARY KEY,
+    Name       VARCHAR(100) NOT NULL
+);
+
+-- DOMAIN INTEGRITY: type, range, format
+CREATE TABLE Employees (
+    EmpID    INT PRIMARY KEY,
+    Age      INT CHECK (Age >= 18 AND Age <= 100),    -- range
+    Email    VARCHAR(150) CHECK (Email LIKE '%@%'),    -- format
+    Salary   DECIMAL(10,2) CHECK (Salary > 0),         -- positive
+    HireDate DATE                                      -- type enforced
+);
+
+-- REFERENTIAL INTEGRITY: foreign key
+CREATE TABLE Orders (
+    OrderID    INT PRIMARY KEY,
+    CustomerID INT NOT NULL,
+    Total      DECIMAL(10,2),
+    FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)
+        ON DELETE RESTRICT          -- cannot delete a customer with orders
+        ON UPDATE CASCADE           -- if customer ID changes, update orders too
+);
+
+-- This insert fails (referential integrity violation):
+INSERT INTO Orders (OrderID, CustomerID, Total) VALUES (1, 99, 100);
+-- ERROR: FK constraint fails (CustomerID 99 doesn't exist)
+
+-- This also fails (domain integrity violation):
+INSERT INTO Employees (EmpID, Age, Email, Salary) VALUES (1, 15, 'x@y.com', 50000);
+-- ERROR: CHECK constraint 'Age >= 18' violated</code></pre>
+          </div>
+
+          <div class="example-box">
+            <strong><i class="fas fa-lightbulb" aria-hidden="true"></i>Simple Example</strong>
+            <p class="mb-1"><strong>Entity:</strong> Every order has a unique <code class="inline">OrderID</code> — no NULL, no duplicate.</p>
+            <p class="mb-1"><strong>Referential:</strong> Every order's <code class="inline">CustomerID</code> must exist in <code class="inline">Customers</code>.</p>
+            <p class="mb-0"><strong>Domain:</strong> A product's <code class="inline">Price</code> must be a positive number; a person's <code class="inline">Age</code> can't be negative.</p>
+          </div>
+
+          <div class="real-life-box">
+            <strong><i class="fas fa-briefcase" aria-hidden="true"></i>Real-Life Use Case</strong>
+            <p class="mb-0">In <strong>healthcare systems</strong>: entity integrity ensures each patient has a unique MRN (medical record number); referential integrity ensures every prescription references a real patient and a real doctor; domain integrity ensures a blood pressure reading is in a valid range (e.g., 60–250 systolic). Violations are rejected by the DBMS, protecting patient safety.</p>
+          </div>
+        </article>
+
+        <!-- ============ TOPIC 6.4 ============ -->
+        <article class="note-card topic-section" id="topic-6-4">
+          <h3><span class="topic-number">6.4</span> Constraints — PRIMARY KEY, FOREIGN KEY, UNIQUE, CHECK, NOT NULL</h3>
+
+          <h4><i class="fas fa-book" aria-hidden="true"></i>Definition</h4>
+          <p><strong>Constraints</strong> are rules declared on tables or columns that the DBMS automatically enforces. They're the mechanism used to implement data integrity (Topic 6.3). If a query would violate a constraint, the DBMS rejects it with an error.</p>
+
+          <h4><i class="fas fa-layer-group" aria-hidden="true"></i>Types of Constraints</h4>
+
+          <table class="notes-table">
+            <thead>
+              <tr>
+                <th>Constraint</th>
+                <th>Enforces</th>
+                <th>Allows NULL?</th>
+                <th>Per Table</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>PRIMARY KEY</strong></td>
+                <td>Unique row identifier</td>
+                <td>❌ No</td>
+                <td>1 only</td>
+              </tr>
+              <tr>
+                <td><strong>FOREIGN KEY</strong></td>
+                <td>Referential integrity (row exists in parent)</td>
+                <td>✅ Yes (unless NOT NULL)</td>
+                <td>Many</td>
+              </tr>
+              <tr>
+                <td><strong>UNIQUE</strong></td>
+                <td>No duplicate values</td>
+                <td>✅ Yes (usually 1 NULL allowed)</td>
+                <td>Many</td>
+              </tr>
+              <tr>
+                <td><strong>CHECK</strong></td>
+                <td>Custom condition (range, format)</td>
+                <td>✅ Yes (evaluates to UNKNOWN)</td>
+                <td>Many</td>
+              </tr>
+              <tr>
+                <td><strong>NOT NULL</strong></td>
+                <td>Column always has a value</td>
+                <td>❌ No</td>
+                <td>Many</td>
+              </tr>
+              <tr>
+                <td><strong>DEFAULT</strong></td>
+                <td>Fallback value when none provided</td>
+                <td>—</td>
+                <td>Many</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h4><i class="fas fa-diagram-project" aria-hidden="true"></i>Diagram — Constraints on a Table</h4>
+          <div class="diagram-box">
+            <svg viewBox="0 0 700 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Table with various constraints illustrated">
+              <text x="350" y="20" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="13" font-weight="700" fill="#1e2b4f">Employees Table — Constraints Applied</text>
+
+              <rect x="40" y="40" width="620" height="40" rx="6" fill="#1e2b4f"/>
+              <text x="110" y="65" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#fff">EmpID</text>
+              <text x="240" y="65" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#fff">Name</text>
+              <text x="360" y="65" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#fff">Email</text>
+              <text x="470" y="65" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#fff">Age</text>
+              <text x="580" y="65" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#fff">DeptID</text>
+
+              <!-- Sample rows -->
+              <rect x="40" y="80" width="620" height="35" rx="0" fill="#eef3fc" stroke="#bac8e0" stroke-width="1"/>
+              <text x="110" y="103" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" fill="#1e2b4f">1 (PK)</text>
+              <text x="240" y="103" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" fill="#1e2b4f">Ali</text>
+              <text x="360" y="103" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" fill="#1e2b4f">ali@x.com</text>
+              <text x="470" y="103" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" fill="#1e2b4f">25</text>
+              <text x="580" y="103" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" fill="#1e2b4f">10</text>
+
+              <rect x="40" y="115" width="620" height="35" rx="0" fill="#fff" stroke="#bac8e0" stroke-width="1"/>
+              <text x="110" y="138" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" fill="#1e2b4f">2 (PK)</text>
+              <text x="240" y="138" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" fill="#1e2b4f">Sara</text>
+              <text x="360" y="138" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" fill="#1e2b4f">sara@x.com</text>
+              <text x="470" y="138" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" fill="#1e2b4f">30</text>
+              <text x="580" y="138" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" fill="#1e2b4f">10</text>
+
+              <!-- Constraint annotations -->
+              <text x="110" y="175" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" font-weight="700" fill="#0d6efd">↓</text>
+              <text x="110" y="195" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" font-weight="700" fill="#0d6efd">PRIMARY</text>
+              <text x="110" y="210" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" font-weight="700" fill="#0d6efd">KEY</text>
+
+              <text x="240" y="175" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" font-weight="700" fill="#b07d00">↓</text>
+              <text x="240" y="195" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" font-weight="700" fill="#b07d00">NOT NULL</text>
+
+              <text x="360" y="175" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" font-weight="700" fill="#198754">↓</text>
+              <text x="360" y="195" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" font-weight="700" fill="#198754">UNIQUE</text>
+
+              <text x="470" y="175" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" font-weight="700" fill="#d9534f">↓</text>
+              <text x="470" y="195" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" font-weight="700" fill="#d9534f">CHECK</text>
+              <text x="470" y="210" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" font-weight="700" fill="#d9534f">Age ≥ 18</text>
+
+              <text x="580" y="175" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" font-weight="700" fill="#8a2be2">↓</text>
+              <text x="580" y="195" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" font-weight="700" fill="#8a2be2">FOREIGN</text>
+              <text x="580" y="210" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" font-weight="700" fill="#8a2be2">KEY</text>
+
+              <text x="350" y="245" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" font-style="italic" fill="#7a8bab">Each constraint protects a different aspect of data integrity</text>
+            </svg>
+            <div class="diagram-caption">Figure 6.4 — Five constraints protecting different columns of the same table</div>
+          </div>
+
+          <h4><i class="fas fa-code" aria-hidden="true"></i>Syntax — All five constraints in one table</h4>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="code-block-lang"><i class="fas fa-database" aria-hidden="true"></i> SQL — All constraints</span>
+              <button class="code-copy-btn" type="button" aria-label="Copy SQL code"><i class="fas fa-copy" aria-hidden="true"></i> Copy</button>
+            </div>
+            <pre><code>-- Parent table first
+CREATE TABLE Departments (
+    DeptID   INT PRIMARY KEY,
+    DeptName VARCHAR(100) NOT NULL
+);
+
+-- Child table with ALL five constraints
+CREATE TABLE Employees (
+    EmpID    INT           PRIMARY KEY,                          -- entity integrity
+    Name     VARCHAR(100)  NOT NULL,                              -- never null
+    Email    VARCHAR(150)  UNIQUE,                                -- no duplicates
+    Age      INT           CHECK (Age >= 18 AND Age <= 100),      -- domain check
+    Salary   DECIMAL(10,2) DEFAULT 30000 CHECK (Salary > 0),
+    DeptID   INT,
+    CONSTRAINT fk_emp_dept FOREIGN KEY (DeptID) REFERENCES Departments(DeptID)
+        ON DELETE SET NULL                                       -- referential integrity
+);
+
+-- Named constraint (easier to drop later)
+ALTER TABLE Employees
+    ADD CONSTRAINT chk_email_domain CHECK (Email LIKE '%@%.%');
+
+-- Add a UNIQUE constraint later
+ALTER TABLE Employees
+    ADD CONSTRAINT uq_email UNIQUE (Email);
+
+-- Drop a constraint
+ALTER TABLE Employees DROP CONSTRAINT chk_email_domain;
+
+-- ---------- See all constraints on a table ----------
+-- MySQL
+SELECT CONSTRAINT_NAME, CONSTRAINT_TYPE, COLUMN_NAME
+FROM information_schema.KEY_COLUMN_USAGE
+WHERE TABLE_NAME = 'Employees';
+
+-- PostgreSQL
+SELECT conname, contype, pg_get_constraintdef(oid)
+FROM pg_constraint
+WHERE conrelid = 'employees'::regclass;
+
+-- SQL Server
+SELECT name, type_desc, is_disabled
+FROM sys.check_constraints
+WHERE parent_object_id = OBJECT_ID('Employees');</code></pre>
+          </div>
+
+          <div class="example-box">
+            <strong><i class="fas fa-lightbulb" aria-hidden="true"></i>Simple Example</strong>
+            <p class="mb-1"><strong>PRIMARY KEY:</strong> <code class="inline">EmpID</code> is unique and NOT NULL — every employee has one identity.</p>
+            <p class="mb-1"><strong>NOT NULL:</strong> <code class="inline">Name</code> can't be empty — every employee must have a name.</p>
+            <p class="mb-1"><strong>UNIQUE:</strong> <code class="inline">Email</code> must be unique — two employees can't share an email login.</p>
+            <p class="mb-1"><strong>CHECK:</strong> <code class="inline">Age &gt;= 18</code> — no child employees.</p>
+            <p class="mb-0"><strong>FOREIGN KEY:</strong> <code class="inline">DeptID</code> must match a real department.</p>
+          </div>
+
+          <div class="real-life-box">
+            <strong><i class="fas fa-briefcase" aria-hidden="true"></i>Real-Life Use Case</strong>
+            <p class="mb-0">A <strong>university student portal</strong>: <code class="inline">StudentID</code> is PK (unique), <code class="inline">Name</code> NOT NULL, <code class="inline">CGPA</code> CHECK 0.0–4.0, <code class="inline">CourseID</code> FK to <code class="inline">Courses</code>, and <code class="inline">Email</code> UNIQUE. When someone tries to enroll a ghost student or a 5.0 CGPA, the constraints reject the insert immediately.</p>
+          </div>
+        </article>
+
+        <!-- ============ TOPIC 6.5 ============ -->
+        <article class="note-card topic-section" id="topic-6-5">
+          <h3><span class="topic-number">6.5</span> Database Security — Authentication and Authorization</h3>
+
+          <h4><i class="fas fa-book" aria-hidden="true"></i>Definition</h4>
+          <p><strong>Database security</strong> is the set of mechanisms that protect the database from unauthorized access, misuse, and attacks. The two core layers are:</p>
+          <ul>
+            <li><strong>Authentication (AuthN)</strong> — proving <em>who you are</em> (username + password, certificate, Kerberos, multi-factor).</li>
+            <li><strong>Authorization (AuthZ)</strong> — deciding <em>what you can do</em> once you're in (which tables, which operations).</li>
+          </ul>
+
+          <h4><i class="fas fa-layer-group" aria-hidden="true"></i>Types / Methods</h4>
+
+          <p><strong>Authentication methods:</strong></p>
+          <ul>
+            <li><strong>Password-based</strong> — username + password (default for most DBMSs).</li>
+            <li><strong>Certificate-based</strong> — X.509 certificates for TLS mutual authentication.</li>
+            <li><strong>Kerberos / Integrated Windows Auth</strong> — uses domain credentials (SQL Server, PostgreSQL).</li>
+            <li><strong>LDAP / Active Directory</strong> — central user directory.</li>
+            <li><strong>Multi-Factor Authentication (MFA)</strong> — password + token, or password + biometric.</li>
+            <li><strong>Federated / OAuth / IAM</strong> — AWS IAM, Azure AD, GCP IAM for cloud databases.</li>
+          </ul>
+
+          <p><strong>Authorization methods:</strong></p>
+          <ul>
+            <li><strong>Discretionary Access Control (DAC)</strong> — object owner grants/revokes (standard GRANT/REVOKE).</li>
+            <li><strong>Mandatory Access Control (MAC)</strong> — labels (secret, classified) and clearance levels.</li>
+            <li><strong>Role-Based Access Control (RBAC)</strong> — permissions assigned to roles, roles to users (Topic 6.6).</li>
+            <li><strong>Attribute-Based Access Control (ABAC)</strong> — policies based on user/data attributes.</li>
+          </ul>
+
+          <h4><i class="fas fa-diagram-project" aria-hidden="true"></i>Diagram — AuthN vs AuthZ</h4>
+          <div class="diagram-box">
+            <svg viewBox="0 0 700 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Authentication then authorization flow">
+              <!-- User -->
+              <rect x="30" y="50" width="120" height="60" rx="8" fill="#1e2b4f" stroke="#ffc107" stroke-width="2"/>
+              <text x="90" y="80" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="12" font-weight="700" fill="#fff">User</text>
+              <text x="90" y="96" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#b9cdf5">provides credentials</text>
+
+              <!-- Arrow to Authentication -->
+              <line x1="150" y1="80" x2="220" y2="80" stroke="#0d6efd" stroke-width="2.5" marker-end="url(#au-arrow)"/>
+              <text x="185" y="70" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#0d6efd">login</text>
+
+              <!-- Authentication -->
+              <rect x="225" y="40" width="180" height="80" rx="10" fill="#ffc107" stroke="#1e2b4f" stroke-width="2.5"/>
+              <text x="315" y="70" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="13" font-weight="700" fill="#1e2b4f">AUTHENTICATION</text>
+              <text x="315" y="90" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78">"Who are you?"</text>
+              <text x="315" y="108" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#4a5a78">password · cert · MFA</text>
+
+              <!-- Arrow to Authorization -->
+              <line x1="405" y1="80" x2="475" y2="80" stroke="#0d6efd" stroke-width="2.5" marker-end="url(#au-arrow)"/>
+              <text x="440" y="70" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#0d6efd">identity OK</text>
+
+              <!-- Authorization -->
+              <rect x="480" y="40" width="180" height="80" rx="10" fill="#198754" stroke="#1e2b4f" stroke-width="2.5"/>
+              <text x="570" y="70" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="13" font-weight="700" fill="#fff">AUTHORIZATION</text>
+              <text x="570" y="90" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#e6edf9">"What can you do?"</text>
+              <text x="570" y="108" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#e6edf9">privileges · roles · policies</text>
+
+              <!-- Outcomes -->
+              <line x1="315" y1="120" x2="315" y2="180" stroke="#d9534f" stroke-width="2"/>
+              <line x1="570" y1="120" x2="570" y2="180" stroke="#0d6efd" stroke-width="2"/>
+
+              <rect x="215" y="180" width="200" height="60" rx="8" fill="#d9534f" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="315" y="205" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="12" font-weight="700" fill="#fff">FAIL → Access Denied</text>
+              <text x="315" y="223" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#fff">wrong password / no match</text>
+
+              <rect x="470" y="180" width="200" height="60" rx="8" fill="#0d6efd" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="570" y="205" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="12" font-weight="700" fill="#fff">Database Access</text>
+              <text x="570" y="223" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#fff">only allowed operations</text>
+
+              <defs>
+                <marker id="au-arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+                  <path d="M0,0 L0,6 L9,3 z" fill="#0d6efd"/>
+                </marker>
+              </defs>
+
+              <text x="350" y="265" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" font-style="italic" fill="#7a8bab">Both layers must succeed: first prove identity, then check privileges</text>
+            </svg>
+            <div class="diagram-caption">Figure 6.5 — Authentication (who) then Authorization (what) — both required for access</div>
+          </div>
+
+          <h4><i class="fas fa-code" aria-hidden="true"></i>Syntax — AuthN and AuthZ in SQL</h4>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="code-block-lang"><i class="fas fa-database" aria-hidden="true"></i> SQL — Security in action</span>
+              <button class="code-copy-btn" type="button" aria-label="Copy SQL code"><i class="fas fa-copy" aria-hidden="true"></i> Copy</button>
+            </div>
+            <pre><code>-- AUTHENTICATION: create a user with a password
+CREATE USER 'ali'@'localhost' IDENTIFIED BY 'Str0ngP@ss!';
+
+-- Change password
+ALTER USER 'ali'@'localhost' IDENTIFIED BY 'N3wP@ss!';
+
+-- Require SSL for this user's connections (MySQL 8)
+ALTER USER 'ali'@'localhost' REQUIRE SSL;
+
+-- AUTHENTICATION via Kerberos (PostgreSQL)
+CREATE USER ali WITH KERBEROS;
+-- or via certificate:
+CREATE USER ali WITH SSL CERTIFICATE;
+
+-- AUTHORIZATION: grant specific privileges
+GRANT SELECT ON SchoolDB.Students TO 'ali'@'localhost';
+GRANT INSERT, UPDATE ON SchoolDB.Enrollments TO 'ali'@'localhost';
+GRANT EXECUTE ON PROCEDURE SchoolDB.GiveRaise TO 'ali'@'localhost';
+
+-- Deny specific action (SQL Server)
+DENY DELETE ON SchoolDB.Students TO 'ali'@'localhost';
+
+-- See what a user can do
+SHOW GRANTS FOR 'ali'@'localhost';
+
+-- See current user
+SELECT USER(), CURRENT_USER();
+
+-- Revoke everything (clean up)
+REVOKE ALL PRIVILEGES, GRANT OPTION FROM 'ali'@'localhost';</code></pre>
+          </div>
+
+          <div class="example-box">
+            <strong><i class="fas fa-lightbulb" aria-hidden="true"></i>Simple Example</strong>
+            <p class="mb-1"><strong>Authentication:</strong> Ali types <code class="inline">ali / Str0ngP@ss!</code> — the DBMS verifies his password hash.</p>
+            <p class="mb-0"><strong>Authorization:</strong> Once logged in, Ali can <code class="inline">SELECT</code> from Students but cannot <code class="inline">DELETE</code> — because his user only has SELECT privilege.</p>
+          </div>
+
+          <div class="real-life-box">
+            <strong><i class="fas fa-briefcase" aria-hidden="true"></i>Real-Life Use Case</strong>
+            <p class="mb-0">In a <strong>hospital</strong>: nurses log in with smart cards (authentication via certificate). Once logged in, they can read patient vitals and write new measurements, but they cannot view billing data or delete records (authorization). Every action is logged for compliance. The system enforces both layers — a stolen password alone doesn't grant access if MFA is also required.</p>
+          </div>
+
+          <div class="warning-box">
+            <strong><i class="fas fa-exclamation-triangle" aria-hidden="true"></i>Never Store Passwords in Plain Text</strong>
+            <p class="mb-0">The DBMS hashes passwords with strong algorithms (bcrypt, scrypt, Argon2, or SHA-256 with salt). Application code should also hash passwords before storing them in a <code class="inline">Users</code> table — never store plain passwords.</p>
+          </div>
+        </article>
+
+        <!-- ============ TOPIC 6.6 ============ -->
+        <article class="note-card topic-section" id="topic-6-6">
+          <h3><span class="topic-number">6.6</span> User Management and Role-Based Access Control</h3>
+
+          <h4><i class="fas fa-book" aria-hidden="true"></i>Definition</h4>
+          <p><strong>User management</strong> is the practice of creating, modifying, and removing database user accounts, and assigning them the right privileges. <strong>Role-Based Access Control (RBAC)</strong> is the best-practice model: instead of granting privileges to each user individually, you create <em>roles</em> (e.g., "read_only," "editor," "admin"), grant privileges to roles, and then assign roles to users.</p>
+
+          <h4><i class="fas fa-layer-group" aria-hidden="true"></i>Types of Access Control Models</h4>
+          <ul>
+            <li><strong>DAC (Discretionary Access Control)</strong> — owner decides who gets access (GRANT/REVOKE).</li>
+            <li><strong>RBAC (Role-Based Access Control)</strong> — access via roles. Preferred for teams.</li>
+            <li><strong>MAC (Mandatory Access Control)</strong> — government/military labels. Very strict.</li>
+            <li><strong>ABAC (Attribute-Based Access Control)</strong> — dynamic, based on user/data attributes (dept, region, time).</li>
+          </ul>
+
+          <h4><i class="fas fa-star" aria-hidden="true"></i>Benefits of RBAC</h4>
+          <ul>
+            <li><strong>Scalability</strong> — 100 users × 5 roles = 5 grants instead of 500.</li>
+            <li><strong>Consistency</strong> — everyone in a role has the same privileges.</li>
+            <li><strong>Auditability</strong> — easy to see who has what by looking at role membership.</li>
+            <li><strong>Least privilege</strong> — assign only the roles each user actually needs.</li>
+            <li><strong>Easy revocation</strong> — revoke a role from a user, or remove a privilege from a role, and it applies to all affected users.</li>
+          </ul>
+
+          <h4><i class="fas fa-diagram-project" aria-hidden="true"></i>Diagram — RBAC Model</h4>
+          <div class="diagram-box">
+            <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="RBAC model: users to roles to privileges">
+              <!-- Users column -->
+              <text x="80" y="25" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="12" font-weight="700" fill="#1e2b4f">USERS</text>
+
+              <rect x="20" y="45" width="120" height="40" rx="6" fill="#0d6efd" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="80" y="70" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#fff">Alice</text>
+
+              <rect x="20" y="105" width="120" height="40" rx="6" fill="#0d6efd" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="80" y="130" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#fff">Bob</text>
+
+              <rect x="20" y="165" width="120" height="40" rx="6" fill="#0d6efd" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="80" y="190" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#fff">Carol</text>
+
+              <rect x="20" y="225" width="120" height="40" rx="6" fill="#0d6efd" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="80" y="250" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#fff">Dave</text>
+
+              <!-- Roles column -->
+              <text x="350" y="25" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="12" font-weight="700" fill="#1e2b4f">ROLES</text>
+
+              <rect x="250" y="55" width="200" height="40" rx="6" fill="#ffc107" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="350" y="80" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#1e2b4f">read_only</text>
+
+              <rect x="250" y="115" width="200" height="40" rx="6" fill="#ffc107" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="350" y="140" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#1e2b4f">editor</text>
+
+              <rect x="250" y="175" width="200" height="40" rx="6" fill="#ffc107" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="350" y="200" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#1e2b4f">admin</text>
+
+              <!-- Privileges column -->
+              <text x="620" y="25" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="12" font-weight="700" fill="#1e2b4f">PRIVILEGES</text>
+
+              <rect x="540" y="55" width="150" height="40" rx="6" fill="#198754" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="615" y="80" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#fff">SELECT</text>
+
+              <rect x="540" y="115" width="150" height="40" rx="6" fill="#198754" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="615" y="140" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#fff">INSERT · UPDATE</text>
+
+              <rect x="540" y="175" width="150" height="40" rx="6" fill="#198754" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="615" y="200" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#fff">ALL PRIVILEGES</text>
+
+              <!-- Lines from users to roles -->
+              <line x1="140" y1="65" x2="250" y2="75" stroke="#0d6efd" stroke-width="2"/>
+              <line x1="140" y1="125" x2="250" y2="135" stroke="#0d6efd" stroke-width="2"/>
+              <line x1="140" y1="185" x2="250" y2="135" stroke="#0d6efd" stroke-width="2"/>
+              <line x1="140" y1="245" x2="250" y2="195" stroke="#0d6efd" stroke-width="2"/>
+
+              <!-- Lines from roles to privileges -->
+              <line x1="450" y1="75" x2="540" y2="75" stroke="#198754" stroke-width="2"/>
+              <line x1="450" y1="135" x2="540" y2="135" stroke="#198754" stroke-width="2"/>
+              <line x1="450" y1="195" x2="540" y2="195" stroke="#198754" stroke-width="2"/>
+
+              <text x="350" y="290" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" font-style="italic" fill="#7a8bab">Alice read_only · Bob editor · Carol editor · Dave admin</text>
+            </svg>
+            <div class="diagram-caption">Figure 6.6 — RBAC: users assigned to roles, roles hold privileges</div>
+          </div>
+
+          <h4><i class="fas fa-code" aria-hidden="true"></i>Syntax — Full RBAC setup</h4>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="code-block-lang"><i class="fas fa-database" aria-hidden="true"></i> SQL — RBAC in action</span>
+              <button class="code-copy-btn" type="button" aria-label="Copy SQL code"><i class="fas fa-copy" aria-hidden="true"></i> Copy</button>
+            </div>
+            <pre><code>-- 1. Create roles (MySQL 8+ / PostgreSQL 14+)
+CREATE ROLE read_only;
+CREATE ROLE editor;
+CREATE ROLE admin;
+
+-- 2. Grant privileges to roles
+GRANT SELECT ON SchoolDB.* TO read_only;
+GRANT SELECT, INSERT, UPDATE, DELETE ON SchoolDB.* TO editor;
+GRANT ALL PRIVILEGES ON SchoolDB.* TO admin;
+
+-- 3. Create users
+CREATE USER 'alice'@'localhost' IDENTIFIED BY 'Pass1!';
+CREATE USER 'bob'@'localhost'   IDENTIFIED BY 'Pass2!';
+CREATE USER 'carol'@'localhost' IDENTIFIED BY 'Pass3!';
+CREATE USER 'dave'@'localhost'  IDENTIFIED BY 'Pass4!';
+
+-- 4. Assign roles to users
+GRANT read_only TO 'alice'@'localhost';
+GRANT editor   TO 'bob'@'localhost';
+GRANT editor   TO 'carol'@'localhost';
+GRANT admin    TO 'dave'@'localhost';
+
+-- 5. If a user changes job, just swap their role
+REVOKE editor FROM 'bob'@'localhost';
+GRANT read_only TO 'bob'@'localhost';
+
+-- 6. See who has what role
+SELECT user, host FROM mysql.user WHERE user IN ('alice','bob','carol','dave');
+SHOW GRANTS FOR 'bob'@'localhost';
+
+-- 7. Clean up when someone leaves
+REVOKE ALL PRIVILEGES, GRANT OPTION FROM 'bob'@'localhost';
+DROP USER 'bob'@'localhost';
+
+-- ---------- PostgreSQL RBAC example ----------
+CREATE ROLE read_only NOLOGIN;
+GRANT CONNECT ON DATABASE school TO read_only;
+GRANT USAGE ON SCHEMA public TO read_only;
+GRANT SELECT ON ALL TABLES IN SCHEMA public TO read_only;
+
+CREATE ROLE alice LOGIN PASSWORD 'Pass1!';
+GRANT read_only TO alice;</code></pre>
+          </div>
+
+          <div class="example-box">
+            <strong><i class="fas fa-lightbulb" aria-hidden="true"></i>Simple Example</strong>
+            <p class="mb-1">Instead of granting SELECT to Alice, Bob, Carol, and Dave separately (4 grants), you:</p>
+            <p class="mb-1">1. Create role <code class="inline">read_only</code> → grant it SELECT once.</p>
+            <p class="mb-1">2. Assign Alice and Bob the <code class="inline">read_only</code> role.</p>
+            <p class="mb-0">3. When a new intern arrives, you grant <code class="inline">read_only</code> — done.</p>
+          </div>
+
+          <div class="real-life-box">
+            <strong><i class="fas fa-briefcase" aria-hidden="true"></i>Real-Life Use Case</strong>
+            <p class="mb-0">A <strong>SaaS company</strong> uses three roles: <code class="inline">app_read</code> (read-only, used by dashboards), <code class="inline">app_write</code> (read+write, used by the main app), <code class="inline">app_admin</code> (all privileges, used only by the ops team). As the team grows, new engineers just get <code class="inline">app_admin</code> — no need to re-grant each table privilege individually.</p>
+          </div>
+
+          <div class="info-box">
+            <strong><i class="fas fa-info-circle" aria-hidden="true"></i>Principle of Least Privilege</strong>
+            <p class="mb-0">Always grant the minimum privileges a role needs. If an attacker compromises <code class="inline">app_read</code>, they can only read — not modify or drop tables. The blast radius is small.</p>
+          </div>
+        </article>
+
+        <!-- ============ TOPIC 6.7 ============ -->
+        <article class="note-card topic-section" id="topic-6-7">
+          <h3><span class="topic-number">6.7</span> Encryption and Auditing</h3>
+
+          <h4><i class="fas fa-book" aria-hidden="true"></i>Definition</h4>
+          <p><strong>Encryption</strong> scrambles data so it can only be read by someone with the right key. <strong>Auditing</strong> keeps a record of every action (who did what, when, from where) so you can detect attacks, investigate incidents, and prove compliance.</p>
+          <p>Together, they form the <em>defense-in-depth</em> layer beyond authentication and authorization: even if an attacker gets a file or a backup, the data is unreadable (encryption), and their actions are recorded (auditing).</p>
+
+          <h4><i class="fas fa-layer-group" aria-hidden="true"></i>Types of Encryption</h4>
+
+          <p><strong>1. Encryption at rest</strong> — data stored on disk is encrypted:</p>
+          <ul>
+            <li><strong>Transparent Data Encryption (TDE)</strong> — whole database file encrypted; applications unaffected (SQL Server TDE, Oracle TDE, MySQL Enterprise).</li>
+            <li><strong>Column-level encryption</strong> — specific sensitive columns (SSN, credit card) encrypted individually.</li>
+            <li><strong>File-system encryption</strong> — BitLocker, LUKS, encrypted EBS volumes.</li>
+          </ul>
+
+          <p><strong>2. Encryption in transit</strong> — data on the network is encrypted:</p>
+          <ul>
+            <li><strong>TLS/SSL</strong> — every modern DBMS supports TLS connections.</li>
+            <li><strong>VPN</strong> — for remote connectivity.</li>
+            <li><strong>SSH tunnels</strong> — secure tunneling to a database port.</li>
+          </ul>
+
+          <p><strong>3. Encryption in use (advanced)</strong> — data is encrypted even while being processed:</p>
+          <ul>
+            <li><strong>Always Encrypted</strong> (SQL Server), <strong>homomorphic encryption</strong> (emerging).</li>
+          </ul>
+
+          <h4><i class="fas fa-layer-group" aria-hidden="true"></i>Types of Auditing</h4>
+          <ul>
+            <li><strong>Login auditing</strong> — track who logs in, when, from where.</li>
+            <li><strong>Query/DML auditing</strong> — record every SELECT/INSERT/UPDATE/DELETE (or the sensitive ones).</li>
+            <li><strong>Schema change auditing</strong> — log CREATE/ALTER/DROP events.</li>
+            <li><strong>Trigger-based auditing</strong> — custom audit table populated by triggers.</li>
+            <li><strong>Native auditing</strong> — built-in features like SQL Server Audit, Oracle Unified Auditing, MySQL Audit Plugin, PostgreSQL pgAudit.</li>
+          </ul>
+
+          <h4><i class="fas fa-diagram-project" aria-hidden="true"></i>Diagram — Defense in Depth</h4>
+          <div class="diagram-box">
+            <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Layered database security: network, authN, authZ, encryption, auditing">
+              <!-- Layers -->
+              <rect x="50" y="30" width="600" height="40" rx="8" fill="#d9534f" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="350" y="55" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="13" font-weight="700" fill="#fff">1. Network Layer — Firewall, VPN, TLS/SSL</text>
+
+              <rect x="80" y="80" width="540" height="40" rx="8" fill="#ffc107" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="350" y="105" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="13" font-weight="700" fill="#1e2b4f">2. Authentication — Passwords, MFA, Certificates</text>
+
+              <rect x="110" y="130" width="480" height="40" rx="8" fill="#0d6efd" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="350" y="155" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="13" font-weight="700" fill="#fff">3. Authorization — Roles, RBAC, Least Privilege</text>
+
+              <rect x="140" y="180" width="420" height="40" rx="8" fill="#198754" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="350" y="205" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="13" font-weight="700" fill="#fff">4. Encryption — At Rest + In Transit</text>
+
+              <rect x="170" y="230" width="360" height="40" rx="8" fill="#1e2b4f" stroke="#ffc107" stroke-width="2"/>
+              <text x="350" y="255" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="13" font-weight="700" fill="#fff">5. Auditing — Logs, Alerts, Forensics</text>
+
+              <!-- Arrow to data -->
+              <text x="350" y="290" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" font-style="italic" fill="#7a8bab">Each layer protects the data — attacker must defeat ALL of them</text>
+            </svg>
+            <div class="diagram-caption">Figure 6.7 — Defense in depth: layered security with encryption and auditing at the core</div>
+          </div>
+
+          <h4><i class="fas fa-code" aria-hidden="true"></i>Syntax — Encryption &amp; auditing in SQL</h4>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="code-block-lang"><i class="fas fa-database" aria-hidden="true"></i> SQL — Encryption</span>
+              <button class="code-copy-btn" type="button" aria-label="Copy SQL code"><i class="fas fa-copy" aria-hidden="true"></i> Copy</button>
+            </div>
+            <pre><code>-- ---------- Encryption in transit ----------
+-- Require SSL for a user (MySQL)
+ALTER USER 'ali'@'localhost' REQUIRE SSL;
+
+-- Force TLS for all connections (PostgreSQL, in postgresql.conf)
+-- ssl = on
+-- ssl_cert_file = 'server.crt'
+-- ssl_key_file = 'server.key'
+
+-- ---------- Column-level encryption (MySQL 8) ----------
+-- Insert encrypted value using AES_ENCRYPT with a key
+INSERT INTO Patients (PatientID, SSN_encrypted)
+VALUES (1, AES_ENCRYPT('123-45-6789', 'my-secret-key'));
+
+-- Retrieve and decrypt
+SELECT PatientID, AES_DECRYPT(SSN_encrypted, 'my-secret-key') AS SSN
+FROM Patients;
+
+-- ---------- SQL Server Always Encrypted ----------
+-- (uses the SSMS wizard; column encryption keys stored separately)
+
+-- ---------- Encryption at rest (MySQL/InnoDB) ----------
+-- In my.cnf:
+-- [mysqld]
+-- early-plugin-load = keyring_file.so
+-- keyring_file_data = /var/lib/mysql-keyring/keyring
+
+CREATE TABLE Sensitive (
+    ID INT PRIMARY KEY,
+    Data VARCHAR(200)
+) ENGINE=InnoDB ENCRYPTION='Y';   -- per-table encryption</code></pre>
+          </div>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="code-block-lang"><i class="fas fa-database" aria-hidden="true"></i> SQL — Auditing</span>
+              <button class="code-copy-btn" type="button" aria-label="Copy SQL code"><i class="fas fa-copy" aria-hidden="true"></i> Copy</button>
+            </div>
+            <pre><code>-- ---------- Trigger-based audit (works on any DBMS) ----------
+CREATE TABLE AuditLog (
+    AuditID    BIGINT AUTO_INCREMENT PRIMARY KEY,
+    TableName  VARCHAR(100),
+    Action     VARCHAR(20),
+    RowID      INT,
+    ChangedBy  VARCHAR(100),
+    ChangedAt  TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    OldValue   TEXT,
+    NewValue   TEXT
+);
+
+DELIMITER $$
+CREATE TRIGGER trg_salary_audit
+AFTER UPDATE ON Employees
+FOR EACH ROW
+BEGIN
+    IF OLD.Salary <> NEW.Salary THEN
+        INSERT INTO AuditLog (TableName, Action, RowID, ChangedBy, OldValue, NewValue)
+        VALUES ('Employees', 'UPDATE_SALARY', OLD.EmpID, USER(),
+                CONCAT(OLD.Salary), CONCAT(NEW.Salary));
+    END IF;
+END$$
+DELIMITER ;
+
+-- Test it
+UPDATE Employees SET Salary = 90000 WHERE EmpID = 1;
+SELECT * FROM AuditLog;
+
+-- ---------- Built-in auditing ----------
+-- MySQL Enterprise Audit (plugin) — logs connections, queries, errors
+INSTALL PLUGIN audit_log SONAME 'audit_log.so';
+
+-- PostgreSQL pgAudit
+CREATE EXTENSION pgaudit;
+ALTER SYSTEM SET pgaudit.log = 'ddl, role';
+
+-- SQL Server Audit
+CREATE SERVER AUDIT MyAudit TO FILE (FILEPATH = 'D:\\Audit\\');
+ALTER SERVER AUDIT MyAudit WITH (STATE = ON);
+CREATE DATABASE AUDIT SPECIFICATION DbAudit
+FOR SERVER AUDIT MyAudit
+ADD (SELECT, INSERT, UPDATE, DELETE ON dbo.Employees BY PUBLIC);
+
+-- ---------- See audit events ----------
+SELECT * FROM mysql.audit_log_current_session;  -- MySQL
+SELECT * FROM sys.fn_get_audit_file('D:\\Audit\\*', NULL, NULL);  -- SQL Server</code></pre>
+          </div>
+
+          <div class="example-box">
+            <strong><i class="fas fa-lightbulb" aria-hidden="true"></i>Simple Example</strong>
+            <p class="mb-1"><strong>Encryption:</strong> a customer's credit card number is stored as AES-encrypted ciphertext. Only the payment service (with the key) can decrypt it.</p>
+            <p class="mb-0"><strong>Auditing:</strong> every time a DBA modifies a salary, an automatic trigger records the old and new value, who made the change, and when — visible in the <code class="inline">AuditLog</code> table.</p>
+          </div>
+
+          <div class="real-life-box">
+            <strong><i class="fas fa-briefcase" aria-hidden="true"></i>Real-Life Use Case</strong>
+            <p class="mb-0">A <strong>bank</strong> must comply with PCI-DSS (payment card) and SOX (financial records). It encrypts all card numbers with column-level encryption, requires TLS for all DB connections, and keeps 7-year audit logs of who accessed which account. During an audit, the compliance team can prove "no unauthorized user has read customer X's data in 3 years" by querying the audit log.</p>
+          </div>
+
+          <div class="warning-box">
+            <strong><i class="fas fa-exclamation-triangle" aria-hidden="true"></i>Key Management is Critical</strong>
+            <p class="mb-0">Encryption is only as strong as the key. Store keys in a dedicated <strong>key management service</strong> (AWS KMS, Azure Key Vault, HashiCorp Vault) — never in the application code, config files, or the same database as the encrypted data.</p>
+          </div>
+        </article>
+
+        <!-- ============ TOPIC 6.8 ============ -->
+        <article class="note-card topic-section" id="topic-6-8">
+          <h3><span class="topic-number">6.8</span> SQL Injection and Prevention Techniques</h3>
+
+          <h4><i class="fas fa-book" aria-hidden="true"></i>Definition</h4>
+          <p><strong>SQL Injection (SQLi)</strong> is one of the most dangerous web vulnerabilities. It happens when user input is concatenated directly into SQL strings, letting an attacker inject their own SQL commands. A successful SQLi can read, modify, or delete any data the application can access — often the entire database.</p>
+          <p>SQLi consistently ranks in the OWASP Top 10 (currently #3 in the 2021 list).</p>
+
+          <h4><i class="fas fa-exclamation-triangle" aria-hidden="true"></i>How It Works — A Vulnerable Example</h4>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="code-block-lang"><i class="fas fa-code" aria-hidden="true"></i> VULNERABLE — DO NOT USE</span>
+              <button class="code-copy-btn" type="button" aria-label="Copy code"><i class="fas fa-copy" aria-hidden="true"></i> Copy</button>
+            </div>
+            <pre><code>// VULNERABLE: user input is concatenated into SQL
+String userInput = request.getParameter("username");
+String sql = "SELECT * FROM Users WHERE Username = '" + userInput + "'";
+
+// Normal input:  'ali'
+//   → SELECT * FROM Users WHERE Username = 'ali'   ✓
+
+// Attack input:  ' OR '1'='1' --
+//   → SELECT * FROM Users WHERE Username = '' OR '1'='1' --'
+//   → Returns ALL users! Bypasses login!
+
+// Attack input:  '; DROP TABLE Users; --
+//   → SELECT * FROM Users WHERE Username = ''; DROP TABLE Users; --'
+//   → Deletes the entire Users table!</code></pre>
+          </div>
+
+          <h4><i class="fas fa-layer-group" aria-hidden="true"></i>Types of SQL Injection</h4>
+          <ul>
+            <li><strong>Classic / In-band SQLi</strong> — attacker uses the same channel to inject and retrieve results.
+              <ul>
+                <li><strong>Error-based</strong> — uses error messages to leak schema info.</li>
+                <li><strong>Union-based</strong> — combines malicious query results with legitimate ones using <code class="inline">UNION</code>.</li>
+              </ul>
+            </li>
+            <li><strong>Blind SQLi</strong> — attacker can't see results but infers them from behavior:
+              <ul>
+                <li><strong>Boolean-based</strong> — ask true/false questions via conditions.</li>
+                <li><strong>Time-based</strong> — use <code class="inline">SLEEP(5)</code> to detect queries.</li>
+              </ul>
+            </li>
+            <li><strong>Out-of-band SQLi</strong> — exfiltrates data via DNS/HTTP requests.</li>
+            <li><strong>Second-order SQLi</strong> — payload is stored now, executed later (e.g., in a stored procedure).</li>
+          </ul>
+
+          <h4><i class="fas fa-shield-halved" aria-hidden="true"></i>Prevention Techniques (in order of importance)</h4>
+
+          <ol>
+            <li><strong>Parameterized queries / Prepared statements</strong> — ALWAYS use them. The #1 defense.</li>
+            <li><strong>Stored procedures with parameters</strong> — same effect when used correctly.</li>
+            <li><strong>Input validation</strong> — whitelist allowed values (defense in depth, not sufficient alone).</li>
+            <li><strong>Least privilege</strong> — app's DB user only needs SELECT/INSERT/UPDATE on specific tables, not <code class="inline">DROP</code>.</li>
+            <li><strong>WAF (Web Application Firewall)</strong> — blocks common attack patterns (defense in depth).</li>
+            <li><strong>Error handling</strong> — never show SQL errors to users (leaks schema).</li>
+            <li><strong>ORM frameworks</strong> — use Hibernate, JPA, Entity Framework with bound parameters.</li>
+            <li><strong>Regular security audits</strong> — check for injection points in code reviews.</li>
+          </ol>
+
+          <h4><i class="fas fa-diagram-project" aria-hidden="true"></i>Diagram — Vulnerable vs Parameterized</h4>
+          <div class="diagram-box">
+            <svg viewBox="0 0 700 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Vulnerable string concatenation vs parameterized query">
+              <!-- Vulnerable -->
+              <text x="175" y="25" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="13" font-weight="700" fill="#d9534f">VULNERABLE: String Concatenation</text>
+
+              <rect x="30" y="40" width="290" height="50" rx="6" fill="#eef3fc" stroke="#d9534f" stroke-width="2"/>
+              <text x="175" y="62" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78">User input: "ali' OR '1'='1' --"</text>
+              <text x="175" y="80" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#4a5a78">attacker-controlled string</text>
+
+              <line x1="175" y1="90" x2="175" y2="110" stroke="#d9534f" stroke-width="2"/>
+
+              <rect x="30" y="110" width="290" height="55" rx="6" fill="#fff" stroke="#d9534f" stroke-width="2"/>
+              <text x="175" y="132" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78">SQL = "SELECT * FROM Users</text>
+              <text x="175" y="148" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78">WHERE Name = '" + input + "'"</text>
+
+              <line x1="175" y1="165" x2="175" y2="185" stroke="#d9534f" stroke-width="2"/>
+
+              <rect x="30" y="185" width="290" height="60" rx="6" fill="#d9534f" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="175" y="210" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#fff">Final SQL sent:</text>
+              <text x="175" y="230" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#fff">... WHERE Name = '' OR '1'='1' --</text>
+              <text x="175" y="245" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#fff">→ returns ALL rows</text>
+
+              <!-- Divider -->
+              <line x1="350" y1="20" x2="350" y2="260" stroke="#bac8e0" stroke-width="1.5" stroke-dasharray="5 4"/>
+
+              <!-- Parameterized -->
+              <text x="525" y="25" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="13" font-weight="700" fill="#198754">SAFE: Parameterized Query</text>
+
+              <rect x="380" y="40" width="290" height="50" rx="6" fill="#eef3fc" stroke="#198754" stroke-width="2"/>
+              <text x="525" y="62" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78">Same user input: "ali' OR '1'='1' --"</text>
+              <text x="525" y="80" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#4a5a78">treated as data, not code</text>
+
+              <line x1="525" y1="90" x2="525" y2="110" stroke="#198754" stroke-width="2"/>
+
+              <rect x="380" y="110" width="290" height="55" rx="6" fill="#fff" stroke="#198754" stroke-width="2"/>
+              <text x="525" y="132" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78">SQL = "SELECT * FROM Users</text>
+              <text x="525" y="148" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78">WHERE Name = ?"  ← placeholder</text>
+
+              <line x1="525" y1="165" x2="525" y2="185" stroke="#198754" stroke-width="2"/>
+
+              <rect x="380" y="185" width="290" height="60" rx="6" fill="#198754" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="525" y="210" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#fff">Final SQL sent:</text>
+              <text x="525" y="230" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#fff">... WHERE Name = ?</text>
+              <text x="525" y="245" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#fff">→ input is bound as data</text>
+
+              <text x="350" y="275" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" font-style="italic" fill="#7a8bab">Parameterized query: input is NEVER parsed as SQL</text>
+            </svg>
+            <div class="diagram-caption">Figure 6.8 — Vulnerable concatenation vs safe parameterized query (input treated as data, never code)</div>
+          </div>
+
+          <h4><i class="fas fa-code" aria-hidden="true"></i>Syntax — Vulnerable vs Safe</h4>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="code-block-lang"><i class="fas fa-code" aria-hidden="true"></i> Java — Vulnerable</span>
+              <button class="code-copy-btn" type="button" aria-label="Copy code"><i class="fas fa-copy" aria-hidden="true"></i> Copy</button>
+            </div>
+            <pre><code>// ❌ VULNERABLE — do NOT use string concatenation!
+String sql = "SELECT * FROM Users WHERE Username = '" + userInput + "'";
+Statement stmt = conn.createStatement();
+ResultSet rs = stmt.executeQuery(sql);
+// Attacker input: ' OR '1'='1' --
+// → returns ALL rows → login bypassed</code></pre>
+          </div>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="code-block-lang"><i class="fas fa-code" aria-hidden="true"></i> Java — SAFE (PreparedStatement)</span>
+              <button class="code-copy-btn" type="button" aria-label="Copy code"><i class="fas fa-copy" aria-hidden="true"></i> Copy</button>
+            </div>
+            <pre><code>// ✅ SAFE — use PreparedStatement with ? placeholders
+String sql = "SELECT * FROM Users WHERE Username = ?";
+PreparedStatement ps = conn.prepareStatement(sql);
+ps.setString(1, userInput);   // input is bound as data, never parsed as SQL
+ResultSet rs = ps.executeQuery();
+// Attacker input ' OR '1'='1' -- is treated as a literal string
+// → no rows found → login denied</code></pre>
+          </div>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="code-block-lang"><i class="fas fa-code" aria-hidden="true"></i> Python — SAFE (parameterized)</span>
+              <button class="code-copy-btn" type="button" aria-label="Copy code"><i class="fas fa-copy" aria-hidden="true"></i> Copy</button>
+            </div>
+            <pre><code>import sqlite3
+
+conn = sqlite3.connect('app.db')
+cursor = conn.cursor()
+
+# ❌ VULNERABLE
+# cursor.execute(f"SELECT * FROM Users WHERE Username = '{user_input}'")
+
+# ✅ SAFE — parameterized with ? placeholders
+cursor.execute("SELECT * FROM Users WHERE Username = ?", (user_input,))
+rows = cursor.fetchall()</code></pre>
+          </div>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="code-block-lang"><i class="fas fa-code" aria-hidden="true"></i> PHP — SAFE (PDO prepared)</span>
+              <button class="code-copy-btn" type="button" aria-label="Copy code"><i class="fas fa-copy" aria-hidden="true"></i> Copy</button>
+            </div>
+            <pre><code>&lt;?php
+// ✅ SAFE — PDO with bound parameters
+$stmt = $pdo->prepare("SELECT * FROM Users WHERE Username = :username");
+$stmt->execute([':username' => $userInput]);
+$rows = $stmt->fetchAll();
+?&gt;</code></pre>
+          </div>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="code-block-lang"><i class="fas fa-code" aria-hidden="true"></i> Node.js — SAFE (mysql2)</span>
+              <button class="code-copy-btn" type="button" aria-label="Copy code"><i class="fas fa-copy" aria-hidden="true"></i> Copy</button>
+            </div>
+            <pre><code>// ✅ SAFE — mysql2 supports parameterized queries
+const [rows] = await connection.execute(
+    'SELECT * FROM Users WHERE Username = ?',
+    [userInput]
+);</code></pre>
+          </div>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="code-block-lang"><i class="fas fa-database" aria-hidden="true"></i> SQL — Stored procedure (also safe)</span>
+              <button class="code-copy-btn" type="button" aria-label="Copy SQL code"><i class="fas fa-copy" aria-hidden="true"></i> Copy</button>
+            </div>
+            <pre><code>-- Stored procedure with parameters (safe)
+DELIMITER $$
+CREATE PROCEDURE FindUser(IN p_username VARCHAR(100))
+BEGIN
+    -- The parameter is bound, not concatenated
+    SELECT * FROM Users WHERE Username = p_username;
+END$$
+DELIMITER ;
+
+-- From application:
+CALL FindUser('ali');
+-- Even if 'ali' contains SQL, it's treated as a value, not code.</code></pre>
+          </div>
+
+          <div class="example-box">
+            <strong><i class="fas fa-lightbulb" aria-hidden="true"></i>Simple Example</strong>
+            <p class="mb-1"><strong>Attack:</strong> a login form has username field. Attacker enters <code class="inline">' OR '1'='1' --</code>. Vulnerable SQL becomes <code class="inline">SELECT * FROM Users WHERE Username = '' OR '1'='1' --'</code> — returns all users → attacker is logged in as the first one.</p>
+            <p class="mb-0"><strong>Prevention:</strong> with a parameterized query, the input is bound as a literal string. The SQL becomes effectively <code class="inline">SELECT * FROM Users WHERE Username = '\' OR \'1\'=\'1\' --'</code> — no rows match, access denied.</p>
+          </div>
+
+          <div class="real-life-box">
+            <strong><i class="fas fa-briefcase" aria-hidden="true"></i>Real-Life Use Case</strong>
+            <p class="mb-0"><strong>Tesla, Sony, TalkTalk, British Airways, Equifax</strong> — all have suffered major breaches where SQL injection or related injection was a factor. In 2017, <strong>Equifax</strong> leaked 143 million records; injection flaws were part of the chain. Using prepared statements is a hard requirement in every security standard (PCI-DSS, HIPAA, SOC 2).</p>
+          </div>
+
+          <div class="warning-box">
+            <strong><i class="fas fa-exclamation-triangle" aria-hidden="true"></i>SQLi Rules to Live By</strong>
+            <ul class="mb-0">
+              <li>✅ ALWAYS use parameterized queries / prepared statements.</li>
+              <li>❌ NEVER concatenate user input into SQL strings — not even once.</li>
+              <li>✅ Use ORM frameworks that handle this automatically.</li>
+              <li>✅ Apply least privilege — app DB user should not have DROP/DELETE unless truly needed.</li>
+              <li>✅ Use a WAF as defense in depth.</li>
+              <li>❌ Never reveal SQL errors to end users — they leak schema info.</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- ===== PRACTICAL LABS SUMMARY ===== -->
+        <article class="note-card">
+          <h3 style="border-bottom-color: var(--accent-blue);">
+            <i class="fas fa-flask me-2" style="color: var(--accent-blue);" aria-hidden="true"></i>Practical Labs for Module 6
+          </h3>
+          <p>Apply the concepts from this module with hands-on labs:</p>
+          <ul>
+            <li><strong>Lab 6.1:</strong> Implementing Constraints and Data Integrity Rules.</li>
+            <li><strong>Lab 6.2:</strong> Creating Users, Roles, and Assigning Privileges.</li>
+            <li><strong>Lab 6.3:</strong> Demonstrating GRANT and REVOKE.</li>
+            <li><strong>Lab 6.4:</strong> Basic Security Auditing and SQL Injection Prevention.</li>
+          </ul>
+          <p class="mb-0"><a href="IT507_Practical_Module_6_Database_Programming_Integrity_and_Security_CPP.pdf" target="_blank" rel="noopener" class="notes-link"><i class="fas fa-file-pdf" aria-hidden="true"></i> Download Module 6 Practical Lab Guide (PDF)</a></p>
+        </article>
+
+        <!-- ===== QUICK REVISION ===== -->
+        <article class="note-card">
+          <h3 style="border-bottom-color: var(--accent-green);">
+            <i class="fas fa-list-check me-2" style="color: var(--accent-green);" aria-hidden="true"></i>Quick Revision — Module 6 in One Glance
+          </h3>
+          <table class="notes-table">
+            <thead>
+              <tr><th>Topic</th><th>Key Takeaway</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>6.1 Database Programming</td><td>Embedded SQL (precompiled, fast, safe) vs Dynamic SQL (runtime, flexible) — both valid if parameterized.</td></tr>
+              <tr><td>6.2 ODBC / JDBC</td><td>Standard APIs with drivers per DBMS — one interface, many databases.</td></tr>
+              <tr><td>6.3 Data Integrity</td><td>Entity (unique PK), Referential (FK valid), Domain (type/range valid).</td></tr>
+              <tr><td>6.4 Constraints</td><td>PRIMARY KEY · FOREIGN KEY · UNIQUE · CHECK · NOT NULL — the tools to enforce integrity.</td></tr>
+              <tr><td>6.5 AuthN &amp; AuthZ</td><td>Authentication = who you are; Authorization = what you can do. Both required.</td></tr>
+              <tr><td>6.6 RBAC</td><td>Create roles, grant privileges to roles, assign roles to users — cleaner than per-user grants.</td></tr>
+              <tr><td>6.7 Encryption &amp; Auditing</td><td>Encrypt at rest + in transit; log every sensitive action for forensics/compliance.</td></tr>
+              <tr><td>6.8 SQL Injection</td><td>ALWAYS use prepared statements. Never concatenate user input into SQL.</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <!-- ===== NAVIGATION ===== -->
+        <div class="note-card" style="text-align: center;">
+          <a href="index.html" class="notes-link" style="font-size: 1rem;"><i class="fas fa-arrow-left" aria-hidden="true"></i> Back to IT-507 Course Index</a>
+          <span class="mx-3 text-muted">·</span>
+          <a href="it507-module-5.html" class="notes-link" style="font-size: 1rem;"><i class="fas fa-arrow-left" aria-hidden="true"></i> Previous: Module 5</a>
+          <span class="mx-3 text-muted">·</span>
+          <a href="it507-module-7.html" class="notes-link" style="font-size: 1rem;">Next: Module 7 — Physical Database Design &amp; Tuning <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-10 col-xl-8 text-center">
+        <p class="mb-2">
+          <i class="fas fa-crown me-2" style="color:var(--accent-yellow);" aria-hidden="true"></i>
+          <strong>Notes compiled by Sir Ali Raza</strong>
+        </p>
+        <p class="mb-2">
+          <i class="fas fa-globe me-1" aria-hidden="true"></i>
+          <a href="https://ali-raza-muhammad-iqbal.github.io" target="_blank" rel="noopener noreferrer">
+            ali-raza-muhammad-iqbal.github.io
+          </a>
+          <span class="mx-2">·</span>
+          <i class="fas fa-envelope me-1" aria-hidden="true"></i>
+          <a href="mailto:Mr_Ali_Raza@yahoo.com">Mr_Ali_Raza@yahoo.com</a>
+        </p>
+
+        <div class="footer-social mb-2" aria-label="Social media links">
+          <a href="https://github.com/Ali-Raza-Muhammad-Iqbal" target="_blank" rel="noopener noreferrer" title="GitHub" aria-label="GitHub"><i class="fab fa-github" aria-hidden="true"></i></a>
+          <a href="https://www.linkedin.com/in/ali-raza-muhammad-iqbal" target="_blank" rel="noopener noreferrer" title="LinkedIn" aria-label="LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
+          <a href="https://www.tiktok.com/@ali_raza_muhammad_iqbal" target="_blank" rel="noopener noreferrer" title="TikTok" aria-label="TikTok"><i class="fab fa-tiktok" aria-hidden="true"></i></a>
+          <a href="https://www.facebook.com/AliRazaMuhammadIqbal1" target="_blank" rel="noopener noreferrer" title="Facebook" aria-label="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+          <a href="https://www.instagram.com/ali_raza_muhammad_iqbal" target="_blank" rel="noopener noreferrer" title="Instagram" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+          <a href="https://x.com/Ali_Raza_Iqbal" target="_blank" rel="noopener noreferrer" title="X (Twitter)" aria-label="X (Twitter)"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i></a>
+          <a href="https://www.youtube.com/@Ali_Raza_Muhammad_Iqbal" target="_blank" rel="noopener noreferrer" title="YouTube" aria-label="YouTube"><i class="fab fa-youtube" aria-hidden="true"></i></a>
+          <a href="mailto:Mr_Ali_Raza@yahoo.com" title="Email" aria-label="Email"><i class="fas fa-envelope" aria-hidden="true"></i></a>
+        </div>
+
+        <p class="small mb-0" style="color:#b8c8f0;">
+          © 2025 · IT-507 Database Administration and Management · Module 6 · All credits to Sir Ali Raza.
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+(function() {
+  'use strict';
+
+  const themeToggle = document.getElementById('themeToggle');
+  const themeIcon = document.getElementById('themeIcon');
+  const root = document.documentElement;
+
+  function applyTheme(theme) {
+    if (theme === 'dark') {
+      root.setAttribute('data-theme', 'dark');
+      themeIcon.classList.remove('fa-moon');
+      themeIcon.classList.add('fa-sun');
+      themeToggle.setAttribute('aria-label', 'Switch to light mode');
+    } else {
+      root.removeAttribute('data-theme');
+      themeIcon.classList.remove('fa-sun');
+      themeIcon.classList.add('fa-moon');
+      themeToggle.setAttribute('aria-label', 'Switch to dark mode');
+    }
+  }
+
+  const savedTheme = localStorage.getItem('it507-theme');
+  if (savedTheme) {
+    applyTheme(savedTheme);
+  } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    applyTheme('dark');
+  }
+
+  themeToggle.addEventListener('click', function() {
+    const isDark = root.getAttribute('data-theme') === 'dark';
+    const newTheme = isDark ? 'light' : 'dark';
+    applyTheme(newTheme);
+    localStorage.setItem('it507-theme', newTheme);
+  });
+
+  const progressBar = document.getElementById('progressBar');
+  function updateProgress() {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const percent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    progressBar.style.width = percent + '%';
+    progressBar.setAttribute('aria-valuenow', Math.round(percent));
+  }
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  window.addEventListener('resize', updateProgress);
+
+  const backToTop = document.getElementById('backToTop');
+  function toggleBackToTop() {
+    if (window.scrollY > 400) {
+      backToTop.classList.add('visible');
+    } else {
+      backToTop.classList.remove('visible');
+    }
+  }
+  window.addEventListener('scroll', toggleBackToTop, { passive: true });
+  backToTop.addEventListener('click', function() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  document.querySelectorAll('.code-copy-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      const codeBlock = btn.closest('.code-block');
+      const code = codeBlock.querySelector('pre code') || codeBlock.querySelector('pre');
+      const text = code ? code.textContent : '';
+      const originalHTML = btn.innerHTML;
+
+      function showCopied() {
+        btn.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i> Copied!';
+        btn.classList.add('copied');
+        setTimeout(function() {
+          btn.innerHTML = originalHTML;
+          btn.classList.remove('copied');
+        }, 1500);
+      }
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(showCopied).catch(function() {
+          fallbackCopy(text, showCopied);
+        });
+      } else {
+        fallbackCopy(text, showCopied);
+      }
+    });
+  });
+
+  function fallbackCopy(text, callback) {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try {
+      document.execCommand('copy');
+      if (callback) callback();
+    } catch (err) {
+      console.warn('Copy failed', err);
+    }
+    document.body.removeChild(ta);
+  }
+
+  function highlightHash() {
+    const hash = window.location.hash;
+    if (!hash) return;
+    const target = document.querySelector(hash);
+    if (!target) return;
+    target.style.transition = 'background 0.4s ease';
+    target.style.background = 'rgba(255, 193, 7, 0.15)';
+    setTimeout(function() {
+      target.style.background = '';
+    }, 2000);
+    setTimeout(function() {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 100);
+  }
+  window.addEventListener('load', highlightHash);
+  window.addEventListener('hashchange', highlightHash);
+
+  updateProgress();
+  toggleBackToTop();
+
+})();
+</script>
+</body>
+</html>

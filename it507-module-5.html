@@ -1,0 +1,1808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+  <!-- ===== PRIMARY SEO META ===== -->
+  <title>IT-507 Module 5: Principles of DBMS & Transactional Processing — Notes | Sir Ali Raza</title>
+  <meta name="description" content="Complete study notes for IT-507 Module 5: Principles of DBMS & Transactional Processing. Covers DBMS principles, ACID properties, transaction states, schedules, serializability, recoverability, concurrency control, two-phase locking, timestamp ordering, and deadlock handling with definitions, types, real-life examples, diagrams, syntax, and simple examples by Sir Ali Raza.">
+  <meta name="keywords" content="IT-507 Module 5, Principles of DBMS, ACID properties, atomicity consistency isolation durability, transaction processing, transaction states, schedules, serializability, conflict serializability, view serializability, recoverability, concurrency control, locking protocols, two-phase locking, 2PL, strict 2PL, timestamp ordering, deadlock prevention, deadlock detection, deadlock recovery, wait-die, wound-wait, transaction management, database notes, IT-507 notes, IT-507 PDF, database administration notes, Sir Ali Raza, MySQL transactions, PostgreSQL, SQL Server">
+  <meta name="author" content="Sir Ali Raza">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta name="theme-color" content="#1e2b4f">
+  <link rel="canonical" href="https://ali-raza-muhammad-iqbal.github.io/it507-module-5.html">
+
+  <!-- ===== OPEN GRAPH ===== -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="IT-507 · Database Administration and Management">
+  <meta property="og:title" content="IT-507 Module 5: Principles of DBMS & Transactional Processing — Notes">
+  <meta property="og:description" content="Complete notes on DBMS principles, ACID, transaction states, serializability, concurrency control, locking protocols, and deadlock handling — with definitions, types, real-life examples, diagrams, syntax, and simple examples.">
+  <meta property="og:url" content="https://ali-raza-muhammad-iqbal.github.io/it507-module-5.html">
+  <meta property="og:image" content="https://ali-raza-muhammad-iqbal.github.io/preview.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="IT-507 Module 5 Principles of DBMS and Transactional Processing Notes cover">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:email" content="Mr_Ali_Raza@yahoo.com">
+  <meta property="article:author" content="Sir Ali Raza">
+  <meta property="article:section" content="Database Administration">
+  <meta property="article:tag" content="ACID">
+  <meta property="article:tag" content="Transaction Processing">
+  <meta property="article:tag" content="Concurrency Control">
+
+  <!-- ===== TWITTER CARD ===== -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="IT-507 Module 5: Principles of DBMS & Transactional Processing — Notes">
+  <meta name="twitter:description" content="Full notes for IT-507 Module 5 — ACID, transaction states, schedules, serializability, 2PL, timestamp ordering, and deadlock handling. Definitions, types, examples, diagrams, syntax.">
+  <meta name="twitter:image" content="https://ali-raza-muhammad-iqbal.github.io/preview.png">
+  <meta name="twitter:image:alt" content="IT-507 Module 5 Principles of DBMS and Transactional Processing Notes cover">
+  <meta name="twitter:creator" content="@Ali_Raza_Iqbal">
+  <meta name="twitter:site" content="@Ali_Raza_Iqbal">
+
+  <!-- ===== ADDITIONAL SEO ===== -->
+  <meta name="rating" content="general">
+  <meta name="language" content="English">
+  <meta name="revisit-after" content="7 days">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="icon" type="image/x-icon" href="https://ali-raza-muhammad-iqbal.github.io/favicon.ico">
+  <link rel="apple-touch-icon" href="https://ali-raza-muhammad-iqbal.github.io/apple-touch-icon.png">
+
+  <!-- ===== STRUCTURED DATA ===== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LearningResource",
+    "name": "IT-507 Module 5: Principles of DBMS & Transactional Processing",
+    "description": "Complete study notes for IT-507 Module 5 covering DBMS principles, ACID properties, transaction processing concepts and states, transaction management and schedules, serializability and recoverability, concurrency control mechanisms, locking protocols (two-phase locking, timestamp ordering), and deadlock handling (prevention, detection, recovery) — with definitions, types, real-life examples, diagrams, syntax, and simple examples.",
+    "url": "https://ali-raza-muhammad-iqbal.github.io/it507-module-5.html",
+    "image": "https://ali-raza-muhammad-iqbal.github.io/preview.png",
+    "inLanguage": "en",
+    "educationalLevel": "Undergraduate",
+    "learningResourceType": "Notes",
+    "isPartOf": {
+      "@type": "Course",
+      "name": "IT-507 Database Administration and Management",
+      "url": "https://ali-raza-muhammad-iqbal.github.io/index.html"
+    },
+    "author": {
+      "@type": "Person",
+      "name": "Sir Ali Raza",
+      "url": "https://ali-raza-muhammad-iqbal.github.io",
+      "email": "mailto:Mr_Ali_Raza@yahoo.com",
+      "sameAs": [
+        "https://github.com/Ali-Raza-Muhammad-Iqbal",
+        "https://www.linkedin.com/in/ali-raza-muhammad-iqbal",
+        "https://ali-raza-muhammad-iqbal.github.io",
+        "https://www.tiktok.com/@ali_raza_muhammad_iqbal",
+        "https://www.facebook.com/AliRazaMuhammadIqbal1",
+        "https://www.instagram.com/ali_raza_muhammad_iqbal",
+        "https://x.com/Ali_Raza_Iqbal",
+        "https://www.youtube.com/@Ali_Raza_Muhammad_Iqbal"
+      ]
+    },
+    "about": [
+      { "@type": "Thing", "name": "ACID Properties" },
+      { "@type": "Thing", "name": "Transaction Processing" },
+      { "@type": "Thing", "name": "Serializability" },
+      { "@type": "Thing", "name": "Concurrency Control" },
+      { "@type": "Thing", "name": "Deadlock Handling" }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://ali-raza-muhammad-iqbal.github.io" },
+      { "@type": "ListItem", "position": 2, "name": "IT-507 Database Administration and Management", "item": "https://ali-raza-muhammad-iqbal.github.io/index.html" },
+      { "@type": "ListItem", "position": 3, "name": "Module 5: Principles of DBMS & Transactional Processing", "item": "https://ali-raza-muhammad-iqbal.github.io/it507-module-5.html" }
+    ]
+  }
+  </script>
+
+  <!-- ===== BOOTSTRAP + FONTAWESOME ===== -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <style>
+    /* ===== CSS VARIABLES (Light + Dark) ===== */
+    :root {
+      --bg-body: #f8faff;
+      --bg-card: #ffffff;
+      --bg-subtle: #eef3fc;
+      --bg-code: #1e2b4f;
+      --bg-code-inline: #eef3fc;
+      --text-primary: #1e2b4f;
+      --text-secondary: #4a5a78;
+      --text-muted: #7a8bab;
+      --text-code: #e6edf9;
+      --border-color: #e0e8f5;
+      --border-strong: #bac8e0;
+      --accent-yellow: #ffc107;
+      --accent-blue: #0d6efd;
+      --accent-red: #d9534f;
+      --accent-green: #198754;
+      --accent-gold: #b07d00;
+      --header-from: #1e2b4f;
+      --header-to: #2a3f6e;
+      --footer-bg: #1e2b4f;
+      --footer-text: #cddcff;
+      --shadow-sm: 0 2px 8px rgba(30, 43, 79, 0.05);
+      --shadow-md: 0 12px 30px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 10px 25px rgba(0, 20, 40, 0.2);
+    }
+    [data-theme="dark"] {
+      --bg-body: #0f1729;
+      --bg-card: #1a2338;
+      --bg-subtle: #243155;
+      --bg-code: #0a1120;
+      --bg-code-inline: #243155;
+      --text-primary: #e6edf9;
+      --text-secondary: #b6c4e0;
+      --text-muted: #8a9bbb;
+      --text-code: #e6edf9;
+      --border-color: #2f3f63;
+      --border-strong: #3d4f7a;
+      --header-from: #0d1526;
+      --header-to: #1a2846;
+      --footer-bg: #0d1526;
+      --footer-text: #b8c8f0;
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+      --shadow-md: 0 12px 30px rgba(0, 0, 0, 0.4);
+      --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.5);
+    }
+    [data-theme="dark"] body { background-color: var(--bg-body); color: var(--text-primary); }
+    [data-theme="dark"] .note-card { background: var(--bg-card); border-color: var(--border-color); }
+    [data-theme="dark"] .topic-section h3 { color: var(--text-primary); }
+    [data-theme="dark"] .topic-section h4 { color: var(--accent-yellow); }
+    [data-theme="dark"] code.inline { background: var(--bg-code-inline); color: #6b9eff; }
+    [data-theme="dark"] .example-box { background: var(--bg-subtle); border-left-color: var(--accent-blue); }
+    [data-theme="dark"] .real-life-box { background: rgba(25, 135, 84, 0.12); border-left-color: var(--accent-green); }
+    [data-theme="dark"] .warning-box { background: rgba(217, 83, 79, 0.12); border-left-color: var(--accent-red); }
+    [data-theme="dark"] .info-box { background: rgba(255, 193, 7, 0.1); border-left-color: var(--accent-yellow); }
+    [data-theme="dark"] .diagram-box { background: var(--bg-subtle); border-color: var(--border-color); }
+    [data-theme="dark"] .toc-card { background: var(--bg-card); border-color: var(--border-color); }
+    [data-theme="dark"] .toc-card a { color: var(--text-secondary); }
+    [data-theme="dark"] .toc-card a:hover { color: var(--accent-yellow); }
+    [data-theme="dark"] .theme-toggle { background: var(--bg-card); color: var(--text-primary); border-color: var(--border-color); }
+    [data-theme="dark"] table.notes-table th { background: var(--bg-subtle); color: var(--text-primary); }
+    [data-theme="dark"] table.notes-table td { border-color: var(--border-color); }
+    [data-theme="dark"] .notes-link { color: var(--text-primary); border-bottom-color: #4a5f85; }
+    [data-theme="dark"] .notes-link:hover { color: #6b9eff; border-bottom-color: #6b9eff; }
+
+    /* ===== GLOBAL ===== */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
+      background-color: var(--bg-body);
+      font-family: 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', sans-serif;
+      overflow-x: hidden;
+      line-height: 1.65;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      color: var(--text-primary);
+    }
+    img, svg { max-width: 100%; height: auto; }
+
+    .progress-bar-top {
+      position: fixed; top: 0; left: 0; height: 3px;
+      background: linear-gradient(90deg, #ffc107, #0d6efd);
+      width: 0%; z-index: 9999; transition: width 0.1s linear;
+      box-shadow: 0 0 8px rgba(255, 193, 7, 0.5);
+    }
+
+    .theme-toggle {
+      position: fixed; top: 14px; right: 14px; z-index: 1000;
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--bg-card); border: 1px solid var(--border-color);
+      color: var(--text-primary); font-size: 1.1rem; cursor: pointer;
+      box-shadow: var(--shadow-md);
+      transition: transform 0.2s ease, background 0.2s ease;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .theme-toggle:hover { transform: scale(1.1) rotate(15deg); background: var(--accent-yellow); color: #1e2b4f; }
+    .theme-toggle:focus-visible { outline: 2px solid var(--accent-blue); outline-offset: 2px; }
+    .back-to-top {
+      position: fixed; bottom: 24px; right: 24px; z-index: 1000;
+      width: 46px; height: 46px; border-radius: 50%;
+      background: var(--accent-yellow); color: #1e2b4f; border: none;
+      font-size: 1.1rem; cursor: pointer;
+      box-shadow: 0 6px 20px rgba(255, 193, 7, 0.5);
+      opacity: 0; visibility: hidden; transform: translateY(20px);
+      transition: all 0.3s ease;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .back-to-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
+    .back-to-top:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(255, 193, 7, 0.7); }
+
+    .header-card {
+      background: linear-gradient(135deg, var(--header-from) 0%, var(--header-to) 100%);
+      color: white; border-radius: 0 0 2rem 2rem;
+      padding: clamp(1.5rem, 4vw, 2.5rem) clamp(1rem, 3vw, 2rem);
+      box-shadow: var(--shadow-lg);
+    }
+    .header-card h1 {
+      font-weight: 700; letter-spacing: -0.5px;
+      font-size: clamp(1.4rem, 4.5vw, 2.6rem);
+    }
+    .header-card .lead { font-weight: 300; color: #d4e2ff; font-size: clamp(0.9rem, 2vw, 1.1rem); }
+    .badge-code {
+      background-color: var(--accent-yellow); color: #1e2b4f;
+      font-weight: 600; font-size: clamp(0.95rem, 2.5vw, 1.3rem);
+      padding: 0.3rem 1rem; border-radius: 3rem; display: inline-block;
+      margin-bottom: 0.75rem; box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    .prepared-by {
+      font-size: clamp(0.85rem, 1.8vw, 1.05rem);
+      background: rgba(255,255,255,0.12); display: inline-block;
+      padding: 0.45rem 1.3rem; border-radius: 3rem;
+      backdrop-filter: blur(4px); margin-top: 0.5rem;
+    }
+
+    .social-wrap {
+      margin-top: 1.4rem; padding-top: 1.2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+    }
+    .social-title {
+      font-size: clamp(0.68rem, 1.8vw, 0.78rem);
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: #b9cdf5; font-weight: 600; margin-bottom: 0.85rem;
+    }
+    .social-title i { margin-right: 6px; }
+    .social-links {
+      display: flex; flex-wrap: wrap;
+      gap: clamp(0.4rem, 1.5vw, 0.6rem);
+      justify-content: center; list-style: none;
+      padding-left: 0; margin-bottom: 0;
+    }
+    .social-links a {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: clamp(38px, 8vw, 44px); height: clamp(38px, 8vw, 44px);
+      border-radius: 50%; background: rgba(255, 255, 255, 0.1);
+      color: #ffffff; font-size: clamp(0.95rem, 2.2vw, 1.1rem);
+      text-decoration: none;
+      transition: transform 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .social-links a:hover, .social-links a:focus-visible {
+      transform: translateY(-4px); background: #ffffff; color: #1e2b4f;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.28); outline: none;
+    }
+    .social-links a.gh:hover  { background: #24292e; color: #fff; }
+    .social-links a.li:hover  { background: #0a66c2; color: #fff; }
+    .social-links a.gl:hover  { background: var(--accent-yellow); color: #1e2b4f; }
+    .social-links a.tt:hover  { background: #000000; color: #fff; }
+    .social-links a.fb:hover  { background: #1877f2; color: #fff; }
+    .social-links a.ig:hover  { background: linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); color: #fff; }
+    .social-links a.x:hover   { background: #000000; color: #fff; }
+    .social-links a.yt:hover  { background: #ff0000; color: #fff; }
+    .social-links a.mail:hover{ background: #eab308; color: #1e2b4f; }
+
+    .toc-card {
+      background: var(--bg-card); border-radius: 1.25rem;
+      padding: clamp(1rem, 2.5vw, 1.5rem);
+      margin-top: 1.5rem; margin-bottom: 2rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-color);
+      position: sticky; top: 20px;
+    }
+    .toc-card h5 {
+      color: var(--text-primary); font-weight: 700; font-size: 0.95rem;
+      text-transform: uppercase; letter-spacing: 0.05em;
+      margin-bottom: 0.85rem; padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--accent-yellow);
+    }
+    .toc-card ol { padding-left: 1.2rem; margin-bottom: 0; }
+    .toc-card li { margin-bottom: 0.45rem; font-size: 0.88rem; }
+    .toc-card a { color: var(--text-secondary); text-decoration: none; transition: color 0.15s; }
+    .toc-card a:hover { color: var(--accent-blue); }
+
+    .note-card {
+      background: var(--bg-card); border-radius: 1.25rem;
+      padding: clamp(1rem, 3vw, 2rem);
+      margin-bottom: 1.5rem;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border-color);
+      transition: background 0.3s ease;
+    }
+    .topic-section { scroll-margin-top: 90px; }
+    .topic-section h3 {
+      color: var(--text-primary); font-weight: 700;
+      font-size: clamp(1.15rem, 3vw, 1.5rem);
+      margin-bottom: 1rem; padding-bottom: 0.6rem;
+      border-bottom: 3px solid var(--accent-yellow);
+      display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap;
+    }
+    .topic-number {
+      background: var(--accent-yellow); color: #1e2b4f;
+      font-weight: 700; font-size: 0.85em;
+      padding: 0.15rem 0.7rem; border-radius: 0.5rem;
+      display: inline-block; flex-shrink: 0;
+    }
+    .topic-section h4 {
+      color: var(--accent-blue); font-weight: 700;
+      font-size: clamp(0.98rem, 2.3vw, 1.1rem);
+      margin-top: 1.5rem; margin-bottom: 0.65rem;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .topic-section h4 i { color: var(--accent-yellow); }
+    .topic-section p {
+      color: var(--text-secondary); margin-bottom: 0.85rem;
+      font-size: clamp(0.9rem, 2vw, 0.98rem);
+    }
+    .topic-section ul, .topic-section ol {
+      color: var(--text-secondary);
+      font-size: clamp(0.9rem, 2vw, 0.98rem);
+      margin-bottom: 0.85rem; padding-left: 1.4rem;
+    }
+    .topic-section li { margin-bottom: 0.4rem; }
+    .topic-section strong { color: var(--text-primary); }
+
+    code.inline {
+      background: var(--bg-code-inline); color: var(--accent-blue);
+      padding: 0.12rem 0.45rem; border-radius: 0.3rem;
+      font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+      font-size: 0.88em; font-weight: 600; word-break: break-word;
+    }
+
+    .code-block {
+      position: relative; background: var(--bg-code);
+      border-radius: 0.75rem; margin: 1rem 0; overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .code-block-header {
+      background: rgba(255, 255, 255, 0.06);
+      padding: 0.5rem 0.85rem;
+      display: flex; justify-content: space-between; align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .code-block-lang {
+      color: #b9cdf5; font-size: 0.72rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      display: flex; align-items: center; gap: 0.4rem;
+    }
+    .code-copy-btn {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #e6edf9; font-size: 0.72rem;
+      padding: 0.3rem 0.7rem; border-radius: 0.35rem;
+      cursor: pointer; transition: 0.18s;
+      display: inline-flex; align-items: center; gap: 0.35rem;
+      font-weight: 500;
+    }
+    .code-copy-btn:hover { background: var(--accent-yellow); color: #1e2b4f; border-color: var(--accent-yellow); }
+    .code-copy-btn.copied { background: var(--accent-green); color: #fff; border-color: var(--accent-green); }
+    .code-block pre {
+      margin: 0; padding: 1rem 1.1rem; color: var(--text-code);
+      font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+      font-size: clamp(0.78rem, 1.9vw, 0.88rem);
+      line-height: 1.55; overflow-x: auto; white-space: pre;
+      scrollbar-width: thin;
+    }
+    .code-block pre::-webkit-scrollbar { height: 6px; }
+    .code-block pre::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 3px; }
+    .code-block pre code { color: inherit; background: none; padding: 0; font-size: inherit; }
+
+    .example-box, .real-life-box, .info-box, .warning-box {
+      padding: 0.85rem 1rem; border-radius: 0.6rem;
+      margin: 0.85rem 0; border-left: 4px solid;
+      font-size: clamp(0.88rem, 2vw, 0.95rem);
+    }
+    .example-box { background: var(--bg-subtle); border-left-color: var(--accent-blue); color: var(--text-secondary); }
+    .real-life-box { background: rgba(25, 135, 84, 0.08); border-left-color: var(--accent-green); color: var(--text-secondary); }
+    .info-box { background: rgba(255, 193, 7, 0.08); border-left-color: var(--accent-yellow); color: var(--text-secondary); }
+    .warning-box { background: rgba(217, 83, 79, 0.08); border-left-color: var(--accent-red); color: var(--text-secondary); }
+    .example-box strong, .real-life-box strong, .info-box strong, .warning-box strong {
+      color: var(--text-primary); display: block; margin-bottom: 0.35rem;
+      font-size: 0.88em; text-transform: uppercase; letter-spacing: 0.04em;
+    }
+    .example-box strong i, .real-life-box strong i, .info-box strong i, .warning-box strong i {
+      margin-right: 0.35rem;
+    }
+
+    .diagram-box {
+      background: var(--bg-subtle);
+      border: 1.5px dashed var(--border-strong);
+      border-radius: 0.75rem; padding: 1.2rem 0.85rem;
+      margin: 1rem 0; text-align: center; overflow-x: auto;
+    }
+    .diagram-box svg { max-width: 100%; height: auto; display: inline-block; }
+    .diagram-caption {
+      font-size: 0.8rem; color: var(--text-muted);
+      margin-top: 0.6rem; font-style: italic;
+    }
+
+    .notes-table {
+      width: 100%; border-collapse: separate; border-spacing: 0;
+      margin: 1rem 0; font-size: clamp(0.82rem, 1.9vw, 0.92rem);
+      border-radius: 0.6rem; overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+    .notes-table th {
+      background: var(--bg-subtle); color: var(--text-primary);
+      font-weight: 700; padding: 0.7rem 0.85rem;
+      text-align: left; border-bottom: 2px solid var(--border-strong);
+      font-size: 0.82em; text-transform: uppercase; letter-spacing: 0.04em;
+    }
+    .notes-table td {
+      padding: 0.65rem 0.85rem;
+      border-bottom: 1px solid var(--border-color);
+      color: var(--text-secondary); vertical-align: top;
+    }
+    .notes-table tr:last-child td { border-bottom: none; }
+    .notes-table tr:hover td { background: var(--bg-subtle); }
+
+    .notes-link {
+      color: var(--text-primary); text-decoration: none; font-weight: 600;
+      border-bottom: 1px dashed #8aa3cc; font-size: 0.9rem;
+      transition: 0.15s; display: inline-flex;
+      align-items: center; gap: 0.35rem; padding: 0.15rem 0;
+    }
+    .notes-link i { color: var(--accent-red); font-size: 0.85rem; }
+    .notes-link:hover { color: var(--accent-blue); border-bottom-color: var(--accent-blue); }
+
+    .footer {
+      background-color: var(--footer-bg); color: var(--footer-text);
+      border-radius: 2rem 2rem 0 0;
+      padding: clamp(1.5rem, 4vw, 2rem) clamp(1rem, 3vw, 1.8rem);
+      margin-top: 2rem; font-size: clamp(0.85rem, 2vw, 0.95rem);
+      transition: background 0.3s ease;
+    }
+    .footer a { color: var(--accent-yellow); text-decoration: none; font-weight: 500; word-break: break-word; }
+    .footer a:hover { text-decoration: underline; color: #ffe08a; }
+    .footer .footer-social {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 4px;
+    }
+    .footer .footer-social a {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: clamp(30px, 7vw, 36px); height: clamp(30px, 7vw, 36px);
+      border-radius: 50%; background: rgba(255, 255, 255, 0.1);
+      color: var(--footer-text); font-size: clamp(0.75rem, 1.8vw, 0.88rem);
+      transition: 0.18s;
+    }
+    .footer .footer-social a:hover {
+      background: var(--accent-yellow); color: #1e2b4f;
+      text-decoration: none; transform: translateY(-2px);
+    }
+
+    @media (max-width: 992px) {
+      .toc-card { position: static; margin-bottom: 1rem; }
+      .toc-card ol { columns: 2; column-gap: 1rem; }
+    }
+    @media (max-width: 768px) {
+      .header-card { border-radius: 0 0 1.25rem 1.25rem; }
+      .note-card { border-radius: 1rem; }
+      .theme-toggle { width: 40px; height: 40px; top: 10px; right: 10px; font-size: 1rem; }
+      .back-to-top { width: 42px; height: 42px; bottom: 18px; right: 18px; font-size: 1rem; }
+      .toc-card ol { columns: 1; }
+      .code-block pre { font-size: 0.78rem; padding: 0.85rem; }
+    }
+    @media (max-width: 400px) {
+      .badge-code { font-size: 0.85rem; padding: 0.28rem 0.8rem; }
+      .prepared-by { font-size: 0.8rem; padding: 0.35rem 1rem; }
+      .social-links a { width: 36px; height: 36px; font-size: 0.9rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition: none !important; animation: none !important;
+        scroll-behavior: auto !important;
+      }
+    }
+    @media print {
+      .social-wrap, .footer-social, .badge-code, .theme-toggle, .back-to-top,
+      .progress-bar-top, .toc-card, .code-copy-btn { display: none !important; }
+      .header-card { background: #1e2b4f !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .note-card { box-shadow: none; page-break-inside: avoid; }
+      .code-block { background: #f4f4f4 !important; }
+      .code-block pre { color: #000 !important; }
+      body { background: #fff; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== READING PROGRESS BAR ===== -->
+<div class="progress-bar-top" id="progressBar" role="progressbar" aria-label="Reading progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+
+<!-- ===== THEME TOGGLE ===== -->
+<button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+  <i class="fas fa-moon" id="themeIcon" aria-hidden="true"></i>
+</button>
+
+<!-- ===== BACK TO TOP ===== -->
+<button class="back-to-top" id="backToTop" aria-label="Back to top" title="Back to top">
+  <i class="fas fa-arrow-up" aria-hidden="true"></i>
+</button>
+
+<!-- ===== SKIP LINK ===== -->
+<a href="#module-content" class="visually-hidden-focusable">Skip to module content</a>
+
+<!-- ===== HEADER ===== -->
+<header role="banner" aria-label="Module header">
+  <div class="header-card text-center">
+    <div class="badge-code">
+      <i class="fas fa-shield-halved me-2" aria-hidden="true"></i>IT-507 · Module 5
+    </div>
+    <h1 class="display-6 fw-bold mt-2">Principles of DBMS &amp; Transactional Processing</h1>
+    <p class="lead mt-2 mb-3">Complete study notes · definitions, types, real-life examples, diagrams &amp; syntax</p>
+    <div class="prepared-by">
+      <i class="fas fa-chalkboard-teacher me-2" aria-hidden="true"></i>Prepared by <strong>Sir Ali Raza</strong>
+    </div>
+
+    <!-- ===== SOCIAL MEDIA LINKS ===== -->
+    <div class="social-wrap">
+      <p class="social-title"><i class="fas fa-share-nodes" aria-hidden="true"></i>Connect with Sir Ali Raza</p>
+      <ul class="social-links" aria-label="Social media and contact links">
+        <li><a class="gh" href="https://github.com/Ali-Raza-Muhammad-Iqbal" target="_blank" rel="noopener noreferrer" title="GitHub" aria-label="GitHub profile"><i class="fab fa-github" aria-hidden="true"></i></a></li>
+        <li><a class="li" href="https://www.linkedin.com/in/ali-raza-muhammad-iqbal" target="_blank" rel="noopener noreferrer" title="LinkedIn" aria-label="LinkedIn profile"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a></li>
+        <li><a class="gl" href="https://ali-raza-muhammad-iqbal.github.io" target="_blank" rel="noopener noreferrer" title="Portfolio / Website" aria-label="Personal website"><i class="fas fa-globe" aria-hidden="true"></i></a></li>
+        <li><a class="tt" href="https://www.tiktok.com/@ali_raza_muhammad_iqbal" target="_blank" rel="noopener noreferrer" title="TikTok" aria-label="TikTok profile"><i class="fab fa-tiktok" aria-hidden="true"></i></a></li>
+        <li><a class="fb" href="https://www.facebook.com/AliRazaMuhammadIqbal1" target="_blank" rel="noopener noreferrer" title="Facebook" aria-label="Facebook profile"><i class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
+        <li><a class="ig" href="https://www.instagram.com/ali_raza_muhammad_iqbal" target="_blank" rel="noopener noreferrer" title="Instagram" aria-label="Instagram profile"><i class="fab fa-instagram" aria-hidden="true"></i></a></li>
+        <li><a class="x" href="https://x.com/Ali_Raza_Iqbal" target="_blank" rel="noopener noreferrer" title="X (Twitter)" aria-label="X (Twitter) profile"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i></a></li>
+        <li><a class="yt" href="https://www.youtube.com/@Ali_Raza_Muhammad_Iqbal" target="_blank" rel="noopener noreferrer" title="YouTube" aria-label="YouTube channel"><i class="fab fa-youtube" aria-hidden="true"></i></a></li>
+        <li><a class="mail" href="mailto:Mr_Ali_Raza@yahoo.com" title="Email" aria-label="Send email"><i class="fas fa-envelope" aria-hidden="true"></i></a></li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<!-- ===== MAIN CONTENT ===== -->
+<main role="main" id="module-content">
+  <div class="container-fluid px-2 px-sm-3 px-md-4" style="max-width: 1280px; margin: 0 auto;">
+    <div class="row g-3 mt-2">
+
+      <!-- ===== TOC SIDEBAR ===== -->
+      <div class="col-lg-3 col-xl-3 order-lg-1 order-2">
+        <nav class="toc-card" aria-label="Table of contents">
+          <h5><i class="fas fa-list-ul me-2" aria-hidden="true"></i>Module Contents</h5>
+          <ol>
+            <li><a href="#topic-5-1">Principles of DBMS</a></li>
+            <li><a href="#topic-5-2">ACID Properties</a></li>
+            <li><a href="#topic-5-3">Transaction Processing &amp; States</a></li>
+            <li><a href="#topic-5-4">Transaction Management &amp; Schedules</a></li>
+            <li><a href="#topic-5-5">Serializability &amp; Recoverability</a></li>
+            <li><a href="#topic-5-6">Concurrency Control Mechanisms</a></li>
+            <li><a href="#topic-5-7">Locking Protocols</a></li>
+            <li><a href="#topic-5-8">Deadlock Handling</a></li>
+          </ol>
+        </nav>
+      </div>
+
+      <!-- ===== NOTES CONTENT ===== -->
+      <div class="col-lg-9 col-xl-9 order-lg-2 order-1">
+
+        <!-- ============ TOPIC 5.1 ============ -->
+        <article class="note-card topic-section" id="topic-5-1">
+          <h3><span class="topic-number">5.1</span> Principles of Database Management Systems</h3>
+
+          <h4><i class="fas fa-book" aria-hidden="true"></i>Definition</h4>
+          <p>The <strong>principles of DBMS</strong> are the core guarantees that a database management system must provide so that applications can trust the data. These principles ensure that data remains <em>correct</em>, <em>safe</em>, <em>consistent</em>, and <em>available</em> even when many users and failures happen simultaneously.</p>
+
+          <h4><i class="fas fa-layer-group" aria-hidden="true"></i>Core Principles</h4>
+          <ul>
+            <li><strong>Data Integrity</strong> — data is always valid and consistent with constraints (PK, FK, CHECK).</li>
+            <li><strong>Data Security</strong> — only authorized users can access or modify data (GRANT/REVOKE, roles, encryption).</li>
+            <li><strong>Data Independence</strong> — change the physical storage without breaking applications (three-schema architecture).</li>
+            <li><strong>Concurrency</strong> — many users can work simultaneously without corrupting each other's data.</li>
+            <li><strong>Recovery</strong> — after a crash, the DBMS restores the data to a consistent state.</li>
+            <li><strong>Atomicity of operations</strong> — multi-step operations either fully succeed or fully fail (transactions).</li>
+            <li><strong>Durability</strong> — once a transaction is committed, it survives power loss.</li>
+            <li><strong>Efficiency</strong> — queries and updates run fast (indexes, optimizer, buffer pool).</li>
+          </ul>
+
+          <h4><i class="fas fa-diagram-project" aria-hidden="true"></i>Diagram — DBMS Principles Pillars</h4>
+          <div class="diagram-box">
+            <svg viewBox="0 0 700 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Six pillars of DBMS principles around a central DBMS core">
+              <circle cx="350" cy="140" r="55" fill="#1e2b4f" stroke="#ffc107" stroke-width="3"/>
+              <text x="350" y="135" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="14" font-weight="700" fill="#fff">DBMS</text>
+              <text x="350" y="155" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#ffc107">Core Principles</text>
+
+              <!-- Six pillars -->
+              <rect x="30" y="20" width="140" height="50" rx="8" fill="#eef3fc" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="100" y="42" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#1e2b4f">Integrity</text>
+              <text x="100" y="58" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#4a5a78">constraints always hold</text>
+
+              <rect x="530" y="20" width="140" height="50" rx="8" fill="#eef3fc" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="600" y="42" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#1e2b4f">Security</text>
+              <text x="600" y="58" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#4a5a78">auth + authorization</text>
+
+              <rect x="30" y="115" width="140" height="50" rx="8" fill="#eef3fc" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="100" y="137" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#1e2b4f">Independence</text>
+              <text x="100" y="153" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#4a5a78">physical ≠ logical</text>
+
+              <rect x="530" y="115" width="140" height="50" rx="8" fill="#ffc107" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="600" y="137" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#1e2b4f">Concurrency</text>
+              <text x="600" y="153" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#4a5a78">many users, safe</text>
+
+              <rect x="30" y="210" width="140" height="50" rx="8" fill="#198754" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="100" y="232" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#fff">Recovery</text>
+              <text x="100" y="248" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#e6edf9">crash → consistent</text>
+
+              <rect x="530" y="210" width="140" height="50" rx="8" fill="#198754" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="600" y="232" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#fff">Durability</text>
+              <text x="600" y="248" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#e6edf9">commit = forever</text>
+
+              <!-- connecting lines -->
+              <line x1="170" y1="50" x2="295" y2="120" stroke="#0d6efd" stroke-width="1.5"/>
+              <line x1="530" y1="50" x2="405" y2="120" stroke="#0d6efd" stroke-width="1.5"/>
+              <line x1="170" y1="140" x2="295" y2="140" stroke="#0d6efd" stroke-width="1.5"/>
+              <line x1="530" y1="140" x2="405" y2="140" stroke="#0d6efd" stroke-width="1.5"/>
+              <line x1="170" y1="235" x2="295" y2="165" stroke="#0d6efd" stroke-width="1.5"/>
+              <line x1="530" y1="235" x2="405" y2="165" stroke="#0d6efd" stroke-width="1.5"/>
+            </svg>
+            <div class="diagram-caption">Figure 5.1 — Six pillars of DBMS principles around a central core</div>
+          </div>
+
+          <h4><i class="fas fa-code" aria-hidden="true"></i>Syntax — Principles enforced by the DBMS</h4>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="code-block-lang"><i class="fas fa-database" aria-hidden="true"></i> SQL — Principles in action</span>
+              <button class="code-copy-btn" type="button" aria-label="Copy SQL code"><i class="fas fa-copy" aria-hidden="true"></i> Copy</button>
+            </div>
+            <pre><code>-- Integrity: enforce valid data
+CREATE TABLE Accounts (
+    AccountID INT PRIMARY KEY,
+    Balance   DECIMAL(10,2) CHECK (Balance >= 0)  -- never negative
+);
+
+-- Security: only authorized users
+GRANT SELECT ON Accounts TO 'auditor'@'localhost';
+REVOKE INSERT ON Accounts FROM 'auditor'@'localhost';
+
+-- Concurrency: two transfers don't interfere
+START TRANSACTION;
+UPDATE Accounts SET Balance = Balance - 100 WHERE AccountID = 1;
+UPDATE Accounts SET Balance = Balance + 100 WHERE AccountID = 2;
+COMMIT;
+
+-- Recovery: after a crash, the DBMS uses the redo/undo log
+-- to restore the last consistent state (no code needed — automatic).</code></pre>
+          </div>
+
+          <div class="example-box">
+            <strong><i class="fas fa-lightbulb" aria-hidden="true"></i>Simple Example</strong>
+            <p class="mb-0">When Alice transfers $100 to Bob, the DBMS guarantees: (1) her balance drops AND Bob's rises (atomicity); (2) both balances stay non-negative (integrity); (3) no other user sees a partial state (concurrency); (4) after power loss, both changes are either both present or both absent (durability).</p>
+          </div>
+
+          <div class="real-life-box">
+            <strong><i class="fas fa-briefcase" aria-hidden="true"></i>Real-Life Use Case</strong>
+            <p class="mb-0">Every banking system relies on these principles. When 10,000 customers make ATM withdrawals simultaneously, the DBMS ensures no one's balance becomes inconsistent. When a server crashes mid-transaction, the recovery system replays the log to restore the correct balances — customers never see or lose money.</p>
+          </div>
+        </article>
+
+        <!-- ============ TOPIC 5.2 ============ -->
+        <article class="note-card topic-section" id="topic-5-2">
+          <h3><span class="topic-number">5.2</span> ACID Properties (Atomicity, Consistency, Isolation, Durability)</h3>
+
+          <h4><i class="fas fa-book" aria-hidden="true"></i>Definition</h4>
+          <p><strong>ACID</strong> is a set of four properties that guarantee database transactions are processed reliably. Every serious relational DBMS is ACID-compliant. Together they ensure that even with concurrent users and system crashes, the database remains correct.</p>
+
+          <h4><i class="fas fa-layer-group" aria-hidden="true"></i>The Four ACID Properties</h4>
+
+          <p><strong>1. Atomicity ("All or Nothing")</strong></p>
+          <ul>
+            <li>A transaction is treated as a single unit — either <em>all</em> its operations succeed, or <em>none</em> do.</li>
+            <li>If the transaction fails halfway, the DBMS <strong>rolls back</strong> any changes already made.</li>
+          </ul>
+
+          <p><strong>2. Consistency ("Valid to Valid")</strong></p>
+          <ul>
+            <li>A transaction takes the database from one <em>valid</em> state to another valid state.</li>
+            <li>All constraints (PK, FK, CHECK) must hold before and after.</li>
+            <li>If a transaction would violate a constraint, it's aborted.</li>
+          </ul>
+
+          <p><strong>3. Isolation ("No Interference")</strong></p>
+          <ul>
+            <li>Concurrent transactions don't see each other's uncommitted changes.</li>
+            <li>Each transaction feels like it's running alone.</li>
+            <li>Implemented via locking or multiversioning (MVCC).</li>
+          </ul>
+
+          <p><strong>4. Durability ("Survives Crashes")</strong></p>
+          <ul>
+            <li>Once a transaction is <code class="inline">COMMIT</code>ted, its changes are permanent — even if the system crashes immediately after.</li>
+            <li>Implemented via write-ahead logging (WAL) and fsync.</li>
+          </ul>
+
+          <h4><i class="fas fa-diagram-project" aria-hidden="true"></i>Diagram — The ACID Quadrant</h4>
+          <div class="diagram-box">
+            <svg viewBox="0 0 700 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ACID four quadrants with atomicity consistency isolation durability">
+              <!-- Center -->
+              <circle cx="350" cy="160" r="50" fill="#1e2b4f" stroke="#ffc107" stroke-width="3"/>
+              <text x="350" y="155" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="18" font-weight="700" fill="#fff">ACID</text>
+              <text x="350" y="175" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#ffc107">Transaction Guarantees</text>
+
+              <!-- Four quadrants -->
+              <rect x="40" y="30" width="230" height="110" rx="10" fill="#ffc107" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="155" y="55" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="14" font-weight="700" fill="#1e2b4f">ATOMICITY</text>
+              <text x="155" y="75" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78">All operations succeed,</text>
+              <text x="155" y="90" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78">or none do (rollback)</text>
+              <text x="155" y="115" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" font-style="italic" fill="#b07d00">"All or nothing"</text>
+
+              <rect x="430" y="30" width="230" height="110" rx="10" fill="#0d6efd" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="545" y="55" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="14" font-weight="700" fill="#fff">CONSISTENCY</text>
+              <text x="545" y="75" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#e6edf9">Valid state → valid state</text>
+              <text x="545" y="90" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#e6edf9">Constraints enforced</text>
+              <text x="545" y="115" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" font-style="italic" fill="#b9cdf5">"Rules always hold"</text>
+
+              <rect x="40" y="180" width="230" height="110" rx="10" fill="#198754" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="155" y="205" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="14" font-weight="700" fill="#fff">ISOLATION</text>
+              <text x="155" y="225" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#e6edf9">Concurrent txns don't</text>
+              <text x="155" y="240" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#e6edf9">interfere with each other</text>
+              <text x="155" y="265" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" font-style="italic" fill="#b9cdf5">"Feels like running alone"</text>
+
+              <rect x="430" y="180" width="230" height="110" rx="10" fill="#d9534f" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="545" y="205" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="14" font-weight="700" fill="#fff">DURABILITY</text>
+              <text x="545" y="225" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#fff">Committed = permanent</text>
+              <text x="545" y="240" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#fff">Survives crashes</text>
+              <text x="545" y="265" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" font-style="italic" fill="#ffe0d8">"Commit = forever"</text>
+            </svg>
+            <div class="diagram-caption">Figure 5.2 — The four ACID guarantees of a transaction</div>
+          </div>
+
+          <h4><i class="fas fa-code" aria-hidden="true"></i>Syntax — ACID in SQL</h4>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="code-block-lang"><i class="fas fa-database" aria-hidden="true"></i> SQL — ACID transfer</span>
+              <button class="code-copy-btn" type="button" aria-label="Copy SQL code"><i class="fas fa-copy" aria-hidden="true"></i> Copy</button>
+            </div>
+            <pre><code>-- Classic bank transfer: 100 from A to B
+
+-- ATOMICITY: use a transaction so both UPDATEs succeed or both fail
+START TRANSACTION;
+
+-- CONSISTENCY: constraint ensures balances never go negative
+UPDATE Accounts SET Balance = Balance - 100 WHERE AccountID = 1;
+UPDATE Accounts SET Balance = Balance + 100 WHERE AccountID = 2;
+
+-- ISOLATION: other sessions won't see the new balances until COMMIT
+COMMIT;   -- DURABILITY: flushed to disk + WAL → survives crash
+
+-- If anything failed, ROLLBACK would undo BOTH updates
+
+-- ---------- Level of isolation can be tuned ----------
+SET TRANSACTION ISOLATION LEVEL READ COMMITTED;
+-- Options: READ UNCOMMITTED, READ COMMITTED, REPEATABLE READ, SERIALIZABLE
+-- (higher = more isolation, less concurrency)</code></pre>
+          </div>
+
+          <div class="example-box">
+            <strong><i class="fas fa-lightbulb" aria-hidden="true"></i>Simple Example</strong>
+            <p class="mb-1"><strong>Atomicity:</strong> if the second UPDATE fails, the first is undone — Alice doesn't lose $100.</p>
+            <p class="mb-1"><strong>Consistency:</strong> CHECK constraint (<code class="inline">Balance &gt;= 0</code>) prevents overdrafts.</p>
+            <p class="mb-1"><strong>Isolation:</strong> another customer querying at the same time sees either the before-state or after-state, never mid-state.</p>
+            <p class="mb-0"><strong>Durability:</strong> once COMMIT returns, the change survives even if the server's power dies immediately.</p>
+          </div>
+
+          <div class="real-life-box">
+            <strong><i class="fas fa-briefcase" aria-hidden="true"></i>Real-Life Use Case</strong>
+            <p class="mb-0">Every <strong>payment</strong> — credit card charge, PayPal, Stripe, UPI — relies on ACID. When you tap "Buy Now," a transaction debits your account, credits the seller, and records the order. If any step fails (fraud check, inventory, payment gateway), the entire transaction is rolled back and no money moves.</p>
+          </div>
+
+          <div class="info-box">
+            <strong><i class="fas fa-info-circle" aria-hidden="true"></i>Isolation Levels</strong>
+            <ul class="mb-0">
+              <li><strong>READ UNCOMMITTED</strong> — fastest, allows dirty reads (bad for money).</li>
+              <li><strong>READ COMMITTED</strong> — default in most DBMSs, avoids dirty reads.</li>
+              <li><strong>REPEATABLE READ</strong> — stable snapshots, avoids non-repeatable reads.</li>
+              <li><strong>SERIALIZABLE</strong> — strictest, transactions appear fully serial.</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- ============ TOPIC 5.3 ============ -->
+        <article class="note-card topic-section" id="topic-5-3">
+          <h3><span class="topic-number">5.3</span> Transaction Processing — Concepts and States</h3>
+
+          <h4><i class="fas fa-book" aria-hidden="true"></i>Definition</h4>
+          <p>A <strong>transaction</strong> is a logical unit of database work — a sequence of operations (read, write) that must be executed as a single, indivisible unit. <strong>Transaction processing</strong> is the DBMS's management of transactions from start to finish, ensuring ACID properties even when many run concurrently and crashes occur.</p>
+
+          <h4><i class="fas fa-layer-group" aria-hidden="true"></i>Transaction States</h4>
+          <p>A transaction goes through up to five states during its lifetime:</p>
+          <ol>
+            <li><strong>Active</strong> — the transaction is executing; reads/writes are happening.</li>
+            <li><strong>Partially Committed</strong> — the final operation has executed, but changes haven't been flushed to disk yet.</li>
+            <li><strong>Committed</strong> — all changes are permanently written to disk. Cannot be rolled back.</li>
+            <li><strong>Failed</strong> — an error occurred or the transaction was aborted; changes must be undone.</li>
+            <li><strong>Aborted (Rolled Back)</strong> — the DBMS has undone all changes; the transaction is terminated.</li>
+          </ol>
+
+          <h4><i class="fas fa-diagram-project" aria-hidden="true"></i>Diagram — Transaction State Machine</h4>
+          <div class="diagram-box">
+            <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Transaction state machine with active, partially committed, committed, failed, aborted states">
+              <defs>
+                <marker id="ts-arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+                  <path d="M0,0 L0,6 L9,3 z" fill="#0d6efd"/>
+                </marker>
+                <marker id="ts-red" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+                  <path d="M0,0 L0,6 L9,3 z" fill="#d9534f"/>
+                </marker>
+                <marker id="ts-green" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+                  <path d="M0,0 L0,6 L9,3 z" fill="#198754"/>
+                </marker>
+              </defs>
+
+              <!-- Active -->
+              <rect x="40" y="120" width="120" height="60" rx="30" fill="#ffc107" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="100" y="155" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="13" font-weight="700" fill="#1e2b4f">ACTIVE</text>
+
+              <!-- Arrow to partially committed -->
+              <line x1="160" y1="150" x2="220" y2="150" stroke="#0d6efd" stroke-width="2.5" marker-end="url(#ts-arrow)"/>
+              <text x="190" y="140" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#4a5a78">last op done</text>
+
+              <!-- Partially Committed -->
+              <rect x="225" y="120" width="150" height="60" rx="30" fill="#0d6efd" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="300" y="145" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="12" font-weight="700" fill="#fff">PARTIALLY</text>
+              <text x="300" y="163" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="12" font-weight="700" fill="#fff">COMMITTED</text>
+
+              <!-- Arrow to committed -->
+              <line x1="375" y1="150" x2="435" y2="150" stroke="#198754" stroke-width="2.5" marker-end="url(#ts-green)"/>
+              <text x="405" y="140" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#198754">flush to disk</text>
+
+              <!-- Committed -->
+              <rect x="440" y="120" width="130" height="60" rx="30" fill="#198754" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="505" y="155" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="13" font-weight="700" fill="#fff">COMMITTED</text>
+
+              <!-- Arrow to failed from active -->
+              <line x1="100" y1="180" x2="200" y2="240" stroke="#d9534f" stroke-width="2.5" marker-end="url(#ts-red)"/>
+              <text x="120" y="220" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#d9534f">error</text>
+
+              <!-- Arrow to failed from partially committed -->
+              <line x1="300" y1="180" x2="300" y2="220" stroke="#d9534f" stroke-width="2.5" marker-end="url(#ts-red)"/>
+              <text x="320" y="205" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#d9534f">crash</text>
+
+              <!-- Failed -->
+              <rect x="180" y="225" width="150" height="50" rx="25" fill="#d9534f" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="255" y="255" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="13" font-weight="700" fill="#fff">FAILED</text>
+
+              <!-- Arrow to aborted -->
+              <line x1="330" y1="250" x2="430" y2="250" stroke="#1e2b4f" stroke-width="2.5" marker-end="url(#ts-arrow)"/>
+              <text x="380" y="240" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#4a5a78">rollback</text>
+
+              <!-- Aborted -->
+              <rect x="435" y="225" width="170" height="50" rx="25" fill="#1e2b4f" stroke="#ffc107" stroke-width="2"/>
+              <text x="520" y="255" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="13" font-weight="700" fill="#fff">ABORTED / ROLLED BACK</text>
+
+              <text x="350" y="295" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" font-style="italic" fill="#7a8bab">Once COMMITTED or ABORTED, the transaction cannot change state</text>
+            </svg>
+            <div class="diagram-caption">Figure 5.3 — Transaction state machine: Active → Partially Committed → Committed (or Failed → Aborted)</div>
+          </div>
+
+          <h4><i class="fas fa-code" aria-hidden="true"></i>Syntax — Observing transaction states</h4>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="code-block-lang"><i class="fas fa-database" aria-hidden="true"></i> SQL — Transaction lifecycle</span>
+              <button class="code-copy-btn" type="button" aria-label="Copy SQL code"><i class="fas fa-copy" aria-hidden="true"></i> Copy</button>
+            </div>
+            <pre><code>-- ACTIVE: transaction begins, statements start executing
+START TRANSACTION;
+UPDATE Accounts SET Balance = Balance - 100 WHERE AccountID = 1;
+-- Still ACTIVE until last statement runs
+
+UPDATE Accounts SET Balance = Balance + 100 WHERE AccountID = 2;
+-- Now PARTIALLY COMMITTED — last op done, not yet durable
+
+COMMIT;
+-- Now COMMITTED — changes flushed to disk, WAL entry written
+
+-- ---------- Failure path ----------
+START TRANSACTION;
+UPDATE Accounts SET Balance = Balance - 100 WHERE AccountID = 1;
+-- Error occurs (e.g., constraint violation) → FAILED state
+ROLLBACK;
+-- Now ABORTED — all changes undone
+
+-- ---------- See current transactions ----------
+-- MySQL
+SHOW PROCESSLIST;
+
+-- PostgreSQL
+SELECT pid, state, query FROM pg_stat_activity WHERE state <> 'idle';</code></pre>
+          </div>
+
+          <div class="example-box">
+            <strong><i class="fas fa-lightbulb" aria-hidden="true"></i>Simple Example</strong>
+            <p class="mb-0">Ordering pizza online: <strong>Active</strong> = adding items to cart. <strong>Partially Committed</strong> = payment authorized. <strong>Committed</strong> = order confirmed, restaurant notified. <strong>Failed</strong> = card declined. <strong>Aborted</strong> = order cancelled, no charge made.</p>
+          </div>
+
+          <div class="real-life-box">
+            <strong><i class="fas fa-briefcase" aria-hidden="true"></i>Real-Life Use Case</strong>
+            <p class="mb-0">A stock trading platform executes a buy order as a transaction: <strong>Active</strong> when the order enters the matching engine, <strong>Partially Committed</strong> when the trade is matched, <strong>Committed</strong> when settlement is confirmed. If the network drops mid-trade, the state machine ensures the trade is either fully executed or fully undone — no half-completed trades.</p>
+          </div>
+        </article>
+
+        <!-- ============ TOPIC 5.4 ============ -->
+        <article class="note-card topic-section" id="topic-5-4">
+          <h3><span class="topic-number">5.4</span> Transaction Management and Schedules</h3>
+
+          <h4><i class="fas fa-book" aria-hidden="true"></i>Definition</h4>
+          <p><strong>Transaction management</strong> is the DBMS subsystem that controls how multiple transactions execute relative to each other. A <strong>schedule</strong> is the chronological order in which the operations (read, write) of multiple transactions are executed. The scheduler's job is to pick schedules that keep the database consistent and preserve ACID.</p>
+
+          <h4><i class="fas fa-layer-group" aria-hidden="true"></i>Types of Schedules</h4>
+
+          <p><strong>1. Serial Schedule</strong></p>
+          <ul>
+            <li>Transactions run one after another — no overlap.</li>
+            <li>Always correct, but slow (no concurrency).</li>
+          </ul>
+
+          <p><strong>2. Concurrent Schedule</strong></p>
+          <ul>
+            <li>Transactions interleave — operations from T1 and T2 overlap.</li>
+            <li>Much faster but can produce anomalies if not controlled.</li>
+          </ul>
+
+          <p><strong>3. Serializability (Special Case)</strong></p>
+          <ul>
+            <li>A concurrent schedule is <em>serializable</em> if its outcome is the same as some serial schedule. (More in Topic 5.5.)</li>
+          </ul>
+
+          <p><strong>4. Non-Serializable Schedule</strong></p>
+          <ul>
+            <li>Concurrent schedule that does <em>not</em> match any serial order — can violate correctness.</li>
+          </ul>
+
+          <h4><i class="fas fa-star" aria-hidden="true"></i>Notation for Schedules</h4>
+          <ul>
+            <li><code class="inline">R_i(X)</code> — transaction T<sub>i</sub> reads item X.</li>
+            <li><code class="inline">W_i(X)</code> — transaction T<sub>i</sub> writes item X.</li>
+            <li><code class="inline">C_i</code> — T<sub>i</sub> commits.</li>
+            <li><code class="inline">A_i</code> — T<sub>i</sub> aborts.</li>
+          </ul>
+
+          <h4><i class="fas fa-diagram-project" aria-hidden="true"></i>Diagram — Serial vs Concurrent Schedules</h4>
+          <div class="diagram-box">
+            <svg viewBox="0 0 700 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Serial schedule vs concurrent schedule timeline">
+              <!-- Serial schedule -->
+              <text x="175" y="20" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="13" font-weight="700" fill="#1e2b4f">SERIAL SCHEDULE</text>
+
+              <rect x="40" y="35" width="270" height="35" rx="6" fill="#0d6efd" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="175" y="58" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="12" font-weight="700" fill="#fff">Transaction T1 (full run)</text>
+
+              <rect x="40" y="75" width="270" height="35" rx="6" fill="#198754" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="175" y="98" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="12" font-weight="700" fill="#fff">Transaction T2 (full run)</text>
+
+              <text x="175" y="135" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78">Time →</text>
+              <text x="175" y="155" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" font-style="italic" fill="#7a8bab">No overlap → always correct, but slow</text>
+
+              <!-- Divider -->
+              <line x1="350" y1="20" x2="350" y2="170" stroke="#bac8e0" stroke-width="1.5" stroke-dasharray="5 4"/>
+
+              <!-- Concurrent schedule -->
+              <text x="525" y="20" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="13" font-weight="700" fill="#1e2b4f">CONCURRENT SCHEDULE</text>
+
+              <!-- Timeline -->
+              <line x1="390" y1="55" x2="660" y2="55" stroke="#7a8bab" stroke-width="1"/>
+              <line x1="390" y1="105" x2="660" y2="105" stroke="#7a8bab" stroke-width="1"/>
+
+              <text x="385" y="60" text-anchor="end" font-family="Segoe UI, sans-serif" font-size="10" font-weight="700" fill="#0d6efd">T1</text>
+              <text x="385" y="110" text-anchor="end" font-family="Segoe UI, sans-serif" font-size="10" font-weight="700" fill="#198754">T2</text>
+
+              <!-- T1 operations -->
+              <rect x="395" y="40" width="55" height="30" rx="4" fill="#0d6efd" stroke="#1e2b4f" stroke-width="1"/>
+              <text x="422" y="60" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#fff">R1(X)</text>
+
+              <rect x="475" y="40" width="55" height="30" rx="4" fill="#0d6efd" stroke="#1e2b4f" stroke-width="1"/>
+              <text x="502" y="60" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#fff">W1(X)</text>
+
+              <rect x="580" y="40" width="55" height="30" rx="4" fill="#0d6efd" stroke="#1e2b4f" stroke-width="1"/>
+              <text x="607" y="60" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#fff">C1</text>
+
+              <!-- T2 operations -->
+              <rect x="395" y="90" width="55" height="30" rx="4" fill="#198754" stroke="#1e2b4f" stroke-width="1"/>
+              <text x="422" y="110" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#fff">R2(X)</text>
+
+              <rect x="540" y="90" width="55" height="30" rx="4" fill="#198754" stroke="#1e2b4f" stroke-width="1"/>
+              <text x="567" y="110" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#fff">W2(X)</text>
+
+              <rect x="605" y="90" width="55" height="30" rx="4" fill="#198754" stroke="#1e2b4f" stroke-width="1"/>
+              <text x="632" y="110" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#fff">C2</text>
+
+              <text x="525" y="145" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78">Time →</text>
+              <text x="525" y="165" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" font-style="italic" fill="#7a8bab">Overlap → fast, but needs control</text>
+            </svg>
+            <div class="diagram-caption">Figure 5.4 — Serial (one at a time) vs concurrent (interleaved) schedules</div>
+          </div>
+
+          <h4><i class="fas fa-code" aria-hidden="true"></i>Syntax — Schedule notation in practice</h4>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="code-block-lang"><i class="fas fa-database" aria-hidden="true"></i> SQL — Concurrent schedule</span>
+              <button class="code-copy-btn" type="button" aria-label="Copy SQL code"><i class="fas fa-copy" aria-hidden="true"></i> Copy</button>
+            </div>
+            <pre><code>-- A concurrent schedule looks like this (in notation):
+-- S = R1(X), R2(X), W1(X), W2(X), C1, C2
+-- (T1 reads X, T2 reads X, T1 writes X, T2 writes X, ...)
+
+-- In real SQL, two sessions overlap like this:
+-- Session 1 (T1)                    Session 2 (T2)
+-- ----------------                  ----------------
+START TRANSACTION;                     START TRANSACTION;
+SELECT Balance FROM Accounts           SELECT Balance FROM Accounts
+  WHERE AccountID = 1;                   WHERE AccountID = 1;
+-- (both see 1000)
+UPDATE Accounts SET Balance = 900      UPDATE Accounts SET Balance = 800
+  WHERE AccountID = 1;                   WHERE AccountID = 1;
+-- ← danger: lost update if not serialized
+COMMIT;                                COMMIT;
+-- Final balance = 800, but T1's -100 was lost!
+
+-- A serializable scheduler prevents this with locking.
+-- With 2PL, T2 waits until T1 commits:
+-- S = R1(X), W1(X), C1, R2(X), W2(X), C2  (a serial order)</code></pre>
+          </div>
+
+          <div class="example-box">
+            <strong><i class="fas fa-lightbulb" aria-hidden="true"></i>Simple Example</strong>
+            <p class="mb-1"><strong>Serial:</strong> "Customer A deposits $100, then Customer B withdraws $200" — one after another, no overlap.</p>
+            <p class="mb-0"><strong>Concurrent:</strong> "A deposits while B withdraws at the same time" — operations interleave, but the scheduler must prevent them from corrupting each other's view.</p>
+          </div>
+
+          <div class="real-life-box">
+            <strong><i class="fas fa-briefcase" aria-hidden="true"></i>Real-Life Use Case</strong>
+            <p class="mb-0">A <strong>ticket booking site</strong> (BookMyShow, Ticketmaster) has thousands of concurrent users checking seat availability and booking. The schedule must allow them all to query (interleaved reads) but serialize the actual bookings — otherwise two users could buy the same seat.</p>
+          </div>
+
+          <div class="info-box">
+            <strong><i class="fas fa-info-circle" aria-hidden="true"></i>Schedule Notation</strong>
+            <p class="mb-0">Schedules are written as sequences: <code class="inline">S = R1(X), R2(Y), W1(X), W2(Y), C1, C2</code>. The DBMS scheduler chooses the order, and serializability theory (Topic 5.5) verifies the result is correct.</p>
+          </div>
+        </article>
+
+        <!-- ============ TOPIC 5.5 ============ -->
+        <article class="note-card topic-section" id="topic-5-5">
+          <h3><span class="topic-number">5.5</span> Serializability and Recoverability</h3>
+
+          <h4><i class="fas fa-book" aria-hidden="true"></i>Definition</h4>
+          <p><strong>Serializability</strong> is the correctness criterion for concurrent schedules: a concurrent schedule is correct if its result is equivalent to some <em>serial</em> schedule (transactions run one after another in some order). <strong>Recoverability</strong> ensures that even if a transaction aborts, the database can be restored to a consistent state.</p>
+
+          <h4><i class="fas fa-layer-group" aria-hidden="true"></i>Types of Serializability</h4>
+
+          <p><strong>1. Conflict Serializability</strong></p>
+          <ul>
+            <li>Two operations <em>conflict</em> if they belong to different transactions, access the same data item, and at least one is a write.</li>
+            <li>A schedule is conflict-serializable if its conflicting operations can be ordered to match a serial schedule.</li>
+            <li>Tested via a <strong>precedence graph</strong> (a.k.a. serialization graph): if the graph has no cycles, the schedule is conflict-serializable.</li>
+          </ul>
+
+          <p><strong>2. View Serializability</strong></p>
+          <ul>
+            <li>Weaker than conflict serializability (broader class of schedules).</li>
+            <li>Two schedules are view-equivalent if every read operation sees the same value and the final writes are the same.</li>
+            <li>Harder to test — generally NP-complete, so DBMSs usually enforce conflict serializability (easier).</li>
+          </ul>
+
+          <h4><i class="fas fa-star" aria-hidden="true"></i>Types of Recoverability</h4>
+          <ul>
+            <li><strong>Irrecoverable Schedule</strong> — dangerous: a transaction reads uncommitted data from another and commits; if the other aborts, the first's reads are invalid.</li>
+            <li><strong>Recoverable Schedule</strong> — a transaction only commits after the transactions it read from have committed.</li>
+            <li><strong>Cascadeless Schedule</strong> — a transaction only reads committed data. Even safer.</li>
+            <li><strong>Strict Schedule</strong> — no transaction reads or writes an item until the transaction that last wrote it has committed/aborted. The safest — enforced by strict 2PL.</li>
+          </ul>
+
+          <h4><i class="fas fa-diagram-project" aria-hidden="true"></i>Diagram — Precedence Graph (Conflict Serializability)</h4>
+          <div class="diagram-box">
+            <svg viewBox="0 0 700 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Precedence graph showing conflict serializability test">
+              <text x="350" y="25" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="13" font-weight="700" fill="#1e2b4f">Precedence Graph — No Cycles → Serializable</text>
+
+              <!-- Schedule -->
+              <text x="350" y="55" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" fill="#4a5a78">Schedule: R1(X), W2(X), R2(Y), W1(Y), C1, C2</text>
+
+              <!-- Nodes -->
+              <circle cx="280" cy="150" r="40" fill="#0d6efd" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="280" y="155" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="16" font-weight="700" fill="#fff">T1</text>
+
+              <circle cx="420" cy="150" r="40" fill="#198754" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="420" y="155" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="16" font-weight="700" fill="#fff">T2</text>
+
+              <!-- Edge T1 → T2 (W1(Y) after R2(Y)) -->
+              <path d="M 315 125 Q 350 90 385 125" fill="none" stroke="#d9534f" stroke-width="2.5" marker-end="url(#pg-arrow)"/>
+              <text x="350" y="85" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#d9534f" font-weight="700">W1(Y) after R2(Y)</text>
+
+              <!-- Edge T2 → T1 (W2(X) after R1(X)) -->
+              <path d="M 385 175 Q 350 210 315 175" fill="none" stroke="#0d6efd" stroke-width="2.5" marker-end="url(#pg-arrow2)"/>
+              <text x="350" y="230" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#0d6efd" font-weight="700">W2(X) after R1(X)</text>
+
+              <defs>
+                <marker id="pg-arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+                  <path d="M0,0 L0,6 L9,3 z" fill="#d9534f"/>
+                </marker>
+                <marker id="pg-arrow2" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+                  <path d="M0,0 L0,6 L9,3 z" fill="#0d6efd"/>
+                </marker>
+              </defs>
+
+              <text x="350" y="255" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-style="italic" fill="#d9534f">← Cycle exists → NOT conflict-serializable (must reorder or abort)</text>
+            </svg>
+            <div class="diagram-caption">Figure 5.5 — Precedence graph: a cycle means the schedule is not serializable</div>
+          </div>
+
+          <h4><i class="fas fa-code" aria-hidden="true"></i>Syntax — Recoverable schedule in SQL</h4>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="code-block-lang"><i class="fas fa-database" aria-hidden="true"></i> SQL — Recoverable transactions</span>
+              <button class="code-copy-btn" type="button" aria-label="Copy SQL code"><i class="fas fa-copy" aria-hidden="true"></i> Copy</button>
+            </div>
+            <pre><code>-- IRRECOVERABLE (dangerous):
+-- T1 modifies X but hasn't committed; T2 reads X and COMMITS.
+-- If T1 aborts, T2's read was based on invalid data — cannot recover.
+
+-- Session 1 (T1)
+START TRANSACTION;
+UPDATE Accounts SET Balance = 0 WHERE AccountID = 1;   -- NOT committed yet
+-- Session 2 (T2)
+SELECT Balance FROM Accounts WHERE AccountID = 1;       -- reads 0 (dirty read!)
+COMMIT;
+-- If T1 now ROLLBACKs, T2's committed result was based on data that never existed!
+
+-- RECOVERABLE: DBMS prevents this via locking or MVCC
+-- T2 blocks until T1 commits (or aborts) — no dirty reads possible.
+
+-- To enforce strictly, set isolation to SERIALIZABLE:
+SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
+-- Now transactions are fully serializable AND strict (no dirty reads).</code></pre>
+          </div>
+
+          <div class="example-box">
+            <strong><i class="fas fa-lightbulb" aria-hidden="true"></i>Simple Example</strong>
+            <p class="mb-1"><strong>Conflict-serializable:</strong> schedule <code class="inline">R1(X), W1(X), R2(X), W2(X)</code> — T1 runs first, then T2 — equivalent to serial order T1 → T2. ✓</p>
+            <p class="mb-0"><strong>Not serializable:</strong> schedule <code class="inline">R1(X), W2(X), W1(X), W2(X)</code> — T1 reads X, T2 writes X, T1 writes X — T1 doesn't see T2's write. This is a lost update. ✗</p>
+          </div>
+
+          <div class="real-life-box">
+            <strong><i class="fas fa-briefcase" aria-hidden="true"></i>Real-Life Use Case</strong>
+            <p class="mb-0">In a <strong>bank</strong>, when two customers withdraw from the same account simultaneously, serializability ensures that one sees the other's committed balance — not a stale snapshot. If the second withdrawal would cause an overdraft, the DBMS aborts it before any inconsistency occurs.</p>
+          </div>
+
+          <div class="info-box">
+            <strong><i class="fas fa-info-circle" aria-hidden="true"></i>Hierarchy of Schedules</strong>
+            <p class="mb-0">All serial schedules ⊂ conflict-serializable ⊂ view-serializable ⊂ all schedules. DBMSs typically enforce conflict-serializability because it's easy to test (cycle detection in precedence graph) and strict enough for correctness.</p>
+          </div>
+        </article>
+
+        <!-- ============ TOPIC 5.6 ============ -->
+        <article class="note-card topic-section" id="topic-5-6">
+          <h3><span class="topic-number">5.6</span> Concurrency Control Mechanisms</h3>
+
+          <h4><i class="fas fa-book" aria-hidden="true"></i>Definition</h4>
+          <p><strong>Concurrency control</strong> is the DBMS subsystem that coordinates simultaneous transactions so they don't interfere. Without it, concurrent transactions can produce anomalies like <em>lost updates</em>, <em>dirty reads</em>, <em>non-repeatable reads</em>, and <em>phantoms</em>.</p>
+
+          <h4><i class="fas fa-exclamation-triangle" aria-hidden="true"></i>Concurrency Anomalies</h4>
+          <ul>
+            <li><strong>Lost Update</strong> — two transactions read the same data, both update, but one update overwrites the other.</li>
+            <li><strong>Dirty Read</strong> — a transaction reads uncommitted data from another; if that other aborts, the read was invalid.</li>
+            <li><strong>Non-repeatable Read</strong> — a transaction reads the same row twice and sees different values because another transaction updated in between.</li>
+            <li><strong>Phantom Read</strong> — a transaction re-runs a query and sees new rows that appeared because another transaction inserted them.</li>
+          </ul>
+
+          <h4><i class="fas fa-layer-group" aria-hidden="true"></i>Types of Concurrency Control</h4>
+          <ul>
+            <li><strong>Lock-Based</strong> — transactions acquire locks (shared/exclusive) before reading/writing. Enforced by protocols like 2PL (Topic 5.7).</li>
+            <li><strong>Timestamp-Based</strong> — each transaction has a timestamp; operations are ordered by timestamp. Conflicts abort the later transaction.</li>
+            <li><strong>Optimistic (Validation-Based)</strong> — transactions run freely, then are validated at commit time. Good when conflicts are rare.</li>
+            <li><strong>Multiversion (MVCC)</strong> — multiple versions of each row; readers see a consistent snapshot. Used by PostgreSQL, Oracle, MySQL InnoDB.</li>
+            <li><strong>Snapshot Isolation</strong> — a transaction sees a consistent snapshot of the database at its start time.</li>
+          </ul>
+
+          <h4><i class="fas fa-diagram-project" aria-hidden="true"></i>Diagram — Anomalies Illustrated</h4>
+          <div class="diagram-box">
+            <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Concurrency anomalies: lost update, dirty read, non-repeatable read">
+              <!-- Lost update -->
+              <text x="115" y="20" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="12" font-weight="700" fill="#d9534f">LOST UPDATE</text>
+              <rect x="20" y="30" width="190" height="130" rx="6" fill="#eef3fc" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="115" y="50" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78">T1: R(X)=100</text>
+              <text x="115" y="68" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78">T2: R(X)=100</text>
+              <text x="115" y="86" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78">T1: W(X)=90</text>
+              <text x="115" y="104" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78">T2: W(X)=80</text>
+              <text x="115" y="125" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" font-weight="700" fill="#d9534f">Final X = 80</text>
+              <text x="115" y="145" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" font-style="italic" fill="#7a8bab">T1's -10 is lost</text>
+
+              <!-- Dirty read -->
+              <text x="350" y="20" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="12" font-weight="700" fill="#b07d00">DIRTY READ</text>
+              <rect x="255" y="30" width="190" height="130" rx="6" fill="#eef3fc" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="350" y="50" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78">T1: W(X)=50</text>
+              <text x="350" y="68" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78">T2: R(X)=50</text>
+              <text x="350" y="86" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78">T1: ROLLBACK</text>
+              <text x="350" y="108" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" font-weight="700" fill="#d9534f">T2 read data</text>
+              <text x="350" y="126" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" font-weight="700" fill="#d9534f">that never existed</text>
+              <text x="350" y="148" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" font-style="italic" fill="#7a8bab">T2 used invalid value</text>
+
+              <!-- Non-repeatable -->
+              <text x="585" y="20" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="12" font-weight="700" fill="#0d6efd">NON-REPEATABLE</text>
+              <rect x="490" y="30" width="190" height="130" rx="6" fill="#eef3fc" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="585" y="50" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78">T1: R(X)=100</text>
+              <text x="585" y="68" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78">T2: W(X)=200</text>
+              <text x="585" y="86" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78">T2: COMMIT</text>
+              <text x="585" y="104" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78">T1: R(X)=200</text>
+              <text x="585" y="126" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" font-weight="700" fill="#0d6efd">Same query, two</text>
+              <text x="585" y="144" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" font-weight="700" fill="#0d6efd">different answers</text>
+
+              <!-- Solutions -->
+              <text x="350" y="210" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="13" font-weight="700" fill="#1e2b4f">How the DBMS Prevents These</text>
+
+              <rect x="40" y="225" width="150" height="60" rx="6" fill="#ffc107" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="115" y="245" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#1e2b4f">Locking (2PL)</text>
+              <text x="115" y="262" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#4a5a78">shared + exclusive locks</text>
+
+              <rect x="210" y="225" width="140" height="60" rx="6" fill="#ffc107" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="280" y="245" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#1e2b4f">Timestamp</text>
+              <text x="280" y="262" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#4a5a78">order by time</text>
+
+              <rect x="370" y="225" width="140" height="60" rx="6" fill="#198754" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="440" y="245" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#fff">MVCC</text>
+              <text x="440" y="262" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#e6edf9">multiple versions</text>
+
+              <rect x="530" y="225" width="140" height="60" rx="6" fill="#0d6efd" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="600" y="245" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#fff">Optimistic</text>
+              <text x="600" y="262" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#e6edf9">validate at commit</text>
+            </svg>
+            <div class="diagram-caption">Figure 5.6 — Common concurrency anomalies and the mechanisms that prevent them</div>
+          </div>
+
+          <h4><i class="fas fa-code" aria-hidden="true"></i>Syntax — Seeing concurrency control in action</h4>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="code-block-lang"><i class="fas fa-database" aria-hidden="true"></i> SQL — MVCC &amp; isolation</span>
+              <button class="code-copy-btn" type="button" aria-label="Copy SQL code"><i class="fas fa-copy" aria-hidden="true"></i> Copy</button>
+            </div>
+            <pre><code>-- MVCC in PostgreSQL: readers don't block writers and vice versa
+-- Session 1
+BEGIN;
+SELECT * FROM Accounts WHERE AccountID = 1;   -- sees version 1
+-- Session 2
+UPDATE Accounts SET Balance = 500 WHERE AccountID = 1;
+COMMIT;
+-- Session 1 (still open)
+SELECT * FROM Accounts WHERE AccountID = 1;   -- REPEATABLE READ → sees version 1
+COMMIT;
+
+-- Check current locks (MySQL)
+SELECT * FROM information_schema.innodb_locks;
+SELECT * FROM information_schema.innodb_lock_waits;
+
+-- Check current locks (PostgreSQL)
+SELECT pid, locktype, mode, granted, relation::regclass
+FROM pg_locks
+WHERE relation IS NOT NULL;
+
+-- See MVCC row versions (PostgreSQL internal)
+SELECT xmin, xmax, * FROM Accounts WHERE AccountID = 1;
+-- xmin = created by transaction id; xmax = deleted by transaction id</code></pre>
+          </div>
+
+          <div class="example-box">
+            <strong><i class="fas fa-lightbulb" aria-hidden="true"></i>Simple Example</strong>
+            <p class="mb-1"><strong>Lost update:</strong> Alice and Bob both see $1000, both withdraw $100, but only one deduction applies → balance becomes $900 instead of $800.</p>
+            <p class="mb-0"><strong>Solution:</strong> with locking, Alice's transaction holds an exclusive lock on the row; Bob waits; then sees $900 and correctly computes $800.</p>
+          </div>
+
+          <div class="real-life-box">
+            <strong><i class="fas fa-briefcase" aria-hidden="true"></i>Real-Life Use Case</strong>
+            <p class="mb-0"><strong>Flash sales</strong> (e.g., Black Friday, 11.11 in China): thousands of customers try to buy the same product simultaneously. Lock-based or MVCC concurrency control ensures inventory isn't oversold — each successful purchase decrements stock by exactly 1, and failed ones see "sold out."</p>
+          </div>
+
+          <div class="warning-box">
+            <strong><i class="fas fa-exclamation-triangle" aria-hidden="true"></i>Higher Isolation = Less Concurrency</strong>
+            <p class="mb-0"><code class="inline">SERIALIZABLE</code> prevents all anomalies but serializes transactions. For most apps, <code class="inline">READ COMMITTED</code> or <code class="inline">REPEATABLE READ</code> (with MVCC) gives the best balance of safety and throughput.</p>
+          </div>
+        </article>
+
+        <!-- ============ TOPIC 5.7 ============ -->
+        <article class="note-card topic-section" id="topic-5-7">
+          <h3><span class="topic-number">5.7</span> Locking Protocols (Two-Phase Locking, Timestamp Ordering)</h3>
+
+          <h4><i class="fas fa-book" aria-hidden="true"></i>Definition</h4>
+          <p><strong>Locking protocols</strong> are rules that govern when transactions acquire and release locks, ensuring schedules are serializable. A <strong>lock</strong> is a DBMS data structure giving a transaction exclusive or shared access to a data item.</p>
+
+          <h4><i class="fas fa-layer-group" aria-hidden="true"></i>Types of Locks</h4>
+          <ul>
+            <li><strong>Shared Lock (S)</strong> — multiple transactions can hold it for reading. Also called "read lock."</li>
+            <li><strong>Exclusive Lock (X)</strong> — only one transaction can hold it, for writing. Also called "write lock."</li>
+            <li><strong>Intention Locks (IS, IX, SIX)</strong> — used in multi-granularity locking (row/table/page) to signal intent to lock lower-level items.</li>
+          </ul>
+
+          <p><strong>Compatibility:</strong> S is compatible with S (readers don't block readers); X is compatible with nothing.</p>
+
+          <h4><i class="fas fa-layer-group" aria-hidden="true"></i>Types of Locking Protocols</h4>
+
+          <p><strong>1. Two-Phase Locking (2PL)</strong></p>
+          <ul>
+            <li><strong>Phase 1 (Growing)</strong> — transactions acquire locks; releasing is forbidden.</li>
+            <li><strong>Phase 2 (Shrinking)</strong> — transactions release locks; acquiring new ones is forbidden.</li>
+            <li>Guarantees conflict-serializability.</li>
+          </ul>
+
+          <p><strong>2. Strict 2PL (S2PL)</strong></p>
+          <ul>
+            <li>Variant: hold all exclusive locks until COMMIT (or ROLLBACK).</li>
+            <li>Guarantees both serializability AND strict recoverability (no dirty reads).</li>
+            <li>The default in most DBMSs.</li>
+          </ul>
+
+          <p><strong>3. Conservative 2PL</strong></p>
+          <ul>
+            <li>Acquire all locks up front, before any operation.</li>
+            <li>Prevents deadlock, but hurts concurrency.</li>
+          </ul>
+
+          <p><strong>4. Rigorous 2PL</strong></p>
+          <ul>
+            <li>Hold ALL locks (S and X) until COMMIT. Even stricter, and easier to reason about.</li>
+          </ul>
+
+          <p><strong>5. Timestamp Ordering (TO)</strong></p>
+          <ul>
+            <li>Each transaction gets a unique timestamp (TS) at start.</li>
+            <li>Each data item has read-TS and write-TS (of last access).</li>
+            <li>If a transaction tries to read/write an item "in the past," it's aborted and restarted.</li>
+            <li>Guarantees serializability, but can cause more aborts (no blocking).</li>
+          </ul>
+
+          <h4><i class="fas fa-diagram-project" aria-hidden="true"></i>Diagram — 2PL Phases</h4>
+          <div class="diagram-box">
+            <svg viewBox="0 0 700 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Two-phase locking with growing and shrinking phases">
+              <!-- Axis -->
+              <line x1="60" y1="200" x2="640" y2="200" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="650" y="205" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#1e2b4f">Time</text>
+
+              <!-- Peak / lock count curve -->
+              <path d="M 80 200 L 280 200 L 280 80 L 420 80 L 420 200 L 620 200"
+                    fill="none" stroke="#0d6efd" stroke-width="3"/>
+
+              <!-- Phases labels -->
+              <text x="180" y="60" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="13" font-weight="700" fill="#198754">GROWING PHASE</text>
+              <text x="180" y="78" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78">acquire locks (only)</text>
+
+              <text x="525" y="60" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="13" font-weight="700" fill="#d9534f">SHRINKING PHASE</text>
+              <text x="525" y="78" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78">release locks (only)</text>
+
+              <!-- Vertical line at transition -->
+              <line x1="350" y1="60" x2="350" y2="200" stroke="#ffc107" stroke-width="2" stroke-dasharray="5 4"/>
+              <text x="350" y="55" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" font-weight="700" fill="#b07d00">LOCK POINT</text>
+
+              <!-- Max lock annotation -->
+              <text x="350" y="120" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" font-style="italic" fill="#4a5a78">all locks held</text>
+
+              <!-- Y axis label -->
+              <text x="40" y="80" font-family="Segoe UI, sans-serif" font-size="10" font-weight="700" fill="#1e2b4f">Locks</text>
+              <text x="40" y="95" font-family="Segoe UI, sans-serif" font-size="10" font-weight="700" fill="#1e2b4f">held</text>
+
+              <text x="350" y="240" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-style="italic" fill="#7a8bab">2PL rule: once you start releasing locks, you cannot acquire new ones</text>
+            </svg>
+            <div class="diagram-caption">Figure 5.7 — Two-Phase Locking: growing phase (acquire only) → shrinking phase (release only)</div>
+          </div>
+
+          <h4><i class="fas fa-code" aria-hidden="true"></i>Syntax — Locks in action</h4>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="code-block-lang"><i class="fas fa-database" aria-hidden="true"></i> SQL — Explicit locks</span>
+              <button class="code-copy-btn" type="button" aria-label="Copy SQL code"><i class="fas fa-copy" aria-hidden="true"></i> Copy</button>
+            </div>
+            <pre><code>-- FOR UPDATE: acquire an exclusive lock (MySQL, PostgreSQL)
+START TRANSACTION;
+SELECT Balance FROM Accounts
+WHERE AccountID = 1
+FOR UPDATE;   -- locks the row — other writers must wait
+
+UPDATE Accounts SET Balance = Balance - 100 WHERE AccountID = 1;
+COMMIT;       -- lock released, other waiters proceed
+
+-- FOR SHARE / LOCK IN SHARE MODE: acquire a shared lock
+START TRANSACTION;
+SELECT Balance FROM Accounts
+WHERE AccountID = 1
+FOR SHARE;    -- allows other readers, blocks writers
+
+COMMIT;
+
+-- NOWAIT / SKIP LOCKED (PostgreSQL, MySQL 8+)
+SELECT * FROM Orders
+WHERE Status = 'pending'
+ORDER BY OrderDate
+LIMIT 10
+FOR UPDATE SKIP LOCKED;
+-- → grabs 10 pending rows that aren't already locked
+-- → perfect for job queues / worker patterns!
+
+-- See lock waits (MySQL)
+SELECT * FROM performance_schema.data_lock_waits;
+
+-- See lock waits (PostgreSQL)
+SELECT pid, wait_event_type, wait_event, query
+FROM pg_stat_activity
+WHERE wait_event_type = 'Lock';</code></pre>
+          </div>
+
+          <div class="example-box">
+            <strong><i class="fas fa-lightbulb" aria-hidden="true"></i>Simple Example</strong>
+            <p class="mb-1"><strong>2PL:</strong> T1 acquires S lock on X, reads X. T1 acquires X lock on X, writes X. T1 acquires no more locks — enters shrinking phase, releases X lock, commits.</p>
+            <p class="mb-0"><strong>Timestamp Ordering:</strong> T1 (TS=1) reads X. T2 (TS=2) tries to write X, but T1's read-TS=1 &lt; T2's TS=2 → T2 aborts. T2 restarts with a new timestamp.</p>
+          </div>
+
+          <div class="real-life-box">
+            <strong><i class="fas fa-briefcase" aria-hidden="true"></i>Real-Life Use Case</strong>
+            <p class="mb-0">A <strong>job-queue system</strong> (Celery, Sidekiq, or a custom order-processing queue) uses <code class="inline">FOR UPDATE SKIP LOCKED</code> to let many workers safely grab different pending jobs — no two workers ever grab the same one, and no one waits unnecessarily. This pattern handles millions of jobs per hour.</p>
+          </div>
+
+          <div class="info-box">
+            <strong><i class="fas fa-info-circle" aria-hidden="true"></i>2PL vs Timestamp Ordering</strong>
+            <ul class="mb-0">
+              <li><strong>2PL:</strong> blocking; may deadlock; guaranteed serializable.</li>
+              <li><strong>TO:</strong> non-blocking (abort instead); no deadlock; but more aborts and more rollbacks.</li>
+              <li>Most modern DBMSs combine both (hybrid approaches) — 2PL for writes, MVCC for reads.</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- ============ TOPIC 5.8 ============ -->
+        <article class="note-card topic-section" id="topic-5-8">
+          <h3><span class="topic-number">5.8</span> Deadlock Handling (Prevention, Detection, Recovery)</h3>
+
+          <h4><i class="fas fa-book" aria-hidden="true"></i>Definition</h4>
+          <p>A <strong>deadlock</strong> occurs when two or more transactions wait for each other in a cycle — each holds a lock the other needs, so none can proceed. Without intervention, they wait forever. The DBMS must prevent, detect, or recover from deadlocks.</p>
+
+          <h4><i class="fas fa-layer-group" aria-hidden="true"></i>Deadlock Handling Strategies</h4>
+
+          <p><strong>1. Deadlock Prevention</strong> — stop deadlocks before they happen:</p>
+          <ul>
+            <li><strong>Conservative 2PL</strong> — acquire ALL locks at start; no partial locking means no cycles.</li>
+            <li><strong>Timestamp-based schemes</strong>:
+              <ul>
+                <li><strong>Wait-Die</strong> — older transaction waits for younger; younger dies (aborts) if it tries to wait for older. (Older survives.)</li>
+                <li><strong>Wound-Wait</strong> — older transaction "wounds" (aborts) younger and takes its lock; younger waits for older. (Older stronger.)</li>
+              </ul>
+            </li>
+            <li><strong>Lock ordering</strong> — all transactions acquire locks in a fixed global order (e.g., by ID).</li>
+          </ul>
+
+          <p><strong>2. Deadlock Detection</strong> — let deadlocks happen, then find them:</p>
+          <ul>
+            <li><strong>Wait-for graph</strong> — nodes are transactions; edge T<sub>i</sub> → T<sub>j</sub> means T<sub>i</sub> waits for T<sub>j</sub>. A cycle = deadlock.</li>
+            <li>DBMS periodically scans the wait-for graph for cycles.</li>
+            <li>Recovery: abort one transaction in the cycle (the "victim") — the rest proceed.</li>
+          </ul>
+
+          <p><strong>3. Deadlock Recovery</strong> — after detection, break the cycle:</p>
+          <ul>
+            <li><strong>Victim selection</strong> — abort the transaction with the least work done / fewest locks / lowest priority.</li>
+            <li><strong>Rollback</strong> — undo the victim's changes (total or partial rollback).</li>
+            <li><strong>Starvation avoidance</strong> — track how often a transaction is aborted; don't abort it too many times.</li>
+          </ul>
+
+          <h4><i class="fas fa-diagram-project" aria-hidden="true"></i>Diagram — Wait-For Graph with Deadlock Cycle</h4>
+          <div class="diagram-box">
+            <svg viewBox="0 0 700 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Wait-for graph showing a deadlock cycle">
+              <text x="350" y="25" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="13" font-weight="700" fill="#1e2b4f">WAIT-FOR GRAPH — Cycle Detected</text>
+
+              <!-- Three transactions in cycle -->
+              <circle cx="200" cy="130" r="45" fill="#0d6efd" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="200" y="125" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="15" font-weight="700" fill="#fff">T1</text>
+              <text x="200" y="145" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#e6edf9">holds A</text>
+
+              <circle cx="350" cy="200" r="45" fill="#198754" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="350" y="195" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="15" font-weight="700" fill="#fff">T2</text>
+              <text x="350" y="215" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#e6edf9">holds B</text>
+
+              <circle cx="500" cy="130" r="45" fill="#ffc107" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="500" y="125" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="15" font-weight="700" fill="#1e2b4f">T3</text>
+              <text x="500" y="145" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#4a5a78">holds C</text>
+
+              <!-- Edges -->
+              <defs>
+                <marker id="dl-arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+                  <path d="M0,0 L0,6 L9,3 z" fill="#d9534f"/>
+                </marker>
+              </defs>
+
+              <!-- T1 -> T2 -->
+              <line x1="235" y1="155" x2="315" y2="185" stroke="#d9534f" stroke-width="2.5" marker-end="url(#dl-arrow)"/>
+              <text x="270" y="160" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" font-weight="700" fill="#d9534f">wants B</text>
+
+              <!-- T2 -> T3 -->
+              <line x1="385" y1="185" x2="465" y2="155" stroke="#d9534f" stroke-width="2.5" marker-end="url(#dl-arrow)"/>
+              <text x="430" y="160" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" font-weight="700" fill="#d9534f">wants C</text>
+
+              <!-- T3 -> T1 -->
+              <path d="M 500 85 Q 350 20 200 85" fill="none" stroke="#d9534f" stroke-width="2.5" marker-end="url(#dl-arrow)"/>
+              <text x="350" y="25" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" font-weight="700" fill="#d9534f">wants A</text>
+
+              <text x="350" y="265" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-style="italic" fill="#d9534f">Cycle T1 → T2 → T3 → T1 = deadlock. DBMS must abort one transaction.</text>
+            </svg>
+            <div class="diagram-caption">Figure 5.8 — Wait-for graph: a cycle is a deadlock; the DBMS aborts one transaction to break it</div>
+          </div>
+
+          <h4><i class="fas fa-code" aria-hidden="true"></i>Syntax — Observing and handling deadlocks</h4>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="code-block-lang"><i class="fas fa-database" aria-hidden="true"></i> SQL — Deadlock in action</span>
+              <button class="code-copy-btn" type="button" aria-label="Copy SQL code"><i class="fas fa-copy" aria-hidden="true"></i> Copy</button>
+            </div>
+            <pre><code>-- Reproduce a deadlock in MySQL/PostgreSQL:
+-- Session 1 (T1)
+START TRANSACTION;
+UPDATE Accounts SET Balance = 1000 WHERE AccountID = 1;  -- locks row 1
+
+-- Session 2 (T2)
+START TRANSACTION;
+UPDATE Accounts SET Balance = 2000 WHERE AccountID = 2;  -- locks row 2
+
+-- Session 1 (T1) tries to update row 2 — waits for T2
+UPDATE Accounts SET Balance = 1500 WHERE AccountID = 2;
+
+-- Session 2 (T2) tries to update row 1 — waits for T1 → DEADLOCK
+UPDATE Accounts SET Balance = 2500 WHERE AccountID = 1;
+
+-- One session gets an error:
+-- MySQL:      ERROR 1213 (40001): Deadlock found when trying to get lock; try restarting transaction
+-- PostgreSQL: ERROR: deadlock detected
+-- The DBMS automatically rolls back one transaction.
+
+-- ---------- See deadlock info ----------
+-- MySQL
+SHOW ENGINE INNODB STATUS\G
+-- Look for "LATEST DETECTED DEADLOCK" section
+
+-- PostgreSQL
+SELECT * FROM pg_stat_activity WHERE wait_event_type = 'Lock';
+-- Look for wait_event = 'deadlock'
+
+-- ---------- Prevent deadlocks ----------
+-- 1. Always lock rows in the same order:
+START TRANSACTION;
+UPDATE Accounts SET Balance = Balance - 100 WHERE AccountID = 1;
+UPDATE Accounts SET Balance = Balance + 100 WHERE AccountID = 2;
+COMMIT;
+
+-- 2. Use lock timeout (MySQL, PostgreSQL)
+SET innodb_lock_wait_timeout = 10;   -- MySQL: 10 seconds
+SET lock_timeout = '10s';             -- PostgreSQL
+
+-- 3. Retry on deadlock in application code
+-- (catch error → wait random ms → retry transaction)</code></pre>
+          </div>
+
+          <div class="example-box">
+            <strong><i class="fas fa-lightbulb" aria-hidden="true"></i>Simple Example</strong>
+            <p class="mb-1"><strong>Deadlock:</strong> T1 holds lock on Account A and needs Account B. T2 holds lock on B and needs A. Both wait forever.</p>
+            <p class="mb-0"><strong>Wait-Die:</strong> T1 (older) wants B but T2 (younger) holds it → T1 <em>waits</em>. T2 wants A but T1 holds it → T2 <em>dies</em> (aborted). No cycle can form.</p>
+          </div>
+
+          <div class="real-life-box">
+            <strong><i class="fas fa-briefcase" aria-hidden="true"></i>Real-Life Use Case</strong>
+            <p class="mb-0">In a <strong>multiplayer game</strong>, two players trade items at the same time: player A swaps item X for Y, player B swaps Y for X. Without deadlock handling, both transactions freeze. The DBMS detects the wait-for cycle and aborts the younger one (e.g., B) — B is notified and retries automatically with a fresh timestamp.</p>
+          </div>
+
+          <div class="info-box">
+            <strong><i class="fas fa-info-circle" aria-hidden="true"></i>Wait-Die vs Wound-Wait</strong>
+            <ul class="mb-0">
+              <li><strong>Wait-Die (older waits for younger; younger dies):</strong> more aborts among younger transactions.</li>
+              <li><strong>Wound-Wait (older wounds younger; younger waits):</strong> more aborts among younger too, but at a different point.</li>
+              <li>Both are deadlock-free by design (they only abort in one direction).</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- ===== PRACTICAL LABS SUMMARY ===== -->
+        <article class="note-card">
+          <h3 style="border-bottom-color: var(--accent-blue);">
+            <i class="fas fa-flask me-2" style="color: var(--accent-blue);" aria-hidden="true"></i>Practical Labs for Module 5
+          </h3>
+          <p>Apply the concepts from this module with hands-on labs:</p>
+          <ul>
+            <li><strong>Lab 5.1:</strong> Implementing Transactions in SQL.</li>
+            <li><strong>Lab 5.2:</strong> Demonstrating COMMIT, ROLLBACK, and SAVEPOINT.</li>
+            <li><strong>Lab 5.3:</strong> Simulating Concurrency and Locking Scenarios.</li>
+          </ul>
+          <p class="mb-0"><a href="IT507_Practical_Module_5_Principles_of_DBMS_and_Transactional_Processing_CPP.pdf" target="_blank" rel="noopener" class="notes-link"><i class="fas fa-file-pdf" aria-hidden="true"></i> Download Module 5 Practical Lab Guide (PDF)</a></p>
+        </article>
+
+        <!-- ===== QUICK REVISION ===== -->
+        <article class="note-card">
+          <h3 style="border-bottom-color: var(--accent-green);">
+            <i class="fas fa-list-check me-2" style="color: var(--accent-green);" aria-hidden="true"></i>Quick Revision — Module 5 in One Glance
+          </h3>
+          <table class="notes-table">
+            <thead>
+              <tr><th>Topic</th><th>Key Takeaway</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>5.1 DBMS Principles</td><td>Integrity, Security, Independence, Concurrency, Recovery, Durability — the foundation.</td></tr>
+              <tr><td>5.2 ACID</td><td>Atomicity (all or nothing), Consistency (valid → valid), Isolation (no interference), Durability (survives crashes).</td></tr>
+              <tr><td>5.3 Transaction States</td><td>Active → Partially Committed → Committed, or Failed → Aborted.</td></tr>
+              <tr><td>5.4 Schedules</td><td>Serial (slow, always correct) vs Concurrent (fast, needs control).</td></tr>
+              <tr><td>5.5 Serializability</td><td>Conflict-serializable = no cycle in precedence graph; Recoverable = commits after dependencies.</td></tr>
+              <tr><td>5.6 Concurrency Control</td><td>Locking, Timestamp, MVCC, Optimistic — prevent lost updates, dirty reads, phantoms.</td></tr>
+              <tr><td>5.7 Locking Protocols</td><td>2PL (growing then shrinking), Strict 2PL (hold X locks till commit), Timestamp Ordering.</td></tr>
+              <tr><td>5.8 Deadlocks</td><td>Prevent (conservative 2PL, wait-die, wound-wait) or Detect (wait-for graph) + Recover (abort victim).</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <!-- ===== NAVIGATION ===== -->
+        <div class="note-card" style="text-align: center;">
+          <a href="index.html" class="notes-link" style="font-size: 1rem;"><i class="fas fa-arrow-left" aria-hidden="true"></i> Back to IT-507 Course Index</a>
+          <span class="mx-3 text-muted">·</span>
+          <a href="it507-module-4.html" class="notes-link" style="font-size: 1rem;"><i class="fas fa-arrow-left" aria-hidden="true"></i> Previous: Module 4</a>
+          <span class="mx-3 text-muted">·</span>
+          <a href="it507-module-6.html" class="notes-link" style="font-size: 1rem;">Next: Module 6 — Database Programming, Integrity &amp; Security <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-10 col-xl-8 text-center">
+        <p class="mb-2">
+          <i class="fas fa-crown me-2" style="color:var(--accent-yellow);" aria-hidden="true"></i>
+          <strong>Notes compiled by Sir Ali Raza</strong>
+        </p>
+        <p class="mb-2">
+          <i class="fas fa-globe me-1" aria-hidden="true"></i>
+          <a href="https://ali-raza-muhammad-iqbal.github.io" target="_blank" rel="noopener noreferrer">
+            ali-raza-muhammad-iqbal.github.io
+          </a>
+          <span class="mx-2">·</span>
+          <i class="fas fa-envelope me-1" aria-hidden="true"></i>
+          <a href="mailto:Mr_Ali_Raza@yahoo.com">Mr_Ali_Raza@yahoo.com</a>
+        </p>
+
+        <div class="footer-social mb-2" aria-label="Social media links">
+          <a href="https://github.com/Ali-Raza-Muhammad-Iqbal" target="_blank" rel="noopener noreferrer" title="GitHub" aria-label="GitHub"><i class="fab fa-github" aria-hidden="true"></i></a>
+          <a href="https://www.linkedin.com/in/ali-raza-muhammad-iqbal" target="_blank" rel="noopener noreferrer" title="LinkedIn" aria-label="LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
+          <a href="https://www.tiktok.com/@ali_raza_muhammad_iqbal" target="_blank" rel="noopener noreferrer" title="TikTok" aria-label="TikTok"><i class="fab fa-tiktok" aria-hidden="true"></i></a>
+          <a href="https://www.facebook.com/AliRazaMuhammadIqbal1" target="_blank" rel="noopener noreferrer" title="Facebook" aria-label="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+          <a href="https://www.instagram.com/ali_raza_muhammad_iqbal" target="_blank" rel="noopener noreferrer" title="Instagram" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+          <a href="https://x.com/Ali_Raza_Iqbal" target="_blank" rel="noopener noreferrer" title="X (Twitter)" aria-label="X (Twitter)"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i></a>
+          <a href="https://www.youtube.com/@Ali_Raza_Muhammad_Iqbal" target="_blank" rel="noopener noreferrer" title="YouTube" aria-label="YouTube"><i class="fab fa-youtube" aria-hidden="true"></i></a>
+          <a href="mailto:Mr_Ali_Raza@yahoo.com" title="Email" aria-label="Email"><i class="fas fa-envelope" aria-hidden="true"></i></a>
+        </div>
+
+        <p class="small mb-0" style="color:#b8c8f0;">
+          © 2025 · IT-507 Database Administration and Management · Module 5 · All credits to Sir Ali Raza.
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+(function() {
+  'use strict';
+
+  const themeToggle = document.getElementById('themeToggle');
+  const themeIcon = document.getElementById('themeIcon');
+  const root = document.documentElement;
+
+  function applyTheme(theme) {
+    if (theme === 'dark') {
+      root.setAttribute('data-theme', 'dark');
+      themeIcon.classList.remove('fa-moon');
+      themeIcon.classList.add('fa-sun');
+      themeToggle.setAttribute('aria-label', 'Switch to light mode');
+    } else {
+      root.removeAttribute('data-theme');
+      themeIcon.classList.remove('fa-sun');
+      themeIcon.classList.add('fa-moon');
+      themeToggle.setAttribute('aria-label', 'Switch to dark mode');
+    }
+  }
+
+  const savedTheme = localStorage.getItem('it507-theme');
+  if (savedTheme) {
+    applyTheme(savedTheme);
+  } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    applyTheme('dark');
+  }
+
+  themeToggle.addEventListener('click', function() {
+    const isDark = root.getAttribute('data-theme') === 'dark';
+    const newTheme = isDark ? 'light' : 'dark';
+    applyTheme(newTheme);
+    localStorage.setItem('it507-theme', newTheme);
+  });
+
+  const progressBar = document.getElementById('progressBar');
+  function updateProgress() {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const percent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    progressBar.style.width = percent + '%';
+    progressBar.setAttribute('aria-valuenow', Math.round(percent));
+  }
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  window.addEventListener('resize', updateProgress);
+
+  const backToTop = document.getElementById('backToTop');
+  function toggleBackToTop() {
+    if (window.scrollY > 400) {
+      backToTop.classList.add('visible');
+    } else {
+      backToTop.classList.remove('visible');
+    }
+  }
+  window.addEventListener('scroll', toggleBackToTop, { passive: true });
+  backToTop.addEventListener('click', function() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  document.querySelectorAll('.code-copy-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      const codeBlock = btn.closest('.code-block');
+      const code = codeBlock.querySelector('pre code') || codeBlock.querySelector('pre');
+      const text = code ? code.textContent : '';
+      const originalHTML = btn.innerHTML;
+
+      function showCopied() {
+        btn.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i> Copied!';
+        btn.classList.add('copied');
+        setTimeout(function() {
+          btn.innerHTML = originalHTML;
+          btn.classList.remove('copied');
+        }, 1500);
+      }
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(showCopied).catch(function() {
+          fallbackCopy(text, showCopied);
+        });
+      } else {
+        fallbackCopy(text, showCopied);
+      }
+    });
+  });
+
+  function fallbackCopy(text, callback) {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try {
+      document.execCommand('copy');
+      if (callback) callback();
+    } catch (err) {
+      console.warn('Copy failed', err);
+    }
+    document.body.removeChild(ta);
+  }
+
+  function highlightHash() {
+    const hash = window.location.hash;
+    if (!hash) return;
+    const target = document.querySelector(hash);
+    if (!target) return;
+    target.style.transition = 'background 0.4s ease';
+    target.style.background = 'rgba(255, 193, 7, 0.15)';
+    setTimeout(function() {
+      target.style.background = '';
+    }, 2000);
+    setTimeout(function() {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 100);
+  }
+  window.addEventListener('load', highlightHash);
+  window.addEventListener('hashchange', highlightHash);
+
+  updateProgress();
+  toggleBackToTop();
+
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,2082 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+  <!-- ===== PRIMARY SEO META ===== -->
+  <title>IT-507 Module 7: Physical Database Design & Tuning — Notes | Sir Ali Raza</title>
+  <meta name="description" content="Complete study notes for IT-507 Module 7: Physical Database Design & Tuning. Covers physical design overview, mapping logical to physical design, denormalization, query optimization, index tuning, partitioning, database configuration parameters, and monitoring with performance metrics — with definitions, types, real-life examples, diagrams, syntax, and simple examples by Sir Ali Raza.">
+  <meta name="keywords" content="IT-507 Module 7, Physical Database Design, Database Tuning, Mapping Logical to Physical, Denormalization, Query Optimization, Execution Plan, EXPLAIN, Index Tuning, Table Partitioning, Range Partitioning, Hash Partitioning, Database Configuration Parameters, MySQL my.cnf, PostgreSQL postgresql.conf, Buffer Pool, Shared Buffers, Monitoring, Performance Metrics, Slow Query Log, Query Cache, Statistics, database notes, IT-507 notes, IT-507 PDF, database administration notes, Sir Ali Raza, MySQL, PostgreSQL, SQL Server, Oracle">
+  <meta name="author" content="Sir Ali Raza">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta name="theme-color" content="#1e2b4f">
+  <link rel="canonical" href="https://ali-raza-muhammad-iqbal.github.io/it507-module-7.html">
+
+  <!-- ===== OPEN GRAPH ===== -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="IT-507 · Database Administration and Management">
+  <meta property="og:title" content="IT-507 Module 7: Physical Database Design & Tuning — Notes">
+  <meta property="og:description" content="Complete notes on physical design, mapping logical to physical, denormalization, query optimization, index tuning, partitioning, configuration parameters, and monitoring — with definitions, types, real-life examples, diagrams, syntax, and simple examples.">
+  <meta property="og:url" content="https://ali-raza-muhammad-iqbal.github.io/it507-module-7.html">
+  <meta property="og:image" content="https://ali-raza-muhammad-iqbal.github.io/preview.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="IT-507 Module 7 Physical Database Design and Tuning Notes cover">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:email" content="Mr_Ali_Raza@yahoo.com">
+  <meta property="article:author" content="Sir Ali Raza">
+  <meta property="article:section" content="Database Administration">
+  <meta property="article:tag" content="Physical Database Design">
+  <meta property="article:tag" content="Query Optimization">
+  <meta property="article:tag" content="Index Tuning">
+
+  <!-- ===== TWITTER CARD ===== -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="IT-507 Module 7: Physical Database Design & Tuning — Notes">
+  <meta name="twitter:description" content="Full notes for IT-507 Module 7 — physical design, denormalization, query optimization, index tuning, partitioning, config parameters, and monitoring. Definitions, types, examples, diagrams, syntax.">
+  <meta name="twitter:image" content="https://ali-raza-muhammad-iqbal.github.io/preview.png">
+  <meta name="twitter:image:alt" content="IT-507 Module 7 Physical Database Design and Tuning Notes cover">
+  <meta name="twitter:creator" content="@Ali_Raza_Iqbal">
+  <meta name="twitter:site" content="@Ali_Raza_Iqbal">
+
+  <!-- ===== ADDITIONAL SEO ===== -->
+  <meta name="rating" content="general">
+  <meta name="language" content="English">
+  <meta name="revisit-after" content="7 days">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="icon" type="image/x-icon" href="https://ali-raza-muhammad-iqbal.github.io/favicon.ico">
+  <link rel="apple-touch-icon" href="https://ali-raza-muhammad-iqbal.github.io/apple-touch-icon.png">
+
+  <!-- ===== STRUCTURED DATA ===== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LearningResource",
+    "name": "IT-507 Module 7: Physical Database Design & Tuning",
+    "description": "Complete study notes for IT-507 Module 7 covering physical database design overview, mapping logical to physical design, denormalization and its trade-offs, performance tuning and query optimization, index tuning and partitioning, database configuration parameters, and monitoring and performance metrics — with definitions, types, real-life examples, diagrams, syntax, and simple examples.",
+    "url": "https://ali-raza-muhammad-iqbal.github.io/it507-module-7.html",
+    "image": "https://ali-raza-muhammad-iqbal.github.io/preview.png",
+    "inLanguage": "en",
+    "educationalLevel": "Undergraduate",
+    "learningResourceType": "Notes",
+    "isPartOf": {
+      "@type": "Course",
+      "name": "IT-507 Database Administration and Management",
+      "url": "https://ali-raza-muhammad-iqbal.github.io/index.html"
+    },
+    "author": {
+      "@type": "Person",
+      "name": "Sir Ali Raza",
+      "url": "https://ali-raza-muhammad-iqbal.github.io",
+      "email": "mailto:Mr_Ali_Raza@yahoo.com",
+      "sameAs": [
+        "https://github.com/Ali-Raza-Muhammad-Iqbal",
+        "https://www.linkedin.com/in/ali-raza-muhammad-iqbal",
+        "https://ali-raza-muhammad-iqbal.github.io",
+        "https://www.tiktok.com/@ali_raza_muhammad_iqbal",
+        "https://www.facebook.com/AliRazaMuhammadIqbal1",
+        "https://www.instagram.com/ali_raza_muhammad_iqbal",
+        "https://x.com/Ali_Raza_Iqbal",
+        "https://www.youtube.com/@Ali_Raza_Muhammad_Iqbal"
+      ]
+    },
+    "about": [
+      { "@type": "Thing", "name": "Physical Database Design" },
+      { "@type": "Thing", "name": "Query Optimization" },
+      { "@type": "Thing", "name": "Index Tuning" },
+      { "@type": "Thing", "name": "Table Partitioning" },
+      { "@type": "Thing", "name": "Performance Monitoring" }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://ali-raza-muhammad-iqbal.github.io" },
+      { "@type": "ListItem", "position": 2, "name": "IT-507 Database Administration and Management", "item": "https://ali-raza-muhammad-iqbal.github.io/index.html" },
+      { "@type": "ListItem", "position": 3, "name": "Module 7: Physical Database Design & Tuning", "item": "https://ali-raza-muhammad-iqbal.github.io/it507-module-7.html" }
+    ]
+  }
+  </script>
+
+  <!-- ===== BOOTSTRAP + FONTAWESOME ===== -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <style>
+    /* ===== CSS VARIABLES (Light + Dark) ===== */
+    :root {
+      --bg-body: #f8faff;
+      --bg-card: #ffffff;
+      --bg-subtle: #eef3fc;
+      --bg-code: #1e2b4f;
+      --bg-code-inline: #eef3fc;
+      --text-primary: #1e2b4f;
+      --text-secondary: #4a5a78;
+      --text-muted: #7a8bab;
+      --text-code: #e6edf9;
+      --border-color: #e0e8f5;
+      --border-strong: #bac8e0;
+      --accent-yellow: #ffc107;
+      --accent-blue: #0d6efd;
+      --accent-red: #d9534f;
+      --accent-green: #198754;
+      --accent-gold: #b07d00;
+      --header-from: #1e2b4f;
+      --header-to: #2a3f6e;
+      --footer-bg: #1e2b4f;
+      --footer-text: #cddcff;
+      --shadow-sm: 0 2px 8px rgba(30, 43, 79, 0.05);
+      --shadow-md: 0 12px 30px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 10px 25px rgba(0, 20, 40, 0.2);
+    }
+    [data-theme="dark"] {
+      --bg-body: #0f1729;
+      --bg-card: #1a2338;
+      --bg-subtle: #243155;
+      --bg-code: #0a1120;
+      --bg-code-inline: #243155;
+      --text-primary: #e6edf9;
+      --text-secondary: #b6c4e0;
+      --text-muted: #8a9bbb;
+      --text-code: #e6edf9;
+      --border-color: #2f3f63;
+      --border-strong: #3d4f7a;
+      --header-from: #0d1526;
+      --header-to: #1a2846;
+      --footer-bg: #0d1526;
+      --footer-text: #b8c8f0;
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+      --shadow-md: 0 12px 30px rgba(0, 0, 0, 0.4);
+      --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.5);
+    }
+    [data-theme="dark"] body { background-color: var(--bg-body); color: var(--text-primary); }
+    [data-theme="dark"] .note-card { background: var(--bg-card); border-color: var(--border-color); }
+    [data-theme="dark"] .topic-section h3 { color: var(--text-primary); }
+    [data-theme="dark"] .topic-section h4 { color: var(--accent-yellow); }
+    [data-theme="dark"] code.inline { background: var(--bg-code-inline); color: #6b9eff; }
+    [data-theme="dark"] .example-box { background: var(--bg-subtle); border-left-color: var(--accent-blue); }
+    [data-theme="dark"] .real-life-box { background: rgba(25, 135, 84, 0.12); border-left-color: var(--accent-green); }
+    [data-theme="dark"] .warning-box { background: rgba(217, 83, 79, 0.12); border-left-color: var(--accent-red); }
+    [data-theme="dark"] .info-box { background: rgba(255, 193, 7, 0.1); border-left-color: var(--accent-yellow); }
+    [data-theme="dark"] .diagram-box { background: var(--bg-subtle); border-color: var(--border-color); }
+    [data-theme="dark"] .toc-card { background: var(--bg-card); border-color: var(--border-color); }
+    [data-theme="dark"] .toc-card a { color: var(--text-secondary); }
+    [data-theme="dark"] .toc-card a:hover { color: var(--accent-yellow); }
+    [data-theme="dark"] .theme-toggle { background: var(--bg-card); color: var(--text-primary); border-color: var(--border-color); }
+    [data-theme="dark"] table.notes-table th { background: var(--bg-subtle); color: var(--text-primary); }
+    [data-theme="dark"] table.notes-table td { border-color: var(--border-color); }
+    [data-theme="dark"] .notes-link { color: var(--text-primary); border-bottom-color: #4a5f85; }
+    [data-theme="dark"] .notes-link:hover { color: #6b9eff; border-bottom-color: #6b9eff; }
+
+    /* ===== GLOBAL ===== */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
+      background-color: var(--bg-body);
+      font-family: 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', sans-serif;
+      overflow-x: hidden;
+      line-height: 1.65;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      color: var(--text-primary);
+    }
+    img, svg { max-width: 100%; height: auto; }
+
+    .progress-bar-top {
+      position: fixed; top: 0; left: 0; height: 3px;
+      background: linear-gradient(90deg, #ffc107, #0d6efd);
+      width: 0%; z-index: 9999; transition: width 0.1s linear;
+      box-shadow: 0 0 8px rgba(255, 193, 7, 0.5);
+    }
+
+    .theme-toggle {
+      position: fixed; top: 14px; right: 14px; z-index: 1000;
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--bg-card); border: 1px solid var(--border-color);
+      color: var(--text-primary); font-size: 1.1rem; cursor: pointer;
+      box-shadow: var(--shadow-md);
+      transition: transform 0.2s ease, background 0.2s ease;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .theme-toggle:hover { transform: scale(1.1) rotate(15deg); background: var(--accent-yellow); color: #1e2b4f; }
+    .theme-toggle:focus-visible { outline: 2px solid var(--accent-blue); outline-offset: 2px; }
+    .back-to-top {
+      position: fixed; bottom: 24px; right: 24px; z-index: 1000;
+      width: 46px; height: 46px; border-radius: 50%;
+      background: var(--accent-yellow); color: #1e2b4f; border: none;
+      font-size: 1.1rem; cursor: pointer;
+      box-shadow: 0 6px 20px rgba(255, 193, 7, 0.5);
+      opacity: 0; visibility: hidden; transform: translateY(20px);
+      transition: all 0.3s ease;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .back-to-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
+    .back-to-top:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(255, 193, 7, 0.7); }
+
+    .header-card {
+      background: linear-gradient(135deg, var(--header-from) 0%, var(--header-to) 100%);
+      color: white; border-radius: 0 0 2rem 2rem;
+      padding: clamp(1.5rem, 4vw, 2.5rem) clamp(1rem, 3vw, 2rem);
+      box-shadow: var(--shadow-lg);
+    }
+    .header-card h1 {
+      font-weight: 700; letter-spacing: -0.5px;
+      font-size: clamp(1.4rem, 4.5vw, 2.6rem);
+    }
+    .header-card .lead { font-weight: 300; color: #d4e2ff; font-size: clamp(0.9rem, 2vw, 1.1rem); }
+    .badge-code {
+      background-color: var(--accent-yellow); color: #1e2b4f;
+      font-weight: 600; font-size: clamp(0.95rem, 2.5vw, 1.3rem);
+      padding: 0.3rem 1rem; border-radius: 3rem; display: inline-block;
+      margin-bottom: 0.75rem; box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    .prepared-by {
+      font-size: clamp(0.85rem, 1.8vw, 1.05rem);
+      background: rgba(255,255,255,0.12); display: inline-block;
+      padding: 0.45rem 1.3rem; border-radius: 3rem;
+      backdrop-filter: blur(4px); margin-top: 0.5rem;
+    }
+
+    .social-wrap {
+      margin-top: 1.4rem; padding-top: 1.2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+    }
+    .social-title {
+      font-size: clamp(0.68rem, 1.8vw, 0.78rem);
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: #b9cdf5; font-weight: 600; margin-bottom: 0.85rem;
+    }
+    .social-title i { margin-right: 6px; }
+    .social-links {
+      display: flex; flex-wrap: wrap;
+      gap: clamp(0.4rem, 1.5vw, 0.6rem);
+      justify-content: center; list-style: none;
+      padding-left: 0; margin-bottom: 0;
+    }
+    .social-links a {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: clamp(38px, 8vw, 44px); height: clamp(38px, 8vw, 44px);
+      border-radius: 50%; background: rgba(255, 255, 255, 0.1);
+      color: #ffffff; font-size: clamp(0.95rem, 2.2vw, 1.1rem);
+      text-decoration: none;
+      transition: transform 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .social-links a:hover, .social-links a:focus-visible {
+      transform: translateY(-4px); background: #ffffff; color: #1e2b4f;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.28); outline: none;
+    }
+    .social-links a.gh:hover  { background: #24292e; color: #fff; }
+    .social-links a.li:hover  { background: #0a66c2; color: #fff; }
+    .social-links a.gl:hover  { background: var(--accent-yellow); color: #1e2b4f; }
+    .social-links a.tt:hover  { background: #000000; color: #fff; }
+    .social-links a.fb:hover  { background: #1877f2; color: #fff; }
+    .social-links a.ig:hover  { background: linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); color: #fff; }
+    .social-links a.x:hover   { background: #000000; color: #fff; }
+    .social-links a.yt:hover  { background: #ff0000; color: #fff; }
+    .social-links a.mail:hover{ background: #eab308; color: #1e2b4f; }
+
+    .toc-card {
+      background: var(--bg-card); border-radius: 1.25rem;
+      padding: clamp(1rem, 2.5vw, 1.5rem);
+      margin-top: 1.5rem; margin-bottom: 2rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-color);
+      position: sticky; top: 20px;
+    }
+    .toc-card h5 {
+      color: var(--text-primary); font-weight: 700; font-size: 0.95rem;
+      text-transform: uppercase; letter-spacing: 0.05em;
+      margin-bottom: 0.85rem; padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--accent-yellow);
+    }
+    .toc-card ol { padding-left: 1.2rem; margin-bottom: 0; }
+    .toc-card li { margin-bottom: 0.45rem; font-size: 0.88rem; }
+    .toc-card a { color: var(--text-secondary); text-decoration: none; transition: color 0.15s; }
+    .toc-card a:hover { color: var(--accent-blue); }
+
+    .note-card {
+      background: var(--bg-card); border-radius: 1.25rem;
+      padding: clamp(1rem, 3vw, 2rem);
+      margin-bottom: 1.5rem;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border-color);
+      transition: background 0.3s ease;
+    }
+    .topic-section { scroll-margin-top: 90px; }
+    .topic-section h3 {
+      color: var(--text-primary); font-weight: 700;
+      font-size: clamp(1.15rem, 3vw, 1.5rem);
+      margin-bottom: 1rem; padding-bottom: 0.6rem;
+      border-bottom: 3px solid var(--accent-yellow);
+      display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap;
+    }
+    .topic-number {
+      background: var(--accent-yellow); color: #1e2b4f;
+      font-weight: 700; font-size: 0.85em;
+      padding: 0.15rem 0.7rem; border-radius: 0.5rem;
+      display: inline-block; flex-shrink: 0;
+    }
+    .topic-section h4 {
+      color: var(--accent-blue); font-weight: 700;
+      font-size: clamp(0.98rem, 2.3vw, 1.1rem);
+      margin-top: 1.5rem; margin-bottom: 0.65rem;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .topic-section h4 i { color: var(--accent-yellow); }
+    .topic-section p {
+      color: var(--text-secondary); margin-bottom: 0.85rem;
+      font-size: clamp(0.9rem, 2vw, 0.98rem);
+    }
+    .topic-section ul, .topic-section ol {
+      color: var(--text-secondary);
+      font-size: clamp(0.9rem, 2vw, 0.98rem);
+      margin-bottom: 0.85rem; padding-left: 1.4rem;
+    }
+    .topic-section li { margin-bottom: 0.4rem; }
+    .topic-section strong { color: var(--text-primary); }
+
+    code.inline {
+      background: var(--bg-code-inline); color: var(--accent-blue);
+      padding: 0.12rem 0.45rem; border-radius: 0.3rem;
+      font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+      font-size: 0.88em; font-weight: 600; word-break: break-word;
+    }
+
+    .code-block {
+      position: relative; background: var(--bg-code);
+      border-radius: 0.75rem; margin: 1rem 0; overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .code-block-header {
+      background: rgba(255, 255, 255, 0.06);
+      padding: 0.5rem 0.85rem;
+      display: flex; justify-content: space-between; align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .code-block-lang {
+      color: #b9cdf5; font-size: 0.72rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      display: flex; align-items: center; gap: 0.4rem;
+    }
+    .code-copy-btn {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #e6edf9; font-size: 0.72rem;
+      padding: 0.3rem 0.7rem; border-radius: 0.35rem;
+      cursor: pointer; transition: 0.18s;
+      display: inline-flex; align-items: center; gap: 0.35rem;
+      font-weight: 500;
+    }
+    .code-copy-btn:hover { background: var(--accent-yellow); color: #1e2b4f; border-color: var(--accent-yellow); }
+    .code-copy-btn.copied { background: var(--accent-green); color: #fff; border-color: var(--accent-green); }
+    .code-block pre {
+      margin: 0; padding: 1rem 1.1rem; color: var(--text-code);
+      font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+      font-size: clamp(0.78rem, 1.9vw, 0.88rem);
+      line-height: 1.55; overflow-x: auto; white-space: pre;
+      scrollbar-width: thin;
+    }
+    .code-block pre::-webkit-scrollbar { height: 6px; }
+    .code-block pre::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 3px; }
+    .code-block pre code { color: inherit; background: none; padding: 0; font-size: inherit; }
+
+    .example-box, .real-life-box, .info-box, .warning-box {
+      padding: 0.85rem 1rem; border-radius: 0.6rem;
+      margin: 0.85rem 0; border-left: 4px solid;
+      font-size: clamp(0.88rem, 2vw, 0.95rem);
+    }
+    .example-box { background: var(--bg-subtle); border-left-color: var(--accent-blue); color: var(--text-secondary); }
+    .real-life-box { background: rgba(25, 135, 84, 0.08); border-left-color: var(--accent-green); color: var(--text-secondary); }
+    .info-box { background: rgba(255, 193, 7, 0.08); border-left-color: var(--accent-yellow); color: var(--text-secondary); }
+    .warning-box { background: rgba(217, 83, 79, 0.08); border-left-color: var(--accent-red); color: var(--text-secondary); }
+    .example-box strong, .real-life-box strong, .info-box strong, .warning-box strong {
+      color: var(--text-primary); display: block; margin-bottom: 0.35rem;
+      font-size: 0.88em; text-transform: uppercase; letter-spacing: 0.04em;
+    }
+    .example-box strong i, .real-life-box strong i, .info-box strong i, .warning-box strong i {
+      margin-right: 0.35rem;
+    }
+
+    .diagram-box {
+      background: var(--bg-subtle);
+      border: 1.5px dashed var(--border-strong);
+      border-radius: 0.75rem; padding: 1.2rem 0.85rem;
+      margin: 1rem 0; text-align: center; overflow-x: auto;
+    }
+    .diagram-box svg { max-width: 100%; height: auto; display: inline-block; }
+    .diagram-caption {
+      font-size: 0.8rem; color: var(--text-muted);
+      margin-top: 0.6rem; font-style: italic;
+    }
+
+    .notes-table {
+      width: 100%; border-collapse: separate; border-spacing: 0;
+      margin: 1rem 0; font-size: clamp(0.82rem, 1.9vw, 0.92rem);
+      border-radius: 0.6rem; overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+    .notes-table th {
+      background: var(--bg-subtle); color: var(--text-primary);
+      font-weight: 700; padding: 0.7rem 0.85rem;
+      text-align: left; border-bottom: 2px solid var(--border-strong);
+      font-size: 0.82em; text-transform: uppercase; letter-spacing: 0.04em;
+    }
+    .notes-table td {
+      padding: 0.65rem 0.85rem;
+      border-bottom: 1px solid var(--border-color);
+      color: var(--text-secondary); vertical-align: top;
+    }
+    .notes-table tr:last-child td { border-bottom: none; }
+    .notes-table tr:hover td { background: var(--bg-subtle); }
+
+    .notes-link {
+      color: var(--text-primary); text-decoration: none; font-weight: 600;
+      border-bottom: 1px dashed #8aa3cc; font-size: 0.9rem;
+      transition: 0.15s; display: inline-flex;
+      align-items: center; gap: 0.35rem; padding: 0.15rem 0;
+    }
+    .notes-link i { color: var(--accent-red); font-size: 0.85rem; }
+    .notes-link:hover { color: var(--accent-blue); border-bottom-color: var(--accent-blue); }
+
+    .footer {
+      background-color: var(--footer-bg); color: var(--footer-text);
+      border-radius: 2rem 2rem 0 0;
+      padding: clamp(1.5rem, 4vw, 2rem) clamp(1rem, 3vw, 1.8rem);
+      margin-top: 2rem; font-size: clamp(0.85rem, 2vw, 0.95rem);
+      transition: background 0.3s ease;
+    }
+    .footer a { color: var(--accent-yellow); text-decoration: none; font-weight: 500; word-break: break-word; }
+    .footer a:hover { text-decoration: underline; color: #ffe08a; }
+    .footer .footer-social {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 4px;
+    }
+    .footer .footer-social a {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: clamp(30px, 7vw, 36px); height: clamp(30px, 7vw, 36px);
+      border-radius: 50%; background: rgba(255, 255, 255, 0.1);
+      color: var(--footer-text); font-size: clamp(0.75rem, 1.8vw, 0.88rem);
+      transition: 0.18s;
+    }
+    .footer .footer-social a:hover {
+      background: var(--accent-yellow); color: #1e2b4f;
+      text-decoration: none; transform: translateY(-2px);
+    }
+
+    @media (max-width: 992px) {
+      .toc-card { position: static; margin-bottom: 1rem; }
+      .toc-card ol { columns: 2; column-gap: 1rem; }
+    }
+    @media (max-width: 768px) {
+      .header-card { border-radius: 0 0 1.25rem 1.25rem; }
+      .note-card { border-radius: 1rem; }
+      .theme-toggle { width: 40px; height: 40px; top: 10px; right: 10px; font-size: 1rem; }
+      .back-to-top { width: 42px; height: 42px; bottom: 18px; right: 18px; font-size: 1rem; }
+      .toc-card ol { columns: 1; }
+      .code-block pre { font-size: 0.78rem; padding: 0.85rem; }
+    }
+    @media (max-width: 400px) {
+      .badge-code { font-size: 0.85rem; padding: 0.28rem 0.8rem; }
+      .prepared-by { font-size: 0.8rem; padding: 0.35rem 1rem; }
+      .social-links a { width: 36px; height: 36px; font-size: 0.9rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition: none !important; animation: none !important;
+        scroll-behavior: auto !important;
+      }
+    }
+    @media print {
+      .social-wrap, .footer-social, .badge-code, .theme-toggle, .back-to-top,
+      .progress-bar-top, .toc-card, .code-copy-btn { display: none !important; }
+      .header-card { background: #1e2b4f !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .note-card { box-shadow: none; page-break-inside: avoid; }
+      .code-block { background: #f4f4f4 !important; }
+      .code-block pre { color: #000 !important; }
+      body { background: #fff; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== READING PROGRESS BAR ===== -->
+<div class="progress-bar-top" id="progressBar" role="progressbar" aria-label="Reading progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+
+<!-- ===== THEME TOGGLE ===== -->
+<button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+  <i class="fas fa-moon" id="themeIcon" aria-hidden="true"></i>
+</button>
+
+<!-- ===== BACK TO TOP ===== -->
+<button class="back-to-top" id="backToTop" aria-label="Back to top" title="Back to top">
+  <i class="fas fa-arrow-up" aria-hidden="true"></i>
+</button>
+
+<!-- ===== SKIP LINK ===== -->
+<a href="#module-content" class="visually-hidden-focusable">Skip to module content</a>
+
+<!-- ===== HEADER ===== -->
+<header role="banner" aria-label="Module header">
+  <div class="header-card text-center">
+    <div class="badge-code">
+      <i class="fas fa-gauge-high me-2" aria-hidden="true"></i>IT-507 · Module 7
+    </div>
+    <h1 class="display-6 fw-bold mt-2">Physical Database Design &amp; Tuning</h1>
+    <p class="lead mt-2 mb-3">Complete study notes · definitions, types, real-life examples, diagrams &amp; syntax</p>
+    <div class="prepared-by">
+      <i class="fas fa-chalkboard-teacher me-2" aria-hidden="true"></i>Prepared by <strong>Sir Ali Raza</strong>
+    </div>
+
+    <!-- ===== SOCIAL MEDIA LINKS ===== -->
+    <div class="social-wrap">
+      <p class="social-title"><i class="fas fa-share-nodes" aria-hidden="true"></i>Connect with Sir Ali Raza</p>
+      <ul class="social-links" aria-label="Social media and contact links">
+        <li><a class="gh" href="https://github.com/Ali-Raza-Muhammad-Iqbal" target="_blank" rel="noopener noreferrer" title="GitHub" aria-label="GitHub profile"><i class="fab fa-github" aria-hidden="true"></i></a></li>
+        <li><a class="li" href="https://www.linkedin.com/in/ali-raza-muhammad-iqbal" target="_blank" rel="noopener noreferrer" title="LinkedIn" aria-label="LinkedIn profile"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a></li>
+        <li><a class="gl" href="https://ali-raza-muhammad-iqbal.github.io" target="_blank" rel="noopener noreferrer" title="Portfolio / Website" aria-label="Personal website"><i class="fas fa-globe" aria-hidden="true"></i></a></li>
+        <li><a class="tt" href="https://www.tiktok.com/@ali_raza_muhammad_iqbal" target="_blank" rel="noopener noreferrer" title="TikTok" aria-label="TikTok profile"><i class="fab fa-tiktok" aria-hidden="true"></i></a></li>
+        <li><a class="fb" href="https://www.facebook.com/AliRazaMuhammadIqbal1" target="_blank" rel="noopener noreferrer" title="Facebook" aria-label="Facebook profile"><i class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
+        <li><a class="ig" href="https://www.instagram.com/ali_raza_muhammad_iqbal" target="_blank" rel="noopener noreferrer" title="Instagram" aria-label="Instagram profile"><i class="fab fa-instagram" aria-hidden="true"></i></a></li>
+        <li><a class="x" href="https://x.com/Ali_Raza_Iqbal" target="_blank" rel="noopener noreferrer" title="X (Twitter)" aria-label="X (Twitter) profile"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i></a></li>
+        <li><a class="yt" href="https://www.youtube.com/@Ali_Raza_Muhammad_Iqbal" target="_blank" rel="noopener noreferrer" title="YouTube" aria-label="YouTube channel"><i class="fab fa-youtube" aria-hidden="true"></i></a></li>
+        <li><a class="mail" href="mailto:Mr_Ali_Raza@yahoo.com" title="Email" aria-label="Send email"><i class="fas fa-envelope" aria-hidden="true"></i></a></li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<!-- ===== MAIN CONTENT ===== -->
+<main role="main" id="module-content">
+  <div class="container-fluid px-2 px-sm-3 px-md-4" style="max-width: 1280px; margin: 0 auto;">
+    <div class="row g-3 mt-2">
+
+      <!-- ===== TOC SIDEBAR ===== -->
+      <div class="col-lg-3 col-xl-3 order-lg-1 order-2">
+        <nav class="toc-card" aria-label="Table of contents">
+          <h5><i class="fas fa-list-ul me-2" aria-hidden="true"></i>Module Contents</h5>
+          <ol>
+            <li><a href="#topic-7-1">Physical Database Design Overview</a></li>
+            <li><a href="#topic-7-2">Mapping Logical → Physical</a></li>
+            <li><a href="#topic-7-3">Denormalization &amp; Trade-offs</a></li>
+            <li><a href="#topic-7-4">Query Optimization</a></li>
+            <li><a href="#topic-7-5">Index Tuning &amp; Partitioning</a></li>
+            <li><a href="#topic-7-6">Configuration Parameters</a></li>
+            <li><a href="#topic-7-7">Monitoring &amp; Metrics</a></li>
+          </ol>
+        </nav>
+      </div>
+
+      <!-- ===== NOTES CONTENT ===== -->
+      <div class="col-lg-9 col-xl-9 order-lg-2 order-1">
+
+        <!-- ============ TOPIC 7.1 ============ -->
+        <article class="note-card topic-section" id="topic-7-1">
+          <h3><span class="topic-number">7.1</span> Physical Database Design — Overview</h3>
+
+          <h4><i class="fas fa-book" aria-hidden="true"></i>Definition</h4>
+          <p><strong>Physical database design</strong> is the process of translating a logical database design (tables, keys, relationships) into the physical structures that the DBMS actually stores on disk. It decides <em>how</em> data is stored and accessed — indexes, file organizations, partitions, compression, storage engines, and hardware layout.</p>
+          <p>It's the layer where performance and cost trade-offs get real. Two logical designs that are functionally identical can perform 1000× differently depending on the physical design.</p>
+
+          <h4><i class="fas fa-star" aria-hidden="true"></i>Key Decisions in Physical Design</h4>
+          <ul>
+            <li><strong>File organization</strong> — heap, sequential, indexed, hashed (Module 4.2).</li>
+            <li><strong>Indexing strategy</strong> — which columns, what type (B+ tree, hash, composite, covering).</li>
+            <li><strong>Partitioning</strong> — split large tables by range/hash/list for manageability and speed.</li>
+            <li><strong>Storage engine</strong> — InnoDB vs MyISAM (MySQL), heap vs columnar (PostgreSQL, Redshift).</li>
+            <li><strong>Compression</strong> — page-level or column-level; trades CPU for I/O.</li>
+            <li><strong>Buffer pool size</strong> — how much RAM to dedicate to caching pages.</li>
+            <li><strong>Storage layout</strong> — SSD vs HDD, RAID level, filesystem, cloud storage tier.</li>
+            <li><strong>Tablespaces / filegroups</strong> — where files sit, which disk arrays.</li>
+          </ul>
+
+          <h4><i class="fas fa-diagram-project" aria-hidden="true"></i>Diagram — Where Physical Design Fits</h4>
+          <div class="diagram-box">
+            <svg viewBox="0 0 700 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Design pipeline: conceptual to logical to physical to hardware">
+              <defs>
+                <marker id="pd-arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+                  <path d="M0,0 L0,6 L9,3 z" fill="#0d6efd"/>
+                </marker>
+              </defs>
+
+              <rect x="30" y="40" width="140" height="70" rx="8" fill="#eef3fc" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="100" y="68" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="12" font-weight="700" fill="#1e2b4f">CONCEPTUAL</text>
+              <text x="100" y="86" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78">ER diagrams</text>
+              <text x="100" y="100" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78">entities + relations</text>
+
+              <line x1="170" y1="75" x2="210" y2="75" stroke="#0d6efd" stroke-width="2.5" marker-end="url(#pd-arrow)"/>
+
+              <rect x="215" y="40" width="140" height="70" rx="8" fill="#ffc107" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="285" y="68" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="12" font-weight="700" fill="#1e2b4f">LOGICAL</text>
+              <text x="285" y="86" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78">Tables, keys</text>
+              <text x="285" y="100" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78">normalized schema</text>
+
+              <line x1="355" y1="75" x2="395" y2="75" stroke="#0d6efd" stroke-width="2.5" marker-end="url(#pd-arrow)"/>
+
+              <rect x="400" y="40" width="140" height="70" rx="8" fill="#0d6efd" stroke="#1e2b4f" stroke-width="2.5"/>
+              <text x="470" y="68" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="12" font-weight="700" fill="#fff">PHYSICAL</text>
+              <text x="470" y="86" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#e6edf9">Indexes · partitions</text>
+              <text x="470" y="100" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#e6edf9">engine · compression</text>
+
+              <line x1="540" y1="75" x2="580" y2="75" stroke="#0d6efd" stroke-width="2.5" marker-end="url(#pd-arrow)"/>
+
+              <rect x="585" y="40" width="90" height="70" rx="8" fill="#198754" stroke="#1e2b4f" stroke-width="2"/>
+              <text x="630" y="68" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="12" font-weight="700" fill="#fff">DISK</text>
+              <text x="630" y="86" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#e6edf9">SSD · RAID</text>
+              <text x="630" y="100" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#e6edf9">cloud storage</text>
+
+              <!-- Bottom: physical design components -->
+              <rect x="60" y="150" width="580" height="100" rx="10" fill="#eef3fc" stroke="#1e2b4f" stroke-width="1.5" stroke-dasharray="4 3"/>
+              <text x="350" y="172" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="12" font-weight="700" fill="#1e2b4f">PHYSICAL DESIGN COMPONENTS</text>
+
+              <text x="130" y="200" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" font-weight="700" fill="#0d6efd">Indexes</text>
+              <text x="130" y="218" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#4a5a78">B+ tree, hash, covering</text>
+
+              <text x="290" y="200" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" font-weight="700" fill="#b07d00">Partitioning</text>
+              <text x="290" y="218" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#4a5a78">range, hash, list</text>
+
+              <text x="450" y="200" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" font-weight="700" fill="#198754">Storage</text>
+              <text x="450" y="218" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#4a5a78">engine, compression</text>
+
+              <text x="590" y="200" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" font-weight="700" fill="#d9534f">Config</text>
+              <text x="590" y="218" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#4a5a78">buffer pool, caches</text>
+
+              <text x="350" y="245" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" font-style="italic" fill="#7a8bab">Physical design = decisions that turn logical tables into fast, storage-efficient reality</text>
+            </svg>
+            <div class="diagram-caption">Figure 7.1 — Physical design fits between logical design and physical hardware</div>
+          </div>
+
+          <h4><i class="fas fa-code" aria-hidden="true"></i>Syntax — Physical design decisions in SQL</h4>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="code-block-lang"><i class="fas fa-database" aria-hidden="true"></i> SQL — Physical design choices</span>
+              <button class="code-copy-btn" type="button" aria-label="Copy SQL code"><i class="fas fa-copy" aria-hidden="true"></i> Copy</button>
+            </div>
+            <pre><code>-- 1. Choose storage engine (MySQL)
+CREATE TABLE Orders (
+    OrderID    INT PRIMARY KEY,
+    CustomerID INT,
+    OrderDate  DATE,
+    Total      DECIMAL(10,2)
+) ENGINE = InnoDB;                 -- supports transactions, FKs
+
+-- 2. Add an index on a frequently filtered column
+CREATE INDEX idx_orders_cust ON Orders(CustomerID);
+
+-- 3. Partition by range (MySQL 8)
+ALTER TABLE Orders
+    PARTITION BY RANGE (YEAR(OrderDate)) (
+        PARTITION p2023 VALUES LESS THAN (2024),
+        PARTITION p2024 VALUES LESS THAN (2025),
+        PARTITION p2025 VALUES LESS THAN (2026)
+    );
+
+-- 4. Enable compression on a table (MySQL InnoDB)
+ALTER TABLE Orders ROW_FORMAT = COMPRESSED KEY_BLOCK_SIZE = 8;
+
+-- 5. Place the table in a specific tablespace (MySQL)
+CREATE TABLESPACE ts_fast ADD DATAFILE 'fast_ssd.ibd'
+    ENGINE = InnoDB;
+ALTER TABLE Orders TABLESPACE ts_fast;
+
+-- 6. Point a PostgreSQL table to a fast disk tablespace
+CREATE TABLESPACE ts_fast LOCATION '/mnt/ssd/pg_fast';
+ALTER TABLE orders SET TABLESPACE ts_fast;
+
+-- 7. Set a per-table storage parameter (PostgreSQL)
+ALTER TABLE orders SET (autovacuum_enabled = on, fillfactor = 90);</code></pre>
+          </div>
+
+          <div class="example-box">
+            <strong><i class="fas fa-lightbulb" aria-hidden="true"></i>Simple Example</strong>
+            <p class="mb-1"><strong>Logical design:</strong> an <code class="inline">Orders</code> table with <code class="inline">OrderID</code>, <code class="inline">CustomerID</code>, <code class="inline">OrderDate</code>.</p>
+            <p class="mb-0"><strong>Physical design:</strong> store it on an SSD tablespace, use InnoDB (for transactions), add an index on <code class="inline">CustomerID</code> (frequent filter), partition by year (for manageability), enable compression (for storage savings).</p>
+          </div>
+
+          <div class="real-life-box">
+            <strong><i class="fas fa-briefcase" aria-hidden="true"></i>Real-Life Use Case</strong>
+            <p class="mb-0">An e-commerce database has 500 million order rows. Without physical design: every query scans the full table (minutes). With physical design: partition by month → query "orders from last month" touches only 1 partition; add index on <code class="inline">CustomerID</code> → "orders for customer 123" → single index seek in milliseconds. Same logical schema, 1000× faster.</p>
+          </div>
+        </article>
+
+        <!-- ============ TOPIC 7.2 ============ -->
+        <article class="note-card topic-section" id="topic-7-2">
+          <h3><span class="topic-number">7.2</span> Mapping Logical Design to Physical Design</h3>
+
+          <h4><i class="fas fa-book" aria-hidden="true"></i>Definition</h4>
+          <p><strong>Mapping</strong> is the step-by-step translation from the logical schema (tables, keys, relationships) into concrete physical constructs (files, indexes, partitions, storage attributes). Each logical object becomes one or more physical objects.</p>
+
+          <h4><i class="fas fa-layer-group" aria-hidden="true"></i>Standard Mapping Rules</h4>
+          <ol>
+            <li><strong>Entity → Table</strong> — each logical entity becomes a physical table.</li>
+            <li><strong>Attribute → Column</strong> — each attribute becomes a column with a chosen data type and size.</li>
+            <li><strong>Primary Key → PK constraint + clustered index</strong> (in InnoDB, the PK <em>is</em> the clustered index; in PostgreSQL it's a unique B+ tree).</li>
+            <li><strong>Foreign Key → FK constraint + non-clustered index</strong> (add an index on the FK column for join performance).</li>
+            <li><strong>1:1 relationship → Shared PK or unique FK</strong> between the two tables.</li>
+            <li><strong>1:N relationship → FK on the "many" side</strong> + index on the FK column.</li>
+            <li><strong>M:N relationship → Junction (link) table</strong> with two FKs + a composite PK.</li>
+            <li><strong>Subtype/supertype → Shared table with nullable columns OR separate tables with a shared PK</strong>.</li>
+            <li><strong>Frequent lookups / filters → Index</strong> on the relevant column(s).</li>
+            <li><strong>Very large tables → Partitioning</strong> by date, hash, or range.</li>
+          </ol>
+
+          <h4><i class="fas fa-diagram-project" aria-hidden="true"></i>Diagram — Logical to Physical Mapping</h4>
+          <div class="diagram-box">
+            <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Logical ER diagram mapped to physical tables with indexes">
+              <!-- Left: logical -->
+              <text x="175" y="25" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="13" font-weight="700" fill="#1e2b4f">LOGICAL (ER)</text>
+
+              <rect x="40" y="50" width="120" height="60" rx="6" fill="#eef3fc" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="100" y="75" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#1e2b4f">Customer</text>
+              <text x="100" y="95" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#4a5a78">(entity)</text>
+
+              <rect x="200" y="50" width="120" height="60" rx="6" fill="#ffc107" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="260" y="75" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#1e2b4f">Order</text>
+              <text x="260" y="95" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#4a5a78">(entity)</text>
+
+              <polygon points="175,130 225,145 175,160 125,145" fill="#198754" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="175" y="149" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" font-weight="700" fill="#fff">places</text>
+
+              <line x1="130" y1="110" x2="160" y2="130" stroke="#0d6efd" stroke-width="1.5"/>
+              <line x1="240" y1="110" x2="200" y2="130" stroke="#0d6efd" stroke-width="1.5"/>
+
+              <text x="175" y="185" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78">1 : N (one customer, many orders)</text>
+
+              <text x="175" y="205" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78">attribute list: CustomerID, Name, Email</text>
+              <text x="175" y="220" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78">Order: OrderID, OrderDate, Total, CustomerID</text>
+
+              <!-- Arrow -->
+              <line x1="360" y1="140" x2="400" y2="140" stroke="#0d6efd" stroke-width="2.5"/>
+              <polygon points="400,135 410,140 400,145" fill="#0d6efd"/>
+              <text x="380" y="130" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#0d6efd">map</text>
+
+              <!-- Right: physical -->
+              <text x="555" y="25" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="13" font-weight="700" fill="#1e2b4f">PHYSICAL (Tables + Indexes)</text>
+
+              <rect x="420" y="50" width="270" height="100" rx="6" fill="#eef3fc" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="555" y="68" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#1e2b4f">customers (table)</text>
+              <line x1="420" y1="78" x2="690" y2="78" stroke="#bac8e0" stroke-width="1"/>
+              <text x="555" y="95" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#0d6efd">CustomerID INT PRIMARY KEY ← clustered</text>
+              <text x="555" y="110" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#4a5a78">Name VARCHAR(100)</text>
+              <text x="555" y="125" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#4a5a78">Email VARCHAR(150) UNIQUE</text>
+              <text x="555" y="140" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#198754">+ index on Email (unique B+ tree)</text>
+
+              <rect x="420" y="165" width="270" height="105" rx="6" fill="#ffc107" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="555" y="183" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#1e2b4f">orders (table)</text>
+              <line x1="420" y1="193" x2="690" y2="193" stroke="#7a8bab" stroke-width="1"/>
+              <text x="555" y="210" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#0d6efd">OrderID INT PRIMARY KEY ← clustered</text>
+              <text x="555" y="225" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#4a5a78">CustomerID INT → FK → customers</text>
+              <text x="555" y="240" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#198754">+ index on CustomerID (for joins)</text>
+              <text x="555" y="255" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#198754">+ index on OrderDate (range queries)</text>
+
+              <text x="555" y="290" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" font-style="italic" fill="#7a8bab">Each entity → table; each relationship → FK + index</text>
+            </svg>
+            <div class="diagram-caption">Figure 7.2 — Logical ER mapped to physical tables with indexes and FKs</div>
+          </div>
+
+          <h4><i class="fas fa-code" aria-hidden="true"></i>Syntax — Logical → physical in SQL</h4>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="code-block-lang"><i class="fas fa-database" aria-hidden="true"></i> SQL — Physical mapping</span>
+              <button class="code-copy-btn" type="button" aria-label="Copy SQL code"><i class="fas fa-copy" aria-hidden="true"></i> Copy</button>
+            </div>
+            <pre><code>-- LOGICAL: Customer (1) ─── places ──→ Order (N)
+
+-- PHYSICAL: parent table with PK
+CREATE TABLE Customers (
+    CustomerID INT AUTO_INCREMENT PRIMARY KEY,
+    Name       VARCHAR(100) NOT NULL,
+    Email      VARCHAR(150) UNIQUE
+) ENGINE = InnoDB;
+
+-- PHYSICAL: child table with FK + index on FK column
+CREATE TABLE Orders (
+    OrderID    INT AUTO_INCREMENT PRIMARY KEY,
+    OrderDate  DATE NOT NULL,
+    Total      DECIMAL(10,2) NOT NULL,
+    CustomerID INT NOT NULL,
+    CONSTRAINT fk_orders_customer
+        FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)
+        ON DELETE RESTRICT
+) ENGINE = InnoDB;
+
+-- Index on FK for fast "orders for customer X" lookups
+CREATE INDEX idx_orders_customer ON Orders(CustomerID);
+
+-- Index on OrderDate for range queries ("orders in January")
+CREATE INDEX idx_orders_date ON Orders(OrderDate);
+
+-- Partition by year for a very large orders table
+ALTER TABLE Orders
+    PARTITION BY RANGE (YEAR(OrderDate)) (
+        PARTITION p2023 VALUES LESS THAN (2024),
+        PARTITION p2024 VALUES LESS THAN (2025),
+        PARTITION p2025 VALUES LESS THAN (2026),
+        PARTITION pmax  VALUES LESS THAN MAXVALUE
+    );
+
+-- For a M:N relationship (e.g., students ↔ courses), create a junction:
+CREATE TABLE Enrollments (
+    StudentID INT,
+    CourseID  INT,
+    Grade     CHAR(2),
+    PRIMARY KEY (StudentID, CourseID),
+    FOREIGN KEY (StudentID) REFERENCES Students(StudentID),
+    FOREIGN KEY (CourseID)  REFERENCES Courses(CourseID)
+);</code></pre>
+          </div>
+
+          <div class="example-box">
+            <strong><i class="fas fa-lightbulb" aria-hidden="true"></i>Simple Example</strong>
+            <p class="mb-1"><strong>Logical:</strong> "A Customer places many Orders."</p>
+            <p class="mb-1"><strong>Physical mapping:</strong></p>
+            <p class="mb-1">1. <code class="inline">Customer</code> entity → <code class="inline">Customers</code> table (PK = CustomerID).</p>
+            <p class="mb-1">2. <code class="inline">Order</code> entity → <code class="inline">Orders</code> table (PK = OrderID).</p>
+            <p class="mb-1">3. "places" 1:N relationship → <code class="inline">CustomerID</code> FK in <code class="inline">Orders</code>.</p>
+            <p class="mb-0">4. Add index on <code class="inline">CustomerID</code> → fast lookups of "all orders for customer X".</p>
+          </div>
+
+          <div class="real-life-box">
+            <strong><i class="fas fa-briefcase" aria-hidden="true"></i>Real-Life Use Case</strong>
+            <p class="mb-0">A <strong>banking database</strong> starts with an ER diagram (Customer, Account, Transaction). During mapping: <code class="inline">Customer</code> → <code class="inline">customers</code> table with PK; <code class="inline">Account</code> → <code class="inline">accounts</code> table with FK to customers; <code class="inline">Transaction</code> → <code class="inline">transactions</code> table partitioned by month. Indexes on <code class="inline">customer_id</code> and <code class="inline">account_id</code> make "show me my recent transactions" queries return in milliseconds instead of scanning 10 million rows.</p>
+          </div>
+
+          <div class="info-box">
+            <strong><i class="fas fa-info-circle" aria-hidden="true"></i>Physical Naming Conventions</strong>
+            <p class="mb-0">Common patterns: tables in <code class="inline">snake_case</code> (PostgreSQL style) or <code class="inline">PascalCase</code> (SQL Server style); index names like <code class="inline">idx_table_column</code>; FK names like <code class="inline">fk_child_parent</code>. Consistent naming makes debugging and audits far easier.</p>
+          </div>
+        </article>
+
+        <!-- ============ TOPIC 7.3 ============ -->
+        <article class="note-card topic-section" id="topic-7-3">
+          <h3><span class="topic-number">7.3</span> Denormalization and Its Trade-offs</h3>
+
+          <h4><i class="fas fa-book" aria-hidden="true"></i>Definition</h4>
+          <p><strong>Denormalization</strong> is the deliberate reversal of normalization — introducing redundancy or merging tables to speed up reads. It's a physical design decision, not a logical one: the schema is intentionally less "clean" but queries are much faster.</p>
+          <p>Rule of thumb: <strong>normalize for OLTP (writes), denormalize for OLAP (reads).</strong></p>
+
+          <h4><i class="fas fa-layer-group" aria-hidden="true"></i>Techniques of Denormalization</h4>
+          <ul>
+            <li><strong>Precomputed aggregates</strong> — store <code class="inline">TotalSales</code> in <code class="inline">Customer</code> instead of SUM-ing orders every time.</li>
+            <li><strong>Redundant columns</strong> — copy <code class="inline">CustomerName</code> into <code class="inline">Orders</code> to avoid a join.</li>
+            <li><strong>Merged tables</strong> — collapse a 1:1 relationship into one table.</li>
+            <li><strong>Star schema / snowflake schema</strong> — data-warehouse patterns where dimensions are denormalized for fast analytics.</li>
+            <li><strong>Materialized views</strong> — store the result of a complex query.</li>
+            <li><strong>Summary tables</strong> — pre-built aggregates for dashboards.</li>
+            <li><strong>Replicated reference data</strong> — duplicate lookup tables (countries, categories) in each database.</li>
+          </ul>
+
+          <h4><i class="fas fa-scale-balanced" aria-hidden="true"></i>Trade-offs — The Big Comparison</h4>
+          <table class="notes-table">
+            <thead>
+              <tr><th>Aspect</th><th>Normalized (3NF+)</th><th>Denormalized</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>Read speed</strong></td><td>Slower (needs JOINs)</td><td>Fast (fewer JOINs)</td></tr>
+              <tr><td><strong>Write speed</strong></td><td>Fast (small tables)</td><td>Slower (must update redundancy)</td></tr>
+              <tr><td><strong>Storage</strong></td><td>Minimal (no duplicates)</td><td>More (repeated data)</td></tr>
+              <tr><td><strong>Data consistency</strong></td><td>Guaranteed (single source)</td><td>Needs care (updates everywhere)</td></tr>
+              <tr><td><strong>Update anomalies</strong></td><td>None</td><td>Risk if not maintained carefully</td></tr>
+              <tr><td><strong>Schema complexity</strong></td><td>Many small tables</td><td>Fewer, wider tables</td></tr>
+              <tr><td><strong>Best for</strong></td><td>OLTP (banking, booking)</td><td>OLAP (reporting, analytics)</td></tr>
+            </tbody>
+          </table>
+
+          <h4><i class="fas fa-diagram-project" aria-hidden="true"></i>Diagram — Normalized vs Denormalized</h4>
+          <div class="diagram-box">
+            <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Normalized vs denormalized schema">
+              <!-- Normalized -->
+              <text x="175" y="25" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="13" font-weight="700" fill="#0d6efd">NORMALIZED (3NF)</text>
+
+              <rect x="30" y="50" width="290" height="60" rx="6" fill="#eef3fc" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="175" y="72" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#1e2b4f">Customers</text>
+              <text x="175" y="90" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#4a5a78">CustomerID (PK), Name, Email</text>
+
+              <rect x="30" y="120" width="290" height="60" rx="6" fill="#ffc107" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="175" y="142" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#1e2b4f">Orders</text>
+              <text x="175" y="160" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#4a5a78">OrderID (PK), CustomerID (FK), Total</text>
+
+              <line x1="175" y1="110" x2="175" y2="120" stroke="#0d6efd" stroke-width="2"/>
+
+              <rect x="30" y="190" width="290" height="60" rx="6" fill="#198754" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="175" y="212" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#fff">OrderItems</text>
+              <text x="175" y="230" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#e6edf9">OrderItemID, OrderID (FK), ProductID, Qty</text>
+
+              <line x1="175" y1="180" x2="175" y2="190" stroke="#0d6efd" stroke-width="2"/>
+
+              <text x="175" y="275" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" font-style="italic" fill="#7a8bab">3 tables · 2 joins to get "customer + order + items"</text>
+
+              <!-- Divider -->
+              <line x1="350" y1="20" x2="350" y2="280" stroke="#bac8e0" stroke-width="1.5" stroke-dasharray="5 4"/>
+
+              <!-- Denormalized -->
+              <text x="525" y="25" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="13" font-weight="700" fill="#d9534f">DENORMALIZED</text>
+
+              <rect x="380" y="50" width="290" height="200" rx="6" fill="#eef3fc" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="525" y="75" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="12" font-weight="700" fill="#1e2b4f">Orders_Flat (one wide table)</text>
+
+              <text x="525" y="105" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78">OrderID, OrderDate, Total</text>
+              <text x="525" y="125" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#0d6efd">CustomerID, CustomerName, CustomerEmail</text>
+              <text x="525" y="145" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#b07d00">ProductID, ProductName, UnitPrice, Qty</text>
+              <text x="525" y="165" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#198754">ShippingAddress, PaymentMethod</text>
+              <text x="525" y="185" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78">...</text>
+
+              <text x="525" y="225" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" font-style="italic" fill="#7a8bab">1 table · 0 joins to get full order info</text>
+
+              <text x="525" y="275" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" font-style="italic" fill="#d9534f">⚠ Update CustomerName in 10,000 order rows if customer renames</text>
+            </svg>
+            <div class="diagram-caption">Figure 7.3 — Normalized (many tables, joins) vs Denormalized (wide table, no joins)</div>
+          </div>
+
+          <h4><i class="fas fa-code" aria-hidden="true"></i>Syntax — Denormalization in action</h4>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="code-block-lang"><i class="fas fa-database" aria-hidden="true"></i> SQL — Denormalized schema</span>
+              <button class="code-copy-btn" type="button" aria-label="Copy SQL code"><i class="fas fa-copy" aria-hidden="true"></i> Copy</button>
+            </div>
+            <pre><code>-- Denormalized table: fewer joins, faster reads
+CREATE TABLE Orders_Flat (
+    OrderID         INT PRIMARY KEY,
+    OrderDate       DATE NOT NULL,
+
+    CustomerID      INT NOT NULL,
+    CustomerName    VARCHAR(100),      -- duplicated from Customers
+    CustomerEmail   VARCHAR(150),      -- duplicated from Customers
+
+    ProductID       INT NOT NULL,
+    ProductName     VARCHAR(200),      -- duplicated from Products
+    UnitPrice       DECIMAL(10,2),     -- duplicated (price at sale time)
+    Quantity        INT,
+
+    Total           DECIMAL(10,2)      -- precomputed = UnitPrice × Quantity
+);
+
+-- Query without any JOIN — very fast:
+SELECT CustomerName, OrderDate, ProductName, Total
+FROM Orders_Flat
+WHERE OrderDate >= '2025-01-01';
+
+-- Maintained with a trigger (so duplicates stay in sync)
+DELIMITER $$
+CREATE TRIGGER trg_orders_flat_sync
+AFTER UPDATE ON Customers
+FOR EACH ROW
+BEGIN
+    UPDATE Orders_Flat
+    SET CustomerName = NEW.Name, CustomerEmail = NEW.Email
+    WHERE CustomerID = NEW.CustomerID;
+END$$
+DELIMITER ;
+
+-- Materialized view (PostgreSQL) — denormalized cache of a query
+CREATE MATERIALIZED VIEW order_summary AS
+SELECT c.CustomerID, c.Name,
+       COUNT(o.OrderID) AS OrderCount,
+       SUM(o.Total) AS TotalSpent
+FROM Customers c
+LEFT JOIN Orders o ON o.CustomerID = c.CustomerID
+GROUP BY c.CustomerID, c.Name;
+
+-- Refresh periodically
+REFRESH MATERIALIZED VIEW CONCURRENTLY order_summary;</code></pre>
+          </div>
+
+          <div class="example-box">
+            <strong><i class="fas fa-lightbulb" aria-hidden="true"></i>Simple Example</strong>
+            <p class="mb-1"><strong>Normalized:</strong> querying "orders with customer names" requires <code class="inline">JOIN Customers ON Orders.CustomerID = Customers.CustomerID</code> — 2 tables, moderate speed.</p>
+            <p class="mb-0"><strong>Denormalized:</strong> <code class="inline">CustomerName</code> is copied into <code class="inline">Orders</code> — no JOIN, extremely fast read. But if a customer renames, you must update <strong>every order row</strong>.</p>
+          </div>
+
+          <div class="real-life-box">
+            <strong><i class="fas fa-briefcase" aria-hidden="true"></i>Real-Life Use Case</strong>
+            <p class="mb-0"><strong>Amazon</strong> keeps product data normalized for writes (product catalog), but its <strong>product-search index</strong> and <strong>analytics warehouses</strong> are heavily denormalized — search results and dashboards must return in milliseconds. <strong>Data warehouses</strong> like Snowflake, BigQuery, Redshift use <em>star schemas</em> (heavily denormalized) because the goal is fast analytical queries, not transaction safety.</p>
+          </div>
+
+          <div class="warning-box">
+            <strong><i class="fas fa-exclamation-triangle" aria-hidden="true"></i>Don't Denormalize Prematurely</strong>
+            <p class="mb-0">Start with a normalized schema. Only denormalize when you have evidence (via query profiling) that JOINs are the bottleneck. Denormalizing too early creates maintenance headaches (triggers, sync issues) without commensurate benefit.</p>
+          </div>
+        </article>
+
+        <!-- ============ TOPIC 7.4 ============ -->
+        <article class="note-card topic-section" id="topic-7-4">
+          <h3><span class="topic-number">7.4</span> Performance Tuning — Query Optimization</h3>
+
+          <h4><i class="fas fa-book" aria-hidden="true"></i>Definition</h4>
+          <p><strong>Query optimization</strong> is the process of finding the most efficient way to execute a SQL query. It's done at two levels:</p>
+          <ul>
+            <li><strong>Automatic (DBMS):</strong> the optimizer analyzes the query, uses statistics, and picks the cheapest execution plan.</li>
+            <li><strong>Manual (DBA/Developer):</strong> rewriting queries, adding indexes, adjusting config — based on the execution plan.</li>
+          </ul>
+          <p>Both are essential. The best optimizer can't help a badly written query; the best-written query can't help a badly designed index.</p>
+
+          <h4><i class="fas fa-star" aria-hidden="true"></i>What the Optimizer Does</h4>
+          <ol>
+            <li><strong>Parse</strong> — check syntax.</li>
+            <li><strong>Validate</strong> — confirm tables/columns exist, check permissions.</li>
+            <li><strong>Rewrite</strong> — apply algebraic rules (push WHERE down, eliminate redundant subqueries, constant folding).</li>
+            <li><strong>Plan</strong> — generate candidate plans (which join order, which access method, which index).</li>
+            <li><strong>Cost</strong> — estimate cost of each plan using statistics.</li>
+            <li><strong>Choose</strong> — pick lowest-cost plan.</li>
+            <li><strong>Execute</strong> — run the plan.</li>
+          </ol>
+
+          <h4><i class="fas fa-layer-group" aria-hidden="true"></i>Common Tuning Techniques</h4>
+          <ul>
+            <li><strong>Analyze the execution plan</strong> — <code class="inline">EXPLAIN</code> / <code class="inline">EXPLAIN ANALYZE</code> / <code class="inline">SHOW PLAN</code>.</li>
+            <li><strong>Avoid <code class="inline">SELECT *</code></strong> — fetch only needed columns.</li>
+            <li><strong>Filter early</strong> — use WHERE instead of filtering after a JOIN.</li>
+            <li><strong>Use appropriate indexes</strong> — on columns in WHERE, JOIN, ORDER BY.</li>
+            <li><strong>Avoid functions on indexed columns</strong> — <code class="inline">WHERE YEAR(date) = 2024</code> can't use a date index; use range: <code class="inline">WHERE date BETWEEN '2024-01-01' AND '2024-12-31'</code>.</li>
+            <li><strong>Prefer EXISTS over IN</strong> for large sets.</li>
+            <li><strong>Batch operations</strong> — insert 1000 rows in one statement, not 1000 statements.</li>
+            <li><strong>Use LIMIT for pagination</strong> — don't fetch 1M rows to display 20.</li>
+            <li><strong>Keep statistics updated</strong> — run <code class="inline">ANALYZE</code> / <code class="inline">UPDATE STATISTICS</code>.</li>
+            <li><strong>Avoid N+1 queries</strong> — fetch related data in one JOIN, not per row.</li>
+          </ul>
+
+          <h4><i class="fas fa-diagram-project" aria-hidden="true"></i>Diagram — Reading an Execution Plan</h4>
+          <div class="diagram-box">
+            <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Execution plan tree showing a full table scan vs index seek">
+              <!-- Bad plan -->
+              <text x="175" y="25" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="13" font-weight="700" fill="#d9534f">BAD PLAN — Full Table Scan</text>
+
+              <rect x="40" y="45" width="270" height="50" rx="6" fill="#d9534f" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="175" y="65" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#fff">SELECT * FROM Orders</text>
+              <text x="175" y="83" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#fff">WHERE CustomerID = 100</text>
+
+              <line x1="175" y1="95" x2="175" y2="115" stroke="#d9534f" stroke-width="2"/>
+
+              <rect x="40" y="115" width="270" height="50" rx="6" fill="#eef3fc" stroke="#d9534f" stroke-width="1.5"/>
+              <text x="175" y="135" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#1e2b4f">Seq Scan</text>
+              <text x="175" y="153" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78">reads all 10,000,000 rows</text>
+
+              <line x1="175" y1="165" x2="175" y2="185" stroke="#d9534f" stroke-width="2"/>
+
+              <rect x="40" y="185" width="270" height="50" rx="6" fill="#eef3fc" stroke="#d9534f" stroke-width="1.5"/>
+              <text x="175" y="205" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#1e2b4f">Result: 50 rows</text>
+              <text x="175" y="223" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#d9534f">Time: 2,500 ms</text>
+
+              <!-- Divider -->
+              <line x1="350" y1="20" x2="350" y2="280" stroke="#bac8e0" stroke-width="1.5" stroke-dasharray="5 4"/>
+
+              <!-- Good plan -->
+              <text x="525" y="25" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="13" font-weight="700" fill="#198754">GOOD PLAN — Index Seek</text>
+
+              <rect x="380" y="45" width="290" height="50" rx="6" fill="#198754" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="525" y="65" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#fff">SELECT * FROM Orders</text>
+              <text x="525" y="83" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#fff">WHERE CustomerID = 100</text>
+
+              <line x1="525" y1="95" x2="525" y2="115" stroke="#198754" stroke-width="2"/>
+
+              <rect x="380" y="115" width="290" height="50" rx="6" fill="#eef3fc" stroke="#198754" stroke-width="1.5"/>
+              <text x="525" y="135" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#1e2b4f">Index Seek on idx_orders_customer</text>
+              <text x="525" y="153" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78">reads only the 50 matching rows</text>
+
+              <line x1="525" y1="165" x2="525" y2="185" stroke="#198754" stroke-width="2"/>
+
+              <rect x="380" y="185" width="290" height="50" rx="6" fill="#eef3fc" stroke="#198754" stroke-width="1.5"/>
+              <text x="525" y="205" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#1e2b4f">Result: 50 rows</text>
+              <text x="525" y="223" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#198754">Time: 3 ms  (830× faster!)</text>
+
+              <text x="525" y="275" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" font-style="italic" fill="#7a8bab">Same query, same result — just uses an index instead of scanning</text>
+            </svg>
+            <div class="diagram-caption">Figure 7.4 — BAD: full table scan (2.5s) vs GOOD: index seek (3ms) — 830× difference</div>
+          </div>
+
+          <h4><i class="fas fa-code" aria-hidden="true"></i>Syntax — Analyze and optimize</h4>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="code-block-lang"><i class="fas fa-database" aria-hidden="true"></i> SQL — EXPLAIN + tuning</span>
+              <button class="code-copy-btn" type="button" aria-label="Copy SQL code"><i class="fas fa-copy" aria-hidden="true"></i> Copy</button>
+            </div>
+            <pre><code>-- 1. SEE THE PLAN
+EXPLAIN SELECT * FROM Orders WHERE CustomerID = 100;
+-- MySQL output key columns:
+--   type: ALL (full scan) vs ref/range/const (fast)
+--   key:  NULL (no index) vs idx_orders_customer
+--   rows: 10,000,000 vs 50 (rows examined)
+
+-- PostgreSQL — with actual runtime stats
+EXPLAIN ANALYZE SELECT * FROM Orders WHERE CustomerID = 100;
+-- Look for: Seq Scan (bad) vs Index Scan (good)
+
+-- SQL Server — actual plan
+SET STATISTICS PROFILE ON;
+SELECT * FROM Orders WHERE CustomerID = 100;
+
+-- 2. REWRITE BAD QUERIES
+-- BAD: SELECT * — fetch only what you need
+SELECT * FROM Orders WHERE CustomerID = 100;
+
+-- GOOD: fetch specific columns
+SELECT OrderID, OrderDate, Total FROM Orders WHERE CustomerID = 100;
+
+-- BAD: function on indexed column → can't use index
+SELECT * FROM Orders WHERE YEAR(OrderDate) = 2024;
+
+-- GOOD: range predicate → uses index on OrderDate
+SELECT * FROM Orders
+WHERE OrderDate >= '2024-01-01' AND OrderDate < '2025-01-01';
+
+-- BAD: NOT IN with subquery → slow
+SELECT * FROM Customers
+WHERE CustomerID NOT IN (SELECT CustomerID FROM Orders);
+
+-- GOOD: LEFT JOIN with NULL check, or NOT EXISTS
+SELECT c.* FROM Customers c
+WHERE NOT EXISTS (SELECT 1 FROM Orders o WHERE o.CustomerID = c.CustomerID);
+
+-- BAD: N+1 queries (done in app loop)
+-- GOOD: single JOIN
+SELECT c.Name, o.OrderID, o.Total
+FROM Customers c
+LEFT JOIN Orders o ON o.CustomerID = c.CustomerID
+WHERE c.CustomerID = 100;
+
+-- 3. KEEP STATISTICS FRESH
+ANALYZE Orders;                          -- PostgreSQL
+ANALYZE TABLE Orders;                    -- MySQL
+UPDATE STATISTICS Orders;                -- SQL Server
+
+-- 4. LOOK FOR MISSING INDEXES
+-- MySQL: suggested indexes
+SELECT * FROM sys.schema_unused_indexes;
+SELECT * FROM sys.schema_redundant_indexes;
+
+-- PostgreSQL: tables with high sequential scan count
+SELECT relname, seq_scan, idx_scan
+FROM pg_stat_user_tables
+WHERE seq_scan > idx_scan
+  AND n_live_tup > 10000
+ORDER BY seq_scan DESC;</code></pre>
+          </div>
+
+          <div class="example-box">
+            <strong><i class="fas fa-lightbulb" aria-hidden="true"></i>Simple Example</strong>
+            <p class="mb-1"><strong>Before tuning:</strong> <code class="inline">SELECT * FROM Orders WHERE YEAR(OrderDate) = 2024</code> → full table scan, 2.5 seconds on 10M rows.</p>
+            <p class="mb-0"><strong>After tuning:</strong> rewrite as <code class="inline">WHERE OrderDate BETWEEN '2024-01-01' AND '2024-12-31'</code> and ensure an index on <code class="inline">OrderDate</code> → 3 milliseconds, 830× faster.</p>
+          </div>
+
+          <div class="real-life-box">
+            <strong><i class="fas fa-briefcase" aria-hidden="true"></i>Real-Life Use Case</strong>
+            <p class="mb-0">A <strong>dashboard page</strong> in an e-commerce app loaded in 8 seconds because it ran 47 separate queries (N+1 anti-pattern). After rewriting to fetch everything in 3 JOINed queries and adding an index on the filter column, the page loads in 90ms. Same data, same UX — just tuned.</p>
+          </div>
+
+          <div class="info-box">
+            <strong><i class="fas fa-info-circle" aria-hidden="true"></i>Tuning Checklist</strong>
+            <ul class="mb-0">
+              <li>Run <code class="inline">EXPLAIN</code> on every query slower than 100ms.</li>
+              <li>Look for "Seq Scan" / "Table Scan" on big tables.</li>
+              <li>Check <code class="inline">rows</code> examined vs rows returned — huge ratio = missing index.</li>
+              <li>Never use <code class="inline">SELECT *</code> in production code.</li>
+              <li>Avoid functions on indexed columns in WHERE.</li>
+              <li>Add indexes on JOIN and ORDER BY columns.</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- ============ TOPIC 7.5 ============ -->
+        <article class="note-card topic-section" id="topic-7-5">
+          <h3><span class="topic-number">7.5</span> Index Tuning and Partitioning</h3>
+
+          <h4><i class="fas fa-book" aria-hidden="true"></i>Definition</h4>
+          <p><strong>Index tuning</strong> is the process of choosing which indexes to create, keep, or drop. Good indexes speed up reads dramatically; useless indexes slow down writes and waste storage. <strong>Partitioning</strong> is the technique of splitting a large table into smaller physical pieces — while keeping one logical table.</p>
+
+          <h4><i class="fas fa-layer-group" aria-hidden="true"></i>Partitioning Types</h4>
+
+          <p><strong>1. Range Partitioning</strong> — split by a range of values</p>
+          <ul>
+            <li>Most common for date-based data.</li>
+            <li>Example: <code class="inline">Orders</code> partitioned by year — 2023, 2024, 2025.</li>
+            <li>Queries filtering by date touch only 1 partition (partition pruning).</li>
+          </ul>
+
+          <p><strong>2. Hash Partitioning</strong> — split by <code class="inline">hash(key) % N</code></p>
+          <ul>
+            <li>Even distribution across N partitions.</li>
+            <li>Good for evenly distributing a large table with no obvious date split.</li>
+            <li>Example: <code class="inline">Customers</code> partitioned into 8 buckets by <code class="inline">hash(CustomerID) % 8</code>.</li>
+          </ul>
+
+          <p><strong>3. List Partitioning</strong> — split by explicit value lists</p>
+          <ul>
+            <li>Each partition holds an explicit set of values.</li>
+            <li>Example: <code class="inline">Customers</code> partitioned by region — 'Asia', 'Europe', 'Americas'.</li>
+          </ul>
+
+          <p><strong>4. Composite Partitioning</strong> — combine two techniques</p>
+          <ul>
+            <li>Example: range by year, then hash by customer ID within each year.</li>
+          </ul>
+
+          <h4><i class="fas fa-star" aria-hidden="true"></i>Index Tuning Best Practices</h4>
+          <ul>
+            <li><strong>Index columns used in WHERE</strong> — especially high-selectivity columns.</li>
+            <li><strong>Index JOIN columns</strong> — foreign keys almost always need an index.</li>
+            <li><strong>Index ORDER BY columns</strong> — sorts can use the index if the leading column matches.</li>
+            <li><strong>Composite indexes</strong> — order matters: put the most-filtered column first. <code class="inline">(DeptID, Salary)</code> helps <code class="inline">WHERE DeptID = X AND Salary > Y</code>, but not <code class="inline">WHERE Salary > Y</code> alone.</li>
+            <li><strong>Covering indexes</strong> — include all columns a query needs → no table lookup.</li>
+            <li><strong>Drop unused indexes</strong> — they slow INSERTs and waste storage.</li>
+            <li><strong>Drop duplicate/overlapping indexes</strong> — if index on <code class="inline">(A, B)</code> exists, an index on <code class="inline">(A)</code> is redundant.</li>
+            <li><strong>Monitor index usage</strong> — Postgres: <code class="inline">pg_stat_user_indexes</code>; MySQL: <code class="inline">sys.schema_unused_indexes</code>.</li>
+          </ul>
+
+          <h4><i class="fas fa-diagram-project" aria-hidden="true"></i>Diagram — Partitioning Strategies</h4>
+          <div class="diagram-box">
+            <svg viewBox="0 0 700 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Range, hash, and list partitioning strategies">
+              <!-- Range -->
+              <text x="175" y="25" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="13" font-weight="700" fill="#0d6efd">RANGE PARTITIONING</text>
+
+              <rect x="20" y="45" width="310" height="40" rx="6" fill="#eef3fc" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="175" y="70" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#1e2b4f">Orders (logical table)</text>
+
+              <line x1="175" y1="85" x2="175" y2="105" stroke="#0d6efd" stroke-width="2"/>
+              <line x1="80" y1="105" x2="270" y2="105" stroke="#0d6efd" stroke-width="2"/>
+              <line x1="80" y1="105" x2="80" y2="120" stroke="#0d6efd" stroke-width="2"/>
+              <line x1="175" y1="105" x2="175" y2="120" stroke="#0d6efd" stroke-width="2"/>
+              <line x1="270" y1="105" x2="270" y2="120" stroke="#0d6efd" stroke-width="2"/>
+
+              <rect x="20" y="120" width="120" height="55" rx="6" fill="#ffc107" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="80" y="142" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" font-weight="700" fill="#1e2b4f">p2023</text>
+              <text x="80" y="158" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#4a5a78">&lt; 2024-01-01</text>
+
+              <rect x="150" y="120" width="120" height="55" rx="6" fill="#ffc107" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="210" y="142" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" font-weight="700" fill="#1e2b4f">p2024</text>
+              <text x="210" y="158" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#4a5a78">&lt; 2025-01-01</text>
+
+              <rect x="240" y="120" width="90" height="55" rx="6" fill="#ffc107" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="285" y="142" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" font-weight="700" fill="#1e2b4f">pmax</text>
+              <text x="285" y="158" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#4a5a78">MAXVALUE</text>
+
+              <text x="175" y="200" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" font-style="italic" fill="#7a8bab">WHERE OrderDate &gt;= '2024-01-01' → only reads p2024 + pmax</text>
+
+              <!-- Hash -->
+              <text x="525" y="25" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="13" font-weight="700" fill="#198754">HASH PARTITIONING</text>
+
+              <rect x="380" y="45" width="290" height="40" rx="6" fill="#eef3fc" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="525" y="70" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#1e2b4f">Customers (logical table)</text>
+
+              <line x1="525" y1="85" x2="525" y2="105" stroke="#198754" stroke-width="2"/>
+              <line x1="425" y1="105" x2="625" y2="105" stroke="#198754" stroke-width="2"/>
+              <line x1="425" y1="105" x2="425" y2="120" stroke="#198754" stroke-width="2"/>
+              <line x1="490" y1="105" x2="490" y2="120" stroke="#198754" stroke-width="2"/>
+              <line x1="555" y1="105" x2="555" y2="120" stroke="#198754" stroke-width="2"/>
+              <line x1="625" y1="105" x2="625" y2="120" stroke="#198754" stroke-width="2"/>
+
+              <rect x="385" y="120" width="80" height="55" rx="6" fill="#198754" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="425" y="142" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" font-weight="700" fill="#fff">p0</text>
+              <text x="425" y="158" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="8" fill="#e6edf9">hash % 4 = 0</text>
+
+              <rect x="450" y="120" width="80" height="55" rx="6" fill="#198754" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="490" y="142" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" font-weight="700" fill="#fff">p1</text>
+              <text x="490" y="158" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="8" fill="#e6edf9">hash % 4 = 1</text>
+
+              <rect x="515" y="120" width="80" height="55" rx="6" fill="#198754" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="555" y="142" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" font-weight="700" fill="#fff">p2</text>
+              <text x="555" y="158" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="8" fill="#e6edf9">hash % 4 = 2</text>
+
+              <rect x="585" y="120" width="80" height="55" rx="6" fill="#198754" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="625" y="142" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" font-weight="700" fill="#fff">p3</text>
+              <text x="625" y="158" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="8" fill="#e6edf9">hash % 4 = 3</text>
+
+              <text x="525" y="200" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" font-style="italic" fill="#7a8bab">Even distribution · 4 buckets · reads 1 partition per lookup</text>
+
+              <!-- Bottom: index tuning -->
+              <rect x="40" y="225" width="620" height="80" rx="8" fill="#eef3fc" stroke="#1e2b4f" stroke-width="1.5" stroke-dasharray="4 3"/>
+              <text x="350" y="248" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="12" font-weight="700" fill="#1e2b4f">INDEX TUNING — Quick Rules</text>
+              <text x="80" y="270" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78">✓ Index WHERE, JOIN, ORDER BY columns</text>
+              <text x="80" y="286" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78">✓ Composite (DeptID, Salary) — most-filtered first</text>
+              <text x="420" y="270" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78">✗ Drop unused or duplicate indexes</text>
+              <text x="420" y="286" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78">✗ Don't index every column — write overhead</text>
+            </svg>
+            <div class="diagram-caption">Figure 7.5 — Range vs Hash partitioning + index tuning quick rules</div>
+          </div>
+
+          <h4><i class="fas fa-code" aria-hidden="true"></i>Syntax — Partitioning and index tuning</h4>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="code-block-lang"><i class="fas fa-database" aria-hidden="true"></i> SQL — Partitioning</span>
+              <button class="code-copy-btn" type="button" aria-label="Copy SQL code"><i class="fas fa-copy" aria-hidden="true"></i> Copy</button>
+            </div>
+            <pre><code>-- RANGE partitioning by year (MySQL 8)
+CREATE TABLE Orders (
+    OrderID    INT NOT NULL,
+    OrderDate  DATE NOT NULL,
+    Total      DECIMAL(10,2),
+    PRIMARY KEY (OrderID, OrderDate)
+)
+PARTITION BY RANGE (YEAR(OrderDate)) (
+    PARTITION p2023 VALUES LESS THAN (2024),
+    PARTITION p2024 VALUES LESS THAN (2025),
+    PARTITION p2025 VALUES LESS THAN (2026),
+    PARTITION pmax  VALUES LESS THAN MAXVALUE
+);
+
+-- HASH partitioning (even distribution across 8 buckets)
+CREATE TABLE Customers (
+    CustomerID INT PRIMARY KEY,
+    Name       VARCHAR(100)
+)
+PARTITION BY HASH (CustomerID) PARTITIONS 8;
+
+-- LIST partitioning (explicit regions)
+CREATE TABLE Sales (
+    SaleID  INT PRIMARY KEY,
+    Region  VARCHAR(20)
+)
+PARTITION BY LIST (Region) (
+    PARTITION p_asia    VALUES IN ('Pakistan', 'India', 'China'),
+    PARTITION p_europe  VALUES IN ('UK', 'Germany', 'France'),
+    PARTITION p_america VALUES IN ('USA', 'Canada', 'Brazil')
+);
+
+-- PostgreSQL declarative partitioning
+CREATE TABLE orders (
+    order_id   INT,
+    order_date DATE NOT NULL,
+    total      DECIMAL(10,2)
+) PARTITION BY RANGE (order_date);
+
+CREATE TABLE orders_2024 PARTITION OF orders
+    FOR VALUES FROM ('2024-01-01') TO ('2025-01-01');
+CREATE TABLE orders_2025 PARTITION OF orders
+    FOR VALUES FROM ('2025-01-01') TO ('2026-01-01');
+
+-- See partitions
+SELECT * FROM information_schema.partitions
+WHERE table_name = 'Orders';</code></pre>
+          </div>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="code-block-lang"><i class="fas fa-database" aria-hidden="true"></i> SQL — Index tuning</span>
+              <button class="code-copy-btn" type="button" aria-label="Copy SQL code"><i class="fas fa-copy" aria-hidden="true"></i> Copy</button>
+            </div>
+            <pre><code>-- Good indexes
+CREATE INDEX idx_orders_customer ON Orders(CustomerID);   -- JOIN column
+CREATE INDEX idx_orders_date     ON Orders(OrderDate);    -- range filter
+CREATE INDEX idx_emp_dept_salary ON Employees(DeptID, Salary);  -- composite
+
+-- Composite index for common query pattern
+-- Query: WHERE DeptID = 10 AND Salary > 50000
+-- → index (DeptID, Salary) uses both columns efficiently
+
+-- Covering index — query answered entirely from index
+CREATE INDEX idx_cover_emp ON Employees(DeptID, Name, Salary);
+-- Query: SELECT Name, Salary FROM Employees WHERE DeptID = 10
+-- → no table access needed!
+
+-- ---------- Find UNUSED indexes ----------
+-- MySQL
+SELECT object_schema, object_name, index_name
+FROM performance_schema.table_io_waits_summary_by_index_usage
+WHERE index_name IS NOT NULL
+  AND count_star = 0
+  AND object_schema NOT IN ('mysql', 'performance_schema');
+
+-- PostgreSQL
+SELECT relname AS table, indexrelname AS index, idx_scan
+FROM pg_stat_user_indexes
+WHERE idx_scan = 0
+ORDER BY pg_relation_size(indexrelid) DESC;
+
+-- ---------- Find MISSING indexes ----------
+-- PostgreSQL: sequential scans on big tables
+SELECT relname, seq_scan, idx_scan, n_live_tup
+FROM pg_stat_user_tables
+WHERE seq_scan > 100
+  AND n_live_tup > 10000
+ORDER BY seq_scan DESC;
+
+-- ---------- Drop unused/duplicate indexes ----------
+DROP INDEX idx_old_unused ON Orders;
+-- MySQL: DROP INDEX idx_name ON table;
+-- PostgreSQL: DROP INDEX idx_name;</code></pre>
+          </div>
+
+          <div class="example-box">
+            <strong><i class="fas fa-lightbulb" aria-hidden="true"></i>Simple Example</strong>
+            <p class="mb-1"><strong>Partitioning:</strong> an <code class="inline">Orders</code> table with 100 million rows partitioned by year → "orders in 2024" query only reads the <code class="inline">p2024</code> partition (25M rows), not all 100M.</p>
+            <p class="mb-0"><strong>Index tuning:</strong> a query filtered by department and salary works fastest with a composite index on <code class="inline">(DeptID, Salary)</code>, not two separate indexes.</p>
+          </div>
+
+          <div class="real-life-box">
+            <strong><i class="fas fa-briefcase" aria-hidden="true"></i>Real-Life Use Case</strong>
+            <p class="mb-0"><strong>Banking transaction logs</strong> grow forever. Partition by month: queries "transactions this month" touch only one partition; older partitions can be compressed, moved to cheaper storage, or archived without touching live data. <strong>IoT platforms</strong> (sensor data) partition by day and use hash partitioning on <code class="inline">device_id</code> to spread load evenly across disks.</p>
+          </div>
+
+          <div class="info-box">
+            <strong><i class="fas fa-info-circle" aria-hidden="true"></i>When to Partition</strong>
+            <ul class="mb-0">
+              <li>Table > 50 GB or > 100 million rows.</li>
+              <li>Queries almost always filter by a range (date, region, category).</li>
+              <li>You need to archive/delete old data quickly (drop a partition = instant).</li>
+              <li>You need to spread I/O across multiple disks.</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- ============ TOPIC 7.6 ============ -->
+        <article class="note-card topic-section" id="topic-7-6">
+          <h3><span class="topic-number">7.6</span> Database Configuration Parameters</h3>
+
+          <h4><i class="fas fa-book" aria-hidden="true"></i>Definition</h4>
+          <p><strong>Configuration parameters</strong> are settings (in files like <code class="inline">my.cnf</code> for MySQL, <code class="inline">postgresql.conf</code> for PostgreSQL, <code class="inline">sp_configure</code> for SQL Server) that control how the DBMS uses CPU, memory, disk, and connections. Getting these right can be the difference between 100 QPS and 10,000 QPS — with zero schema changes.</p>
+
+          <h4><i class="fas fa-layer-group" aria-hidden="true"></i>Key Categories of Parameters</h4>
+
+          <p><strong>1. Memory parameters</strong></p>
+          <ul>
+            <li><strong>Buffer pool / shared buffers</strong> — cache for data pages (biggest memory consumer).</li>
+            <li><strong>Sort buffer / work_mem</strong> — memory per sort/hash operation.</li>
+            <li><strong>Join buffer</strong> — memory for join operations.</li>
+            <li><strong>Query cache</strong> (deprecated in MySQL 8) — cache for repeated query results.</li>
+            <li><strong>Temp table size</strong> — max size for in-memory temp tables.</li>
+          </ul>
+
+          <p><strong>2. Connection parameters</strong></p>
+          <ul>
+            <li><strong>max_connections</strong> — how many clients can connect simultaneously.</li>
+            <li><strong>wait_timeout / idle_in_transaction_session_timeout</strong> — kill idle connections.</li>
+            <li><strong>Connection pooling</strong> — usually handled by app or proxy (PgBouncer).</li>
+          </ul>
+
+          <p><strong>3. I/O parameters</strong></p>
+          <ul>
+            <li><strong>innodb_io_capacity</strong> (MySQL) — how many I/O ops the SSD can handle.</li>
+            <li><strong>random_page_cost / seq_page_cost</strong> (PostgreSQL) — planner estimates for disk access.</li>
+            <li><strong>effective_io_concurrency</strong> — parallel I/O requests.</li>
+          </ul>
+
+          <p><strong>4. Logging &amp; durability parameters</strong></p>
+          <ul>
+            <li><strong>innodb_flush_log_at_trx_commit</strong> — how often to flush the log to disk (1 = safest, 2 = faster but risk).</li>
+            <li><strong>wal_level</strong>, <strong>fsync</strong> (PostgreSQL) — trade-off between crash safety and speed.</li>
+            <li><strong>slow_query_log</strong> — log queries slower than <code class="inline">long_query_time</code>.</li>
+          </ul>
+
+          <p><strong>5. Parallelism parameters</strong></p>
+          <ul>
+            <li><strong>max_parallel_workers</strong> (PostgreSQL).</li>
+            <li><strong>max_worker_processes</strong>.</li>
+          </ul>
+
+          <h4><i class="fas fa-diagram-project" aria-hidden="true"></i>Diagram — Memory Configuration</h4>
+          <div class="diagram-box">
+            <svg viewBox="0 0 700 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Database memory configuration: buffer pool, sort, connections, OS">
+              <text x="350" y="25" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="13" font-weight="700" fill="#1e2b4f">Server RAM — Typical Split (32 GB example)</text>
+
+              <!-- Stacked bar -->
+              <rect x="60" y="50" width="580" height="60" rx="6" fill="#eef3fc" stroke="#1e2b4f" stroke-width="2"/>
+              <rect x="60" y="50" width="360" height="60" rx="6" fill="#1e2b4f"/>
+              <text x="240" y="85" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="13" font-weight="700" fill="#fff">Buffer Pool (24 GB)</text>
+
+              <rect x="420" y="50" width="120" height="60" fill="#ffc107"/>
+              <text x="480" y="80" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" font-weight="700" fill="#1e2b4f">Sort/Work</text>
+              <text x="480" y="96" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" font-weight="700" fill="#1e2b4f">(4 GB)</text>
+
+              <rect x="540" y="50" width="100" height="60" rx="6" fill="#198754"/>
+              <text x="590" y="80" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" font-weight="700" fill="#fff">OS Cache</text>
+              <text x="590" y="96" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" font-weight="700" fill="#fff">(4 GB)</text>
+
+              <!-- Percentages -->
+              <text x="240" y="140" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#1e2b4f">75%</text>
+              <text x="480" y="140" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#b07d00">12.5%</text>
+              <text x="590" y="140" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#198754">12.5%</text>
+
+              <!-- Description -->
+              <rect x="60" y="160" width="580" height="100" rx="6" fill="#eef3fc" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="350" y="182" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#1e2b4f">Why these sizes?</text>
+              <text x="80" y="205" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78"><tspan font-weight="700">Buffer pool:</tspan> ~70–80% of RAM for the page cache — hit ratio should be &gt;99%</text>
+              <text x="80" y="225" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78"><tspan font-weight="700">Sort/Work:</tspan> ~10% for temporary work (sorts, joins, GROUP BY)</text>
+              <text x="80" y="245" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78"><tspan font-weight="700">OS Cache:</tspan> leave room for the OS + network + app processes</text>
+            </svg>
+            <div class="diagram-caption">Figure 7.6 — Typical memory split on a dedicated 32 GB DB server</div>
+          </div>
+
+          <h4><i class="fas fa-code" aria-hidden="true"></i>Syntax — Essential config parameters</h4>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="code-block-lang"><i class="fas fa-database" aria-hidden="true"></i> MySQL — my.cnf</span>
+              <button class="code-copy-btn" type="button" aria-label="Copy config"><i class="fas fa-copy" aria-hidden="true"></i> Copy</button>
+            </div>
+            <pre><code># MySQL 8 — /etc/mysql/my.cnf (or /etc/my.cnf)
+
+[mysqld]
+# --- MEMORY ---
+innodb_buffer_pool_size         = 24G        # biggest memory consumer (70–80% of RAM)
+innodb_buffer_pool_instances    = 8          # split into 8 for concurrency
+sort_buffer_size                = 4M
+join_buffer_size                = 4M
+tmp_table_size                  = 64M
+max_heap_table_size             = 64M
+
+# --- CONNECTIONS ---
+max_connections                 = 500
+wait_timeout                    = 600        # 10 minutes idle
+interactive_timeout             = 600
+
+# --- I/O ---
+innodb_io_capacity              = 2000       # SSD: 2000; HDD: 200
+innodb_flush_method             = O_DIRECT
+
+# --- DURABILITY ---
+innodb_flush_log_at_trx_commit  = 1          # 1 = safest; 2 = faster, slightly risky
+sync_binlog                     = 1
+
+# --- LOGGING ---
+slow_query_log                  = 1
+slow_query_log_file             = /var/log/mysql/slow.log
+long_query_time                 = 0.5        # log queries slower than 500ms
+log_queries_not_using_indexes   = 1
+
+# --- LOG BUFFERS ---
+innodb_log_file_size            = 2G         # larger = fewer checkpoints (can be 1–4 GB)
+innodb_log_buffer_size          = 64M</code></pre>
+          </div>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="code-block-lang"><i class="fas fa-database" aria-hidden="true"></i> PostgreSQL — postgresql.conf</span>
+              <button class="code-copy-btn" type="button" aria-label="Copy config"><i class="fas fa-copy" aria-hidden="true"></i> Copy</button>
+            </div>
+            <pre><code># PostgreSQL 15 — postgresql.conf
+
+# --- MEMORY ---
+shared_buffers                  = 8GB        # ~25% of RAM for PostgreSQL
+effective_cache_size            = 24GB       # hint to planner about OS cache
+work_mem                        = 64MB       # per sort/hash operation
+maintenance_work_mem            = 2GB        # for VACUUM, CREATE INDEX
+
+# --- CONNECTIONS ---
+max_connections                 = 200
+idle_in_transaction_session_timeout = '10min'
+
+# --- PLANNER ---
+random_page_cost                = 1.1        # SSD: 1.1; HDD: 4.0
+effective_io_concurrency        = 200        # SSD: 200; HDD: 2
+default_statistics_target       = 100        # higher = better plans, slower ANALYZE
+
+# --- WAL & DURABILITY ---
+wal_level                       = replica
+synchronous_commit              = on         # on = safest; off = faster
+checkpoint_timeout              = '15min'
+max_wal_size                    = 4GB
+
+# --- LOGGING ---
+log_min_duration_statement      = 500        # log queries > 500ms
+log_checkpoints                 = on
+log_connections                 = on
+log_lock_waits                  = on
+log_temp_files                  = 0
+
+# --- PARALLELISM ---
+max_parallel_workers            = 8
+max_worker_processes            = 16
+
+# --- AUTOVACUUM ---
+autovacuum                      = on
+autovacuum_naptime              = '1min'
+autovacuum_vacuum_scale_factor  = 0.1</code></pre>
+          </div>
+
+          <div class="example-box">
+            <strong><i class="fas fa-lightbulb" aria-hidden="true"></i>Simple Example</strong>
+            <p class="mb-0">A 32 GB RAM server running MySQL: <code class="inline">innodb_buffer_pool_size = 24G</code> (75% of RAM). With this, 99%+ of pages stay in memory, so most queries never touch disk — massive speedup. If you set it to 2 GB, most queries would hit disk → 100× slower.</p>
+          </div>
+
+          <div class="real-life-box">
+            <strong><i class="fas fa-briefcase" aria-hidden="true"></i>Real-Life Use Case</strong>
+            <p class="mb-0">A <strong>startup</strong> deploys MySQL with default config (buffer pool = 128 MB). Their app gets slow as data grows. The DBA increases <code class="inline">innodb_buffer_pool_size</code> to 8 GB, adds 4 buffer pool instances, enables slow query log. Result: average query time drops from 400ms to 12ms — with zero schema changes. This is often the single biggest performance win available.</p>
+          </div>
+
+          <div class="warning-box">
+            <strong><i class="fas fa-exclamation-triangle" aria-hidden="true"></i>Don't Overallocate Memory</strong>
+            <p class="mb-0">Setting <code class="inline">innodb_buffer_pool_size</code> = 100% of RAM causes the OS to swap, which is <em>catastrophically</em> slow. Leave room for:
+            <br>• OS operations (typically 1–4 GB)
+            <br>• Per-connection memory (sort buffers × max_connections)
+            <br>• File system cache (indirect but useful for temp files)</p>
+          </div>
+
+          <div class="info-box">
+            <strong><i class="fas fa-info-circle" aria-hidden="true"></i>Configuration Tuning Order</strong>
+            <ol class="mb-0">
+              <li>Set <code class="inline">buffer pool / shared buffers</code> (~70% RAM) — biggest impact.</li>
+              <li>Set <code class="inline">max_connections</code> realistically — 1000 idle connections is worse than 100 busy ones.</li>
+              <li>Enable <code class="inline">slow query log</code> — find the real problem queries.</li>
+              <li>Tune <code class="inline">work_mem / sort_buffer_size</code> only after query analysis.</li>
+              <li>Don't touch durability knobs (<code class="inline">fsync</code>, <code class="inline">synchronous_commit</code>) unless you fully understand them.</li>
+            </ol>
+          </div>
+        </article>
+
+        <!-- ============ TOPIC 7.7 ============ -->
+        <article class="note-card topic-section" id="topic-7-7">
+          <h3><span class="topic-number">7.7</span> Monitoring and Performance Metrics</h3>
+
+          <h4><i class="fas fa-book" aria-hidden="true"></i>Definition</h4>
+          <p><strong>Monitoring</strong> is the continuous collection and analysis of database metrics to detect problems before they become incidents. A DBA's job is 80% watching metrics and 20% fixing issues — monitoring turns the 20% into 5%.</p>
+
+          <h4><i class="fas fa-star" aria-hidden="true"></i>Key Metrics to Monitor</h4>
+
+          <table class="notes-table">
+            <thead>
+              <tr><th>Category</th><th>Metric</th><th>Healthy Target</th></tr>
+            </thead>
+            <tbody>
+              <tr><td rowspan="2"><strong>Query performance</strong></td><td>Queries per second (QPS)</td><td>Depends on hardware; watch the trend</td></tr>
+              <tr><td>Avg query latency (p50/p95/p99)</td><td>&lt; 50ms (p95) for OLTP</td></tr>
+
+              <tr><td rowspan="3"><strong>Cache efficiency</strong></td><td>Buffer pool hit ratio</td><td>&gt; 99%</td></tr>
+              <tr><td>Index hit ratio</td><td>&gt; 95%</td></tr>
+              <tr><td>Sort/hash temp disk spills</td><td>Low or zero</td></tr>
+
+              <tr><td rowspan="2"><strong>Connections</strong></td><td>Active connections</td><td>&lt; 80% of max_connections</td></tr>
+              <tr><td>Connection errors</td><td>Near zero</td></tr>
+
+              <tr><td rowspan="3"><strong>Locking</strong></td><td>Lock waits</td><td>Low, transient</td></tr>
+              <tr><td>Deadlocks per minute</td><td>Near zero</td></tr>
+              <tr><td>Long-running transactions</td><td>&lt; 5 min typically</td></tr>
+
+              <tr><td rowspan="2"><strong>I/O &amp; disk</strong></td><td>Disk IOPS, throughput, latency</td><td>SSD: &gt;5K IOPS; latency &lt;1ms</td></tr>
+              <tr><td>Disk space used</td><td>&lt; 80% of volume</td></tr>
+
+              <tr><td rowspan="2"><strong>Replication</strong></td><td>Replica lag</td><td>&lt; 1 second for OLTP</td></tr>
+              <tr><td>Replication errors</td><td>Zero</td></tr>
+
+              <tr><td rowspan="2"><strong>Backup</strong></td><td>Last successful backup time</td><td>&lt; 24 hours ago</td></tr>
+              <tr><td>Backup size &amp; duration</td><td>Within schedule</td></tr>
+
+              <tr><td><strong>Errors &amp; warnings</strong></td><td>Error log entries per hour</td><td>Zero new critical errors</td></tr>
+            </tbody>
+          </table>
+
+          <h4><i class="fas fa-diagram-project" aria-hidden="true"></i>Diagram — Monitoring Dashboard</h4>
+          <div class="diagram-box">
+            <svg viewBox="0 0 700 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="DBA monitoring dashboard with key metrics">
+              <!-- Header -->
+              <rect x="30" y="20" width="640" height="40" rx="8" fill="#1e2b4f"/>
+              <text x="350" y="46" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="13" font-weight="700" fill="#fff">DBA MONITORING DASHBOARD — Live</text>
+
+              <!-- Metric tiles -->
+              <rect x="40" y="75" width="145" height="80" rx="6" fill="#198754" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="112" y="105" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" fill="#fff">QPS</text>
+              <text x="112" y="135" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="20" font-weight="700" fill="#fff">8,241</text>
+              <text x="112" y="150" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#fff">↑ 12% vs 1h ago</text>
+
+              <rect x="195" y="75" width="145" height="80" rx="6" fill="#198754" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="267" y="105" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" fill="#fff">P95 Latency</text>
+              <text x="267" y="135" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="20" font-weight="700" fill="#fff">38 ms</text>
+              <text x="267" y="150" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#fff">✓ healthy</text>
+
+              <rect x="350" y="75" width="145" height="80" rx="6" fill="#198754" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="422" y="105" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" fill="#fff">Buffer Hit %</text>
+              <text x="422" y="135" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="20" font-weight="700" fill="#fff">99.4%</text>
+              <text x="422" y="150" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#fff">✓ optimal</text>
+
+              <rect x="505" y="75" width="145" height="80" rx="6" fill="#ffc107" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="577" y="105" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" fill="#1e2b4f">Active Conns</text>
+              <text x="577" y="135" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="20" font-weight="700" fill="#1e2b4f">412 / 500</text>
+              <text x="577" y="150" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#b07d00">⚠ 82% used</text>
+
+              <rect x="40" y="165" width="145" height="80" rx="6" fill="#198754" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="112" y="195" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" fill="#fff">Disk Used</text>
+              <text x="112" y="225" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="20" font-weight="700" fill="#fff">62%</text>
+              <text x="112" y="240" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#fff">✓ healthy</text>
+
+              <rect x="195" y="165" width="145" height="80" rx="6" fill="#198754" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="267" y="195" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" fill="#fff">Replica Lag</text>
+              <text x="267" y="225" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="20" font-weight="700" fill="#fff">0.3 s</text>
+              <text x="267" y="240" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#fff">✓ &lt; 1 s</text>
+
+              <rect x="350" y="165" width="145" height="80" rx="6" fill="#198754" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="422" y="195" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" fill="#fff">Last Backup</text>
+              <text x="422" y="225" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="20" font-weight="700" fill="#fff">3h ago</text>
+              <text x="422" y="240" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#fff">✓ &lt; 24h</text>
+
+              <rect x="505" y="165" width="145" height="80" rx="6" fill="#d9534f" stroke="#1e2b4f" stroke-width="1.5"/>
+              <text x="577" y="195" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" fill="#fff">Deadlocks (1h)</text>
+              <text x="577" y="225" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="20" font-weight="700" fill="#fff">7</text>
+              <text x="577" y="240" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9" fill="#fff">⚠ investigate</text>
+
+              <text x="350" y="285" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#1e2b4f">Alerting Rules (PagerDuty / Slack)</text>
+              <text x="350" y="305" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="10" fill="#4a5a78">Page on: P95 &gt; 200ms · Deadlocks &gt; 10/h · Replica lag &gt; 10s · Disk &gt; 85% · Backup missing &gt; 26h</text>
+            </svg>
+            <div class="diagram-caption">Figure 7.7 — DBA monitoring dashboard with healthy/warning/critical states and alerts</div>
+          </div>
+
+          <h4><i class="fas fa-code" aria-hidden="true"></i>Syntax — Monitoring queries</h4>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="code-block-lang"><i class="fas fa-database" aria-hidden="true"></i> SQL — Key metrics queries</span>
+              <button class="code-copy-btn" type="button" aria-label="Copy SQL code"><i class="fas fa-copy" aria-hidden="true"></i> Copy</button>
+            </div>
+            <pre><code>-- ---------- MySQL ----------
+
+-- Buffer pool hit ratio (target > 99%)
+SELECT
+    ROUND(100 * (1 - (variable_value /
+        (SELECT variable_value FROM performance_schema.global_status
+         WHERE variable_name = 'Innodb_buffer_pool_read_requests'))), 2) AS hit_ratio_pct
+FROM performance_schema.global_status
+WHERE variable_name = 'Innodb_buffer_pool_reads';
+
+-- Or simpler:
+SHOW GLOBAL STATUS LIKE 'Innodb_buffer_pool_read%';
+
+-- Active connections
+SHOW STATUS LIKE 'Threads_connected';
+SHOW VARIABLES LIKE 'max_connections';
+
+-- Slow queries
+SHOW GLOBAL STATUS LIKE 'Slow_queries';
+
+-- Deadlocks per hour
+SHOW ENGINE INNODB STATUS\G
+-- Look for "LATEST DETECTED DEADLOCK"
+
+-- Currently running queries
+SELECT id, user, host, db, command, time, state, info
+FROM information_schema.processlist
+WHERE command <> 'Sleep'
+ORDER BY time DESC;
+
+-- Queries running longer than 60 seconds
+SELECT id, user, time, info
+FROM information_schema.processlist
+WHERE time > 60 AND info IS NOT NULL;
+
+-- Tables with missing indexes (high rows_read vs rows_returned)
+SELECT * FROM sys.schema_tables_with_full_table_scans;
+
+-- ---------- PostgreSQL ----------
+
+-- Connection count / max
+SELECT count(*) AS active, current_setting('max_connections')::int AS max_conn
+FROM pg_stat_activity
+WHERE state = 'active';
+
+-- Buffer hit ratio
+SELECT
+    sum(heap_blks_hit) * 100.0 /
+    nullif(sum(heap_blks_hit) + sum(heap_blks_read), 0) AS buffer_hit_ratio
+FROM pg_statio_user_tables;
+
+-- Long-running queries
+SELECT pid, now() - query_start AS duration, query, state
+FROM pg_stat_activity
+WHERE state = 'active'
+  AND now() - query_start > interval '1 minute'
+ORDER BY duration DESC;
+
+-- Lock waits
+SELECT pid, wait_event_type, wait_event, query
+FROM pg_stat_activity
+WHERE wait_event_type = 'Lock';
+
+-- Replication lag (on replica)
+SELECT now() - pg_last_xact_replay_timestamp() AS replication_lag;
+
+-- Table bloat / dead rows (autovacuum health)
+SELECT relname, n_live_tup, n_dead_tup,
+       round(100.0 * n_dead_tup / nullif(n_live_tup + n_dead_tup, 0), 2) AS dead_pct
+FROM pg_stat_user_tables
+WHERE n_dead_tup > 1000
+ORDER BY n_dead_tup DESC;</code></pre>
+          </div>
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="code-block-lang"><i class="fas fa-code" aria-hidden="true"></i> Shell — Monitoring tools</span>
+              <button class="code-copy-btn" type="button" aria-label="Copy commands"><i class="fas fa-copy" aria-hidden="true"></i> Copy</button>
+            </div>
+            <pre><code># External monitoring tools commonly used by DBAs:
+
+# 1. Prometheus + Grafana — dashboards + alerts
+#    exporters: mysqld_exporter, postgres_exporter
+
+# 2. Percona Monitoring and Management (PMM) — free, MySQL/Mongo/Postgres
+docker run -d -p 80:80 -p 443:443 percona/pmm-server:2
+
+# 3. pgAdmin / MySQL Workbench — GUI tools with built-in monitoring
+
+# 4. Cloud-native tools:
+#    AWS RDS Performance Insights / CloudWatch
+#    Azure Monitor + Query Performance Insight
+#    GCP Cloud SQL Insights
+
+# 5. Slow query logs — turn on and periodically review
+# MySQL:
+#   slow_query_log = 1
+#   long_query_time = 0.5
+# PostgreSQL:
+#   log_min_duration_statement = 500
+
+# Review top slow queries (MySQL — using pt-query-digest):
+pt-query-digest /var/log/mysql/slow.log | head -50
+
+# 6. Replication monitoring:
+# MySQL:
+SHOW SLAVE STATUS\G  -- look at Seconds_Behind_Master
+# PostgreSQL:
+SELECT * FROM pg_stat_replication;
+
+# 7. Backup verification (always test your restores!)
+mysql -u root -p < backup_2025_01_15.sql
+# or for PostgreSQL:
+pg_restore -d restored_db backup.dump
+
+# 8. Set up alerts — do NOT rely on someone watching a dashboard 24/7:
+#  - P95 latency > 200ms
+#  - Deadlocks > 10/hour
+#  - Replica lag > 10 seconds
+#  - Disk > 85%
+#  - Backup missing > 26 hours
+#  - Failed login attempts spike
+#  - Error log rate > 10/minute</code></pre>
+          </div>
+
+          <div class="example-box">
+            <strong><i class="fas fa-lightbulb" aria-hidden="true"></i>Simple Example</strong>
+            <p class="mb-1"><strong>Problem:</strong> users report the app is "slow" — no specific error.</p>
+            <p class="mb-1"><strong>Step 1 (monitor):</strong> check dashboard — QPS steady at 8K, but P95 latency up from 40ms → 800ms.</p>
+            <p class="mb-1"><strong>Step 2 (drill down):</strong> slow query log shows <code class="inline">SELECT * FROM Orders WHERE CustomerID = ?</code> taking 900ms (was 5ms).</p>
+            <p class="mb-1"><strong>Step 3 (analyze):</strong> EXPLAIN shows a full table scan — the index <code class="inline">idx_orders_customer</code> was accidentally dropped in yesterday's migration!</p>
+            <p class="mb-0"><strong>Step 4 (fix):</strong> re-create the index → latency back to 40ms. Monitoring caught it in minutes, not hours.</p>
+          </div>
+
+          <div class="real-life-box">
+            <strong><i class="fas fa-briefcase" aria-hidden="true"></i>Real-Life Use Case</strong>
+            <p class="mb-0"><strong>Large SaaS platforms</strong> run continuous monitoring with Prometheus + Grafana. They alert on P99 latency, buffer pool hit ratio, and replication lag. When a deployment accidentally introduces an N+1 query, the QPS metric spikes, an alert fires, the on-call engineer rolls back — all within minutes. Without monitoring, users would notice before the team does.</p>
+          </div>
+
+          <div class="info-box">
+            <strong><i class="fas fa-info-circle" aria-hidden="true"></i>Monitoring is not "checking once a day"</strong>
+            <p class="mb-0">Modern monitoring is <strong>continuous</strong> (metrics collected every 10–60 seconds), <strong>automated</strong> (alerts fire without human intervention), and <strong>comprehensive</strong> (database + application + infrastructure). Good monitoring reduces MTTR (Mean Time To Recover) from hours to minutes.</p>
+          </div>
+        </article>
+
+        <!-- ===== PRACTICAL LABS SUMMARY ===== -->
+        <article class="note-card">
+          <h3 style="border-bottom-color: var(--accent-blue);">
+            <i class="fas fa-flask me-2" style="color: var(--accent-blue);" aria-hidden="true"></i>Practical Labs for Module 7
+          </h3>
+          <p>Apply the concepts from this module with hands-on labs:</p>
+          <ul>
+            <li><strong>Lab 7.1:</strong> Analyzing Query Execution Plans (using EXPLAIN / EXPLAIN ANALYZE).</li>
+            <li><strong>Lab 7.2:</strong> Optimizing Slow Queries (before/after measurement).</li>
+            <li><strong>Lab 7.3:</strong> Table Partitioning and Index Tuning.</li>
+            <li><strong>Lab 7.4:</strong> Performance Monitoring Using DBMS Tools (slow query log, metrics queries).</li>
+          </ul>
+          <p class="mb-0"><a href="IT507_Practical_Module_7_Physical_Database_Design_and_Tuning_CPP.pdf" target="_blank" rel="noopener" class="notes-link"><i class="fas fa-file-pdf" aria-hidden="true"></i> Download Module 7 Practical Lab Guide (PDF)</a></p>
+        </article>
+
+        <!-- ===== QUICK REVISION ===== -->
+        <article class="note-card">
+          <h3 style="border-bottom-color: var(--accent-green);">
+            <i class="fas fa-list-check me-2" style="color: var(--accent-green);" aria-hidden="true"></i>Quick Revision — Module 7 in One Glance
+          </h3>
+          <table class="notes-table">
+            <thead>
+              <tr><th>Topic</th><th>Key Takeaway</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>7.1 Physical Design</td><td>Decisions about storage, indexes, partitioning, compression — the layer between logical design and hardware.</td></tr>
+              <tr><td>7.2 Mapping</td><td>Entity→table, attribute→column, PK→clustered index, FK→FK + index, M:N→junction table.</td></tr>
+              <tr><td>7.3 Denormalization</td><td>Trade write speed / storage / consistency for read speed. Normalize for OLTP, denormalize for OLAP.</td></tr>
+              <tr><td>7.4 Query Optimization</td><td>EXPLAIN → rewrite → index. Avoid SELECT *, avoid functions on indexed columns, prefer EXISTS.</td></tr>
+              <tr><td>7.5 Index Tuning &amp; Partitioning</td><td>Index WHERE/JOIN/ORDER BY columns; partition large tables (range/hash/list) for manageability and speed.</td></tr>
+              <tr><td>7.6 Configuration</td><td>Buffer pool (~70% RAM) is the #1 setting; enable slow query log; don't over-tune.</td></tr>
+              <tr><td>7.7 Monitoring</td><td>Watch buffer hit ratio (>99%), P95 latency, deadlocks, replication lag, backup age. Alert on thresholds.</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <!-- ===== NAVIGATION ===== -->
+        <div class="note-card" style="text-align: center;">
+          <a href="index.html" class="notes-link" style="font-size: 1rem;"><i class="fas fa-arrow-left" aria-hidden="true"></i> Back to IT-507 Course Index</a>
+          <span class="mx-3 text-muted">·</span>
+          <a href="it507-module-6.html" class="notes-link" style="font-size: 1rem;"><i class="fas fa-arrow-left" aria-hidden="true"></i> Previous: Module 6</a>
+          <span class="mx-3 text-muted">·</span>
+          <a href="it507-module-8.html" class="notes-link" style="font-size: 1rem;">Next: Module 8 — Distributed Database Systems <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-10 col-xl-8 text-center">
+        <p class="mb-2">
+          <i class="fas fa-crown me-2" style="color:var(--accent-yellow);" aria-hidden="true"></i>
+          <strong>Notes compiled by Sir Ali Raza</strong>
+        </p>
+        <p class="mb-2">
+          <i class="fas fa-globe me-1" aria-hidden="true"></i>
+          <a href="https://ali-raza-muhammad-iqbal.github.io" target="_blank" rel="noopener noreferrer">
+            ali-raza-muhammad-iqbal.github.io
+          </a>
+          <span class="mx-2">·</span>
+          <i class="fas fa-envelope me-1" aria-hidden="true"></i>
+          <a href="mailto:Mr_Ali_Raza@yahoo.com">Mr_Ali_Raza@yahoo.com</a>
+        </p>
+
+        <div class="footer-social mb-2" aria-label="Social media links">
+          <a href="https://github.com/Ali-Raza-Muhammad-Iqbal" target="_blank" rel="noopener noreferrer" title="GitHub" aria-label="GitHub"><i class="fab fa-github" aria-hidden="true"></i></a>
+          <a href="https://www.linkedin.com/in/ali-raza-muhammad-iqbal" target="_blank" rel="noopener noreferrer" title="LinkedIn" aria-label="LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
+          <a href="https://www.tiktok.com/@ali_raza_muhammad_iqbal" target="_blank" rel="noopener noreferrer" title="TikTok" aria-label="TikTok"><i class="fab fa-tiktok" aria-hidden="true"></i></a>
+          <a href="https://www.facebook.com/AliRazaMuhammadIqbal1" target="_blank" rel="noopener noreferrer" title="Facebook" aria-label="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+          <a href="https://www.instagram.com/ali_raza_muhammad_iqbal" target="_blank" rel="noopener noreferrer" title="Instagram" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+          <a href="https://x.com/Ali_Raza_Iqbal" target="_blank" rel="noopener noreferrer" title="X (Twitter)" aria-label="X (Twitter)"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i></a>
+          <a href="https://www.youtube.com/@Ali_Raza_Muhammad_Iqbal" target="_blank" rel="noopener noreferrer" title="YouTube" aria-label="YouTube"><i class="fab fa-youtube" aria-hidden="true"></i></a>
+          <a href="mailto:Mr_Ali_Raza@yahoo.com" title="Email" aria-label="Email"><i class="fas fa-envelope" aria-hidden="true"></i></a>
+        </div>
+
+        <p class="small mb-0" style="color:#b8c8f0;">
+          © 2025 · IT-507 Database Administration and Management · Module 7 · All credits to Sir Ali Raza.
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+(function() {
+  'use strict';
+
+  const themeToggle = document.getElementById('themeToggle');
+  const themeIcon = document.getElementById('themeIcon');
+  const root = document.documentElement;
+
+  function applyTheme(theme) {
+    if (theme === 'dark') {
+      root.setAttribute('data-theme', 'dark');
+      themeIcon.classList.remove('fa-moon');
+      themeIcon.classList.add('fa-sun');
+      themeToggle.setAttribute('aria-label', 'Switch to light mode');
+    } else {
+      root.removeAttribute('data-theme');
+      themeIcon.classList.remove('fa-sun');
+      themeIcon.classList.add('fa-moon');
+      themeToggle.setAttribute('aria-label', 'Switch to dark mode');
+    }
+  }
+
+  const savedTheme = localStorage.getItem('it507-theme');
+  if (savedTheme) {
+    applyTheme(savedTheme);
+  } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    applyTheme('dark');
+  }
+
+  themeToggle.addEventListener('click', function() {
+    const isDark = root.getAttribute('data-theme') === 'dark';
+    const newTheme = isDark ? 'light' : 'dark';
+    applyTheme(newTheme);
+    localStorage.setItem('it507-theme', newTheme);
+  });
+
+  const progressBar = document.getElementById('progressBar');
+  function updateProgress() {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const percent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    progressBar.style.width = percent + '%';
+    progressBar.setAttribute('aria-valuenow', Math.round(percent));
+  }
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  window.addEventListener('resize', updateProgress);
+
+  const backToTop = document.getElementById('backToTop');
+  function toggleBackToTop() {
+    if (window.scrollY > 400) {
+      backToTop.classList.add('visible');
+    } else {
+      backToTop.classList.remove('visible');
+    }
+  }
+  window.addEventListener('scroll', toggleBackToTop, { passive: true });
+  backToTop.addEventListener('click', function() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  document.querySelectorAll('.code-copy-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      const codeBlock = btn.closest('.code-block');
+      const code = codeBlock.querySelector('pre code') || codeBlock.querySelector('pre');
+      const text = code ? code.textContent : '';
+      const originalHTML = btn.innerHTML;
+
+      function showCopied() {
+        btn.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i> Copied!';
+        btn.classList.add('copied');
+        setTimeout(function() {
+          btn.innerHTML = originalHTML;
+          btn.classList.remove('copied');
+        }, 1500);
+      }
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(showCopied).catch(function() {
+          fallbackCopy(text, showCopied);
+        });
+      } else {
+        fallbackCopy(text, showCopied);
+      }
+    });
+  });
+
+  function fallbackCopy(text, callback) {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try {
+      document.execCommand('copy');
+      if (callback) callback();
+    } catch (err) {
+      console.warn('Copy failed', err);
+    }
+    document.body.removeChild(ta);
+  }
+
+  function highlightHash() {
+    const hash = window.location.hash;
+    if (!hash) return;
+    const target = document.querySelector(hash);
+    if (!target) return;
+    target.style.transition = 'background 0.4s ease';
+    target.style.background = 'rgba(255, 193, 7, 0.15)';
+    setTimeout(function() {
+      target.style.background = '';
+    }, 2000);
+    setTimeout(function() {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 100);
+  }
+  window.addEventListener('load', highlightHash);
+  window.addEventListener('hashchange', highlightHash);
+
+  updateProgress();
+  toggleBackToTop();
+
+})();
+</script>
+</body>
+</html>
